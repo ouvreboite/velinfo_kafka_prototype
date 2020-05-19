@@ -6,12 +6,13 @@ import java.time.Instant;
 import java.time.Period;
 import java.util.Date;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RealTimeAvailabilityClientTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     void fetch_shouldFetchAvailabilitiesFromAPI_AndMapToDto() {
         RealTimeAvailability availabilities = new RealTimeAvailabilityClient().fetch();
         assertFalse(availabilities.getRecords().isEmpty(), "The API should return several availabilities");
@@ -22,7 +23,7 @@ class RealTimeAvailabilityClientTest {
         assertTrue(totalMechanicalAvailable > 100, "Their should be some mechanical bicycle available");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void fetch_shouldFetchRecentData() {
         RealTimeAvailability availabilities = new RealTimeAvailabilityClient().fetch();
 
