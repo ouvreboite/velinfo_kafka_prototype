@@ -3,19 +3,11 @@ package velibstreaming.producer.client.dto;
 import lombok.Data;
 
 import java.util.Date;
-import java.util.List;
 
 @Data
-public class RealTimeAvailability {
-    private List<RealTimeAvailabilityRecord> records;
-
+public class RealTimeAvailability extends OpenDataDto<RealTimeAvailability.RealTimeAvailabilityFields> {
     @Data
-    public static class RealTimeAvailabilityRecord{
-        private RealTimeAvailabilityRecordFields fields;
-    }
-
-    @Data
-    public static class RealTimeAvailabilityRecordFields{
+    public static class RealTimeAvailabilityFields{
         private int capacity;
         private int mechanical;
         private int ebike;

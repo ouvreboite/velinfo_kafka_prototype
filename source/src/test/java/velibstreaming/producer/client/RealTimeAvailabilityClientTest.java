@@ -14,12 +14,12 @@ class RealTimeAvailabilityClientTest {
     @org.junit.jupiter.api.Test
     void fetch_shouldFetchAvailabilitiesFromAPI_AndMapToDto() {
         RealTimeAvailability availabilities = new RealTimeAvailabilityClient().fetch();
-        assertFalse(availabilities.getRecords().isEmpty());
+        assertFalse(availabilities.getRecords().isEmpty(), "The API should return several availabilities");
 
-        long totalCapacity = availabilities.getRecords().stream()
-                .mapToLong(r -> r.getFields().getCapacity())
+        long totalMechanicalAvailable = availabilities.getRecords().stream()
+                .mapToLong(r -> r.getFields().getMechanical())
                 .sum();
-        assertTrue(totalCapacity > 1_000);
+        assertTrue(totalMechanicalAvailable > 100, "Their should be some mechanical bicycle available");
     }
 
     @org.junit.jupiter.api.Test
@@ -28,6 +28,6 @@ class RealTimeAvailabilityClientTest {
 
         Date mostRecentDate = availabilities.getRecords().stream().map(r -> r.getFields().getDuedate()).max(Date::compareTo).orElseThrow();
         Instant oneDayAgo = Instant.now().minus(Period.ofDays(1));
-        assertTrue(mostRecentDate.toInstant().isAfter(oneDayAgo));
+        assertTrue(mostRecentDate.toInstant().isAfter(oneDayAgo), "The availability data should be at max a few hours old");
     }
 }
