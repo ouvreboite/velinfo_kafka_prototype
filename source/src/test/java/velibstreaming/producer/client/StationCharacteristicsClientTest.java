@@ -6,13 +6,16 @@ import velibstreaming.producer.client.dto.StationCharacteristics;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StationCharacteristicsClientTest {
+    private StationCharacteristicsClient client = new StationCharacteristicsClient();
 
     @Test
-    void fetch_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() {
-        StationCharacteristics stations = new StationCharacteristicsClient().fetch();
+    void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() {
+        StationCharacteristics stations = client
+                .get();
         assertFalse(stations.getRecords().isEmpty(), "The API should return several stations");
 
         List<double[]> coordinatesWithoutTwoValues = stations.getRecords().stream()

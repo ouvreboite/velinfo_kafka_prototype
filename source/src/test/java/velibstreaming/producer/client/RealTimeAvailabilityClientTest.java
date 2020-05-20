@@ -1,20 +1,25 @@
 package velibstreaming.producer.client;
 
+import org.junit.jupiter.api.Test;
 import velibstreaming.producer.client.dto.RealTimeAvailability;
 
 import java.time.Instant;
 import java.time.Period;
 import java.util.Date;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static velibstreaming.producer.client.OpenDataClient.ROW_COUNT_PARAMETER;
+import static velibstreaming.producer.client.OpenDataClient.ROW_COUNT_PARAMETER_MAX_VALUE;
 
 class RealTimeAvailabilityClientTest {
+    private RealTimeAvailabilityClient client = new RealTimeAvailabilityClient();
 
     @Test
-    void fetch_shouldFetchAvailabilitiesFromAPI_AndMapToDto() {
-        RealTimeAvailability availabilities = new RealTimeAvailabilityClient().fetch();
+    void get_shouldFetchAvailabilitiesFromAPI_AndMapToDto() {
+        RealTimeAvailability availabilities = client
+                .withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE)
+                .get();
         assertFalse(availabilities.getRecords().isEmpty(), "The API should return several availabilities");
 
         long totalMechanicalAvailable = availabilities.getRecords().stream()
@@ -24,8 +29,9 @@ class RealTimeAvailabilityClientTest {
     }
 
     @Test
-    void fetch_shouldFetchRecentData() {
-        RealTimeAvailability availabilities = new RealTimeAvailabilityClient().fetch();
+    void get_shouldFetchRecentData() {
+        RealTimeAvailability availabilities = client
+                .get();
 
         Date mostRecentDate = availabilities.getRecords().stream().map(r -> r.getFields().getDuedate()).max(Date::compareTo).orElseThrow();
         Instant oneDayAgo = Instant.now().minus(Period.ofDays(1));
