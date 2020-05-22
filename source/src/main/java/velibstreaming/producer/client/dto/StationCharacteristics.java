@@ -3,9 +3,9 @@ package velibstreaming.producer.client.dto;
 import lombok.Data;
 
 @Data
-public class StationCharacteristics extends OpenDataDto<StationCharacteristics.StationCharacteristicsRecordFields> {
+public class StationCharacteristics extends OpenDataDto<StationCharacteristics.Fields> {
     @Data
-    public static class StationCharacteristicsRecordFields{
+    public static class Fields {
         private String stationcode;
         private String name;
         private double[] coordonnees_geo;

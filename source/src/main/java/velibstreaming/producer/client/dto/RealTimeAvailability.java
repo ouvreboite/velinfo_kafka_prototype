@@ -5,9 +5,9 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class RealTimeAvailability extends OpenDataDto<RealTimeAvailability.RealTimeAvailabilityFields> {
+public class RealTimeAvailability extends OpenDataDto<RealTimeAvailability.Fields> {
     @Data
-    public static class RealTimeAvailabilityFields{
+    public static class Fields {
         private int capacity;
         private int mechanical;
         private int ebike;

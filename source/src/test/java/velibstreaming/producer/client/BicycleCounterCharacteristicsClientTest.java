@@ -1,7 +1,7 @@
 package velibstreaming.producer.client;
 
 import org.junit.jupiter.api.Test;
-import velibstreaming.producer.client.dto.StationCharacteristics;
+import velibstreaming.producer.client.dto.BicycleCounterCharacteristics;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -9,17 +9,16 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class StationCharacteristicsClientTest {
-    private StationCharacteristicsClient client = new StationCharacteristicsClient();
+class BicycleCounterCharacteristicsClientTest {
+    private BicycleCounterCharacteristicsClient client = new BicycleCounterCharacteristicsClient();
 
     @Test
     void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() {
-        StationCharacteristics stations = client
-                .get();
-        assertFalse(stations.getRecords().isEmpty(), "The API should return several stations");
+        BicycleCounterCharacteristics characteristics = client.get();
+        assertFalse(characteristics.getRecords().isEmpty(), "The API should return several counters");
 
-        List<double[]> coordinatesWithoutTwoValues = stations.getRecords().stream()
-                .map(r -> r.getFields().getCoordonnees_geo())
+        List<double[]> coordinatesWithoutTwoValues = characteristics.getRecords().stream()
+                .map(r -> r.getFields().getCoordinates())
                 .filter(coord -> coord.length != 2)
                 .collect(Collectors.toList());
         assertTrue(coordinatesWithoutTwoValues.isEmpty(), "The geocoordinates returned by the API should be a tuple of double");

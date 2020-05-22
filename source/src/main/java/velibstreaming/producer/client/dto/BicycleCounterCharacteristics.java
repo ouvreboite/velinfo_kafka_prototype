@@ -3,13 +3,11 @@ package velibstreaming.producer.client.dto;
 import lombok.Data;
 
 @Data
-public class StationCharacteristics extends OpenDataDto<StationCharacteristics.StationCharacteristicsRecordFields> {
+public class BicycleCounterCharacteristics extends OpenDataDto<BicycleCounterCharacteristics.Fields> {
     @Data
-    public static class StationCharacteristicsRecordFields{
-        private String stationcode;
-        private String name;
-        private double[] coordonnees_geo;
-        private int capacity;
+    public static class Fields{
+        private String id_compteur;
+        private double[] coordinates;
     }
 }
 

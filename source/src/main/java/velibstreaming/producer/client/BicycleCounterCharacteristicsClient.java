@@ -1,10 +1,9 @@
 package velibstreaming.producer.client;
 
-import velibstreaming.producer.client.dto.BicycleCount;
+import velibstreaming.producer.client.dto.BicycleCounterCharacteristics;
 
-public class BicycleCountClient extends OpenDataClient<BicycleCount> {
-    public static final String DATE_PARAMETER = "refine.date";
-    public BicycleCountClient() {
-        super(BicycleCount.class, "comptage-velo-donnees-compteurs");
+public class BicycleCounterCharacteristicsClient extends OpenDataClient<BicycleCounterCharacteristics> {
+    public BicycleCounterCharacteristicsClient() {
+        super(BicycleCounterCharacteristics.class, "comptage-velo-compteurs");
     }
 }
