@@ -1,11 +1,12 @@
 package velibstreaming.producer.client;
 
 import kong.unirest.Unirest;
+import velibstreaming.producer.client.dto.OpenDataDto;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class OpenDataClient<Data> {
+public abstract class OpenDataClient<Data extends OpenDataDto> {
     public static final String ROW_COUNT_PARAMETER = "rows";
     public static final String ROW_COUNT_PARAMETER_MAX_VALUE = "10000";
     public static final String BASE_PATH = "https://opendata.paris.fr/api/records/1.0/search/?dataset=";
