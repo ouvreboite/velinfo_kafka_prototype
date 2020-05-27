@@ -13,7 +13,7 @@ class StationCharacteristicsClientTest {
     private StationCharacteristicsClient client = new StationCharacteristicsClient();
 
     @Test
-    void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() {
+    void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() throws OpenDataClient.OpenDataException {
         StationCharacteristics stations = client
                 .get();
         assertFalse(stations.getRecords().isEmpty(), "The API should return several stations");

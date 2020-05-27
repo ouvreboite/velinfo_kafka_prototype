@@ -25,15 +25,18 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
         this.parameters.put(parameter, value);
         return this;
     }
-    public Data get(){
+    public Data get() throws OpenDataException{
         String completePath = getCompletePath();
-        return Unirest.get(completePath)
-                .header("accept", "application/json")
-                .asObject(dataClass)
-                .ifFailure(Error.class, r -> {
-                    throw r.getBody();
-                })
-                .getBody();
+        try{
+            return Unirest.get(completePath)
+                    .header("accept", "application/json")
+                    .asObject(dataClass)
+                    .ifFailure(Error.class, r -> {throw r.getBody();})
+                    .getBody();
+        }catch(Error e){
+            throw new OpenDataException("Error when calling "+completePath, e);
+        }
+
     }
 
     private String getCompletePath() {
@@ -42,5 +45,11 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
                 .reduce((p1, p2) -> p1 + p2)
                 .orElse("");
         return urlPath + parametersString;
+    }
+
+    public static class OpenDataException extends Exception{
+        public OpenDataException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }

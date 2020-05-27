@@ -18,7 +18,7 @@ class RoadWorkClientTest {
     private RoadWorkClient client = new RoadWorkClient();
 
     @Test
-    void get_shouldFetchRoadWorksFromAPI_AndMapToDto() {
+    void get_shouldFetchRoadWorksFromAPI_AndMapToDto() throws OpenDataClient.OpenDataException {
         RoadWork roadWork = client
                 .withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE)
                 .get();

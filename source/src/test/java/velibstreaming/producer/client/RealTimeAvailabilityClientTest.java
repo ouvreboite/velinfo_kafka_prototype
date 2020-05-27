@@ -16,7 +16,7 @@ class RealTimeAvailabilityClientTest {
     private RealTimeAvailabilityClient client = new RealTimeAvailabilityClient();
 
     @Test
-    void get_shouldFetchAvailabilitiesFromAPI_AndMapToDto() {
+    void get_shouldFetchAvailabilitiesFromAPI_AndMapToDto() throws OpenDataClient.OpenDataException {
         RealTimeAvailability availabilities = client
                 .withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE)
                 .get();
@@ -29,7 +29,7 @@ class RealTimeAvailabilityClientTest {
     }
 
     @Test
-    void get_shouldFetchRecentData() {
+    void get_shouldFetchRecentData() throws OpenDataClient.OpenDataException {
         RealTimeAvailability availabilities = client
                 .get();
 

@@ -13,7 +13,7 @@ class BicycleCounterCharacteristicsClientTest {
     private BicycleCounterCharacteristicsClient client = new BicycleCounterCharacteristicsClient();
 
     @Test
-    void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() {
+    void get_shouldFetchStationCharacteristicsFromAPI_AndMapToDto() throws OpenDataClient.OpenDataException {
         BicycleCounterCharacteristics characteristics = client.get();
         assertFalse(characteristics.getRecords().isEmpty(), "The API should return several counters");
 

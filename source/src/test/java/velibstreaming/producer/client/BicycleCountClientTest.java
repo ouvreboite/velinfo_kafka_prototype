@@ -18,7 +18,7 @@ class BicycleCountClientTest {
     private BicycleCountClient client = new BicycleCountClient();
 
     @Test
-    void get_shouldFetchBicycleCountsFromAPI_AndMapToDto() {
+    void get_shouldFetchBicycleCountsFromAPI_AndMapToDto() throws OpenDataClient.OpenDataException {
         BicycleCount bicycleCount = client
                 .withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE)
                 .get();
@@ -27,7 +27,7 @@ class BicycleCountClientTest {
     }
 
     @Test
-    void get_shouldUseDateParameter() {
+    void get_shouldUseDateParameter() throws OpenDataClient.OpenDataException {
         String yesterday = LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE);
         BicycleCount bicycleCount = client
                 .withParameter(BicycleCountClient.DATE_PARAMETER, yesterday)
