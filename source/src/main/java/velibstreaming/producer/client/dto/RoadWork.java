@@ -9,6 +9,7 @@ import java.util.Date;
 public class RoadWork extends OpenDataDto<RoadWork.Fields> {
     @Data
     public static class Fields {
+        private String identifiant;
         private String objet;
         private PerturbationLevel niveau_perturbation;
         private String voie;
