@@ -17,21 +17,31 @@ import java.util.function.Function;
 
 public class Producer<P extends OpenDataDto<F>,F> {
 
-    private final Properties kafkaProps;
-    private final Properties producerProps;
     private final String topic;
     private final Function<F, String> keyExtractor;
+    private KafkaProducer<String, OpenDataDto.Record<F>> producer;
 
 
     public Producer(Properties kafkaProps, String topic, Function<F, String> keyExtractor) {
-        this.kafkaProps = kafkaProps;
-        this.producerProps = BuildProducerProps(kafkaProps);
         this.topic = topic;
         this.keyExtractor = keyExtractor;
-        createTopicIfNeeded();
+        createTopicIfNeeded(kafkaProps);
+        initProducer(kafkaProps);
     }
 
-    public void createTopicIfNeeded() {
+    private void initProducer(Properties kafkaProps) {
+        var props = new Properties();
+        props.putAll(kafkaProps);
+
+        props.put(ProducerConfig.ACKS_CONFIG, "all");
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaJsonSerializer");
+
+        this.producer = new KafkaProducer<>(props);
+        Runtime.getRuntime().addShutdownHook(new Thread(producer::close, "Shutdown-thread"));
+    }
+
+    private void createTopicIfNeeded(Properties kafkaProps) {
         var newTopic = new NewTopic(topic, 5, (short) 1);
         newTopic.configs(Map.of(
                 TopicConfig.CLEANUP_POLICY_CONFIG,TopicConfig.CLEANUP_POLICY_COMPACT,
@@ -50,21 +60,10 @@ public class Producer<P extends OpenDataDto<F>,F> {
     }
 
     public void send(P payload) {
-        var producer = new KafkaProducer<String, OpenDataDto.Record<F>>(this.producerProps);
-
         payload.getRecords().stream()
                 .map(record -> new ProducerRecord<>(topic, keyExtractor.apply(record.getFields()), record))
-                .map(producer::send);
+                .forEach(producer::send);
 
         producer.flush();
-    }
-
-    private Properties BuildProducerProps(Properties kafkaProps) {
-        var props = new Properties();
-        props.putAll(kafkaProps);
-        props.put(ProducerConfig.ACKS_CONFIG, "all");
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaJsonSerializer");
-        return props;
     }
 }
