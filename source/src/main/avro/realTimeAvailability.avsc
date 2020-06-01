@@ -1,0 +1,24 @@
+{
+  "type": "record",
+  "name": "AvroRealTimeAvailability",
+  "namespace": "velibstreaming.avro.record",
+  "fields": [
+    {
+      "name" : "stationCode",
+      "type" : "string"
+    },
+    {
+      "name": "mechanicalBikesAtStation",
+      "type": "int"
+    },
+    {
+      "name": "electricBikesAtStation",
+      "type": "int"
+    },
+    {
+      "name": "availabilityTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    }
+  ]
+}

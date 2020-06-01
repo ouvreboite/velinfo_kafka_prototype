@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "AvroStationCharacteristics",
+  "namespace": "velibstreaming.avro.record",
+  "fields": [
+    {
+      "name" : "stationCode",
+      "type" : "string"
+    },
+    {
+      "name": "stationName",
+      "type": "string"
+    },
+    {
+      "name": "totalCapacity",
+      "type": "int"
+    },
+    {
+      "name": "latitude",
+      "type" : "double"
+    },
+    {
+      "name": "longitude",
+      "type" : "double"
+    }
+  ]
+}
