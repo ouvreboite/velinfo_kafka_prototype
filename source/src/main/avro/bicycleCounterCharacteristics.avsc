@@ -1,0 +1,19 @@
+{
+  "type": "record",
+  "name": "AvroBicycleCounterCharacteristics",
+  "namespace": "velibstreaming.avro.record",
+  "fields": [
+    {
+      "name" : "counterId",
+      "type" : "string"
+    },
+    {
+      "name": "latitude",
+      "type" : "double"
+    },
+    {
+      "name": "longitude",
+      "type" : "double"
+    }
+  ]
+}

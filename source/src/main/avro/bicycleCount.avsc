@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "AvroBicycleCount",
+  "namespace": "velibstreaming.avro.record",
+  "fields": [
+    {
+      "name" : "counterId",
+      "type" : "string"
+    },
+    {
+      "name": "count",
+      "type": "int"
+    },
+    {
+      "name": "countTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "type": "record",
+  "name": "AvroRoadWork",
+  "namespace": "velibstreaming.avro.record",
+  "fields": [
+    {
+      "name" : "id",
+      "type" : "string"
+    },
+    {
+      "name" : "object",
+      "type" : "string"
+    },
+    {
+      "name" : "impactDetails",
+      "type" : "string"
+    },
+    {
+      "name" : "perturbationLevel",
+      "type" : {
+          "name": "PerturbationLevel",
+          "type": "enum",
+          "symbols" : ["VERY_DISTURBING", "DISTURBING"]
+      }
+    },
+    {
+      "name" : "streetName",
+      "type" : "string"
+    },
+    {
+      "name": "status",
+      "type" : {
+          "name": "Status",
+          "type": "enum",
+          "symbols" : ["ONGOING", "HALTED", "EXTENDED", "FINISHED"]
+       }
+    },
+    {
+      "name": "startTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "endTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "latitude",
+      "type" : "double"
+    },
+    {
+      "name": "longitude",
+      "type" : "double"
+    }
+  ]
+}
