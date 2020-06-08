@@ -9,30 +9,30 @@
     },
     {
       "name" : "object",
-      "type" : "string"
+      "type" : ["null","string"]
     },
     {
       "name" : "impactDetails",
-      "type" : "string"
+      "type" : ["null","string"]
     },
     {
       "name" : "perturbationLevel",
       "type" : {
           "name": "PerturbationLevel",
           "type": "enum",
-          "symbols" : ["VERY_DISTURBING", "DISTURBING"]
+          "symbols" : ["VERY_DISTURBING", "DISTURBING", "NONE"]
       }
     },
     {
       "name" : "streetName",
-      "type" : "string"
+      "type" : ["null","string"]
     },
     {
       "name": "status",
       "type" : {
           "name": "Status",
           "type": "enum",
-          "symbols" : ["ONGOING", "HALTED", "EXTENDED", "FINISHED"]
+          "symbols" : ["TO_COME", "ONGOING", "HALTED", "EXTENDED", "FINISHED", "NONE"]
        }
     },
     {

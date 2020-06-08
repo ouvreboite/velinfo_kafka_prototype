@@ -10,8 +10,8 @@ public class RoadWorkMapper implements AvroMapper<RoadWork.Fields, AvroRoadWork>
     public AvroRoadWork map(RoadWork.Fields record) {
         return AvroRoadWork.newBuilder()
                 .setId(record.getIdentifiant())
-                .setPerturbationLevel(PerturbationLevel.valueOf(record.getNiveau_perturbation().name()))
-                .setStatus(Status.valueOf(record.getStatut().name()))
+                .setPerturbationLevel(record.getNiveau_perturbation() == null ? PerturbationLevel.NONE : PerturbationLevel.valueOf(record.getNiveau_perturbation().name()))
+                .setStatus(record.getStatut() == null ? Status.NONE : Status.valueOf(record.getStatut().name()))
                 .setLatitude(record.getGeo_point_2d() != null ? record.getGeo_point_2d()[0] : 0.0)
                 .setLongitude(record.getGeo_point_2d() != null ? record.getGeo_point_2d()[1] : 0.0)
                 .setObject(record.getObjet())

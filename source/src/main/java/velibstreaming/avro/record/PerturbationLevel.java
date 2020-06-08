@@ -6,8 +6,8 @@
 package velibstreaming.avro.record;
 @org.apache.avro.specific.AvroGenerated
 public enum PerturbationLevel implements org.apache.avro.generic.GenericEnumSymbol<PerturbationLevel> {
-  VERY_DISTURBING, DISTURBING  ;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"namespace\":\"velibstreaming.avro.record\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\"]}");
+  VERY_DISTURBING, DISTURBING, NONE  ;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"namespace\":\"velibstreaming.avro.record\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\",\"NONE\"]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
 }

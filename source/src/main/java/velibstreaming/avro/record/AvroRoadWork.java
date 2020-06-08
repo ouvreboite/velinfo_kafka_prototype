@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8877807868999925784L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRoadWork\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"object\",\"type\":\"string\"},{\"name\":\"impactDetails\",\"type\":\"string\"},{\"name\":\"perturbationLevel\",\"type\":{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\"]}},{\"name\":\"streetName\",\"type\":\"string\"},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"ONGOING\",\"HALTED\",\"EXTENDED\",\"FINISHED\"]}},{\"name\":\"startTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"endTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = 7503001370527920071L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRoadWork\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"object\",\"type\":[\"null\",\"string\"]},{\"name\":\"impactDetails\",\"type\":[\"null\",\"string\"]},{\"name\":\"perturbationLevel\",\"type\":{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\",\"NONE\"]}},{\"name\":\"streetName\",\"type\":[\"null\",\"string\"]},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"TO_COME\",\"ONGOING\",\"HALTED\",\"EXTENDED\",\"FINISHED\",\"NONE\"]}},{\"name\":\"startTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"endTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -920,13 +920,31 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
   {
     out.writeString(this.id);
 
-    out.writeString(this.object);
+    if (this.object == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.object);
+    }
 
-    out.writeString(this.impactDetails);
+    if (this.impactDetails == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.impactDetails);
+    }
 
     out.writeEnum(this.perturbationLevel.ordinal());
 
-    out.writeString(this.streetName);
+    if (this.streetName == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.streetName);
+    }
 
     out.writeEnum(this.status.ordinal());
 
@@ -947,13 +965,28 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
     if (fieldOrder == null) {
       this.id = in.readString(this.id instanceof Utf8 ? (Utf8)this.id : null);
 
-      this.object = in.readString(this.object instanceof Utf8 ? (Utf8)this.object : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.object = null;
+      } else {
+        this.object = in.readString(this.object instanceof Utf8 ? (Utf8)this.object : null);
+      }
 
-      this.impactDetails = in.readString(this.impactDetails instanceof Utf8 ? (Utf8)this.impactDetails : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.impactDetails = null;
+      } else {
+        this.impactDetails = in.readString(this.impactDetails instanceof Utf8 ? (Utf8)this.impactDetails : null);
+      }
 
       this.perturbationLevel = velibstreaming.avro.record.PerturbationLevel.values()[in.readEnum()];
 
-      this.streetName = in.readString(this.streetName instanceof Utf8 ? (Utf8)this.streetName : null);
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.streetName = null;
+      } else {
+        this.streetName = in.readString(this.streetName instanceof Utf8 ? (Utf8)this.streetName : null);
+      }
 
       this.status = velibstreaming.avro.record.Status.values()[in.readEnum()];
 
@@ -973,11 +1006,21 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
           break;
 
         case 1:
-          this.object = in.readString(this.object instanceof Utf8 ? (Utf8)this.object : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.object = null;
+          } else {
+            this.object = in.readString(this.object instanceof Utf8 ? (Utf8)this.object : null);
+          }
           break;
 
         case 2:
-          this.impactDetails = in.readString(this.impactDetails instanceof Utf8 ? (Utf8)this.impactDetails : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.impactDetails = null;
+          } else {
+            this.impactDetails = in.readString(this.impactDetails instanceof Utf8 ? (Utf8)this.impactDetails : null);
+          }
           break;
 
         case 3:
@@ -985,7 +1028,12 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
           break;
 
         case 4:
-          this.streetName = in.readString(this.streetName instanceof Utf8 ? (Utf8)this.streetName : null);
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.streetName = null;
+          } else {
+            this.streetName = in.readString(this.streetName instanceof Utf8 ? (Utf8)this.streetName : null);
+          }
           break;
 
         case 5:
