@@ -2,7 +2,7 @@ package velibstreaming.producer;
 
 import lombok.Data;
 import velibstreaming.producer.client.*;
-import velibstreaming.producer.client.dto.*;
+import velibstreaming.producer.mapper.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,27 +25,42 @@ public class ProductionLoop {
 
         new ProductionThread<>(parameters.availabilityPeriodSeconds,
                 new RealTimeAvailabilityClient(),
-                new Producer<>(kafkaProps, parameters.availabilityTopic, RealTimeAvailability.Fields::getStationcode))
+                new Producer<>(kafkaProps,
+                        parameters.availabilityTopic,
+                        record -> record.getStationCode().toString(),
+                        new RealTimeAvailabilityMapper()))
                 .start();
 
         new ProductionThread<>(parameters.stationsCharacteristicsPeriodSeconds,
                 new StationCharacteristicsClient(),
-                new Producer<>(kafkaProps, parameters.stationsCharacteristicsTopic, StationCharacteristics.Fields::getStationcode))
+                new Producer<>(kafkaProps,
+                        parameters.stationsCharacteristicsTopic,
+                        record -> record.getStationCode().toString(),
+                        new StationCharacteristicsMapper()))
                 .start();
 
         new ProductionThread<>(parameters.roadWorkPeriodSeconds,
                 new RoadWorkClient(),
-                new Producer<>(kafkaProps, parameters.roadWorkTopic, RoadWork.Fields::getIdentifiant))
+                new Producer<>(kafkaProps,
+                        parameters.roadWorkTopic,
+                        record -> record.getId().toString(),
+                        new RoadWorkMapper()))
                 .start();
 
         new ProductionThread<>(parameters.counterCharacteristicsPeriodSeconds,
                 new BicycleCounterCharacteristicsClient(),
-                new Producer<>(kafkaProps, parameters.counterCharacteristicsTopic, BicycleCounterCharacteristics.Fields::getId_compteur))
+                new Producer<>(kafkaProps,
+                        parameters.counterCharacteristicsTopic,
+                        record -> record.getCounterId().toString(),
+                        new BicycleCounterCharacteristicsMapper()))
                 .start();
 
         new ProductionThread<>(parameters.bicycleCountPeriodSeconds,
                 new BicycleCountClient(),
-                new Producer<>(kafkaProps, parameters.bicycleCountTopic, BicycleCount.Fields::getId_compteur))
+                new Producer<>(kafkaProps,
+                        parameters.bicycleCountTopic,
+                        record -> record.getCounterId().toString(),
+                        new BicycleCountMapper()))
                 .withParameter(DATE_PARAMETER,() -> LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE))
                 .start();
 
