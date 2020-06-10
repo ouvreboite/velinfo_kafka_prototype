@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,20 +29,22 @@ class BicycleCountClientTest {
 
     @Test
     void get_shouldUseDateParameter() throws OpenDataClient.OpenDataException {
-        String yesterday = LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE);
+        String aWeekAgo = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.ISO_DATE);
         BicycleCount bicycleCount = client
-                .withParameter(BicycleCountClient.DATE_PARAMETER, yesterday)
+                .withParameter(BicycleCountClient.DATE_PARAMETER, aWeekAgo)
                 .get();
 
         assertFalse(bicycleCount.getRecords().isEmpty(), "The API should return several counts");
 
         SimpleDateFormat iso = new SimpleDateFormat("yyyy-MM-dd");
+        iso.setTimeZone(TimeZone.getTimeZone("UTC"));
+        
         List<String> datesReturned = bicycleCount.getRecords().stream()
                 .map(r -> r.getFields().getDate())
                 .map(d -> iso.format(d))
                 .distinct()
                 .collect(Collectors.toList());
-        assertEquals(1, datesReturned.size(), "The API should return only one date");
-        assertEquals(yesterday, datesReturned.get(0), "The API should return only yesterday's data");
+        assertEquals(1, datesReturned.size(), "The API should return only one date, but returned : "+datesReturned.toString());
+        assertEquals(aWeekAgo, datesReturned.get(0), "The API should return only a week ago's data");
     }
 }
