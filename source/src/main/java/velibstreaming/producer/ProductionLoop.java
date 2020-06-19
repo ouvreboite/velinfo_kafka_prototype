@@ -1,6 +1,6 @@
 package velibstreaming.producer;
 
-import lombok.Data;
+import velibstreaming.properties.StreamProperties;
 import velibstreaming.producer.client.*;
 import velibstreaming.producer.mapper.*;
 
@@ -14,51 +14,49 @@ import static velibstreaming.producer.client.BicycleCountClient.DATE_PARAMETER;
 
 public class ProductionLoop {
 
-    public static void main(String[] args) throws IOException {
-        new ProductionLoop().run();
+    public static void main(String[] args) {
+        new ProductionLoop().startProduction();
     }
 
-    public void run() throws IOException {
-        var producerProps = LoadProperties("producers.properties");
-        var kafkaProps = LoadProperties("kafka.properties");
-        Parameters parameters = LoadParameters(producerProps);
+    public void startProduction() {
+        StreamProperties props = StreamProperties.getInstance();
 
-        new ProductionThread<>(parameters.availabilityPeriodSeconds,
+        new ProductionThread<>(props.getAvailabilityPeriodSeconds(),
                 new RealTimeAvailabilityClient(),
-                new Producer<>(kafkaProps,
-                        parameters.availabilityTopic,
+                new Producer<>(
+                        props.getAvailabilityTopic(),
                         record -> record.getStationCode().toString(),
                         new RealTimeAvailabilityMapper()))
                 .start();
 
-        new ProductionThread<>(parameters.stationsCharacteristicsPeriodSeconds,
+        new ProductionThread<>(props.getStationsCharacteristicsPeriodSeconds(),
                 new StationCharacteristicsClient(),
-                new Producer<>(kafkaProps,
-                        parameters.stationsCharacteristicsTopic,
+                new Producer<>(
+                        props.getStationsCharacteristicsTopic(),
                         record -> record.getStationCode().toString(),
                         new StationCharacteristicsMapper()))
                 .start();
 
-        new ProductionThread<>(parameters.roadWorkPeriodSeconds,
+        new ProductionThread<>(props.getRoadWorkPeriodSeconds(),
                 new RoadWorkClient(),
-                new Producer<>(kafkaProps,
-                        parameters.roadWorkTopic,
+                new Producer<>(
+                        props.getRoadWorkTopic(),
                         record -> record.getId().toString(),
                         new RoadWorkMapper()))
                 .start();
 
-        new ProductionThread<>(parameters.counterCharacteristicsPeriodSeconds,
+        new ProductionThread<>(props.getCounterCharacteristicsPeriodSeconds(),
                 new BicycleCounterCharacteristicsClient(),
-                new Producer<>(kafkaProps,
-                        parameters.counterCharacteristicsTopic,
+                new Producer<>(
+                        props.getCounterCharacteristicsTopic(),
                         record -> record.getCounterId().toString(),
                         new BicycleCounterCharacteristicsMapper()))
                 .start();
 
-        new ProductionThread<>(parameters.bicycleCountPeriodSeconds,
+        new ProductionThread<>(props.getBicycleCountPeriodSeconds(),
                 new BicycleCountClient(),
-                new Producer<>(kafkaProps,
-                        parameters.bicycleCountTopic,
+                new Producer<>(
+                        props.getBicycleCountTopic(),
                         record -> record.getCounterId().toString(),
                         new BicycleCountMapper()))
                 .withParameter(DATE_PARAMETER,() -> LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE))
@@ -69,44 +67,5 @@ public class ProductionLoop {
             doneSignal.await();
         } catch (InterruptedException ignored) {
         }
-    }
-
-    private Parameters LoadParameters(Properties producerProps) throws IOException {
-        Parameters parameters = new Parameters();
-
-        parameters.availabilityPeriodSeconds = Long.parseLong(producerProps.getProperty("RealTimeAvailability.Loop.Seconds", "60"));
-        parameters.stationsCharacteristicsPeriodSeconds = Long.parseLong(producerProps.getProperty("StationCharacteristics.Loop.Seconds", "60"));
-        parameters.roadWorkPeriodSeconds = Long.parseLong(producerProps.getProperty("RoadWork.Loop.Seconds", "60"));
-        parameters.bicycleCountPeriodSeconds = Long.parseLong(producerProps.getProperty("BicycleCounterCharacteristics.Loop.Seconds", "60"));
-        parameters.counterCharacteristicsPeriodSeconds = Long.parseLong(producerProps.getProperty("BicycleCount.Loop.Seconds", "60"));
-
-        parameters.availabilityTopic = producerProps.getProperty("RealTimeAvailability.Topic");
-        parameters.stationsCharacteristicsTopic = producerProps.getProperty("StationCharacteristics.Topic");
-        parameters.roadWorkTopic = producerProps.getProperty("RoadWork.Topic");
-        parameters.bicycleCountTopic = producerProps.getProperty("BicycleCounterCharacteristics.Topic");
-        parameters.counterCharacteristicsTopic = producerProps.getProperty("BicycleCount.Topic");
-
-        return parameters;
-    }
-
-    private Properties LoadProperties(String fileName) throws IOException {
-        Properties props = new Properties();
-        props.load(ProductionLoop.class.getClassLoader().getResourceAsStream(fileName));
-        return props;
-    }
-
-    @Data
-    private static class Parameters{
-        long availabilityPeriodSeconds;
-        long stationsCharacteristicsPeriodSeconds;
-        long roadWorkPeriodSeconds;
-        long bicycleCountPeriodSeconds;
-        long counterCharacteristicsPeriodSeconds;
-
-        String availabilityTopic;
-        String stationsCharacteristicsTopic;
-        String roadWorkTopic;
-        String bicycleCountTopic;
-        String counterCharacteristicsTopic;
     }
 }

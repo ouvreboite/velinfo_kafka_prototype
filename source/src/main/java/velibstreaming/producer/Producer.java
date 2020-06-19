@@ -12,6 +12,7 @@ import org.apache.kafka.common.errors.TopicExistsException;
 import velibstreaming.producer.client.dto.OpenDataDto;
 import velibstreaming.producer.mapper.AvroMapper;
 import velibstreaming.producer.mapper.KeyMapper;
+import velibstreaming.properties.StreamProperties;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,18 +29,18 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
     private final AvroMapper<F, A> avroMapper;
 
 
-    public Producer(Properties kafkaProps, String topic, KeyMapper<A> keyExtractor, AvroMapper<F, A> avroMapper) {
+    public Producer(String topic, KeyMapper<A> keyExtractor, AvroMapper<F, A> avroMapper) {
         this.topic = topic;
         this.keyExtractor = keyExtractor;
         this.avroMapper = avroMapper;
-        this.kafkaProducer = initProducer(kafkaProps);
-        createTopicIfNeeded(kafkaProps);
+        this.kafkaProducer = initProducer();
+        createTopicIfNeeded();
     }
 
-    private KafkaProducer initProducer(Properties kafkaProps) {
+    private KafkaProducer initProducer() {
         var props = new Properties();
-        props.putAll(kafkaProps);
 
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroSerializer");
@@ -50,7 +51,7 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         return kafkaProducer;
     }
 
-    private void createTopicIfNeeded(Properties kafkaProps) {
+    private void createTopicIfNeeded() {
         var newTopic = new NewTopic(topic, 5, (short) 1);
         newTopic.configs(Map.of(
                 TopicConfig.CLEANUP_POLICY_CONFIG,TopicConfig.CLEANUP_POLICY_COMPACT,
@@ -58,7 +59,10 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
                 TopicConfig.RETENTION_BYTES_CONFIG, "1000000"
         ));
 
-        try (final AdminClient adminClient = AdminClient.create(kafkaProps)) {
+        var props = new Properties();
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
+
+        try (final AdminClient adminClient = AdminClient.create(props)) {
             adminClient.createTopics(Collections.singletonList(newTopic)).all().get();
         } catch (final InterruptedException | ExecutionException e) {
             // Ignore if TopicExistsException, which may be valid if topic exists
