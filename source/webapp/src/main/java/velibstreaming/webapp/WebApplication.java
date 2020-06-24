@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Scope;
 import velibstreaming.properties.StreamProperties;
 
 @SpringBootApplication
-public class WebappApplication {
+public class WebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(WebappApplication.class, args);
+		SpringApplication.run(WebApplication.class, args);
 	}
 
 	@Bean

@@ -10,10 +10,10 @@ import java.util.concurrent.CountDownLatch;
 
 import static velibstreaming.opendata.client.BicycleCountClient.DATE_PARAMETER;
 
-public class ProductionLoop {
+public class ProducerApplication {
 
     public static void main(String[] args) {
-        new ProductionLoop().startProduction();
+        new ProducerApplication().startProduction();
     }
 
     public void startProduction() {
