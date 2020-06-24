@@ -37,7 +37,7 @@ public final class StreamProperties {
 
     private StreamProperties() throws IOException, IllegalAccessException {
         var props = new Properties();
-        props.load(StreamProperties.class.getClassLoader().getResourceAsStream("topic.properties"));
+        props.load(StreamProperties.class.getClassLoader().getResourceAsStream("stream.properties"));
 
         this.availabilityPeriodSeconds = Long.parseLong(props.getProperty("RealTimeAvailability.Loop.Seconds", "60"));
         this.stationsCharacteristicsPeriodSeconds = Long.parseLong(props.getProperty("StationCharacteristics.Loop.Seconds", "60"));
