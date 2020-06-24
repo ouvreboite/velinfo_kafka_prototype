@@ -4,9 +4,14 @@ import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.kstream.*;
+import velibstreaming.avro.record.source.AvroRealTimeAvailability;
+import velibstreaming.avro.record.source.AvroStationCharacteristics;
+import velibstreaming.avro.record.stream.AvroStationAvailability;
 import velibstreaming.properties.StreamProperties;
 
 import java.util.Collections;
@@ -39,6 +44,8 @@ public class StreamApplication {
 
     public void start() {
         final StreamsBuilder builder = new StreamsBuilder();
+
+        createEnrichAvailabilitiesWithStationStream(builder, StreamProperties.getInstance().getStreamStationAvailabilityTopic());
 
         var props = buildStreamsProperties();
         this.streams = new KafkaStreams(builder.build(), props);
@@ -76,4 +83,27 @@ public class StreamApplication {
                 StreamProperties.getInstance().getSchemaRegistryUrl());
     }
 
+    private void createEnrichAvailabilitiesWithStationStream(final StreamsBuilder builder, String outputTopic) {
+        StreamProperties topicProps = StreamProperties.getInstance();
+
+        var availabilities = builder.stream(topicProps.getAvailabilityTopic(), Consumed.with(Serdes.String(), this.<AvroRealTimeAvailability>AvroSerde()));
+        var characteristics = builder.table(topicProps.getStationsCharacteristicsTopic(), Consumed.with(Serdes.String(),this.<AvroStationCharacteristics>AvroSerde()));
+
+        availabilities
+                .join(characteristics, MergeAvailabilityAndStation())
+                .to(outputTopic, Produced.with(Serdes.String(), this.AvroSerde()));
+    }
+
+    private ValueJoiner<AvroRealTimeAvailability, AvroStationCharacteristics, AvroStationAvailability> MergeAvailabilityAndStation() {
+        return (a, c) -> AvroStationAvailability.newBuilder()
+                .setStationCode(c.getStationCode())
+                .setStationName(c.getStationName())
+                .setTotalCapacity(c.getTotalCapacity())
+                .setLatitude(c.getLatitude())
+                .setLongitude(c.getLongitude())
+                .setElectricBikesAtStation(a.getElectricBikesAtStation())
+                .setMechanicalBikesAtStation(a.getMechanicalBikesAtStation())
+                .setAvailabilityTimestamp(a.getAvailabilityTimestamp())
+                .build();
+    }
 }
