@@ -20,20 +20,22 @@ public final class StreamProperties {
         return INSTANCE;
     }
 
-    private long availabilityPeriodSeconds;
-    private long stationsCharacteristicsPeriodSeconds;
-    private long roadWorkPeriodSeconds;
-    private long bicycleCountPeriodSeconds;
-    private long counterCharacteristicsPeriodSeconds;
+    private final long availabilityPeriodSeconds;
+    private final long stationsCharacteristicsPeriodSeconds;
+    private final long roadWorkPeriodSeconds;
+    private final long bicycleCountPeriodSeconds;
+    private final long counterCharacteristicsPeriodSeconds;
 
-    private String availabilityTopic;
-    private String stationsCharacteristicsTopic;
-    private String roadWorkTopic;
-    private String bicycleCountTopic;
-    private String counterCharacteristicsTopic;
+    private final String availabilityTopic;
+    private final String stationsCharacteristicsTopic;
+    private final String roadWorkTopic;
+    private final String bicycleCountTopic;
+    private final String counterCharacteristicsTopic;
 
-    private String bootstrapServers;
-    private String schemaRegistryUrl;
+    private final String streamStationAvailabilityTopic;
+
+    private final String bootstrapServers;
+    private final String schemaRegistryUrl;
 
     private StreamProperties() throws IOException, IllegalAccessException {
         var props = new Properties();
@@ -50,6 +52,8 @@ public final class StreamProperties {
         this.roadWorkTopic = props.getProperty("RoadWork.Topic");
         this.bicycleCountTopic = props.getProperty("BicycleCounterCharacteristics.Topic");
         this.counterCharacteristicsTopic = props.getProperty("BicycleCount.Topic");
+
+        this.streamStationAvailabilityTopic = props.getProperty("StreamStationAvailability.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");
