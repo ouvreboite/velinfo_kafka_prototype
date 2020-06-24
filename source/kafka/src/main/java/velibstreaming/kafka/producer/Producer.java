@@ -1,5 +1,6 @@
 package velibstreaming.kafka.producer;
 
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.avro.AvroRuntimeException;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -41,6 +42,7 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         var props = new Properties();
 
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
+        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, StreamProperties.getInstance().getSchemaRegistryUrl());
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroSerializer");
