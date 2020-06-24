@@ -1,6 +1,6 @@
 package velibstreaming.kafka.producer.mapper;
 
-import velibstreaming.avro.record.AvroRealTimeAvailability;
+import velibstreaming.avro.record.source.AvroRealTimeAvailability;
 import velibstreaming.opendata.dto.RealTimeAvailability;
 
 public class RealTimeAvailabilityMapper implements AvroMapper<RealTimeAvailability.Fields, AvroRealTimeAvailability> {

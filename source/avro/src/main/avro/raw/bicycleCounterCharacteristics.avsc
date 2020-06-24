@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroBicycleCounterCharacteristics",
-  "namespace": "velibstreaming.avro.record",
+  "namespace": "velibstreaming.avro.record.source",
   "fields": [
     {
       "name" : "counterId",

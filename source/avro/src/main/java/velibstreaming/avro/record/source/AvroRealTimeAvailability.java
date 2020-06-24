@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package velibstreaming.avro.record;
+package velibstreaming.avro.record.source;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -8679052871086992692L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -2855401560168595411L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -194,8 +194,8 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * Creates a new AvroRealTimeAvailability RecordBuilder.
    * @return A new AvroRealTimeAvailability RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRealTimeAvailability.Builder newBuilder() {
-    return new velibstreaming.avro.record.AvroRealTimeAvailability.Builder();
+  public static velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder newBuilder() {
+    return new velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder();
   }
 
   /**
@@ -203,11 +203,11 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * @param other The existing builder to copy.
    * @return A new AvroRealTimeAvailability RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRealTimeAvailability.Builder newBuilder(velibstreaming.avro.record.AvroRealTimeAvailability.Builder other) {
+  public static velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder newBuilder(velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroRealTimeAvailability.Builder();
+      return new velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroRealTimeAvailability.Builder(other);
+      return new velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder(other);
     }
   }
 
@@ -216,11 +216,11 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * @param other The existing instance to copy.
    * @return A new AvroRealTimeAvailability RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRealTimeAvailability.Builder newBuilder(velibstreaming.avro.record.AvroRealTimeAvailability other) {
+  public static velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder newBuilder(velibstreaming.avro.record.source.AvroRealTimeAvailability other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroRealTimeAvailability.Builder();
+      return new velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroRealTimeAvailability.Builder(other);
+      return new velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder(other);
     }
   }
 
@@ -245,7 +245,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroRealTimeAvailability.Builder other) {
+    private Builder(velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -269,7 +269,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
      * Creates a Builder by copying an existing AvroRealTimeAvailability instance
      * @param other The existing instance to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroRealTimeAvailability other) {
+    private Builder(velibstreaming.avro.record.source.AvroRealTimeAvailability other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -303,7 +303,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * @param value The value of 'stationCode'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder setStationCode(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setStationCode(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.stationCode = value;
       fieldSetFlags()[0] = true;
@@ -323,7 +323,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * Clears the value of the 'stationCode' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder clearStationCode() {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder clearStationCode() {
       stationCode = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -343,7 +343,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * @param value The value of 'mechanicalBikesAtStation'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder setMechanicalBikesAtStation(int value) {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setMechanicalBikesAtStation(int value) {
       validate(fields()[1], value);
       this.mechanicalBikesAtStation = value;
       fieldSetFlags()[1] = true;
@@ -363,7 +363,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * Clears the value of the 'mechanicalBikesAtStation' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder clearMechanicalBikesAtStation() {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder clearMechanicalBikesAtStation() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -382,7 +382,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * @param value The value of 'electricBikesAtStation'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder setElectricBikesAtStation(int value) {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setElectricBikesAtStation(int value) {
       validate(fields()[2], value);
       this.electricBikesAtStation = value;
       fieldSetFlags()[2] = true;
@@ -402,7 +402,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * Clears the value of the 'electricBikesAtStation' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder clearElectricBikesAtStation() {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder clearElectricBikesAtStation() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -421,7 +421,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * @param value The value of 'availabilityTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder setAvailabilityTimestamp(long value) {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setAvailabilityTimestamp(long value) {
       validate(fields()[3], value);
       this.availabilityTimestamp = value;
       fieldSetFlags()[3] = true;
@@ -441,7 +441,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * Clears the value of the 'availabilityTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRealTimeAvailability.Builder clearAvailabilityTimestamp() {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder clearAvailabilityTimestamp() {
       fieldSetFlags()[3] = false;
       return this;
     }

@@ -1,8 +1,8 @@
 package velibstreaming.kafka.producer.mapper;
 
-import velibstreaming.avro.record.AvroRoadWork;
-import velibstreaming.avro.record.PerturbationLevel;
-import velibstreaming.avro.record.Status;
+import velibstreaming.avro.record.source.AvroRoadWork;
+import velibstreaming.avro.record.source.PerturbationLevel;
+import velibstreaming.avro.record.source.Status;
 import velibstreaming.opendata.dto.RoadWork;
 
 public class RoadWorkMapper implements AvroMapper<RoadWork.Fields, AvroRoadWork> {

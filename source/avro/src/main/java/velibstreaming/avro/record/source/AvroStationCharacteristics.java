@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package velibstreaming.avro.record;
+package velibstreaming.avro.record.source;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStationCharacteristics extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -437174171127080330L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationCharacteristics\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = -2368286485495889721L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationCharacteristics\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -216,8 +216,8 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
    * Creates a new AvroStationCharacteristics RecordBuilder.
    * @return A new AvroStationCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroStationCharacteristics.Builder newBuilder() {
-    return new velibstreaming.avro.record.AvroStationCharacteristics.Builder();
+  public static velibstreaming.avro.record.source.AvroStationCharacteristics.Builder newBuilder() {
+    return new velibstreaming.avro.record.source.AvroStationCharacteristics.Builder();
   }
 
   /**
@@ -225,11 +225,11 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
    * @param other The existing builder to copy.
    * @return A new AvroStationCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroStationCharacteristics.Builder newBuilder(velibstreaming.avro.record.AvroStationCharacteristics.Builder other) {
+  public static velibstreaming.avro.record.source.AvroStationCharacteristics.Builder newBuilder(velibstreaming.avro.record.source.AvroStationCharacteristics.Builder other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroStationCharacteristics.Builder();
+      return new velibstreaming.avro.record.source.AvroStationCharacteristics.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroStationCharacteristics.Builder(other);
+      return new velibstreaming.avro.record.source.AvroStationCharacteristics.Builder(other);
     }
   }
 
@@ -238,11 +238,11 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
    * @param other The existing instance to copy.
    * @return A new AvroStationCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroStationCharacteristics.Builder newBuilder(velibstreaming.avro.record.AvroStationCharacteristics other) {
+  public static velibstreaming.avro.record.source.AvroStationCharacteristics.Builder newBuilder(velibstreaming.avro.record.source.AvroStationCharacteristics other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroStationCharacteristics.Builder();
+      return new velibstreaming.avro.record.source.AvroStationCharacteristics.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroStationCharacteristics.Builder(other);
+      return new velibstreaming.avro.record.source.AvroStationCharacteristics.Builder(other);
     }
   }
 
@@ -268,7 +268,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroStationCharacteristics.Builder other) {
+    private Builder(velibstreaming.avro.record.source.AvroStationCharacteristics.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -296,7 +296,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
      * Creates a Builder by copying an existing AvroStationCharacteristics instance
      * @param other The existing instance to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroStationCharacteristics other) {
+    private Builder(velibstreaming.avro.record.source.AvroStationCharacteristics other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -334,7 +334,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * @param value The value of 'stationCode'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder setStationCode(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder setStationCode(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.stationCode = value;
       fieldSetFlags()[0] = true;
@@ -354,7 +354,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * Clears the value of the 'stationCode' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder clearStationCode() {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder clearStationCode() {
       stationCode = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -374,7 +374,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * @param value The value of 'stationName'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder setStationName(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder setStationName(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.stationName = value;
       fieldSetFlags()[1] = true;
@@ -394,7 +394,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * Clears the value of the 'stationName' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder clearStationName() {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder clearStationName() {
       stationName = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -414,7 +414,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * @param value The value of 'totalCapacity'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder setTotalCapacity(int value) {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder setTotalCapacity(int value) {
       validate(fields()[2], value);
       this.totalCapacity = value;
       fieldSetFlags()[2] = true;
@@ -434,7 +434,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * Clears the value of the 'totalCapacity' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder clearTotalCapacity() {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder clearTotalCapacity() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -453,7 +453,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * @param value The value of 'latitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder setLatitude(double value) {
       validate(fields()[3], value);
       this.latitude = value;
       fieldSetFlags()[3] = true;
@@ -473,7 +473,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * Clears the value of the 'latitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder clearLatitude() {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder clearLatitude() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -492,7 +492,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * @param value The value of 'longitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder setLongitude(double value) {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder setLongitude(double value) {
       validate(fields()[4], value);
       this.longitude = value;
       fieldSetFlags()[4] = true;
@@ -512,7 +512,7 @@ public class AvroStationCharacteristics extends org.apache.avro.specific.Specifi
       * Clears the value of the 'longitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroStationCharacteristics.Builder clearLongitude() {
+    public velibstreaming.avro.record.source.AvroStationCharacteristics.Builder clearLongitude() {
       fieldSetFlags()[4] = false;
       return this;
     }

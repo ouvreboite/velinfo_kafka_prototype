@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package velibstreaming.avro.record;
+package velibstreaming.avro.record.source;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 7503001370527920071L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRoadWork\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"object\",\"type\":[\"null\",\"string\"]},{\"name\":\"impactDetails\",\"type\":[\"null\",\"string\"]},{\"name\":\"perturbationLevel\",\"type\":{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\",\"NONE\"]}},{\"name\":\"streetName\",\"type\":[\"null\",\"string\"]},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"TO_COME\",\"ONGOING\",\"HALTED\",\"EXTENDED\",\"FINISHED\",\"NONE\"]}},{\"name\":\"startTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"endTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = -2545179069309649369L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRoadWork\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"id\",\"type\":\"string\"},{\"name\":\"object\",\"type\":[\"null\",\"string\"]},{\"name\":\"impactDetails\",\"type\":[\"null\",\"string\"]},{\"name\":\"perturbationLevel\",\"type\":{\"type\":\"enum\",\"name\":\"PerturbationLevel\",\"symbols\":[\"VERY_DISTURBING\",\"DISTURBING\",\"NONE\"]}},{\"name\":\"streetName\",\"type\":[\"null\",\"string\"]},{\"name\":\"status\",\"type\":{\"type\":\"enum\",\"name\":\"Status\",\"symbols\":[\"TO_COME\",\"ONGOING\",\"HALTED\",\"EXTENDED\",\"FINISHED\",\"NONE\"]}},{\"name\":\"startTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"endTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,9 +74,9 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
   @Deprecated public java.lang.CharSequence id;
   @Deprecated public java.lang.CharSequence object;
   @Deprecated public java.lang.CharSequence impactDetails;
-  @Deprecated public velibstreaming.avro.record.PerturbationLevel perturbationLevel;
+  @Deprecated public velibstreaming.avro.record.source.PerturbationLevel perturbationLevel;
   @Deprecated public java.lang.CharSequence streetName;
-  @Deprecated public velibstreaming.avro.record.Status status;
+  @Deprecated public velibstreaming.avro.record.source.Status status;
   @Deprecated public long startTimestamp;
   @Deprecated public long endTimestamp;
   @Deprecated public double latitude;
@@ -102,7 +102,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * @param latitude The new value for latitude
    * @param longitude The new value for longitude
    */
-  public AvroRoadWork(java.lang.CharSequence id, java.lang.CharSequence object, java.lang.CharSequence impactDetails, velibstreaming.avro.record.PerturbationLevel perturbationLevel, java.lang.CharSequence streetName, velibstreaming.avro.record.Status status, java.lang.Long startTimestamp, java.lang.Long endTimestamp, java.lang.Double latitude, java.lang.Double longitude) {
+  public AvroRoadWork(java.lang.CharSequence id, java.lang.CharSequence object, java.lang.CharSequence impactDetails, velibstreaming.avro.record.source.PerturbationLevel perturbationLevel, java.lang.CharSequence streetName, velibstreaming.avro.record.source.Status status, java.lang.Long startTimestamp, java.lang.Long endTimestamp, java.lang.Double latitude, java.lang.Double longitude) {
     this.id = id;
     this.object = object;
     this.impactDetails = impactDetails;
@@ -141,9 +141,9 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
     case 0: id = (java.lang.CharSequence)value$; break;
     case 1: object = (java.lang.CharSequence)value$; break;
     case 2: impactDetails = (java.lang.CharSequence)value$; break;
-    case 3: perturbationLevel = (velibstreaming.avro.record.PerturbationLevel)value$; break;
+    case 3: perturbationLevel = (velibstreaming.avro.record.source.PerturbationLevel)value$; break;
     case 4: streetName = (java.lang.CharSequence)value$; break;
-    case 5: status = (velibstreaming.avro.record.Status)value$; break;
+    case 5: status = (velibstreaming.avro.record.source.Status)value$; break;
     case 6: startTimestamp = (java.lang.Long)value$; break;
     case 7: endTimestamp = (java.lang.Long)value$; break;
     case 8: latitude = (java.lang.Double)value$; break;
@@ -207,7 +207,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * Gets the value of the 'perturbationLevel' field.
    * @return The value of the 'perturbationLevel' field.
    */
-  public velibstreaming.avro.record.PerturbationLevel getPerturbationLevel() {
+  public velibstreaming.avro.record.source.PerturbationLevel getPerturbationLevel() {
     return perturbationLevel;
   }
 
@@ -216,7 +216,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'perturbationLevel' field.
    * @param value the value to set.
    */
-  public void setPerturbationLevel(velibstreaming.avro.record.PerturbationLevel value) {
+  public void setPerturbationLevel(velibstreaming.avro.record.source.PerturbationLevel value) {
     this.perturbationLevel = value;
   }
 
@@ -241,7 +241,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * Gets the value of the 'status' field.
    * @return The value of the 'status' field.
    */
-  public velibstreaming.avro.record.Status getStatus() {
+  public velibstreaming.avro.record.source.Status getStatus() {
     return status;
   }
 
@@ -250,7 +250,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * Sets the value of the 'status' field.
    * @param value the value to set.
    */
-  public void setStatus(velibstreaming.avro.record.Status value) {
+  public void setStatus(velibstreaming.avro.record.source.Status value) {
     this.status = value;
   }
 
@@ -326,8 +326,8 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * Creates a new AvroRoadWork RecordBuilder.
    * @return A new AvroRoadWork RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRoadWork.Builder newBuilder() {
-    return new velibstreaming.avro.record.AvroRoadWork.Builder();
+  public static velibstreaming.avro.record.source.AvroRoadWork.Builder newBuilder() {
+    return new velibstreaming.avro.record.source.AvroRoadWork.Builder();
   }
 
   /**
@@ -335,11 +335,11 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * @param other The existing builder to copy.
    * @return A new AvroRoadWork RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRoadWork.Builder newBuilder(velibstreaming.avro.record.AvroRoadWork.Builder other) {
+  public static velibstreaming.avro.record.source.AvroRoadWork.Builder newBuilder(velibstreaming.avro.record.source.AvroRoadWork.Builder other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroRoadWork.Builder();
+      return new velibstreaming.avro.record.source.AvroRoadWork.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroRoadWork.Builder(other);
+      return new velibstreaming.avro.record.source.AvroRoadWork.Builder(other);
     }
   }
 
@@ -348,11 +348,11 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
    * @param other The existing instance to copy.
    * @return A new AvroRoadWork RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroRoadWork.Builder newBuilder(velibstreaming.avro.record.AvroRoadWork other) {
+  public static velibstreaming.avro.record.source.AvroRoadWork.Builder newBuilder(velibstreaming.avro.record.source.AvroRoadWork other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroRoadWork.Builder();
+      return new velibstreaming.avro.record.source.AvroRoadWork.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroRoadWork.Builder(other);
+      return new velibstreaming.avro.record.source.AvroRoadWork.Builder(other);
     }
   }
 
@@ -366,9 +366,9 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
     private java.lang.CharSequence id;
     private java.lang.CharSequence object;
     private java.lang.CharSequence impactDetails;
-    private velibstreaming.avro.record.PerturbationLevel perturbationLevel;
+    private velibstreaming.avro.record.source.PerturbationLevel perturbationLevel;
     private java.lang.CharSequence streetName;
-    private velibstreaming.avro.record.Status status;
+    private velibstreaming.avro.record.source.Status status;
     private long startTimestamp;
     private long endTimestamp;
     private double latitude;
@@ -383,7 +383,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroRoadWork.Builder other) {
+    private Builder(velibstreaming.avro.record.source.AvroRoadWork.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -431,7 +431,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
      * Creates a Builder by copying an existing AvroRoadWork instance
      * @param other The existing instance to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroRoadWork other) {
+    private Builder(velibstreaming.avro.record.source.AvroRoadWork other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.id)) {
         this.id = data().deepCopy(fields()[0].schema(), other.id);
@@ -489,7 +489,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'id'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setId(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.id = value;
       fieldSetFlags()[0] = true;
@@ -509,7 +509,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'id' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearId() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearId() {
       id = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -529,7 +529,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'object'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setObject(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setObject(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.object = value;
       fieldSetFlags()[1] = true;
@@ -549,7 +549,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'object' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearObject() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearObject() {
       object = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -569,7 +569,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'impactDetails'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setImpactDetails(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setImpactDetails(java.lang.CharSequence value) {
       validate(fields()[2], value);
       this.impactDetails = value;
       fieldSetFlags()[2] = true;
@@ -589,7 +589,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'impactDetails' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearImpactDetails() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearImpactDetails() {
       impactDetails = null;
       fieldSetFlags()[2] = false;
       return this;
@@ -599,7 +599,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Gets the value of the 'perturbationLevel' field.
       * @return The value.
       */
-    public velibstreaming.avro.record.PerturbationLevel getPerturbationLevel() {
+    public velibstreaming.avro.record.source.PerturbationLevel getPerturbationLevel() {
       return perturbationLevel;
     }
 
@@ -609,7 +609,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'perturbationLevel'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setPerturbationLevel(velibstreaming.avro.record.PerturbationLevel value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setPerturbationLevel(velibstreaming.avro.record.source.PerturbationLevel value) {
       validate(fields()[3], value);
       this.perturbationLevel = value;
       fieldSetFlags()[3] = true;
@@ -629,7 +629,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'perturbationLevel' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearPerturbationLevel() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearPerturbationLevel() {
       perturbationLevel = null;
       fieldSetFlags()[3] = false;
       return this;
@@ -649,7 +649,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'streetName'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setStreetName(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setStreetName(java.lang.CharSequence value) {
       validate(fields()[4], value);
       this.streetName = value;
       fieldSetFlags()[4] = true;
@@ -669,7 +669,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'streetName' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearStreetName() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearStreetName() {
       streetName = null;
       fieldSetFlags()[4] = false;
       return this;
@@ -679,7 +679,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Gets the value of the 'status' field.
       * @return The value.
       */
-    public velibstreaming.avro.record.Status getStatus() {
+    public velibstreaming.avro.record.source.Status getStatus() {
       return status;
     }
 
@@ -689,7 +689,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'status'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setStatus(velibstreaming.avro.record.Status value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setStatus(velibstreaming.avro.record.source.Status value) {
       validate(fields()[5], value);
       this.status = value;
       fieldSetFlags()[5] = true;
@@ -709,7 +709,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'status' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearStatus() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearStatus() {
       status = null;
       fieldSetFlags()[5] = false;
       return this;
@@ -729,7 +729,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'startTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setStartTimestamp(long value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setStartTimestamp(long value) {
       validate(fields()[6], value);
       this.startTimestamp = value;
       fieldSetFlags()[6] = true;
@@ -749,7 +749,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'startTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearStartTimestamp() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearStartTimestamp() {
       fieldSetFlags()[6] = false;
       return this;
     }
@@ -768,7 +768,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'endTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setEndTimestamp(long value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setEndTimestamp(long value) {
       validate(fields()[7], value);
       this.endTimestamp = value;
       fieldSetFlags()[7] = true;
@@ -788,7 +788,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'endTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearEndTimestamp() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearEndTimestamp() {
       fieldSetFlags()[7] = false;
       return this;
     }
@@ -807,7 +807,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'latitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setLatitude(double value) {
       validate(fields()[8], value);
       this.latitude = value;
       fieldSetFlags()[8] = true;
@@ -827,7 +827,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'latitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearLatitude() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearLatitude() {
       fieldSetFlags()[8] = false;
       return this;
     }
@@ -846,7 +846,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * @param value The value of 'longitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder setLongitude(double value) {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder setLongitude(double value) {
       validate(fields()[9], value);
       this.longitude = value;
       fieldSetFlags()[9] = true;
@@ -866,7 +866,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
       * Clears the value of the 'longitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroRoadWork.Builder clearLongitude() {
+    public velibstreaming.avro.record.source.AvroRoadWork.Builder clearLongitude() {
       fieldSetFlags()[9] = false;
       return this;
     }
@@ -879,9 +879,9 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
         record.id = fieldSetFlags()[0] ? this.id : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.object = fieldSetFlags()[1] ? this.object : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.impactDetails = fieldSetFlags()[2] ? this.impactDetails : (java.lang.CharSequence) defaultValue(fields()[2]);
-        record.perturbationLevel = fieldSetFlags()[3] ? this.perturbationLevel : (velibstreaming.avro.record.PerturbationLevel) defaultValue(fields()[3]);
+        record.perturbationLevel = fieldSetFlags()[3] ? this.perturbationLevel : (velibstreaming.avro.record.source.PerturbationLevel) defaultValue(fields()[3]);
         record.streetName = fieldSetFlags()[4] ? this.streetName : (java.lang.CharSequence) defaultValue(fields()[4]);
-        record.status = fieldSetFlags()[5] ? this.status : (velibstreaming.avro.record.Status) defaultValue(fields()[5]);
+        record.status = fieldSetFlags()[5] ? this.status : (velibstreaming.avro.record.source.Status) defaultValue(fields()[5]);
         record.startTimestamp = fieldSetFlags()[6] ? this.startTimestamp : (java.lang.Long) defaultValue(fields()[6]);
         record.endTimestamp = fieldSetFlags()[7] ? this.endTimestamp : (java.lang.Long) defaultValue(fields()[7]);
         record.latitude = fieldSetFlags()[8] ? this.latitude : (java.lang.Double) defaultValue(fields()[8]);
@@ -979,7 +979,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
         this.impactDetails = in.readString(this.impactDetails instanceof Utf8 ? (Utf8)this.impactDetails : null);
       }
 
-      this.perturbationLevel = velibstreaming.avro.record.PerturbationLevel.values()[in.readEnum()];
+      this.perturbationLevel = velibstreaming.avro.record.source.PerturbationLevel.values()[in.readEnum()];
 
       if (in.readIndex() != 1) {
         in.readNull();
@@ -988,7 +988,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
         this.streetName = in.readString(this.streetName instanceof Utf8 ? (Utf8)this.streetName : null);
       }
 
-      this.status = velibstreaming.avro.record.Status.values()[in.readEnum()];
+      this.status = velibstreaming.avro.record.source.Status.values()[in.readEnum()];
 
       this.startTimestamp = in.readLong();
 
@@ -1024,7 +1024,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
           break;
 
         case 3:
-          this.perturbationLevel = velibstreaming.avro.record.PerturbationLevel.values()[in.readEnum()];
+          this.perturbationLevel = velibstreaming.avro.record.source.PerturbationLevel.values()[in.readEnum()];
           break;
 
         case 4:
@@ -1037,7 +1037,7 @@ public class AvroRoadWork extends org.apache.avro.specific.SpecificRecordBase im
           break;
 
         case 5:
-          this.status = velibstreaming.avro.record.Status.values()[in.readEnum()];
+          this.status = velibstreaming.avro.record.source.Status.values()[in.readEnum()];
           break;
 
         case 6:

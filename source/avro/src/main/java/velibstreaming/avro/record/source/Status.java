@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package velibstreaming.avro.record;
+package velibstreaming.avro.record.source;
 @org.apache.avro.specific.AvroGenerated
 public enum Status implements org.apache.avro.generic.GenericEnumSymbol<Status> {
   TO_COME, ONGOING, HALTED, EXTENDED, FINISHED, NONE  ;

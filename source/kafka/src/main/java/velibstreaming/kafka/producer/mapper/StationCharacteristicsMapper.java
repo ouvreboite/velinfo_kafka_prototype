@@ -1,6 +1,6 @@
 package velibstreaming.kafka.producer.mapper;
 
-import velibstreaming.avro.record.AvroStationCharacteristics;
+import velibstreaming.avro.record.source.AvroStationCharacteristics;
 import velibstreaming.opendata.dto.StationCharacteristics;
 
 public class StationCharacteristicsMapper implements AvroMapper<StationCharacteristics.Fields, AvroStationCharacteristics> {

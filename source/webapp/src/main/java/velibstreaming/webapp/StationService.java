@@ -1,6 +1,6 @@
 package velibstreaming.webapp;
 
-import velibstreaming.avro.record.AvroRealTimeAvailability;
+import velibstreaming.avro.record.source.AvroRealTimeAvailability;
 
 import java.util.Arrays;
 import java.util.Date;

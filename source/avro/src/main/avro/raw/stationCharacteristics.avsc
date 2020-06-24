@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroStationCharacteristics",
-  "namespace": "velibstreaming.avro.record",
+  "namespace": "velibstreaming.avro.record.source",
   "fields": [
     {
       "name" : "stationCode",

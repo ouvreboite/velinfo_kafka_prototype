@@ -3,7 +3,7 @@
  *
  * DO NOT EDIT DIRECTLY
  */
-package velibstreaming.avro.record;
+package velibstreaming.avro.record.source;
 
 import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -4105817064800986291L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCounterCharacteristics\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"counterId\",\"type\":\"string\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = 2324910309407166212L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCounterCharacteristics\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":\"string\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -172,8 +172,8 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * Creates a new AvroBicycleCounterCharacteristics RecordBuilder.
    * @return A new AvroBicycleCounterCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder newBuilder() {
-    return new velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder();
+  public static velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder newBuilder() {
+    return new velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder();
   }
 
   /**
@@ -181,11 +181,11 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * @param other The existing builder to copy.
    * @return A new AvroBicycleCounterCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder newBuilder(velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder other) {
+  public static velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder newBuilder(velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder();
+      return new velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder(other);
+      return new velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder(other);
     }
   }
 
@@ -194,11 +194,11 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * @param other The existing instance to copy.
    * @return A new AvroBicycleCounterCharacteristics RecordBuilder
    */
-  public static velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder newBuilder(velibstreaming.avro.record.AvroBicycleCounterCharacteristics other) {
+  public static velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder newBuilder(velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics other) {
     if (other == null) {
-      return new velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder();
+      return new velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder();
     } else {
-      return new velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder(other);
+      return new velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder(other);
     }
   }
 
@@ -222,7 +222,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder other) {
+    private Builder(velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.counterId)) {
         this.counterId = data().deepCopy(fields()[0].schema(), other.counterId);
@@ -242,7 +242,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
      * Creates a Builder by copying an existing AvroBicycleCounterCharacteristics instance
      * @param other The existing instance to copy.
      */
-    private Builder(velibstreaming.avro.record.AvroBicycleCounterCharacteristics other) {
+    private Builder(velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.counterId)) {
         this.counterId = data().deepCopy(fields()[0].schema(), other.counterId);
@@ -272,7 +272,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * @param value The value of 'counterId'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder setCounterId(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder setCounterId(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.counterId = value;
       fieldSetFlags()[0] = true;
@@ -292,7 +292,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * Clears the value of the 'counterId' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder clearCounterId() {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder clearCounterId() {
       counterId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -312,7 +312,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * @param value The value of 'latitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder setLatitude(double value) {
       validate(fields()[1], value);
       this.latitude = value;
       fieldSetFlags()[1] = true;
@@ -332,7 +332,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * Clears the value of the 'latitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder clearLatitude() {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder clearLatitude() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -351,7 +351,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * @param value The value of 'longitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder setLongitude(double value) {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder setLongitude(double value) {
       validate(fields()[2], value);
       this.longitude = value;
       fieldSetFlags()[2] = true;
@@ -371,7 +371,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * Clears the value of the 'longitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.AvroBicycleCounterCharacteristics.Builder clearLongitude() {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder clearLongitude() {
       fieldSetFlags()[2] = false;
       return this;
     }

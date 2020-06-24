@@ -1,6 +1,6 @@
 package velibstreaming.kafka.producer.mapper;
 
-import velibstreaming.avro.record.AvroBicycleCount;
+import velibstreaming.avro.record.source.AvroBicycleCount;
 import velibstreaming.opendata.dto.BicycleCount;
 
 public class BicycleCountMapper implements AvroMapper<BicycleCount.Fields, AvroBicycleCount> {
