@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StationListController {
 
     @Autowired
-    private StationService businessCache;
+    private StationService stationService;
 
     @GetMapping("")
     public String getStationList(Model model) {
-        model.addAttribute("stations", businessCache.getStations());
+        model.addAttribute("stations", stationService.getStations());
         return "station-list";
     }
 }
