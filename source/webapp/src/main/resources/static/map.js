@@ -3,6 +3,7 @@ function setupMap(stationsJs){
     var zoom=15;
 
     var map = buildBaseMap(lonLat, zoom);
+    addUserOnMapAndCenter(map);
 
     if(stationsJs){
         addStationsOnMap(map, stationsJs);
@@ -25,6 +26,34 @@ function buildBaseMap(lonLat, zoom){
     });
 
     return map;
+}
+
+function addUserOnMapAndCenter(map){
+    if (!"geolocation" in navigator)
+        return;
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var userLonLat = ol.proj.fromLonLat([position.coords.longitude, position.coords.latitude]);
+        map.getView().setCenter(userLonLat);
+
+        var userStyle = new ol.style.Style({
+          image: new ol.style.Icon({
+            color: '#ff0000',
+            src: 'marker.png'
+          })
+        });
+
+        var userMarker = new ol.Feature({
+            geometry: new ol.geom.Point(userLonLat)
+        });
+        userMarker.setStyle(userStyle);
+
+        map.addLayer(
+            new ol.layer.Vector({
+                source: new ol.source.Vector({features: [userMarker]})
+            })
+        );
+    });
 }
 
 function addStationsOnMap(map, stations){
