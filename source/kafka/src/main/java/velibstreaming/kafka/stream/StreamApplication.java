@@ -14,9 +14,7 @@ import velibstreaming.avro.record.source.AvroStationCharacteristics;
 import velibstreaming.avro.record.stream.AvroStationAvailability;
 import velibstreaming.properties.StreamProperties;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 import static org.apache.kafka.streams.KafkaStreams.State.RUNNING;
@@ -91,7 +89,14 @@ public class StreamApplication {
 
         availabilities
                 .join(characteristics, MergeAvailabilityAndStation())
+                .filter((key,stationAv) -> timestampIsMoreThanDaysOld(stationAv.getAvailabilityTimestamp(),5))
                 .to(outputTopic, Produced.with(Serdes.String(), this.AvroSerde()));
+    }
+
+    private boolean timestampIsMoreThanDaysOld(long timestamp, int numberOfDays){
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, -numberOfDays);
+        return timestamp > cal.getTimeInMillis();
     }
 
     private ValueJoiner<AvroRealTimeAvailability, AvroStationCharacteristics, AvroStationAvailability> MergeAvailabilityAndStation() {
