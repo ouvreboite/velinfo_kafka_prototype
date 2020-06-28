@@ -7,11 +7,27 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/css/ol.css" type="text/css">
+    <style>
+      .map {
+        height: 600px;
+        width: 100%;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.3.1/build/ol.js"></script>
     <title>Velib stations status</title>
 </head>
 <body>
     <h2>Velib stations status</h2>
+    <div id="map" class="map"><div id="popup"></div></div>
+    <script type="text/javascript" src="map.js"></script>
+    <script th:inline="javascript">
+        // due to a serialization problem with Thymeleaf's jackson mapper and AVRO beans, with serialize manually before Thymeleaf
+        // So we JSON.parse the already serialized object
+        var stationsJs= JSON.parse(/*[[${stationsJs}]]*/);
+        setupMap(stationsJs);
+    </script>
+
     <table class="table">
         <thead>
         <tr>

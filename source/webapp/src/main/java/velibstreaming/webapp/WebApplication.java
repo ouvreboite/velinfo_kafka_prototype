@@ -24,4 +24,8 @@ public class WebApplication {
 	public StreamProperties streamProperties(){
 		return StreamProperties.getInstance();
 	}
+
+	@Bean
+	@Scope("singleton")
+	public AvroJsonMapper avroJsonMapper(){ return new AvroJsonMapper(); }
 }
