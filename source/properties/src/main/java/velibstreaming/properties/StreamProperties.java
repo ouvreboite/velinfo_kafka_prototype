@@ -22,13 +22,11 @@ public final class StreamProperties {
 
     private final long availabilityPeriodSeconds;
     private final long stationsCharacteristicsPeriodSeconds;
-    private final long roadWorkPeriodSeconds;
     private final long bicycleCountPeriodSeconds;
     private final long counterCharacteristicsPeriodSeconds;
 
     private final String availabilityTopic;
     private final String stationsCharacteristicsTopic;
-    private final String roadWorkTopic;
     private final String bicycleCountTopic;
     private final String counterCharacteristicsTopic;
 
@@ -43,13 +41,11 @@ public final class StreamProperties {
 
         this.availabilityPeriodSeconds = Long.parseLong(props.getProperty("RealTimeAvailability.Loop.Seconds", "60"));
         this.stationsCharacteristicsPeriodSeconds = Long.parseLong(props.getProperty("StationCharacteristics.Loop.Seconds", "60"));
-        this.roadWorkPeriodSeconds = Long.parseLong(props.getProperty("RoadWork.Loop.Seconds", "60"));
         this.bicycleCountPeriodSeconds = Long.parseLong(props.getProperty("BicycleCounterCharacteristics.Loop.Seconds", "60"));
         this.counterCharacteristicsPeriodSeconds = Long.parseLong(props.getProperty("BicycleCount.Loop.Seconds", "60"));
 
         this.availabilityTopic = props.getProperty("RealTimeAvailability.Topic");
         this.stationsCharacteristicsTopic = props.getProperty("StationCharacteristics.Topic");
-        this.roadWorkTopic = props.getProperty("RoadWork.Topic");
         this.bicycleCountTopic = props.getProperty("BicycleCounterCharacteristics.Topic");
         this.counterCharacteristicsTopic = props.getProperty("BicycleCount.Topic");
 

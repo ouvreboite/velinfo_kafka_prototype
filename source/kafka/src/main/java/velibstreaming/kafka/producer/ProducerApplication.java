@@ -35,14 +35,6 @@ public class ProducerApplication {
                         new StationCharacteristicsMapper()))
                 .start();
 
-        new ProductionThread<>(props.getRoadWorkPeriodSeconds(),
-                new RoadWorkClient(),
-                new Producer<>(
-                        props.getRoadWorkTopic(),
-                        record -> record.getId().toString(),
-                        new RoadWorkMapper()))
-                .start();
-
         new ProductionThread<>(props.getCounterCharacteristicsPeriodSeconds(),
                 new BicycleCounterCharacteristicsClient(),
                 new Producer<>(
