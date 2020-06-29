@@ -133,5 +133,82 @@ function addPopupForStations(map){
 }
 
 function popupTemplate(station){
-    return "<strong>"+station.stationName+"</strong><br/>"+station.totalCapacity;
+    var bikes = station.mechanicalBikesAtStation+station.electricBikesAtStation;
+    var emptySlots = station.totalCapacity-(bikes);
+
+    var electricShare = station.electricBikesAtStation/station.totalCapacity*100;
+    var mechanicalShare = station.mechanicalBikesAtStation/station.totalCapacity*100;
+
+    var tfn = timeFromNow(new Date(station.availabilityTimestamp));
+
+    var htmlContent =
+`<div class="progress">
+    <div class="progress-bar bg-success" role="progressbar" style="width: ${mechanicalShare}%" aria-valuenow=${station.mechanicalBikesAtStation}  aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
+    <div class="progress-bar" role="progressbar" style="width: ${electricShare}%" aria-valuenow=${station.electricBikesAtStation} aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
+    </div>
+<p>
+    ${station.mechanicalBikesAtStation} mechanical bike(s)<br/>
+    ${station.electricBikesAtStation} electric bike(s)<br/>
+    ${emptySlots} empty slot(s)<br/><br/>
+
+    <em>Last updated : ${tfn.time} ${tfn.unitOfTime} ago</em>
+</p>`;
+
+    console.log(htmlContent);
+    return htmlContent;
+}
+
+function timeFromNow(time) {
+
+	// Get timestamps
+	var unixTime = new Date(time).getTime();
+	if (!unixTime) return;
+	var now = new Date().getTime();
+
+	// Calculate difference
+	var difference = (unixTime / 1000) - (now / 1000);
+
+	// Setup return object
+	var tfn = {};
+
+	// Check if time is in the past, present, or future
+	tfn.when = 'now';
+	if (difference > 0) {
+		tfn.when = 'future';
+	} else if (difference < -1) {
+		tfn.when = 'past';
+	}
+
+	// Convert difference to absolute
+	difference = Math.abs(difference);
+
+	// Calculate time unit
+	if (difference / (60 * 60 * 24 * 365) > 1) {
+		// Years
+		tfn.unitOfTime = 'years';
+		tfn.time = Math.floor(difference / (60 * 60 * 24 * 365));
+	} else if (difference / (60 * 60 * 24 * 45) > 1) {
+		// Months
+		tfn.unitOfTime = 'months';
+		tfn.time = Math.floor(difference / (60 * 60 * 24 * 45));
+	} else if (difference / (60 * 60 * 24) > 1) {
+		// Days
+		tfn.unitOfTime = 'days';
+		tfn.time = Math.floor(difference / (60 * 60 * 24));
+	} else if (difference / (60 * 60) > 1) {
+		// Hours
+		tfn.unitOfTime = 'hours';
+		tfn.time = Math.floor(difference / (60 * 60));
+	} else if (difference / 60 > 1) {
+      		// Hours
+      		tfn.unitOfTime = 'minutes';
+      		tfn.time = Math.floor(difference / 60);
+    } else {
+		// Seconds
+		tfn.unitOfTime = 'seconds';
+		tfn.time = Math.floor(difference);
+	}
+
+	// Return time from now data
+	return tfn;
 }
