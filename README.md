@@ -1,3 +1,4 @@
+![Java Build](https://github.com/ouvreboite/velib_streaming/workflows/Java%20Build/badge.svg)
 # Velib streaming
 
 A java project using Kafka to process the current status of Paris Velib (bicycles) stations and diplay them using OpenLayers
