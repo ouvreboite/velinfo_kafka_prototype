@@ -39,7 +39,8 @@ function addUserOnMapAndCenter(map){
         var userStyle = new ol.style.Style({
           image: new ol.style.Icon({
             color: '#ff0000',
-            src: 'marker.png'
+            anchor: [0.5, 1],
+            src: 'user_marker.png'
           })
         });
 
@@ -60,7 +61,7 @@ function addStationsOnMap(map, stations){
     var iconStyle = new ol.style.Style({
       image: new ol.style.Icon({
         color: '#ffcd46',
-        src: 'marker.png'
+        src: 'station_marker.png'
       })
     });
 
@@ -88,7 +89,6 @@ function addPopupForStations(map){
       element: popupHtml,
       positioning: 'bottom-center',
       stopEvent: false,
-      offset: [0, -20]
     });
 
     map.addOverlay(popup);
@@ -102,10 +102,13 @@ function addPopupForStations(map){
         if (stationMarker && stationMarker.get("station")) {
             var coordinates = stationMarker.getGeometry().getCoordinates();
             popup.setPosition(coordinates);
+            var station = stationMarker.get("station")
             $(popupHtml).popover({
-              placement: 'top',
-              html: true,
-              content: popupTemplate(stationMarker.get("station"))
+                placement: 'top',
+                html: true,
+                sanitize: false,
+                title: station.stationName,
+                content: popupTemplate(station)
             });
             $(popupHtml).popover('show');
         }
