@@ -27,13 +27,11 @@
         var stationsJs= JSON.parse(/*[[${stationsJs}]]*/);
         setupMap(stationsJs);
     </script>
-
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Station Code</th>
             <th scope="col">Station Name</th>
-            <th scope="col">GeoCoordinates</th>
             <th scope="col">Total Capacity</th>
             <th scope="col">Empty slots</th>
             <th scope="col">Mechnical bikes available</th>
@@ -45,7 +43,6 @@
         <tr th:each="station : ${stations}">
             <td scope="row" th:text="${station.stationCode}"></td>
             <td th:text="${station.stationName}"></td>
-            <td th:text="${station.latitude}+ ' ; ' +${station.longitude}"></td>
             <td th:text="${station.totalCapacity}"></td>
             <td th:text="${station.totalCapacity-(station.mechanicalBikesAtStation+station.electricBikesAtStation)}"></td>
             <td th:text="${station.mechanicalBikesAtStation}"></td>
