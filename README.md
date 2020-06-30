@@ -12,7 +12,9 @@ Four dataset are used :
 * [velib-emplacement-des-stations](https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations) : each station caracteristics (name, geoloc, ...)
 * [comptage-velo-donnees-compteurs](https://opendata.paris.fr/explore/dataset/comptage-velo-donnees-compteurs) : the daily number of bicycle counted by each existing monitoring site for the past 13 months
 
-![Streaming Flow](docs/streaming_flow.png)
+High level architecture :
+
+![High level architecture](docs/plantuml/container_diagram.svg)
 
 ## Structure
 * docs : resources for documentation (schemas, ...)
