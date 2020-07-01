@@ -11,7 +11,8 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
-import velibstreaming.avro.record.stream.AvroStationAvailability;
+import velibstreaming.avro.record.stream.AvroStation;
+import velibstreaming.avro.record.stream.AvroStation;
 import velibstreaming.properties.StreamProperties;
 
 import java.util.HashMap;
@@ -37,8 +38,8 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, AvroStationAvailability> kafkaListenerContainerFactory() {
-        var factory = new ConcurrentKafkaListenerContainerFactory<String, AvroStationAvailability>();
+    public ConcurrentKafkaListenerContainerFactory<String, AvroStation> kafkaListenerContainerFactory() {
+        var factory = new ConcurrentKafkaListenerContainerFactory<String, AvroStation>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import velibstreaming.avro.record.stream.AvroStationAvailability;
+import velibstreaming.avro.record.stream.AvroStation;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ public class AvroJsonMapper {
         this.objectMapper.addMixIn(Object.class, AvroMixIn.class);
     }
 
-    public String serializeStations(List<AvroStationAvailability> stations) throws JsonProcessingException {
+    public String serializeStations(List<AvroStation> stations) throws JsonProcessingException {
         return objectMapper.writeValueAsString(stations);
     }
 
