@@ -1,8 +1,6 @@
 package velibstreaming.kafka.stream;
 
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
@@ -17,8 +15,6 @@ import velibstreaming.avro.record.source.AvroStationCharacteristics;
 import velibstreaming.avro.record.stream.AvroStation;
 import velibstreaming.properties.StreamProperties;
 
-import java.util.Collections;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -72,30 +68,18 @@ public class StreamApplication {
         return props;
     }
 
-    private <T extends SpecificRecord> SpecificAvroSerde<T> AvroSerde() {
-        var stationCharacteristicsSerde = new SpecificAvroSerde<T>();
-        var serdeConfig = BuildSerdeConfig();
-        stationCharacteristicsSerde.configure(serdeConfig, false);
-        return stationCharacteristicsSerde;
-    }
-
-    private Map<String, String> BuildSerdeConfig() {
-        return Collections.singletonMap(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                StreamProperties.getInstance().getSchemaRegistryUrl());
-    }
-
     private void createEnrichAvailabilitiesWithStationStream(final StreamsBuilder builder, String stationTopic) {
         StreamProperties topicProps = StreamProperties.getInstance();
 
-        var availabilities = builder.stream(topicProps.getAvailabilityTopic(), Consumed.with(Serdes.String(), this.<AvroRealTimeAvailability>AvroSerde()));
-        var characteristics = builder.table(topicProps.getStationsCharacteristicsTopic(), Consumed.with(Serdes.String(),this.<AvroStationCharacteristics>AvroSerde()));
+        var availabilities = builder.stream(topicProps.getAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroRealTimeAvailability>AvroSerde()));
+        var characteristics = builder.table(topicProps.getStationsCharacteristicsTopic(), Consumed.with(Serdes.String(),StreamUtils.<AvroStationCharacteristics>AvroSerde()));
 
         availabilities
                 .join(characteristics, MergeAvailabilityAndStation())
-                .groupByKey(Grouped.with(Serdes.String(),this.AvroSerde()))
+                .groupByKey(Grouped.with(Serdes.String(),StreamUtils.AvroSerde()))
                 .reduce((stationV1, stationV2) -> KeepNewestStationAndCheckIfNumberOfBikesIsTheSame(stationV1, stationV2))
                 .toStream()
-                .to(stationTopic, Produced.with(Serdes.String(),this.AvroSerde()));
+                .to(stationTopic, Produced.with(Serdes.String(),StreamUtils.AvroSerde()));
     }
 
     protected AvroStation KeepNewestStationAndCheckIfNumberOfBikesIsTheSame(AvroStation stationV1, AvroStation stationV2) {
