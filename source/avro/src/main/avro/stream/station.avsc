@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "AvroStationAvailability",
+  "name": "AvroStation",
   "namespace": "velibstreaming.avro.record.stream",
   "fields": [
     {
@@ -33,6 +33,10 @@
     },
     {
       "name": "availabilityTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
+    },{
+      "name": "sameNumberOfBikesSinceTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
     }

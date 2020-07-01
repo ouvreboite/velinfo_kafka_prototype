@@ -13,24 +13,24 @@ import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
-public class AvroStationAvailability extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2039167452344118182L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationAvailability\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+public class AvroStation extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+  private static final long serialVersionUID = 5511782700149278118L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStation\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"sameNumberOfBikesSinceTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
 
-  private static final BinaryMessageEncoder<AvroStationAvailability> ENCODER =
-      new BinaryMessageEncoder<AvroStationAvailability>(MODEL$, SCHEMA$);
+  private static final BinaryMessageEncoder<AvroStation> ENCODER =
+      new BinaryMessageEncoder<AvroStation>(MODEL$, SCHEMA$);
 
-  private static final BinaryMessageDecoder<AvroStationAvailability> DECODER =
-      new BinaryMessageDecoder<AvroStationAvailability>(MODEL$, SCHEMA$);
+  private static final BinaryMessageDecoder<AvroStation> DECODER =
+      new BinaryMessageDecoder<AvroStation>(MODEL$, SCHEMA$);
 
   /**
    * Return the BinaryMessageEncoder instance used by this class.
    * @return the message encoder used by this class
    */
-  public static BinaryMessageEncoder<AvroStationAvailability> getEncoder() {
+  public static BinaryMessageEncoder<AvroStation> getEncoder() {
     return ENCODER;
   }
 
@@ -38,7 +38,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
    * Return the BinaryMessageDecoder instance used by this class.
    * @return the message decoder used by this class
    */
-  public static BinaryMessageDecoder<AvroStationAvailability> getDecoder() {
+  public static BinaryMessageDecoder<AvroStation> getDecoder() {
     return DECODER;
   }
 
@@ -47,12 +47,12 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
    * @param resolver a {@link SchemaStore} used to find schemas by fingerprint
    * @return a BinaryMessageDecoder instance for this class backed by the given SchemaStore
    */
-  public static BinaryMessageDecoder<AvroStationAvailability> createDecoder(SchemaStore resolver) {
-    return new BinaryMessageDecoder<AvroStationAvailability>(MODEL$, SCHEMA$, resolver);
+  public static BinaryMessageDecoder<AvroStation> createDecoder(SchemaStore resolver) {
+    return new BinaryMessageDecoder<AvroStation>(MODEL$, SCHEMA$, resolver);
   }
 
   /**
-   * Serializes this AvroStationAvailability to a ByteBuffer.
+   * Serializes this AvroStation to a ByteBuffer.
    * @return a buffer holding the serialized data for this instance
    * @throws java.io.IOException if this instance could not be serialized
    */
@@ -61,12 +61,12 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   }
 
   /**
-   * Deserializes a AvroStationAvailability from a ByteBuffer.
+   * Deserializes a AvroStation from a ByteBuffer.
    * @param b a byte buffer holding serialized data for an instance of this class
-   * @return a AvroStationAvailability instance decoded from the given buffer
+   * @return a AvroStation instance decoded from the given buffer
    * @throws java.io.IOException if the given bytes could not be deserialized into an instance of this class
    */
-  public static AvroStationAvailability fromByteBuffer(
+  public static AvroStation fromByteBuffer(
       java.nio.ByteBuffer b) throws java.io.IOException {
     return DECODER.decode(b);
   }
@@ -79,13 +79,14 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   @Deprecated public int mechanicalBikesAtStation;
   @Deprecated public int electricBikesAtStation;
   @Deprecated public long availabilityTimestamp;
+  @Deprecated public long sameNumberOfBikesSinceTimestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
    */
-  public AvroStationAvailability() {}
+  public AvroStation() {}
 
   /**
    * All-args constructor.
@@ -97,8 +98,9 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
    * @param mechanicalBikesAtStation The new value for mechanicalBikesAtStation
    * @param electricBikesAtStation The new value for electricBikesAtStation
    * @param availabilityTimestamp The new value for availabilityTimestamp
+   * @param sameNumberOfBikesSinceTimestamp The new value for sameNumberOfBikesSinceTimestamp
    */
-  public AvroStationAvailability(java.lang.CharSequence stationCode, java.lang.CharSequence stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp) {
+  public AvroStation(java.lang.CharSequence stationCode, java.lang.CharSequence stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long sameNumberOfBikesSinceTimestamp) {
     this.stationCode = stationCode;
     this.stationName = stationName;
     this.totalCapacity = totalCapacity;
@@ -107,6 +109,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
     this.availabilityTimestamp = availabilityTimestamp;
+    this.sameNumberOfBikesSinceTimestamp = sameNumberOfBikesSinceTimestamp;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -122,6 +125,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     case 5: return mechanicalBikesAtStation;
     case 6: return electricBikesAtStation;
     case 7: return availabilityTimestamp;
+    case 8: return sameNumberOfBikesSinceTimestamp;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -138,6 +142,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     case 5: mechanicalBikesAtStation = (java.lang.Integer)value$; break;
     case 6: electricBikesAtStation = (java.lang.Integer)value$; break;
     case 7: availabilityTimestamp = (java.lang.Long)value$; break;
+    case 8: sameNumberOfBikesSinceTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -279,45 +284,62 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   }
 
   /**
-   * Creates a new AvroStationAvailability RecordBuilder.
-   * @return A new AvroStationAvailability RecordBuilder
+   * Gets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+   * @return The value of the 'sameNumberOfBikesSinceTimestamp' field.
    */
-  public static velibstreaming.avro.record.stream.AvroStationAvailability.Builder newBuilder() {
-    return new velibstreaming.avro.record.stream.AvroStationAvailability.Builder();
+  public long getSameNumberOfBikesSinceTimestamp() {
+    return sameNumberOfBikesSinceTimestamp;
+  }
+
+
+  /**
+   * Sets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+   * @param value the value to set.
+   */
+  public void setSameNumberOfBikesSinceTimestamp(long value) {
+    this.sameNumberOfBikesSinceTimestamp = value;
   }
 
   /**
-   * Creates a new AvroStationAvailability RecordBuilder by copying an existing Builder.
+   * Creates a new AvroStation RecordBuilder.
+   * @return A new AvroStation RecordBuilder
+   */
+  public static velibstreaming.avro.record.stream.AvroStation.Builder newBuilder() {
+    return new velibstreaming.avro.record.stream.AvroStation.Builder();
+  }
+
+  /**
+   * Creates a new AvroStation RecordBuilder by copying an existing Builder.
    * @param other The existing builder to copy.
-   * @return A new AvroStationAvailability RecordBuilder
+   * @return A new AvroStation RecordBuilder
    */
-  public static velibstreaming.avro.record.stream.AvroStationAvailability.Builder newBuilder(velibstreaming.avro.record.stream.AvroStationAvailability.Builder other) {
+  public static velibstreaming.avro.record.stream.AvroStation.Builder newBuilder(velibstreaming.avro.record.stream.AvroStation.Builder other) {
     if (other == null) {
-      return new velibstreaming.avro.record.stream.AvroStationAvailability.Builder();
+      return new velibstreaming.avro.record.stream.AvroStation.Builder();
     } else {
-      return new velibstreaming.avro.record.stream.AvroStationAvailability.Builder(other);
+      return new velibstreaming.avro.record.stream.AvroStation.Builder(other);
     }
   }
 
   /**
-   * Creates a new AvroStationAvailability RecordBuilder by copying an existing AvroStationAvailability instance.
+   * Creates a new AvroStation RecordBuilder by copying an existing AvroStation instance.
    * @param other The existing instance to copy.
-   * @return A new AvroStationAvailability RecordBuilder
+   * @return A new AvroStation RecordBuilder
    */
-  public static velibstreaming.avro.record.stream.AvroStationAvailability.Builder newBuilder(velibstreaming.avro.record.stream.AvroStationAvailability other) {
+  public static velibstreaming.avro.record.stream.AvroStation.Builder newBuilder(velibstreaming.avro.record.stream.AvroStation other) {
     if (other == null) {
-      return new velibstreaming.avro.record.stream.AvroStationAvailability.Builder();
+      return new velibstreaming.avro.record.stream.AvroStation.Builder();
     } else {
-      return new velibstreaming.avro.record.stream.AvroStationAvailability.Builder(other);
+      return new velibstreaming.avro.record.stream.AvroStation.Builder(other);
     }
   }
 
   /**
-   * RecordBuilder for AvroStationAvailability instances.
+   * RecordBuilder for AvroStation instances.
    */
   @org.apache.avro.specific.AvroGenerated
-  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroStationAvailability>
-    implements org.apache.avro.data.RecordBuilder<AvroStationAvailability> {
+  public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroStation>
+    implements org.apache.avro.data.RecordBuilder<AvroStation> {
 
     private java.lang.CharSequence stationCode;
     private java.lang.CharSequence stationName;
@@ -327,6 +349,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     private int mechanicalBikesAtStation;
     private int electricBikesAtStation;
     private long availabilityTimestamp;
+    private long sameNumberOfBikesSinceTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -337,7 +360,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(velibstreaming.avro.record.stream.AvroStationAvailability.Builder other) {
+    private Builder(velibstreaming.avro.record.stream.AvroStation.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -371,13 +394,17 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         this.availabilityTimestamp = data().deepCopy(fields()[7].schema(), other.availabilityTimestamp);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
+      if (isValidValue(fields()[8], other.sameNumberOfBikesSinceTimestamp)) {
+        this.sameNumberOfBikesSinceTimestamp = data().deepCopy(fields()[8].schema(), other.sameNumberOfBikesSinceTimestamp);
+        fieldSetFlags()[8] = other.fieldSetFlags()[8];
+      }
     }
 
     /**
-     * Creates a Builder by copying an existing AvroStationAvailability instance
+     * Creates a Builder by copying an existing AvroStation instance
      * @param other The existing instance to copy.
      */
-    private Builder(velibstreaming.avro.record.stream.AvroStationAvailability other) {
+    private Builder(velibstreaming.avro.record.stream.AvroStation other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.stationCode)) {
         this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
@@ -411,6 +438,10 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         this.availabilityTimestamp = data().deepCopy(fields()[7].schema(), other.availabilityTimestamp);
         fieldSetFlags()[7] = true;
       }
+      if (isValidValue(fields()[8], other.sameNumberOfBikesSinceTimestamp)) {
+        this.sameNumberOfBikesSinceTimestamp = data().deepCopy(fields()[8].schema(), other.sameNumberOfBikesSinceTimestamp);
+        fieldSetFlags()[8] = true;
+      }
     }
 
     /**
@@ -427,7 +458,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'stationCode'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setStationCode(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setStationCode(java.lang.CharSequence value) {
       validate(fields()[0], value);
       this.stationCode = value;
       fieldSetFlags()[0] = true;
@@ -447,7 +478,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'stationCode' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearStationCode() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearStationCode() {
       stationCode = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -467,7 +498,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'stationName'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setStationName(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setStationName(java.lang.CharSequence value) {
       validate(fields()[1], value);
       this.stationName = value;
       fieldSetFlags()[1] = true;
@@ -487,7 +518,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'stationName' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearStationName() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearStationName() {
       stationName = null;
       fieldSetFlags()[1] = false;
       return this;
@@ -507,7 +538,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'totalCapacity'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setTotalCapacity(int value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setTotalCapacity(int value) {
       validate(fields()[2], value);
       this.totalCapacity = value;
       fieldSetFlags()[2] = true;
@@ -527,7 +558,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'totalCapacity' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearTotalCapacity() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearTotalCapacity() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -546,7 +577,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'latitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setLatitude(double value) {
       validate(fields()[3], value);
       this.latitude = value;
       fieldSetFlags()[3] = true;
@@ -566,7 +597,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'latitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearLatitude() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearLatitude() {
       fieldSetFlags()[3] = false;
       return this;
     }
@@ -585,7 +616,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'longitude'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setLongitude(double value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setLongitude(double value) {
       validate(fields()[4], value);
       this.longitude = value;
       fieldSetFlags()[4] = true;
@@ -605,7 +636,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'longitude' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearLongitude() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearLongitude() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -624,7 +655,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'mechanicalBikesAtStation'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setMechanicalBikesAtStation(int value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setMechanicalBikesAtStation(int value) {
       validate(fields()[5], value);
       this.mechanicalBikesAtStation = value;
       fieldSetFlags()[5] = true;
@@ -644,7 +675,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'mechanicalBikesAtStation' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearMechanicalBikesAtStation() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearMechanicalBikesAtStation() {
       fieldSetFlags()[5] = false;
       return this;
     }
@@ -663,7 +694,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'electricBikesAtStation'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setElectricBikesAtStation(int value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setElectricBikesAtStation(int value) {
       validate(fields()[6], value);
       this.electricBikesAtStation = value;
       fieldSetFlags()[6] = true;
@@ -683,7 +714,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'electricBikesAtStation' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearElectricBikesAtStation() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearElectricBikesAtStation() {
       fieldSetFlags()[6] = false;
       return this;
     }
@@ -702,7 +733,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * @param value The value of 'availabilityTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder setAvailabilityTimestamp(long value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setAvailabilityTimestamp(long value) {
       validate(fields()[7], value);
       this.availabilityTimestamp = value;
       fieldSetFlags()[7] = true;
@@ -722,16 +753,55 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
       * Clears the value of the 'availabilityTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationAvailability.Builder clearAvailabilityTimestamp() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearAvailabilityTimestamp() {
       fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+      * @return The value.
+      */
+    public long getSameNumberOfBikesSinceTimestamp() {
+      return sameNumberOfBikesSinceTimestamp;
+    }
+
+
+    /**
+      * Sets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+      * @param value The value of 'sameNumberOfBikesSinceTimestamp'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStation.Builder setSameNumberOfBikesSinceTimestamp(long value) {
+      validate(fields()[8], value);
+      this.sameNumberOfBikesSinceTimestamp = value;
+      fieldSetFlags()[8] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'sameNumberOfBikesSinceTimestamp' field has been set.
+      * @return True if the 'sameNumberOfBikesSinceTimestamp' field has been set, false otherwise.
+      */
+    public boolean hasSameNumberOfBikesSinceTimestamp() {
+      return fieldSetFlags()[8];
+    }
+
+
+    /**
+      * Clears the value of the 'sameNumberOfBikesSinceTimestamp' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearSameNumberOfBikesSinceTimestamp() {
+      fieldSetFlags()[8] = false;
       return this;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public AvroStationAvailability build() {
+    public AvroStation build() {
       try {
-        AvroStationAvailability record = new AvroStationAvailability();
+        AvroStation record = new AvroStation();
         record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.CharSequence) defaultValue(fields()[0]);
         record.stationName = fieldSetFlags()[1] ? this.stationName : (java.lang.CharSequence) defaultValue(fields()[1]);
         record.totalCapacity = fieldSetFlags()[2] ? this.totalCapacity : (java.lang.Integer) defaultValue(fields()[2]);
@@ -740,6 +810,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         record.mechanicalBikesAtStation = fieldSetFlags()[5] ? this.mechanicalBikesAtStation : (java.lang.Integer) defaultValue(fields()[5]);
         record.electricBikesAtStation = fieldSetFlags()[6] ? this.electricBikesAtStation : (java.lang.Integer) defaultValue(fields()[6]);
         record.availabilityTimestamp = fieldSetFlags()[7] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[7]);
+        record.sameNumberOfBikesSinceTimestamp = fieldSetFlags()[8] ? this.sameNumberOfBikesSinceTimestamp : (java.lang.Long) defaultValue(fields()[8]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -750,8 +821,8 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumWriter<AvroStationAvailability>
-    WRITER$ = (org.apache.avro.io.DatumWriter<AvroStationAvailability>)MODEL$.createDatumWriter(SCHEMA$);
+  private static final org.apache.avro.io.DatumWriter<AvroStation>
+    WRITER$ = (org.apache.avro.io.DatumWriter<AvroStation>)MODEL$.createDatumWriter(SCHEMA$);
 
   @Override public void writeExternal(java.io.ObjectOutput out)
     throws java.io.IOException {
@@ -759,8 +830,8 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   }
 
   @SuppressWarnings("unchecked")
-  private static final org.apache.avro.io.DatumReader<AvroStationAvailability>
-    READER$ = (org.apache.avro.io.DatumReader<AvroStationAvailability>)MODEL$.createDatumReader(SCHEMA$);
+  private static final org.apache.avro.io.DatumReader<AvroStation>
+    READER$ = (org.apache.avro.io.DatumReader<AvroStation>)MODEL$.createDatumReader(SCHEMA$);
 
   @Override public void readExternal(java.io.ObjectInput in)
     throws java.io.IOException {
@@ -788,6 +859,8 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
 
     out.writeLong(this.availabilityTimestamp);
 
+    out.writeLong(this.sameNumberOfBikesSinceTimestamp);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -811,8 +884,10 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
 
       this.availabilityTimestamp = in.readLong();
 
+      this.sameNumberOfBikesSinceTimestamp = in.readLong();
+
     } else {
-      for (int i = 0; i < 8; i++) {
+      for (int i = 0; i < 9; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
@@ -844,6 +919,10 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
 
         case 7:
           this.availabilityTimestamp = in.readLong();
+          break;
+
+        case 8:
+          this.sameNumberOfBikesSinceTimestamp = in.readLong();
           break;
 
         default:
