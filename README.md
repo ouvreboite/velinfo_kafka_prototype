@@ -5,12 +5,13 @@ A java project using Kafka to process the current status of Paris Velib (bicycle
 
 ## Description
 
-Using the Paris' [OpenData AP](https://opendata.paris.fr/) as its source, this application use a Kafka pipeline to rank the Velib stations by their nearby traffic (using the counters in the city). Using windowed stream, it also try to detected "locked" slots and stations. The aggregated data is displayed in a simple web application. 
+Using the Paris' [OpenData API](https://opendata.paris.fr/) as its source, this application use a Kafka pipeline to rank the Velib stations by their nearby traffic (using the counters in the city). Using windowed stream, it also try to detected "locked" slots and stations. The aggregated data is displayed in a simple web application. 
 
 Four dataset are used :
 * [velib-disponibilite-en-temps-reel](https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel) : the current (near real time) status of each station (available bicycles of each type, status of the station, ...)
-* [velib-emplacement-des-stations](https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations) : each station caracteristics (name, geoloc, ...)
+* [velib-emplacement-des-stations](https://opendata.paris.fr/explore/dataset/velib-emplacement-des-stations) : each station characteristics (name, geoloc, ...)
 * [comptage-velo-donnees-compteurs](https://opendata.paris.fr/explore/dataset/comptage-velo-donnees-compteurs) : the daily number of bicycle counted by each existing monitoring site for the past 13 months
+* [comptage-velo-compteurs](https://opendata.paris.fr/explore/dataset/comptage-velo-compteurs) : each bicyle counter characteristics (name, geoloc, ...)
 
 High level architecture :
 
