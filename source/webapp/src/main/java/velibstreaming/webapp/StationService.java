@@ -23,7 +23,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    @KafkaListener(topics = "#{streamProperties.getStreamStationAvailabilityTopic()}", groupId = "webapp", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{streamProperties.getStationChangesWithStaleTimestampTopic()}", groupId = "webapp", properties = {"auto.offset.reset = earliest"})
     public void consume(ConsumerRecord<String, AvroStation> record) {
         this.availabilities.put(record.key(), record.value());
     }

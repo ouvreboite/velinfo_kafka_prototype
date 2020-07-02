@@ -37,6 +37,7 @@
             <th scope="col">Mechnical bikes available</th>
             <th scope="col">Elecric bikes available</th>
             <th scope="col">Last update</th>
+            <th scope="col">Stale since</th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +48,8 @@
             <td th:text="${station.totalCapacity-(station.mechanicalBikesAtStation+station.electricBikesAtStation)}"></td>
             <td th:text="${station.mechanicalBikesAtStation}"></td>
             <td th:text="${station.electricBikesAtStation}"></td>
-            <td th:text="${#dates.format(station.availabilityTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(station.loadTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#dates.format(station.staleSinceTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
         </tr>
         </tbody>
     </table>
