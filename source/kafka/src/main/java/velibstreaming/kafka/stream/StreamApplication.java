@@ -88,7 +88,7 @@ public class StreamApplication {
 
         if(newest.getElectricBikesAtStation() == oldest.getElectricBikesAtStation()
                 && newest.getMechanicalBikesAtStation() == oldest.getMechanicalBikesAtStation()){
-            newest.setSameNumberOfBikesSinceTimestamp(oldest.getSameNumberOfBikesSinceTimestamp());
+            newest.setStaleSinceTimestamp(oldest.getStaleSinceTimestamp());
         }
         return newest;
     }
@@ -103,7 +103,7 @@ public class StreamApplication {
                 .setElectricBikesAtStation(a.getElectricBikesAtStation())
                 .setMechanicalBikesAtStation(a.getMechanicalBikesAtStation())
                 .setAvailabilityTimestamp(a.getAvailabilityTimestamp())
-                .setSameNumberOfBikesSinceTimestamp(a.getAvailabilityTimestamp())
+                .setStaleSinceTimestamp(a.getAvailabilityTimestamp())
                 .build();
     }
 }

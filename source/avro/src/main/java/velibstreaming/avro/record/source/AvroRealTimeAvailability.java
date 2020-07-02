@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2855401560168595411L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -4893397904321376069L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -75,6 +75,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
   @Deprecated public int mechanicalBikesAtStation;
   @Deprecated public int electricBikesAtStation;
   @Deprecated public long availabilityTimestamp;
+  @Deprecated public long loadTimestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -89,12 +90,14 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * @param mechanicalBikesAtStation The new value for mechanicalBikesAtStation
    * @param electricBikesAtStation The new value for electricBikesAtStation
    * @param availabilityTimestamp The new value for availabilityTimestamp
+   * @param loadTimestamp The new value for loadTimestamp
    */
-  public AvroRealTimeAvailability(java.lang.CharSequence stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp) {
+  public AvroRealTimeAvailability(java.lang.CharSequence stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp) {
     this.stationCode = stationCode;
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
     this.availabilityTimestamp = availabilityTimestamp;
+    this.loadTimestamp = loadTimestamp;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -106,6 +109,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
     case 1: return mechanicalBikesAtStation;
     case 2: return electricBikesAtStation;
     case 3: return availabilityTimestamp;
+    case 4: return loadTimestamp;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -118,6 +122,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
     case 1: mechanicalBikesAtStation = (java.lang.Integer)value$; break;
     case 2: electricBikesAtStation = (java.lang.Integer)value$; break;
     case 3: availabilityTimestamp = (java.lang.Long)value$; break;
+    case 4: loadTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -191,6 +196,23 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
   }
 
   /**
+   * Gets the value of the 'loadTimestamp' field.
+   * @return The value of the 'loadTimestamp' field.
+   */
+  public long getLoadTimestamp() {
+    return loadTimestamp;
+  }
+
+
+  /**
+   * Sets the value of the 'loadTimestamp' field.
+   * @param value the value to set.
+   */
+  public void setLoadTimestamp(long value) {
+    this.loadTimestamp = value;
+  }
+
+  /**
    * Creates a new AvroRealTimeAvailability RecordBuilder.
    * @return A new AvroRealTimeAvailability RecordBuilder
    */
@@ -235,6 +257,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
     private int mechanicalBikesAtStation;
     private int electricBikesAtStation;
     private long availabilityTimestamp;
+    private long loadTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -263,6 +286,10 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
         this.availabilityTimestamp = data().deepCopy(fields()[3].schema(), other.availabilityTimestamp);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
+      if (isValidValue(fields()[4], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[4].schema(), other.loadTimestamp);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      }
     }
 
     /**
@@ -286,6 +313,10 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       if (isValidValue(fields()[3], other.availabilityTimestamp)) {
         this.availabilityTimestamp = data().deepCopy(fields()[3].schema(), other.availabilityTimestamp);
         fieldSetFlags()[3] = true;
+      }
+      if (isValidValue(fields()[4], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[4].schema(), other.loadTimestamp);
+        fieldSetFlags()[4] = true;
       }
     }
 
@@ -446,6 +477,45 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       return this;
     }
 
+    /**
+      * Gets the value of the 'loadTimestamp' field.
+      * @return The value.
+      */
+    public long getLoadTimestamp() {
+      return loadTimestamp;
+    }
+
+
+    /**
+      * Sets the value of the 'loadTimestamp' field.
+      * @param value The value of 'loadTimestamp'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setLoadTimestamp(long value) {
+      validate(fields()[4], value);
+      this.loadTimestamp = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'loadTimestamp' field has been set.
+      * @return True if the 'loadTimestamp' field has been set, false otherwise.
+      */
+    public boolean hasLoadTimestamp() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'loadTimestamp' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder clearLoadTimestamp() {
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public AvroRealTimeAvailability build() {
@@ -455,6 +525,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
         record.mechanicalBikesAtStation = fieldSetFlags()[1] ? this.mechanicalBikesAtStation : (java.lang.Integer) defaultValue(fields()[1]);
         record.electricBikesAtStation = fieldSetFlags()[2] ? this.electricBikesAtStation : (java.lang.Integer) defaultValue(fields()[2]);
         record.availabilityTimestamp = fieldSetFlags()[3] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[3]);
+        record.loadTimestamp = fieldSetFlags()[4] ? this.loadTimestamp : (java.lang.Long) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -495,6 +566,8 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
 
     out.writeLong(this.availabilityTimestamp);
 
+    out.writeLong(this.loadTimestamp);
+
   }
 
   @Override public void customDecode(org.apache.avro.io.ResolvingDecoder in)
@@ -510,8 +583,10 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
 
       this.availabilityTimestamp = in.readLong();
 
+      this.loadTimestamp = in.readLong();
+
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
@@ -527,6 +602,10 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
 
         case 3:
           this.availabilityTimestamp = in.readLong();
+          break;
+
+        case 4:
+          this.loadTimestamp = in.readLong();
           break;
 
         default:

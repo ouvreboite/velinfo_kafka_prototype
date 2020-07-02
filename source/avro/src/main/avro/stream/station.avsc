@@ -35,9 +35,19 @@
       "name": "availabilityTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
-    },{
-      "name": "sameNumberOfBikesSinceTimestamp",
+    },
+    {
+      "name": "loadTimestamp",
       "type" : "long",
+      "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "staleSinceTimestamp",
+      "type": [
+        "null",
+        "long"
+      ],
+      "default": null,
       "logicalType" : "timestamp-millis"
     }
   ]

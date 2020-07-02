@@ -19,6 +19,11 @@
       "name": "availabilityTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "loadTimestamp",
+      "type" : "long",
+      "logicalType" : "timestamp-millis"
     }
   ]
 }

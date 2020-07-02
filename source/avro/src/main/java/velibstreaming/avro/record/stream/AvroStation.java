@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStation extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5511782700149278118L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStation\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"sameNumberOfBikesSinceTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -3512055398100896441L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStation\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"staleSinceTimestamp\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -79,7 +79,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
   @Deprecated public int mechanicalBikesAtStation;
   @Deprecated public int electricBikesAtStation;
   @Deprecated public long availabilityTimestamp;
-  @Deprecated public long sameNumberOfBikesSinceTimestamp;
+  @Deprecated public long loadTimestamp;
+  @Deprecated public java.lang.Long staleSinceTimestamp;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -98,9 +99,10 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * @param mechanicalBikesAtStation The new value for mechanicalBikesAtStation
    * @param electricBikesAtStation The new value for electricBikesAtStation
    * @param availabilityTimestamp The new value for availabilityTimestamp
-   * @param sameNumberOfBikesSinceTimestamp The new value for sameNumberOfBikesSinceTimestamp
+   * @param loadTimestamp The new value for loadTimestamp
+   * @param staleSinceTimestamp The new value for staleSinceTimestamp
    */
-  public AvroStation(java.lang.CharSequence stationCode, java.lang.CharSequence stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long sameNumberOfBikesSinceTimestamp) {
+  public AvroStation(java.lang.CharSequence stationCode, java.lang.CharSequence stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Long staleSinceTimestamp) {
     this.stationCode = stationCode;
     this.stationName = stationName;
     this.totalCapacity = totalCapacity;
@@ -109,7 +111,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
     this.availabilityTimestamp = availabilityTimestamp;
-    this.sameNumberOfBikesSinceTimestamp = sameNumberOfBikesSinceTimestamp;
+    this.loadTimestamp = loadTimestamp;
+    this.staleSinceTimestamp = staleSinceTimestamp;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -125,7 +128,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     case 5: return mechanicalBikesAtStation;
     case 6: return electricBikesAtStation;
     case 7: return availabilityTimestamp;
-    case 8: return sameNumberOfBikesSinceTimestamp;
+    case 8: return loadTimestamp;
+    case 9: return staleSinceTimestamp;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -142,7 +146,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     case 5: mechanicalBikesAtStation = (java.lang.Integer)value$; break;
     case 6: electricBikesAtStation = (java.lang.Integer)value$; break;
     case 7: availabilityTimestamp = (java.lang.Long)value$; break;
-    case 8: sameNumberOfBikesSinceTimestamp = (java.lang.Long)value$; break;
+    case 8: loadTimestamp = (java.lang.Long)value$; break;
+    case 9: staleSinceTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -284,20 +289,37 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
   }
 
   /**
-   * Gets the value of the 'sameNumberOfBikesSinceTimestamp' field.
-   * @return The value of the 'sameNumberOfBikesSinceTimestamp' field.
+   * Gets the value of the 'loadTimestamp' field.
+   * @return The value of the 'loadTimestamp' field.
    */
-  public long getSameNumberOfBikesSinceTimestamp() {
-    return sameNumberOfBikesSinceTimestamp;
+  public long getLoadTimestamp() {
+    return loadTimestamp;
   }
 
 
   /**
-   * Sets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+   * Sets the value of the 'loadTimestamp' field.
    * @param value the value to set.
    */
-  public void setSameNumberOfBikesSinceTimestamp(long value) {
-    this.sameNumberOfBikesSinceTimestamp = value;
+  public void setLoadTimestamp(long value) {
+    this.loadTimestamp = value;
+  }
+
+  /**
+   * Gets the value of the 'staleSinceTimestamp' field.
+   * @return The value of the 'staleSinceTimestamp' field.
+   */
+  public java.lang.Long getStaleSinceTimestamp() {
+    return staleSinceTimestamp;
+  }
+
+
+  /**
+   * Sets the value of the 'staleSinceTimestamp' field.
+   * @param value the value to set.
+   */
+  public void setStaleSinceTimestamp(java.lang.Long value) {
+    this.staleSinceTimestamp = value;
   }
 
   /**
@@ -349,7 +371,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     private int mechanicalBikesAtStation;
     private int electricBikesAtStation;
     private long availabilityTimestamp;
-    private long sameNumberOfBikesSinceTimestamp;
+    private long loadTimestamp;
+    private java.lang.Long staleSinceTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -394,9 +417,13 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
         this.availabilityTimestamp = data().deepCopy(fields()[7].schema(), other.availabilityTimestamp);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.sameNumberOfBikesSinceTimestamp)) {
-        this.sameNumberOfBikesSinceTimestamp = data().deepCopy(fields()[8].schema(), other.sameNumberOfBikesSinceTimestamp);
+      if (isValidValue(fields()[8], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[8].schema(), other.loadTimestamp);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
+      }
+      if (isValidValue(fields()[9], other.staleSinceTimestamp)) {
+        this.staleSinceTimestamp = data().deepCopy(fields()[9].schema(), other.staleSinceTimestamp);
+        fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
     }
 
@@ -438,9 +465,13 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
         this.availabilityTimestamp = data().deepCopy(fields()[7].schema(), other.availabilityTimestamp);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.sameNumberOfBikesSinceTimestamp)) {
-        this.sameNumberOfBikesSinceTimestamp = data().deepCopy(fields()[8].schema(), other.sameNumberOfBikesSinceTimestamp);
+      if (isValidValue(fields()[8], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[8].schema(), other.loadTimestamp);
         fieldSetFlags()[8] = true;
+      }
+      if (isValidValue(fields()[9], other.staleSinceTimestamp)) {
+        this.staleSinceTimestamp = data().deepCopy(fields()[9].schema(), other.staleSinceTimestamp);
+        fieldSetFlags()[9] = true;
       }
     }
 
@@ -759,41 +790,81 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     }
 
     /**
-      * Gets the value of the 'sameNumberOfBikesSinceTimestamp' field.
+      * Gets the value of the 'loadTimestamp' field.
       * @return The value.
       */
-    public long getSameNumberOfBikesSinceTimestamp() {
-      return sameNumberOfBikesSinceTimestamp;
+    public long getLoadTimestamp() {
+      return loadTimestamp;
     }
 
 
     /**
-      * Sets the value of the 'sameNumberOfBikesSinceTimestamp' field.
-      * @param value The value of 'sameNumberOfBikesSinceTimestamp'.
+      * Sets the value of the 'loadTimestamp' field.
+      * @param value The value of 'loadTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStation.Builder setSameNumberOfBikesSinceTimestamp(long value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setLoadTimestamp(long value) {
       validate(fields()[8], value);
-      this.sameNumberOfBikesSinceTimestamp = value;
+      this.loadTimestamp = value;
       fieldSetFlags()[8] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'sameNumberOfBikesSinceTimestamp' field has been set.
-      * @return True if the 'sameNumberOfBikesSinceTimestamp' field has been set, false otherwise.
+      * Checks whether the 'loadTimestamp' field has been set.
+      * @return True if the 'loadTimestamp' field has been set, false otherwise.
       */
-    public boolean hasSameNumberOfBikesSinceTimestamp() {
+    public boolean hasLoadTimestamp() {
       return fieldSetFlags()[8];
     }
 
 
     /**
-      * Clears the value of the 'sameNumberOfBikesSinceTimestamp' field.
+      * Clears the value of the 'loadTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStation.Builder clearSameNumberOfBikesSinceTimestamp() {
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearLoadTimestamp() {
       fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'staleSinceTimestamp' field.
+      * @return The value.
+      */
+    public java.lang.Long getStaleSinceTimestamp() {
+      return staleSinceTimestamp;
+    }
+
+
+    /**
+      * Sets the value of the 'staleSinceTimestamp' field.
+      * @param value The value of 'staleSinceTimestamp'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStation.Builder setStaleSinceTimestamp(java.lang.Long value) {
+      validate(fields()[9], value);
+      this.staleSinceTimestamp = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'staleSinceTimestamp' field has been set.
+      * @return True if the 'staleSinceTimestamp' field has been set, false otherwise.
+      */
+    public boolean hasStaleSinceTimestamp() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'staleSinceTimestamp' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStation.Builder clearStaleSinceTimestamp() {
+      staleSinceTimestamp = null;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -810,7 +881,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
         record.mechanicalBikesAtStation = fieldSetFlags()[5] ? this.mechanicalBikesAtStation : (java.lang.Integer) defaultValue(fields()[5]);
         record.electricBikesAtStation = fieldSetFlags()[6] ? this.electricBikesAtStation : (java.lang.Integer) defaultValue(fields()[6]);
         record.availabilityTimestamp = fieldSetFlags()[7] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[7]);
-        record.sameNumberOfBikesSinceTimestamp = fieldSetFlags()[8] ? this.sameNumberOfBikesSinceTimestamp : (java.lang.Long) defaultValue(fields()[8]);
+        record.loadTimestamp = fieldSetFlags()[8] ? this.loadTimestamp : (java.lang.Long) defaultValue(fields()[8]);
+        record.staleSinceTimestamp = fieldSetFlags()[9] ? this.staleSinceTimestamp : (java.lang.Long) defaultValue(fields()[9]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -859,7 +931,15 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
 
     out.writeLong(this.availabilityTimestamp);
 
-    out.writeLong(this.sameNumberOfBikesSinceTimestamp);
+    out.writeLong(this.loadTimestamp);
+
+    if (this.staleSinceTimestamp == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeLong(this.staleSinceTimestamp);
+    }
 
   }
 
@@ -884,10 +964,17 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
 
       this.availabilityTimestamp = in.readLong();
 
-      this.sameNumberOfBikesSinceTimestamp = in.readLong();
+      this.loadTimestamp = in.readLong();
+
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.staleSinceTimestamp = null;
+      } else {
+        this.staleSinceTimestamp = in.readLong();
+      }
 
     } else {
-      for (int i = 0; i < 9; i++) {
+      for (int i = 0; i < 10; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
@@ -922,7 +1009,16 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
           break;
 
         case 8:
-          this.sameNumberOfBikesSinceTimestamp = in.readLong();
+          this.loadTimestamp = in.readLong();
+          break;
+
+        case 9:
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.staleSinceTimestamp = null;
+          } else {
+            this.staleSinceTimestamp = in.readLong();
+          }
           break;
 
         default:
