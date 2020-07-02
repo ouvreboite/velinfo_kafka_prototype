@@ -1,4 +1,4 @@
-name: generate plantuml
+name: Generate plantUML
 on: push
 jobs:
   generate_plantuml:
