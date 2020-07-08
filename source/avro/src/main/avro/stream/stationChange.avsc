@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "AvroStation",
+  "name": "AvroStationChange",
   "namespace": "velibstreaming.avro.record.stream",
   "fields": [
     {
@@ -12,7 +12,7 @@
       "type": "string"
     },
     {
-      "name": "totalCapacity",
+      "name": "stationCapacity",
       "type": "int"
     },
     {
@@ -40,6 +40,18 @@
       "name": "loadTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "isRenting",
+      "type" : "boolean"
+    },
+    {
+      "name": "isReturning",
+      "type" : "boolean"
+    },
+    {
+      "name": "isInstalled",
+      "type" : "boolean"
     },
     {
       "name": "staleSinceTimestamp",

@@ -22,17 +22,9 @@ public class ProducerApplication {
         new ProductionThread<>(props.getAvailabilityPeriodSeconds(),
                 new RealTimeAvailabilityClient(),
                 new Producer<>(
-                        props.getAvailabilityTopic(),
+                        props.getStationAvailabilityTopic(),
                         record -> record.getStationCode().toString(),
                         new RealTimeAvailabilityMapper()))
-                .start();
-
-        new ProductionThread<>(props.getStationsCharacteristicsPeriodSeconds(),
-                new StationCharacteristicsClient(),
-                new Producer<>(
-                        props.getStationsCharacteristicsTopic(),
-                        record -> record.getStationCode().toString(),
-                        new StationCharacteristicsMapper()))
                 .start();
 
         new ProductionThread<>(props.getCounterCharacteristicsPeriodSeconds(),

@@ -3,9 +3,9 @@ package velibstreaming.kafka.stream;
 import org.apache.kafka.streams.kstream.ValueTransformerWithKey;
 import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
-import velibstreaming.avro.record.stream.AvroStation;
+import velibstreaming.avro.record.stream.AvroStationChange;
 
-public class StationDeduplicationTransformer implements ValueTransformerWithKey<String, AvroStation, AvroStation> {
+public class StationDeduplicationTransformer implements ValueTransformerWithKey<String, AvroStationChange, AvroStationChange> {
 
     /**
      * Key: identifier
@@ -27,9 +27,13 @@ public class StationDeduplicationTransformer implements ValueTransformerWithKey<
     }
 
     @Override
-    public AvroStation transform(final String key, final AvroStation station) {
+    public AvroStationChange transform(final String key, final AvroStationChange station) {
         final String stationCode = station.getStationCode().toString();
-        final String stationState = station.getAvailabilityTimestamp()+"_"+station.getElectricBikesAtStation()+"_"+station.getMechanicalBikesAtStation();
+        final String stationState = station.getAvailabilityTimestamp()
+                +"_"+station.getElectricBikesAtStation()
+                +"_"+station.getMechanicalBikesAtStation()
+                +"_"+station.getIsRenting()
+                +"_"+station.getIsReturning();
 
         String previousState = eventIdStore.get(stationCode);
         eventIdStore.put(stationCode, stationState);

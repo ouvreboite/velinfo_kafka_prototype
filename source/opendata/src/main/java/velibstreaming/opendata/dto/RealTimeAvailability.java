@@ -13,5 +13,10 @@ public class RealTimeAvailability extends OpenDataDto<RealTimeAvailability.Field
         private int ebike;
         private String stationcode;
         private Date duedate;
+        private String is_installed;
+        private String is_renting;
+        private String is_returning;
+        private double[] coordonnees_geo;
+        private String name;
     }
 }

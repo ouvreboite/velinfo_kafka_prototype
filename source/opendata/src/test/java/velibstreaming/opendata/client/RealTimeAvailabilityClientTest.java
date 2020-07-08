@@ -6,9 +6,10 @@ import velibstreaming.opendata.dto.RealTimeAvailability;
 import java.time.Instant;
 import java.time.Period;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class RealTimeAvailabilityClientTest {
     private RealTimeAvailabilityClient client = new RealTimeAvailabilityClient();
@@ -24,6 +25,12 @@ class RealTimeAvailabilityClientTest {
                 .mapToLong(r -> r.getFields().getMechanical())
                 .sum();
         assertTrue(totalMechanicalAvailable > 100, "Their should be some mechanical bicycle available");
+
+        List<double[]> coordinatesWithoutTwoValues = availabilities.getRecords().stream()
+                .map(r -> r.getFields().getCoordonnees_geo())
+                .filter(coord -> coord.length != 2)
+                .collect(Collectors.toList());
+        assertTrue(coordinatesWithoutTwoValues.isEmpty(), "The coordinates should be a two value double array");
     }
 
     @Test

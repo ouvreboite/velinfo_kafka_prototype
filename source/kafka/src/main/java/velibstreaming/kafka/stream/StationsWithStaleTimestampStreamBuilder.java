@@ -3,18 +3,18 @@ package velibstreaming.kafka.stream;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.kstream.KStream;
-import velibstreaming.avro.record.stream.AvroStation;
+import velibstreaming.avro.record.stream.AvroStationChange;
 
 public class StationsWithStaleTimestampStreamBuilder {
 
-    public KStream<String, AvroStation> build(KStream<String, AvroStation> stationChangesStream){
+    public KStream<String, AvroStationChange> build(KStream<String, AvroStationChange> stationChangesStream){
         return stationChangesStream
                 .groupByKey(Grouped.with(Serdes.String(), StreamUtils.AvroSerde()))
                 .reduce(this::KeepNewestStationAndCheckIfNumberOfBikesIsTheSame)
                 .toStream();
     }
 
-    protected AvroStation KeepNewestStationAndCheckIfNumberOfBikesIsTheSame(AvroStation stationV1, AvroStation stationV2) {
+    protected AvroStationChange KeepNewestStationAndCheckIfNumberOfBikesIsTheSame(AvroStationChange stationV1, AvroStationChange stationV2) {
         var newest = stationV1.getLoadTimestamp()>stationV2.getLoadTimestamp() ? stationV1 : stationV2;
         var oldest = stationV1.getLoadTimestamp()<stationV2.getLoadTimestamp() ? stationV1 : stationV2;
 

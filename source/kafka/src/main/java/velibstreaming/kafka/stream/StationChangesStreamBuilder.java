@@ -4,18 +4,17 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.ValueJoiner;
+import org.apache.kafka.streams.kstream.ValueMapper;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
-import velibstreaming.avro.record.source.AvroRealTimeAvailability;
-import velibstreaming.avro.record.source.AvroStationCharacteristics;
-import velibstreaming.avro.record.stream.AvroStation;
+import velibstreaming.avro.record.source.AvroStationAvailability;
+import velibstreaming.avro.record.stream.AvroStationChange;
 import velibstreaming.properties.StreamProperties;
 
 public class StationChangesStreamBuilder {
 
-    public KStream<String, AvroStation> build(final StreamsBuilder builder) {
+    public KStream<String, AvroStationChange> build(final StreamsBuilder builder) {
         StreamProperties topicProps = StreamProperties.getInstance();
 
         final String deduplicationStore = "stationDeduplicationStore";
@@ -26,27 +25,26 @@ public class StationChangesStreamBuilder {
         );
         builder.addStateStore(dedupStoreBuilder);
 
-        var availabilityStream = builder.stream(topicProps.getAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroRealTimeAvailability>AvroSerde()));
-        var characteristicsTable = builder.table(topicProps.getStationsCharacteristicsTopic(), Consumed.with(Serdes.String(),StreamUtils.<AvroStationCharacteristics>AvroSerde()));
+        var availabilityStream = builder.stream(topicProps.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>AvroSerde()));
 
         return availabilityStream
-                .join(characteristicsTable, CreateStation())
+                .mapValues(mapToStationChange())
                 .transformValues(() -> new StationDeduplicationTransformer(deduplicationStore), deduplicationStore)
                 .filter((k, v) -> v != null);
 
     }
 
-    private ValueJoiner<AvroRealTimeAvailability, AvroStationCharacteristics, AvroStation> CreateStation() {
-        return (a, c) -> AvroStation.newBuilder()
-                .setStationCode(c.getStationCode())
-                .setStationName(c.getStationName())
-                .setTotalCapacity(c.getTotalCapacity())
-                .setLatitude(c.getLatitude())
-                .setLongitude(c.getLongitude())
-                .setElectricBikesAtStation(a.getElectricBikesAtStation())
-                .setMechanicalBikesAtStation(a.getMechanicalBikesAtStation())
-                .setAvailabilityTimestamp(a.getAvailabilityTimestamp())
-                .setLoadTimestamp(a.getLoadTimestamp())
+    private ValueMapper<AvroStationAvailability, AvroStationChange> mapToStationChange() {
+        return (stationAvailability) -> AvroStationChange.newBuilder()
+                .setStationCode(stationAvailability.getStationCode())
+                .setStationName(stationAvailability.getStationName())
+                .setStationCapacity(stationAvailability.getStationCapacity())
+                .setLatitude(stationAvailability.getLatitude())
+                .setLongitude(stationAvailability.getLongitude())
+                .setElectricBikesAtStation(stationAvailability.getElectricBikesAtStation())
+                .setMechanicalBikesAtStation(stationAvailability.getMechanicalBikesAtStation())
+                .setAvailabilityTimestamp(stationAvailability.getAvailabilityTimestamp())
+                .setLoadTimestamp(stationAvailability.getLoadTimestamp())
                 .setStaleSinceTimestamp(null)
                 .build();
     }

@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "AvroRealTimeAvailability",
+  "name": "AvroStationAvailability",
   "namespace": "velibstreaming.avro.record.source",
   "fields": [
     {
@@ -24,6 +24,34 @@
       "name": "loadTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "stationCapacity",
+      "type" : "int"
+    },
+    {
+      "name": "stationName",
+      "type" : "string"
+    },
+    {
+      "name": "isRenting",
+      "type" : "boolean"
+    },
+    {
+      "name": "isReturning",
+      "type" : "boolean"
+    },
+    {
+      "name": "isInstalled",
+      "type" : "boolean"
+    },
+    {
+      "name": "latitude",
+      "type" : "double"
+    },
+    {
+      "name": "longitude",
+      "type" : "double"
     }
   ]
 }
