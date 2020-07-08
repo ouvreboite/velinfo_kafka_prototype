@@ -8,6 +8,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.*;
+import velibstreaming.kafka.stream.builder.*;
 import velibstreaming.properties.StreamProperties;
 
 import java.util.Properties;

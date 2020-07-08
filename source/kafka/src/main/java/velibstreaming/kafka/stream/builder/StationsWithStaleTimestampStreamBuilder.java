@@ -1,9 +1,10 @@
-package velibstreaming.kafka.stream;
+package velibstreaming.kafka.stream.builder;
 
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.kstream.KStream;
 import velibstreaming.avro.record.stream.AvroStationChange;
+import velibstreaming.kafka.stream.StreamUtils;
 
 public class StationsWithStaleTimestampStreamBuilder {
 

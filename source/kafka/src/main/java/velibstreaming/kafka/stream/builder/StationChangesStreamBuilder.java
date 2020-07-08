@@ -1,4 +1,4 @@
-package velibstreaming.kafka.stream;
+package velibstreaming.kafka.stream.builder;
 
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
@@ -10,6 +10,7 @@ import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
 import velibstreaming.avro.record.source.AvroStationAvailability;
 import velibstreaming.avro.record.stream.AvroStationChange;
+import velibstreaming.kafka.stream.StreamUtils;
 import velibstreaming.properties.StreamProperties;
 
 public class StationChangesStreamBuilder {
@@ -46,6 +47,9 @@ public class StationChangesStreamBuilder {
                 .setAvailabilityTimestamp(stationAvailability.getAvailabilityTimestamp())
                 .setLoadTimestamp(stationAvailability.getLoadTimestamp())
                 .setStaleSinceTimestamp(null)
+                .setIsInstalled(stationAvailability.getIsInstalled())
+                .setIsRenting(stationAvailability.getIsRenting())
+                .setIsReturning(stationAvailability.getIsReturning())
                 .build();
     }
 }

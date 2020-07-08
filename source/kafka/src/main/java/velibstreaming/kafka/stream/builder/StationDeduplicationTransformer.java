@@ -1,4 +1,4 @@
-package velibstreaming.kafka.stream;
+package velibstreaming.kafka.stream.builder;
 
 import org.apache.kafka.streams.kstream.ValueTransformerWithKey;
 import org.apache.kafka.streams.processor.ProcessorContext;
@@ -7,16 +7,10 @@ import velibstreaming.avro.record.stream.AvroStationChange;
 
 public class StationDeduplicationTransformer implements ValueTransformerWithKey<String, AvroStationChange, AvroStationChange> {
 
-    /**
-     * Key: identifier
-     * Value: timestamp (event-time) of the corresponding event when the event ID was seen for the
-     * first time
-     */
     private KeyValueStore<String, String> eventIdStore;
     private final String storeName;
 
-
-    StationDeduplicationTransformer(final String storeName) {
+    public StationDeduplicationTransformer(final String storeName) {
         this.storeName = storeName;
     }
 
@@ -28,7 +22,7 @@ public class StationDeduplicationTransformer implements ValueTransformerWithKey<
 
     @Override
     public AvroStationChange transform(final String key, final AvroStationChange station) {
-        final String stationCode = station.getStationCode().toString();
+        final String stationCode = station.getStationCode();
         final String stationState = station.getAvailabilityTimestamp()
                 +"_"+station.getElectricBikesAtStation()
                 +"_"+station.getMechanicalBikesAtStation()
