@@ -30,6 +30,7 @@ public final class StreamProperties {
 
     private final String stationChangesTopic;
     private final String stationChangesWithStaleTimestampTopic;
+    private final String dailyStationStatsTopic;
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
@@ -48,6 +49,7 @@ public final class StreamProperties {
 
         this.stationChangesTopic = props.getProperty("StationChanges.Topic");
         this.stationChangesWithStaleTimestampTopic = props.getProperty("StationChangesWithStaleTimestamp.Topic");
+        this.dailyStationStatsTopic = props.getProperty("DailyStationStats.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");

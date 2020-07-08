@@ -1,0 +1,48 @@
+{
+  "type": "record",
+  "name": "AvroDailyStationStats",
+  "namespace": "velibstreaming.avro.record.stream",
+  "fields": [
+    {
+      "name": "numberOfMechanicalBikesReturned",
+      "type": "int"
+    },
+    {
+      "name": "numberOfElectricBikesReturned",
+      "type": "int"
+    },
+    {
+      "name": "numberOfMechanicalBikesRented",
+      "type": "int"
+    },
+    {
+      "name": "numberOfElectricBikesRented",
+      "type": "int"
+    },
+    {
+      "name": "lastNumberOfMechanicalBikes",
+      "type": "int"
+    },
+    {
+      "name": "lastNumberOfElectricBikes",
+      "type": "int"
+    },
+    {
+      "name": "lastLoadTimestamp",
+      "type" : "long",
+      "logicalType" : "local-timestamp-millis"
+    },
+    {
+      "name": "periodStart",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    },
+    {
+      "name": "periodEnd",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    }
+  ]
+}
