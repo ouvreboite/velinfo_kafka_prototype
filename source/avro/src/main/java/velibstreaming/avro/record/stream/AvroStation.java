@@ -15,7 +15,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AvroStation extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -3512055398100896441L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStation\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"stationName\",\"type\":\"string\"},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"staleSinceTimestamp\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"timestamp-millis\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStation\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"stationName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"totalCapacity\",\"type\":\"int\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"staleSinceTimestamp\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,8 +71,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence stationCode;
-  @Deprecated public java.lang.CharSequence stationName;
+  @Deprecated public java.lang.String stationCode;
+  @Deprecated public java.lang.String stationName;
   @Deprecated public int totalCapacity;
   @Deprecated public double latitude;
   @Deprecated public double longitude;
@@ -102,7 +102,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * @param loadTimestamp The new value for loadTimestamp
    * @param staleSinceTimestamp The new value for staleSinceTimestamp
    */
-  public AvroStation(java.lang.CharSequence stationCode, java.lang.CharSequence stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Long staleSinceTimestamp) {
+  public AvroStation(java.lang.String stationCode, java.lang.String stationName, java.lang.Integer totalCapacity, java.lang.Double latitude, java.lang.Double longitude, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Long staleSinceTimestamp) {
     this.stationCode = stationCode;
     this.stationName = stationName;
     this.totalCapacity = totalCapacity;
@@ -138,8 +138,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: stationCode = (java.lang.CharSequence)value$; break;
-    case 1: stationName = (java.lang.CharSequence)value$; break;
+    case 0: stationCode = value$ != null ? value$.toString() : null; break;
+    case 1: stationName = value$ != null ? value$.toString() : null; break;
     case 2: totalCapacity = (java.lang.Integer)value$; break;
     case 3: latitude = (java.lang.Double)value$; break;
     case 4: longitude = (java.lang.Double)value$; break;
@@ -156,7 +156,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * Gets the value of the 'stationCode' field.
    * @return The value of the 'stationCode' field.
    */
-  public java.lang.CharSequence getStationCode() {
+  public java.lang.String getStationCode() {
     return stationCode;
   }
 
@@ -165,7 +165,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * Sets the value of the 'stationCode' field.
    * @param value the value to set.
    */
-  public void setStationCode(java.lang.CharSequence value) {
+  public void setStationCode(java.lang.String value) {
     this.stationCode = value;
   }
 
@@ -173,7 +173,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * Gets the value of the 'stationName' field.
    * @return The value of the 'stationName' field.
    */
-  public java.lang.CharSequence getStationName() {
+  public java.lang.String getStationName() {
     return stationName;
   }
 
@@ -182,7 +182,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
    * Sets the value of the 'stationName' field.
    * @param value the value to set.
    */
-  public void setStationName(java.lang.CharSequence value) {
+  public void setStationName(java.lang.String value) {
     this.stationName = value;
   }
 
@@ -363,8 +363,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroStation>
     implements org.apache.avro.data.RecordBuilder<AvroStation> {
 
-    private java.lang.CharSequence stationCode;
-    private java.lang.CharSequence stationName;
+    private java.lang.String stationCode;
+    private java.lang.String stationName;
     private int totalCapacity;
     private double latitude;
     private double longitude;
@@ -479,7 +479,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
       * Gets the value of the 'stationCode' field.
       * @return The value.
       */
-    public java.lang.CharSequence getStationCode() {
+    public java.lang.String getStationCode() {
       return stationCode;
     }
 
@@ -489,7 +489,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'stationCode'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStation.Builder setStationCode(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setStationCode(java.lang.String value) {
       validate(fields()[0], value);
       this.stationCode = value;
       fieldSetFlags()[0] = true;
@@ -519,7 +519,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
       * Gets the value of the 'stationName' field.
       * @return The value.
       */
-    public java.lang.CharSequence getStationName() {
+    public java.lang.String getStationName() {
       return stationName;
     }
 
@@ -529,7 +529,7 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
       * @param value The value of 'stationName'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStation.Builder setStationName(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.stream.AvroStation.Builder setStationName(java.lang.String value) {
       validate(fields()[1], value);
       this.stationName = value;
       fieldSetFlags()[1] = true;
@@ -873,8 +873,8 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
     public AvroStation build() {
       try {
         AvroStation record = new AvroStation();
-        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.CharSequence) defaultValue(fields()[0]);
-        record.stationName = fieldSetFlags()[1] ? this.stationName : (java.lang.CharSequence) defaultValue(fields()[1]);
+        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.String) defaultValue(fields()[0]);
+        record.stationName = fieldSetFlags()[1] ? this.stationName : (java.lang.String) defaultValue(fields()[1]);
         record.totalCapacity = fieldSetFlags()[2] ? this.totalCapacity : (java.lang.Integer) defaultValue(fields()[2]);
         record.latitude = fieldSetFlags()[3] ? this.latitude : (java.lang.Double) defaultValue(fields()[3]);
         record.longitude = fieldSetFlags()[4] ? this.longitude : (java.lang.Double) defaultValue(fields()[4]);
@@ -948,9 +948,9 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
+      this.stationCode = in.readString();
 
-      this.stationName = in.readString(this.stationName instanceof Utf8 ? (Utf8)this.stationName : null);
+      this.stationName = in.readString();
 
       this.totalCapacity = in.readInt();
 
@@ -977,11 +977,11 @@ public class AvroStation extends org.apache.avro.specific.SpecificRecordBase imp
       for (int i = 0; i < 10; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
+          this.stationCode = in.readString();
           break;
 
         case 1:
-          this.stationName = in.readString(this.stationName instanceof Utf8 ? (Utf8)this.stationName : null);
+          this.stationName = in.readString();
           break;
 
         case 2:

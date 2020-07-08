@@ -5,6 +5,7 @@
  */
 package velibstreaming.avro.record.source;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
 import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
@@ -13,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 2891856589158531201L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record\",\"fields\":[{\"name\":\"counterId\",\"type\":\"string\"},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -5856903197845593895L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -70,7 +71,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence counterId;
+  @Deprecated public java.lang.String counterId;
   @Deprecated public int count;
   @Deprecated public long countTimestamp;
 
@@ -87,7 +88,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * @param count The new value for count
    * @param countTimestamp The new value for countTimestamp
    */
-  public AvroBicycleCount(java.lang.CharSequence counterId, java.lang.Integer count, java.lang.Long countTimestamp) {
+  public AvroBicycleCount(java.lang.String counterId, java.lang.Integer count, java.lang.Long countTimestamp) {
     this.counterId = counterId;
     this.count = count;
     this.countTimestamp = countTimestamp;
@@ -109,7 +110,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: counterId = (java.lang.CharSequence)value$; break;
+    case 0: counterId = value$ != null ? value$.toString() : null; break;
     case 1: count = (java.lang.Integer)value$; break;
     case 2: countTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -120,7 +121,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * Gets the value of the 'counterId' field.
    * @return The value of the 'counterId' field.
    */
-  public java.lang.CharSequence getCounterId() {
+  public java.lang.String getCounterId() {
     return counterId;
   }
 
@@ -129,7 +130,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * Sets the value of the 'counterId' field.
    * @param value the value to set.
    */
-  public void setCounterId(java.lang.CharSequence value) {
+  public void setCounterId(java.lang.String value) {
     this.counterId = value;
   }
 
@@ -171,8 +172,8 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * Creates a new AvroBicycleCount RecordBuilder.
    * @return A new AvroBicycleCount RecordBuilder
    */
-  public static AvroBicycleCount.Builder newBuilder() {
-    return new AvroBicycleCount.Builder();
+  public static velibstreaming.avro.record.source.AvroBicycleCount.Builder newBuilder() {
+    return new velibstreaming.avro.record.source.AvroBicycleCount.Builder();
   }
 
   /**
@@ -180,11 +181,11 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * @param other The existing builder to copy.
    * @return A new AvroBicycleCount RecordBuilder
    */
-  public static AvroBicycleCount.Builder newBuilder(AvroBicycleCount.Builder other) {
+  public static velibstreaming.avro.record.source.AvroBicycleCount.Builder newBuilder(velibstreaming.avro.record.source.AvroBicycleCount.Builder other) {
     if (other == null) {
-      return new AvroBicycleCount.Builder();
+      return new velibstreaming.avro.record.source.AvroBicycleCount.Builder();
     } else {
-      return new AvroBicycleCount.Builder(other);
+      return new velibstreaming.avro.record.source.AvroBicycleCount.Builder(other);
     }
   }
 
@@ -193,11 +194,11 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * @param other The existing instance to copy.
    * @return A new AvroBicycleCount RecordBuilder
    */
-  public static AvroBicycleCount.Builder newBuilder(AvroBicycleCount other) {
+  public static velibstreaming.avro.record.source.AvroBicycleCount.Builder newBuilder(velibstreaming.avro.record.source.AvroBicycleCount other) {
     if (other == null) {
-      return new AvroBicycleCount.Builder();
+      return new velibstreaming.avro.record.source.AvroBicycleCount.Builder();
     } else {
-      return new AvroBicycleCount.Builder(other);
+      return new velibstreaming.avro.record.source.AvroBicycleCount.Builder(other);
     }
   }
 
@@ -208,7 +209,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroBicycleCount>
     implements org.apache.avro.data.RecordBuilder<AvroBicycleCount> {
 
-    private java.lang.CharSequence counterId;
+    private java.lang.String counterId;
     private int count;
     private long countTimestamp;
 
@@ -221,7 +222,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
      * Creates a Builder by copying an existing Builder.
      * @param other The existing Builder to copy.
      */
-    private Builder(AvroBicycleCount.Builder other) {
+    private Builder(velibstreaming.avro.record.source.AvroBicycleCount.Builder other) {
       super(other);
       if (isValidValue(fields()[0], other.counterId)) {
         this.counterId = data().deepCopy(fields()[0].schema(), other.counterId);
@@ -241,7 +242,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
      * Creates a Builder by copying an existing AvroBicycleCount instance
      * @param other The existing instance to copy.
      */
-    private Builder(AvroBicycleCount other) {
+    private Builder(velibstreaming.avro.record.source.AvroBicycleCount other) {
       super(SCHEMA$);
       if (isValidValue(fields()[0], other.counterId)) {
         this.counterId = data().deepCopy(fields()[0].schema(), other.counterId);
@@ -261,7 +262,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * Gets the value of the 'counterId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getCounterId() {
+    public java.lang.String getCounterId() {
       return counterId;
     }
 
@@ -271,7 +272,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'counterId'.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder setCounterId(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setCounterId(java.lang.String value) {
       validate(fields()[0], value);
       this.counterId = value;
       fieldSetFlags()[0] = true;
@@ -291,7 +292,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'counterId' field.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder clearCounterId() {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearCounterId() {
       counterId = null;
       fieldSetFlags()[0] = false;
       return this;
@@ -311,7 +312,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'count'.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder setCount(int value) {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setCount(int value) {
       validate(fields()[1], value);
       this.count = value;
       fieldSetFlags()[1] = true;
@@ -331,7 +332,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'count' field.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder clearCount() {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearCount() {
       fieldSetFlags()[1] = false;
       return this;
     }
@@ -350,7 +351,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * @param value The value of 'countTimestamp'.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder setCountTimestamp(long value) {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setCountTimestamp(long value) {
       validate(fields()[2], value);
       this.countTimestamp = value;
       fieldSetFlags()[2] = true;
@@ -370,7 +371,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       * Clears the value of the 'countTimestamp' field.
       * @return This builder.
       */
-    public AvroBicycleCount.Builder clearCountTimestamp() {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearCountTimestamp() {
       fieldSetFlags()[2] = false;
       return this;
     }
@@ -380,7 +381,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     public AvroBicycleCount build() {
       try {
         AvroBicycleCount record = new AvroBicycleCount();
-        record.counterId = fieldSetFlags()[0] ? this.counterId : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.counterId = fieldSetFlags()[0] ? this.counterId : (java.lang.String) defaultValue(fields()[0]);
         record.count = fieldSetFlags()[1] ? this.count : (java.lang.Integer) defaultValue(fields()[1]);
         record.countTimestamp = fieldSetFlags()[2] ? this.countTimestamp : (java.lang.Long) defaultValue(fields()[2]);
         return record;
@@ -428,7 +429,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.counterId = in.readString(this.counterId instanceof Utf8 ? (Utf8)this.counterId : null);
+      this.counterId = in.readString();
 
       this.count = in.readInt();
 
@@ -438,7 +439,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
       for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.counterId = in.readString(this.counterId instanceof Utf8 ? (Utf8)this.counterId : null);
+          this.counterId = in.readString();
           break;
 
         case 1:

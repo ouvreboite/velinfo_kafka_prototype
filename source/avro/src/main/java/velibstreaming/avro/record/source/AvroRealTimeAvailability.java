@@ -15,7 +15,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = -4893397904321376069L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":\"string\"},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroRealTimeAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,7 +71,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence stationCode;
+  @Deprecated public java.lang.String stationCode;
   @Deprecated public int mechanicalBikesAtStation;
   @Deprecated public int electricBikesAtStation;
   @Deprecated public long availabilityTimestamp;
@@ -92,7 +92,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * @param availabilityTimestamp The new value for availabilityTimestamp
    * @param loadTimestamp The new value for loadTimestamp
    */
-  public AvroRealTimeAvailability(java.lang.CharSequence stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp) {
+  public AvroRealTimeAvailability(java.lang.String stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp) {
     this.stationCode = stationCode;
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
@@ -118,7 +118,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: stationCode = (java.lang.CharSequence)value$; break;
+    case 0: stationCode = value$ != null ? value$.toString() : null; break;
     case 1: mechanicalBikesAtStation = (java.lang.Integer)value$; break;
     case 2: electricBikesAtStation = (java.lang.Integer)value$; break;
     case 3: availabilityTimestamp = (java.lang.Long)value$; break;
@@ -131,7 +131,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * Gets the value of the 'stationCode' field.
    * @return The value of the 'stationCode' field.
    */
-  public java.lang.CharSequence getStationCode() {
+  public java.lang.String getStationCode() {
     return stationCode;
   }
 
@@ -140,7 +140,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
    * Sets the value of the 'stationCode' field.
    * @param value the value to set.
    */
-  public void setStationCode(java.lang.CharSequence value) {
+  public void setStationCode(java.lang.String value) {
     this.stationCode = value;
   }
 
@@ -253,7 +253,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroRealTimeAvailability>
     implements org.apache.avro.data.RecordBuilder<AvroRealTimeAvailability> {
 
-    private java.lang.CharSequence stationCode;
+    private java.lang.String stationCode;
     private int mechanicalBikesAtStation;
     private int electricBikesAtStation;
     private long availabilityTimestamp;
@@ -324,7 +324,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * Gets the value of the 'stationCode' field.
       * @return The value.
       */
-    public java.lang.CharSequence getStationCode() {
+    public java.lang.String getStationCode() {
       return stationCode;
     }
 
@@ -334,7 +334,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       * @param value The value of 'stationCode'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setStationCode(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroRealTimeAvailability.Builder setStationCode(java.lang.String value) {
       validate(fields()[0], value);
       this.stationCode = value;
       fieldSetFlags()[0] = true;
@@ -521,7 +521,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
     public AvroRealTimeAvailability build() {
       try {
         AvroRealTimeAvailability record = new AvroRealTimeAvailability();
-        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.String) defaultValue(fields()[0]);
         record.mechanicalBikesAtStation = fieldSetFlags()[1] ? this.mechanicalBikesAtStation : (java.lang.Integer) defaultValue(fields()[1]);
         record.electricBikesAtStation = fieldSetFlags()[2] ? this.electricBikesAtStation : (java.lang.Integer) defaultValue(fields()[2]);
         record.availabilityTimestamp = fieldSetFlags()[3] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[3]);
@@ -575,7 +575,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
+      this.stationCode = in.readString();
 
       this.mechanicalBikesAtStation = in.readInt();
 
@@ -589,7 +589,7 @@ public class AvroRealTimeAvailability extends org.apache.avro.specific.SpecificR
       for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.stationCode = in.readString(this.stationCode instanceof Utf8 ? (Utf8)this.stationCode : null);
+          this.stationCode = in.readString();
           break;
 
         case 1:

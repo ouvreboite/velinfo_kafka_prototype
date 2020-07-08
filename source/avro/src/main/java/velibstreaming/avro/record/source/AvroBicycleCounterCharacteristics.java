@@ -15,7 +15,7 @@ import org.apache.avro.message.SchemaStore;
 @org.apache.avro.specific.AvroGenerated
 public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
   private static final long serialVersionUID = 2324910309407166212L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCounterCharacteristics\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":\"string\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCounterCharacteristics\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,7 +71,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
     return DECODER.decode(b);
   }
 
-  @Deprecated public java.lang.CharSequence counterId;
+  @Deprecated public java.lang.String counterId;
   @Deprecated public double latitude;
   @Deprecated public double longitude;
 
@@ -88,7 +88,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * @param latitude The new value for latitude
    * @param longitude The new value for longitude
    */
-  public AvroBicycleCounterCharacteristics(java.lang.CharSequence counterId, java.lang.Double latitude, java.lang.Double longitude) {
+  public AvroBicycleCounterCharacteristics(java.lang.String counterId, java.lang.Double latitude, java.lang.Double longitude) {
     this.counterId = counterId;
     this.latitude = latitude;
     this.longitude = longitude;
@@ -110,7 +110,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: counterId = (java.lang.CharSequence)value$; break;
+    case 0: counterId = value$ != null ? value$.toString() : null; break;
     case 1: latitude = (java.lang.Double)value$; break;
     case 2: longitude = (java.lang.Double)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
@@ -121,7 +121,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * Gets the value of the 'counterId' field.
    * @return The value of the 'counterId' field.
    */
-  public java.lang.CharSequence getCounterId() {
+  public java.lang.String getCounterId() {
     return counterId;
   }
 
@@ -130,7 +130,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
    * Sets the value of the 'counterId' field.
    * @param value the value to set.
    */
-  public void setCounterId(java.lang.CharSequence value) {
+  public void setCounterId(java.lang.String value) {
     this.counterId = value;
   }
 
@@ -209,7 +209,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroBicycleCounterCharacteristics>
     implements org.apache.avro.data.RecordBuilder<AvroBicycleCounterCharacteristics> {
 
-    private java.lang.CharSequence counterId;
+    private java.lang.String counterId;
     private double latitude;
     private double longitude;
 
@@ -262,7 +262,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * Gets the value of the 'counterId' field.
       * @return The value.
       */
-    public java.lang.CharSequence getCounterId() {
+    public java.lang.String getCounterId() {
       return counterId;
     }
 
@@ -272,7 +272,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       * @param value The value of 'counterId'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder setCounterId(java.lang.CharSequence value) {
+    public velibstreaming.avro.record.source.AvroBicycleCounterCharacteristics.Builder setCounterId(java.lang.String value) {
       validate(fields()[0], value);
       this.counterId = value;
       fieldSetFlags()[0] = true;
@@ -381,7 +381,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
     public AvroBicycleCounterCharacteristics build() {
       try {
         AvroBicycleCounterCharacteristics record = new AvroBicycleCounterCharacteristics();
-        record.counterId = fieldSetFlags()[0] ? this.counterId : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.counterId = fieldSetFlags()[0] ? this.counterId : (java.lang.String) defaultValue(fields()[0]);
         record.latitude = fieldSetFlags()[1] ? this.latitude : (java.lang.Double) defaultValue(fields()[1]);
         record.longitude = fieldSetFlags()[2] ? this.longitude : (java.lang.Double) defaultValue(fields()[2]);
         return record;
@@ -429,7 +429,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
-      this.counterId = in.readString(this.counterId instanceof Utf8 ? (Utf8)this.counterId : null);
+      this.counterId = in.readString();
 
       this.latitude = in.readDouble();
 
@@ -439,7 +439,7 @@ public class AvroBicycleCounterCharacteristics extends org.apache.avro.specific.
       for (int i = 0; i < 3; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.counterId = in.readString(this.counterId instanceof Utf8 ? (Utf8)this.counterId : null);
+          this.counterId = in.readString();
           break;
 
         case 1:
