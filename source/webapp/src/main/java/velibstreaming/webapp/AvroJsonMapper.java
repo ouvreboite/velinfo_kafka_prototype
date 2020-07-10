@@ -21,8 +21,6 @@ public class AvroJsonMapper {
     }
 
     public interface AvroMixIn {
-        @JsonSerialize(as=CharSequence.class)
-        CharSequence getStationName();
         @JsonIgnore
         org.apache.avro.Schema getSchema();
         @JsonIgnore
