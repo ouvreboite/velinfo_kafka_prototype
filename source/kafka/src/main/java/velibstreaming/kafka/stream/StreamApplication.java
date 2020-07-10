@@ -8,6 +8,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.*;
+import velibstreaming.kafka.TopicCreator;
 import velibstreaming.kafka.stream.builder.*;
 import velibstreaming.properties.StreamProperties;
 
@@ -39,6 +40,12 @@ public class StreamApplication {
     }
 
     public void start() {
+        TopicCreator.createTopicIfNeeded(
+                props.getStationChangesTopic(),
+                props.getStationChangesWithStaleTimestampTopic(),
+                props.getStationChangesWithStaleStatusTopic(),
+                props.getDailyStationStatsTopic());
+
         Topology topology = buildTopology();
 
         this.streams = new KafkaStreams(topology, buildStreamsProperties());

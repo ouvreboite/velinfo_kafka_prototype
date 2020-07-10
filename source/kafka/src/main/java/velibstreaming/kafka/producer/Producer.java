@@ -10,6 +10,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
+import velibstreaming.kafka.TopicCreator;
 import velibstreaming.kafka.producer.mapper.AvroMapper;
 import velibstreaming.opendata.dto.OpenDataDto;
 import velibstreaming.kafka.producer.mapper.KeyMapper;
@@ -35,7 +36,7 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         this.keyExtractor = keyExtractor;
         this.avroMapper = avroMapper;
         this.kafkaProducer = initProducer();
-        createTopicIfNeeded();
+        TopicCreator.createTopicIfNeeded(this.topic);
     }
 
     private KafkaProducer<String, A> initProducer() {
@@ -51,27 +52,6 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         var kafkaProducer = new KafkaProducer<String, A>(props);
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaProducer::close, "Shutdown-thread"));
         return kafkaProducer;
-    }
-
-    private void createTopicIfNeeded() {
-        var newTopic = new NewTopic(topic, 5, (short) 1);
-        newTopic.configs(Map.of(
-                TopicConfig.CLEANUP_POLICY_CONFIG,TopicConfig.CLEANUP_POLICY_COMPACT,
-                TopicConfig.RETENTION_MS_CONFIG, "-1",
-                TopicConfig.RETENTION_BYTES_CONFIG, "1000000"
-        ));
-
-        var props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
-
-        try (final AdminClient adminClient = AdminClient.create(props)) {
-            adminClient.createTopics(Collections.singletonList(newTopic)).all().get();
-        } catch (final InterruptedException | ExecutionException e) {
-            // Ignore if TopicExistsException, which may be valid if topic exists
-            if (!(e.getCause() instanceof TopicExistsException)) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     public void send(P payload) {
