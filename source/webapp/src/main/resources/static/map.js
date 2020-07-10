@@ -58,9 +58,16 @@ function addUserOnMapAndCenter(map){
 }
 
 function addStationsOnMap(map, stations){
-    var iconStyle = new ol.style.Style({
+    var okStationStyle = new ol.style.Style({
       image: new ol.style.Icon({
-        color: '#ffcd46',
+        color: '#46ff49',
+        src: 'station_marker.png'
+      })
+    });
+
+    var warningStationStyle = new ol.style.Style({
+      image: new ol.style.Icon({
+        color: '#ff7f00',
         src: 'station_marker.png'
       })
     });
@@ -72,7 +79,10 @@ function addStationsOnMap(map, stations){
             station: station,
 
         });
-        stationMarker.setStyle(iconStyle);
+        if(station.staleStatus)
+            stationMarker.setStyle(warningStationStyle);
+        else
+            stationMarker.setStyle(okStationStyle);
         return stationMarker;
     });
 
@@ -134,24 +144,30 @@ function addPopupForStations(map){
 
 function popupTemplate(station){
     var bikes = station.mechanicalBikesAtStation+station.electricBikesAtStation;
-    var emptySlots = station.totalCapacity-(bikes);
+    var emptySlots = station.stationCapacity-(bikes);
 
-    var electricShare = station.electricBikesAtStation/station.totalCapacity*100;
-    var mechanicalShare = station.mechanicalBikesAtStation/station.totalCapacity*100;
+    var electricShare = station.electricBikesAtStation/station.stationCapacity*100;
+    var mechanicalShare = station.mechanicalBikesAtStation/station.stationCapacity*100;
 
-    var tfn = timeFromNow(new Date(station.availabilityTimestamp));
+    var tfnOfficial = timeFromNow(new Date(station.availabilityTimestamp));
+    var tfnLoad = timeFromNow(new Date(station.loadTimestamp));
 
     var htmlContent =
 `<div class="progress">
-    <div class="progress-bar bg-success" role="progressbar" style="width: ${mechanicalShare}%" aria-valuenow=${station.mechanicalBikesAtStation}  aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
-    <div class="progress-bar" role="progressbar" style="width: ${electricShare}%" aria-valuenow=${station.electricBikesAtStation} aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
+    <div class="progress-bar bg-success" role="progressbar" style="width: ${mechanicalShare}%" aria-valuenow=${station.mechanicalBikesAtStation}  aria-valuemin="0" aria-valuemax=${station.stationCapacity}></div>
+    <div class="progress-bar" role="progressbar" style="width: ${electricShare}%" aria-valuenow=${station.electricBikesAtStation} aria-valuemin="0" aria-valuemax=${station.stationCapacity}></div>
     </div>
 <p>
     ${station.mechanicalBikesAtStation} mechanical bike(s)<br/>
     ${station.electricBikesAtStation} electric bike(s)<br/>
-    ${emptySlots} empty slot(s)<br/><br/>
+    ${emptySlots} empty slot(s)<br/>
+    <em>Last updated : ${tfnLoad.time} ${tfnLoad.unitOfTime} ago</em>
+    <hr/>
+    Is renting ? ${station.isRenting}<br/>
+    Is returning ? ${station.isReturning}<br/>
+    Is installed ? ${station.isInstalled}<br/>
+    <em>Last updated : ${tfnOfficial.time} ${tfnOfficial.unitOfTime} ago</em>
 
-    <em>Last updated : ${tfn.time} ${tfn.unitOfTime} ago</em>
 </p>`;
 
     console.log(htmlContent);

@@ -17,11 +17,11 @@ public class StationService {
 
     public List<AvroStationChange> getStations(){
         return availabilities.values().stream()
-                .sorted(Comparator.comparing(station -> station.getStationName().toString()))
+                .sorted(Comparator.comparing(station -> station.getStationName()))
                 .collect(Collectors.toList());
     }
 
-    @KafkaListener(topics = "#{streamProperties.getStationChangesWithStaleTimestampTopic()}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{streamProperties.getStationChangesWithStaleStatusTopic()}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
     public void consume(ConsumerRecord<String, AvroStationChange> record) {
         this.availabilities.put(record.key(), record.value());
     }

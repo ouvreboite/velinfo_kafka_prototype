@@ -51,14 +51,15 @@ public class StreamApplication {
         var stationChangesStream = new StationChangesStreamBuilder().build(builder);
         stationChangesStream.to(props.getStationChangesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
+        var dailyStationStats = new DailyStationStatsStreamBuilder().build(stationChangesStream);
+        dailyStationStats.to(props.getDailyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
         var stationsWithStaleTimestampStream = new StationsWithStaleTimestampStreamBuilder().build(stationChangesStream);
         stationsWithStaleTimestampStream.to(props.getStationChangesWithStaleTimestampTopic(), Produced.with(Serdes.String(),StreamUtils.AvroSerde()));
 
-        //var stationWithStaleStatus = new StationsWithStaleStatusStreamBuilder().build(dailyStationStats, stationsWithStaleTimestampStream);
+        var stationWithStaleStatus = new StationsWithStaleStatusStreamBuilder().build(dailyStationStats, stationsWithStaleTimestampStream);
+        stationWithStaleStatus.to(props.getStationChangesWithStaleStatusTopic(), Produced.with(Serdes.String(),StreamUtils.AvroSerde()));
 
-        //detect stale station
-        // - compute daily stats (number of bikes in and out by day)
-        // - detect when a station staleness is more than 4x > average time between bikes inOut (nbBikers/day/(24x60x60))
         return builder.build();
     }
 

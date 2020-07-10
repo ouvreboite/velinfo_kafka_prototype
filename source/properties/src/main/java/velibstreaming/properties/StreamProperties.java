@@ -30,6 +30,7 @@ public final class StreamProperties {
 
     private final String stationChangesTopic;
     private final String stationChangesWithStaleTimestampTopic;
+    private final String stationChangesWithStaleStatusTopic;
     private final String dailyStationStatsTopic;
 
     private final String bootstrapServers;
@@ -49,6 +50,7 @@ public final class StreamProperties {
 
         this.stationChangesTopic = props.getProperty("StationChanges.Topic");
         this.stationChangesWithStaleTimestampTopic = props.getProperty("StationChangesWithStaleTimestamp.Topic");
+        this.stationChangesWithStaleStatusTopic = props.getProperty("StationChangesWithStaleStatus.Topic");
         this.dailyStationStatsTopic = props.getProperty("DailyStationStats.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");

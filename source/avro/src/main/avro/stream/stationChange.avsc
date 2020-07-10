@@ -61,6 +61,14 @@
       ],
       "default": null,
       "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "staleStatus",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
     }
   ]
 }
