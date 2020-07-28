@@ -42,7 +42,8 @@ public class StreamApplication {
     public void start() {
         TopicCreator.createTopicIfNeeded(
                 props.getStationUpdatesTopic(),
-                props.getHourlyStationStatsTopic());
+                props.getHourlyStationStatsTopic(),
+                props.getBikesLockedTopic());
 
         Topology topology = buildTopology();
 
@@ -59,6 +60,8 @@ public class StreamApplication {
         var hourlyStationStatsStream = new HourlyStationStatsStreamBuilder().build(stationUpdatesStream);
         hourlyStationStatsStream.to(props.getHourlyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
+        var bikesLockedStream = new BikesLockedStreamBuilder().build(hourlyStationStatsStream);
+        bikesLockedStream.to(props.getBikesLockedTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
         return builder.build();
     }
 

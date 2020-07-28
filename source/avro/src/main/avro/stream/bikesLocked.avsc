@@ -1,0 +1,38 @@
+{
+  "type": "record",
+  "name": "AvroBikesLocked",
+  "namespace": "velibstreaming.avro.record.stream",
+  "fields": [
+    {
+      "name" : "stationCode",
+      "type" : "string"
+    },
+    {
+      "name": "mechanicalBikesLocked",
+      "type" : ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "electricBikesLocked",
+      "type" : ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "emptySlotsLocked",
+      "type" : ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "periodStart",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    },
+    {
+      "name": "periodEnd",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    }
+  ]
+}
