@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="624px" preserveAspectRatio="none" style="width:842px;height:624px;" version="1.1" viewBox="0 0 842 624" width="842px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="18" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="205" x="309.5" y="16.708">High level topology</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacingAndGlyphs" textLength="140" x="342" y="37.6611">(Kafka Stream)</text><!--MD5=[6488079820aeb324570151f4bbdc2dca]
+cluster Station status topology--><rect fill="#FFFFFF" height="565" style="stroke: #000000; stroke-width: 1.5;" width="367" x="464" y="48.9063"/><path d="M671,48.9063 L671,58.2031 L661,68.2031 L464,68.2031 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="197" x="467" y="62.9014">Station status topology</text><!--MD5=[8be2382164a18ca2ed43e492e30c65ff]
+cluster Nearby traffic topology--><rect fill="#FFFFFF" height="452" style="stroke: #000000; stroke-width: 1.5;" width="433" x="7" y="48.9063"/><path d="M208,48.9063 L208,58.2031 L198,68.2031 L7,68.2031 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="191" x="10" y="62.9014">Nearby traffic topology</text><!--MD5=[d1148e26bc769c05cd12af7143d7e113]
+entity stationAvailabilityClient--><rect fill="#FF7F50" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="193" x="480.5" y="83.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="83" x="535.5" y="106.9014">«producer»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="173" x="490.5" y="123.1982">stationAvailabilityClient</text><!--MD5=[5d3aefac5a38ef6bf20cf283a9bd6866]
+entity stationAvailabilities--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="162" x="488" y="196.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="542.5" y="219.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="142" x="498" y="236.1982">stationAvailabilities</text><!--MD5=[5a4ea3b7a5127cf9394d1d1b6348545f]
+entity stationUpdates--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="130" x="498" y="309.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="536.5" y="332.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="508" y="349.1982">stationUpdates</text><!--MD5=[024ee7ce38d555eed7c30878f4f92ef8]
+entity hourlyStationStats--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="155" x="480.5" y="427.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="531.5" y="450.4014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="135" x="490.5" y="466.6982">hourlyStationStats</text><!--MD5=[d2f4a2b899d71c809a146020d9f947f2]
+entity stationsLocked--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="130" x="672" y="544.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="710.5" y="567.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="110" x="682" y="584.1982">stationsLocked</text><!--MD5=[2c5d1e5187b13ce3ce5fa5d47e0aec5d]
+entity bikesLocked--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="111" x="502.5" y="544.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="531.5" y="567.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="91" x="512.5" y="584.1982">bikesLocked</text><!--MD5=[0b77ce7009a41ff29b6146aac87f819c]
+entity statisticsDb--><path d="M670.5,432.9063 C670.5,422.9063 724,422.9063 724,422.9063 C724,422.9063 777.5,422.9063 777.5,432.9063 L777.5,474.5 C777.5,484.5 724,484.5 724,484.5 C724,484.5 670.5,484.5 670.5,474.5 L670.5,432.9063 " fill="#FF7F50" style="stroke: #FFFFFF; stroke-width: 1.5;"/><path d="M670.5,432.9063 C670.5,442.9063 724,442.9063 724,442.9063 C724,442.9063 777.5,442.9063 777.5,432.9063 " fill="none" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="84" x="682" y="459.9014">«database»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="87" x="680.5" y="476.1982">statisticsDb</text><!--MD5=[b8e7e0fa629bdb31f3de8051aa8355bf]
+entity bikeCountsClient--><rect fill="#FF7F50" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="145" x="235.5" y="83.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="83" x="266.5" y="106.9014">«producer»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="125" x="245.5" y="123.1982">bikeCountsClient</text><!--MD5=[029104871d4cff0385220e737c26d39e]
+entity bikeCountersClient--><rect fill="#FF7F50" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="160" x="40" y="83.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="83" x="78.5" y="106.9014">«producer»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="140" x="50" y="123.1982">bikeCountersClient</text><!--MD5=[e270446d7fda8563d625c794c30413e5]
+entity bikeCounts--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="102" x="243" y="196.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="267.5" y="219.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="82" x="253" y="236.1982">bikeCounts</text><!--MD5=[ee941551736390f1da0c735c383db4f0]
+entity bikeCounters--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="117" x="69.5" y="196.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="101.5" y="219.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="79.5" y="236.1982">bikeCounters</text><!--MD5=[7b759e8854dd9909d6d89dffc07fc782]
+entity bikeCounterUpdates--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="169" x="52.5" y="309.9063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="110.5" y="332.9014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="149" x="62.5" y="349.1982">bikeCounterUpdates</text><!--MD5=[a779f84044f30d0ea3f4ad7e970c1ad9]
+entity dailyNearbyTrafficPerStation--><rect fill="#DCDCDC" height="52.5938" style="stroke: #FFFFFF; stroke-width: 1.5;" width="228" x="23" y="427.4063"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="53" x="110.5" y="450.4014">«topic»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="208" x="33" y="466.6982">dailyNearbyTrafficPerStation</text><!--MD5=[884a0179b9588121b8c7b4912fa51c10]
+entity nearbyTrafficDb--><path d="M286,432.9063 C286,422.9063 355,422.9063 355,422.9063 C355,422.9063 424,422.9063 424,432.9063 L424,474.5 C424,484.5 355,484.5 355,484.5 C355,484.5 286,484.5 286,474.5 L286,432.9063 " fill="#FF7F50" style="stroke: #FFFFFF; stroke-width: 1.5;"/><path d="M286,432.9063 C286,442.9063 355,442.9063 355,442.9063 C355,442.9063 424,442.9063 424,432.9063 " fill="none" style="stroke: #FFFFFF; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="84" x="313" y="459.9014">«database»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="118" x="296" y="476.1982">nearbyTrafficDb</text><!--MD5=[75490d6191340c74c8d49034062afe57]
+link stationAvailabilityClient to stationAvailabilities--><path d="M575.145,137.1513 C573.973,153.4022 572.454,174.4853 571.219,191.6203 " fill="none" id="stationAvailabilityClient-&gt;stationAvailabilities" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="570.845,196.8012,575.4826,188.1126,571.205,191.8142,567.5034,187.5366,570.845,196.8012" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[957c203bdf5e2e668136ac123e4ffce6]
+link stationAvailabilities to stationUpdates--><path d="M567.608,250.1513 C566.73,266.4023 565.59,287.4853 564.664,304.6203 " fill="none" id="stationAvailabilities-&gt;stationUpdates" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="564.384,309.8013,568.8643,301.0304,564.6541,304.8085,560.876,300.5983,564.384,309.8013" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[6d9e0b5f0a2c938bc7e6fc8f98669f57]
+link stationUpdates to hourlyStationStats--><path d="M561.89,363.0393 C561.133,380.5353 560.126,403.7963 559.326,422.2703 " fill="none" id="stationUpdates-&gt;hourlyStationStats" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="559.107,427.3443,563.4942,418.5265,559.3242,422.349,555.5017,418.179,559.107,427.3443" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[2ddc62395fe4c70a5dc81e58c0a1bf96]
+link hourlyStationStats to bikesLocked--><path d="M558,480.5393 C558,498.0353 558,521.2963 558,539.7701 " fill="none" id="hourlyStationStats-&gt;bikesLocked" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="558,544.8448,562,535.8448,558,539.8448,554,535.8448,558,544.8448" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[feb10e72adc850c827a5f09639fafd52]
+link hourlyStationStats to statisticsDb--><path d="M635.812,453.9063 C645.591,453.9063 655.369,453.9063 665.147,453.9063 " fill="none" id="hourlyStationStats-&gt;statisticsDb" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="670.261,453.9063,661.261,449.9063,665.261,453.9063,661.261,457.9063,670.261,453.9063" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[1e61ae9ca4e24119fa0ac54e7554c510]
+link stationUpdates to stationsLocked--><path d="M628.012,341.7373 C682.645,349.2113 757.622,369.2953 795,422.9063 C816.86,454.2603 809.108,473.3833 795,508.9063 C790.307,520.7223 782.149,531.5829 773.409,540.7826 " fill="none" id="stationUpdates-&gt;stationsLocked" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="769.635,544.6215,778.7967,541.0071,773.14,541.0557,773.0915,535.399,769.635,544.6215" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[94e5543426809c27d62082591a4a1717]
+link statisticsDb to stationsLocked--><path d="M727.382,484.9512 C729.277,501.7903 731.636,522.7493 733.543,539.6954 " fill="none" id="statisticsDb-&gt;stationsLocked" style="stroke: #00BFFF; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;"/><polygon fill="#00BFFF" points="734.12,544.8168,737.0882,535.4258,733.5607,539.8481,729.1384,536.3207,734.12,544.8168" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[a3c1146412dcb1c0d47cc8909219651d]
+link bikeCountsClient to bikeCounts--><path d="M304.753,137.1513 C302.703,153.4022 300.044,174.4853 297.883,191.6203 " fill="none" id="bikeCountsClient-&gt;bikeCounts" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="297.229,196.8012,302.324,188.3727,297.8548,191.8406,294.3869,187.3714,297.229,196.8012" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[75446779bce6b19c3bca0a8531b04298]
+link bikeCountersClient to bikeCounters--><path d="M121.855,137.1513 C123.027,153.4022 124.546,174.4853 125.781,191.6203 " fill="none" id="bikeCountersClient-&gt;bikeCounters" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="126.155,196.8012,129.4966,187.5366,125.795,191.8142,121.5174,188.1126,126.155,196.8012" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[45f3edd74370e141b738f38756988846]
+link bikeCounts to bikeCounterUpdates--><path d="M257.586,250.1513 C233.61,267.1023 202.196,289.3123 177.443,306.8133 " fill="none" id="bikeCounts-&gt;bikeCounterUpdates" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="173.216,309.8013,182.874,307.8715,177.2986,306.9147,178.2555,301.3394,173.216,309.8013" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[7b2c4a52e8a18e40a10b4bb40f48bfca]
+link bikeCounters to bikeCounterUpdates--><path d="M130.087,250.1513 C131.405,266.4023 133.115,287.4853 134.504,304.6203 " fill="none" id="bikeCounters-&gt;bikeCounterUpdates" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="134.924,309.8013,138.1833,300.5073,134.5198,304.8176,130.2095,301.1541,134.924,309.8013" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[c112f8300091cc5ffd40533b3a90998c]
+link bikeCounterUpdates to dailyNearbyTrafficPerStation--><path d="M137,363.0393 C137,380.5353 137,403.7963 137,422.2703 " fill="none" id="bikeCounterUpdates-&gt;dailyNearbyTrafficPerStation" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="137,427.3443,141,418.3443,137,422.3443,133,418.3443,137,427.3443" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[2b51a99f79d989755ff628af3f73b3b4]
+link stationUpdates to dailyNearbyTrafficPerStation--><path d="M497.836,355.0743 C428.275,373.9343 317.205,404.0483 236.652,425.8882 " fill="none" id="stationUpdates-&gt;dailyNearbyTrafficPerStation" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="231.391,427.3143,241.1241,428.8201,236.2168,426.006,239.0309,421.0988,231.391,427.3143" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[f3084f1d414cabc6cb227c4c28725269]
+link dailyNearbyTrafficPerStation to nearbyTrafficDb--><path d="M251.109,453.9063 C260.901,453.9063 270.692,453.9063 280.484,453.9063 " fill="none" id="dailyNearbyTrafficPerStation-&gt;nearbyTrafficDb" style="stroke: #00BFFF; stroke-width: 1.0;"/><polygon fill="#00BFFF" points="285.604,453.9063,276.604,449.9063,280.604,453.9063,276.604,457.9063,285.604,453.9063" style="stroke: #00BFFF; stroke-width: 1.0;"/><!--MD5=[7a51010a7873799bc44698e4f874a2b0]
+@startuml
+title
+<b>High level topology</b>
+(Kafka Stream)
+end title
+
+
+frame "Station status topology"{
+   rectangle stationAvailabilityClient <<producer>>
+   rectangle stationAvailabilities <<topic>>
+   rectangle stationUpdates <<topic>>
+   rectangle hourlyStationStats<<topic>>
+   rectangle stationsLocked <<topic>>
+   rectangle bikesLocked <<topic>>
+   database statisticsDb<<database>>
+}
+
+stationAvailabilityClient - -> stationAvailabilities 
+stationAvailabilities - -> stationUpdates
+stationUpdates - -> hourlyStationStats
+hourlyStationStats- -> bikesLocked
+hourlyStationStats-> statisticsDb
+stationUpdates - -> stationsLocked
+statisticsDb ..> stationsLocked
+
+frame "Nearby traffic topology"{
+   rectangle bikeCountsClient <<producer>>
+   rectangle bikeCountersClient <<producer>>
+   rectangle bikeCounts <<topic>>
+   rectangle bikeCounters <<topic>>
+   rectangle bikeCounterUpdates <<topic>>
+   rectangle dailyNearbyTrafficPerStation <<topic>>
+   database nearbyTrafficDb<<database>>
+}
+
+bikeCountsClient - -> bikeCounts 
+bikeCountersClient - -> bikeCounters 
+bikeCounts - -> bikeCounterUpdates 
+bikeCounters - -> bikeCounterUpdates 
+bikeCounterUpdates - -> dailyNearbyTrafficPerStation 
+stationUpdates - -> dailyNearbyTrafficPerStation 
+dailyNearbyTrafficPerStation -> nearbyTrafficDb
+
+skinparam rectangle{
+    backgroundColor<<topic>> Gainsboro
+    backgroundColor<<stream>> Snow
+    backgroundColor<<producer>> Coral
+    backgroundColor<<consumer>> Coral
+    borderColor<<topic>> transparent
+    borderColor<<stream>> transparent
+    borderColor<<producer>> transparent
+    borderColor<<consumer>> transparent
+}
+
+skinparam database{ 
+   backgroundColor<<database>> Coral
+   borderColor transparent
+}
+
+skinparam{
+   ArrowColor DeepSkyBlue
+   shadowing false
+}
+@enduml
+
+PlantUML version 1.2020.16beta7(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
