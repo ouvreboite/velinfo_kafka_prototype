@@ -10,6 +10,8 @@ public class BicycleCountMapper implements AvroMapper<BicycleCount.Fields, AvroB
                 .setCounterId(record.getId_compteur())
                 .setCount(record.getSum_counts())
                 .setCountTimestamp(record.getDate().getTime())
+                .setLatitude(record.getCoordinates() != null ? record.getCoordinates()[0] : 0.0)
+                .setLongitude(record.getCoordinates() != null ? record.getCoordinates()[1] : 0.0)
                 .build();
     }
 }

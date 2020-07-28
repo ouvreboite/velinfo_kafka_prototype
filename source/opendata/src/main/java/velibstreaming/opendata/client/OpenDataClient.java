@@ -12,7 +12,7 @@ import java.util.Map;
 
 public abstract class OpenDataClient<Data extends OpenDataDto> {
     public static final String ROW_COUNT_PARAMETER = "rows";
-    public static final String ROW_COUNT_PARAMETER_MAX_VALUE = "10000";
+    public static final int ROW_COUNT_PARAMETER_MAX_VALUE = 10_000;
     public static final String BASE_PATH = "https://opendata.paris.fr/api/records/1.0/search/?dataset=";
 
     private final Class<Data> dataClass;
@@ -31,8 +31,8 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
         this.withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE);
     }
 
-    public OpenDataClient<Data> withParameter(String parameter, String value){
-        this.parameters.put(parameter, value);
+    public OpenDataClient<Data> withParameter(String parameter, Object value){
+        this.parameters.put(parameter, value.toString());
         return this;
     }
 

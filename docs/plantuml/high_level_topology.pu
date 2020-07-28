@@ -25,19 +25,13 @@ statisticsDb ..> stationsLocked
 
 frame "Nearby traffic topology"{
    rectangle bikeCountsClient <<producer>>
-   rectangle bikeCountersClient <<producer>>
    rectangle bikeCounts <<topic>>
-   rectangle bikeCounters <<topic>>
-   rectangle bikeCounterUpdates <<topic>>
    rectangle dailyNearbyTrafficPerStation <<topic>>
    database nearbyTrafficDb<<database>>
 }
 
 bikeCountsClient --> bikeCounts 
-bikeCountersClient --> bikeCounters 
-bikeCounts --> bikeCounterUpdates 
-bikeCounters --> bikeCounterUpdates 
-bikeCounterUpdates --> dailyNearbyTrafficPerStation 
+bikeCounts --> dailyNearbyTrafficPerStation 
 stationUpdates --> dailyNearbyTrafficPerStation 
 dailyNearbyTrafficPerStation -> nearbyTrafficDb
 

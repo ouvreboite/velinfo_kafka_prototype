@@ -9,7 +9,6 @@ import java.util.Properties;
 @Getter
 public final class StreamProperties {
     private static StreamProperties INSTANCE = null;
-
     public static synchronized StreamProperties getInstance() {
         if(INSTANCE == null) {
             try {
@@ -23,16 +22,15 @@ public final class StreamProperties {
 
     private final long availabilityPeriodSeconds;
     private final long bicycleCountPeriodSeconds;
-    private final long counterCharacteristicsPeriodSeconds;
     private final long bikeLockEstimationDurationHours;
 
     private final String stationAvailabilityTopic;
     private final String bicycleCountTopic;
-    private final String counterCharacteristicsTopic;
 
     private final String stationUpdatesTopic;
     private final String hourlyStationStatsTopic;
     private final String bikesLockedTopic;
+
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
@@ -43,12 +41,10 @@ public final class StreamProperties {
 
         this.availabilityPeriodSeconds = Long.parseLong(props.getProperty("StationAvailability.Loop.Seconds", "60"));
         this.bicycleCountPeriodSeconds = Long.parseLong(props.getProperty("BicycleCounterCharacteristics.Loop.Seconds", "60"));
-        this.counterCharacteristicsPeriodSeconds = Long.parseLong(props.getProperty("BicycleCount.Loop.Seconds", "60"));
         this.bikeLockEstimationDurationHours = Long.parseLong(props.getProperty("BikeLockEstimation.Hours", "24"));
 
         this.stationAvailabilityTopic = props.getProperty("StationAvailability.Topic");
-        this.bicycleCountTopic = props.getProperty("BicycleCounterCharacteristics.Topic");
-        this.counterCharacteristicsTopic = props.getProperty("BicycleCount.Topic");
+        this.bicycleCountTopic = props.getProperty("BicycleCounts.Topic");
 
         this.stationUpdatesTopic = props.getProperty("StationUpdates.Topic");
         this.hourlyStationStatsTopic = props.getProperty("HourlyStationStats.Topic");

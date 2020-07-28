@@ -11,5 +11,6 @@ import java.util.Date;
         private String id_compteur;
         private int sum_counts;
         private Date date;
+        private double[] coordinates;
     }
 }

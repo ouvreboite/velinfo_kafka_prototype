@@ -15,6 +15,14 @@
       "name": "countTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
+    },
+    {
+      "name": "latitude",
+      "type" : "double"
+    },
+    {
+      "name": "longitude",
+      "type" : "double"
     }
   ]
 }

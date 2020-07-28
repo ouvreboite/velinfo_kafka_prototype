@@ -27,14 +27,6 @@ public class ProducerApplication {
                         new RealTimeAvailabilityMapper()))
                 .start();
 
-        new ProductionThread<>(props.getCounterCharacteristicsPeriodSeconds(),
-                new BicycleCounterCharacteristicsClient(),
-                new Producer<>(
-                        props.getCounterCharacteristicsTopic(),
-                        record -> record.getCounterId().toString(),
-                        new BicycleCounterCharacteristicsMapper()))
-                .start();
-
         new ProductionThread<>(props.getBicycleCountPeriodSeconds(),
                 new BicycleCountClient(),
                 new Producer<>(
