@@ -1,0 +1,64 @@
+@startuml
+title
+<b>High level topology</b>
+(Kafka Stream)
+end title
+
+
+frame "Station status topology"{
+   rectangle stationAvailabilityClient <<producer>>
+   rectangle stationAvailabilities <<topic>>
+   rectangle stationUpdates <<topic>>
+   rectangle hourlyStationStats<<topic>>
+   rectangle stationsLocked <<topic>>
+   rectangle bikesLocked <<topic>>
+   database statisticsDb<<database>>
+}
+
+stationAvailabilityClient --> stationAvailabilities 
+stationAvailabilities --> stationUpdates
+stationUpdates --> hourlyStationStats
+hourlyStationStats--> bikesLocked
+hourlyStationStats-> statisticsDb
+stationUpdates --> stationsLocked
+statisticsDb ..> stationsLocked
+
+frame "Nearby traffic topology"{
+   rectangle bikeCountsClient <<producer>>
+   rectangle bikeCountersClient <<producer>>
+   rectangle bikeCounts <<topic>>
+   rectangle bikeCounters <<topic>>
+   rectangle bikeCounterUpdates <<topic>>
+   rectangle dailyNearbyTrafficPerStation <<topic>>
+   database nearbyTrafficDb<<database>>
+}
+
+bikeCountsClient --> bikeCounts 
+bikeCountersClient --> bikeCounters 
+bikeCounts --> bikeCounterUpdates 
+bikeCounters --> bikeCounterUpdates 
+bikeCounterUpdates --> dailyNearbyTrafficPerStation 
+stationUpdates --> dailyNearbyTrafficPerStation 
+dailyNearbyTrafficPerStation -> nearbyTrafficDb
+
+skinparam rectangle{
+    backgroundColor<<topic>> Gainsboro
+    backgroundColor<<stream>> Snow
+    backgroundColor<<producer>> Coral
+    backgroundColor<<consumer>> Coral
+    borderColor<<topic>> transparent
+    borderColor<<stream>> transparent
+    borderColor<<producer>> transparent
+    borderColor<<consumer>> transparent
+}
+
+skinparam database{ 
+   backgroundColor<<database>> Coral
+   borderColor transparent
+}
+
+skinparam{
+   ArrowColor DeepSkyBlue
+   shadowing false
+}
+@enduml

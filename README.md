@@ -17,6 +17,10 @@ High level architecture :
 
 ![High level architecture](docs/plantuml/container_diagram.svg)
 
+High level kafka stream topology :
+
+![High level topology](docs/plantuml/high_level_topology.svg)
+
 ## Structure
 * docs : resources for documentation (schemas, ...)
 * run : docker compose file to setup the local env
