@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStationAvailability extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -1588865257962812688L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"stationCapacity\",\"type\":\"int\"},{\"name\":\"stationName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"isRenting\",\"type\":\"boolean\"},{\"name\":\"isReturning\",\"type\":\"boolean\"},{\"name\":\"isInstalled\",\"type\":\"boolean\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = -2886697193320398059L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationAvailability\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"stationCapacity\",\"type\":\"int\"},{\"name\":\"stationName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"isRenting\",\"type\":\"boolean\"},{\"name\":\"isReturning\",\"type\":\"boolean\"},{\"name\":\"isInstalled\",\"type\":\"boolean\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -81,8 +81,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   @Deprecated public boolean isRenting;
   @Deprecated public boolean isReturning;
   @Deprecated public boolean isInstalled;
-  @Deprecated public double latitude;
-  @Deprecated public double longitude;
+  @Deprecated public velibstreaming.avro.record.source.AvroCoordinates coordinates;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -103,10 +102,9 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
    * @param isRenting The new value for isRenting
    * @param isReturning The new value for isReturning
    * @param isInstalled The new value for isInstalled
-   * @param latitude The new value for latitude
-   * @param longitude The new value for longitude
+   * @param coordinates The new value for coordinates
    */
-  public AvroStationAvailability(java.lang.String stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Integer stationCapacity, java.lang.String stationName, java.lang.Boolean isRenting, java.lang.Boolean isReturning, java.lang.Boolean isInstalled, java.lang.Double latitude, java.lang.Double longitude) {
+  public AvroStationAvailability(java.lang.String stationCode, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Integer stationCapacity, java.lang.String stationName, java.lang.Boolean isRenting, java.lang.Boolean isReturning, java.lang.Boolean isInstalled, velibstreaming.avro.record.source.AvroCoordinates coordinates) {
     this.stationCode = stationCode;
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
@@ -117,8 +115,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     this.isRenting = isRenting;
     this.isReturning = isReturning;
     this.isInstalled = isInstalled;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.coordinates = coordinates;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -136,8 +133,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     case 7: return isRenting;
     case 8: return isReturning;
     case 9: return isInstalled;
-    case 10: return latitude;
-    case 11: return longitude;
+    case 10: return coordinates;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -156,8 +152,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     case 7: isRenting = (java.lang.Boolean)value$; break;
     case 8: isReturning = (java.lang.Boolean)value$; break;
     case 9: isInstalled = (java.lang.Boolean)value$; break;
-    case 10: latitude = (java.lang.Double)value$; break;
-    case 11: longitude = (java.lang.Double)value$; break;
+    case 10: coordinates = (velibstreaming.avro.record.source.AvroCoordinates)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -333,37 +328,20 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
   }
 
   /**
-   * Gets the value of the 'latitude' field.
-   * @return The value of the 'latitude' field.
+   * Gets the value of the 'coordinates' field.
+   * @return The value of the 'coordinates' field.
    */
-  public double getLatitude() {
-    return latitude;
+  public velibstreaming.avro.record.source.AvroCoordinates getCoordinates() {
+    return coordinates;
   }
 
 
   /**
-   * Sets the value of the 'latitude' field.
+   * Sets the value of the 'coordinates' field.
    * @param value the value to set.
    */
-  public void setLatitude(double value) {
-    this.latitude = value;
-  }
-
-  /**
-   * Gets the value of the 'longitude' field.
-   * @return The value of the 'longitude' field.
-   */
-  public double getLongitude() {
-    return longitude;
-  }
-
-
-  /**
-   * Sets the value of the 'longitude' field.
-   * @param value the value to set.
-   */
-  public void setLongitude(double value) {
-    this.longitude = value;
+  public void setCoordinates(velibstreaming.avro.record.source.AvroCoordinates value) {
+    this.coordinates = value;
   }
 
   /**
@@ -417,8 +395,8 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     private boolean isRenting;
     private boolean isReturning;
     private boolean isInstalled;
-    private double latitude;
-    private double longitude;
+    private velibstreaming.avro.record.source.AvroCoordinates coordinates;
+    private velibstreaming.avro.record.source.AvroCoordinates.Builder coordinatesBuilder;
 
     /** Creates a new Builder */
     private Builder() {
@@ -471,13 +449,12 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         this.isInstalled = data().deepCopy(fields()[9].schema(), other.isInstalled);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
-      if (isValidValue(fields()[10], other.latitude)) {
-        this.latitude = data().deepCopy(fields()[10].schema(), other.latitude);
+      if (isValidValue(fields()[10], other.coordinates)) {
+        this.coordinates = data().deepCopy(fields()[10].schema(), other.coordinates);
         fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
-      if (isValidValue(fields()[11], other.longitude)) {
-        this.longitude = data().deepCopy(fields()[11].schema(), other.longitude);
-        fieldSetFlags()[11] = other.fieldSetFlags()[11];
+      if (other.hasCoordinatesBuilder()) {
+        this.coordinatesBuilder = velibstreaming.avro.record.source.AvroCoordinates.newBuilder(other.getCoordinatesBuilder());
       }
     }
 
@@ -527,14 +504,11 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         this.isInstalled = data().deepCopy(fields()[9].schema(), other.isInstalled);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.latitude)) {
-        this.latitude = data().deepCopy(fields()[10].schema(), other.latitude);
+      if (isValidValue(fields()[10], other.coordinates)) {
+        this.coordinates = data().deepCopy(fields()[10].schema(), other.coordinates);
         fieldSetFlags()[10] = true;
       }
-      if (isValidValue(fields()[11], other.longitude)) {
-        this.longitude = data().deepCopy(fields()[11].schema(), other.longitude);
-        fieldSetFlags()[11] = true;
-      }
+      this.coordinatesBuilder = null;
     }
 
     /**
@@ -930,80 +904,77 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
     }
 
     /**
-      * Gets the value of the 'latitude' field.
+      * Gets the value of the 'coordinates' field.
       * @return The value.
       */
-    public double getLatitude() {
-      return latitude;
+    public velibstreaming.avro.record.source.AvroCoordinates getCoordinates() {
+      return coordinates;
     }
 
 
     /**
-      * Sets the value of the 'latitude' field.
-      * @param value The value of 'latitude'.
+      * Sets the value of the 'coordinates' field.
+      * @param value The value of 'coordinates'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroStationAvailability.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.source.AvroStationAvailability.Builder setCoordinates(velibstreaming.avro.record.source.AvroCoordinates value) {
       validate(fields()[10], value);
-      this.latitude = value;
+      this.coordinatesBuilder = null;
+      this.coordinates = value;
       fieldSetFlags()[10] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'latitude' field has been set.
-      * @return True if the 'latitude' field has been set, false otherwise.
+      * Checks whether the 'coordinates' field has been set.
+      * @return True if the 'coordinates' field has been set, false otherwise.
       */
-    public boolean hasLatitude() {
+    public boolean hasCoordinates() {
       return fieldSetFlags()[10];
     }
 
+    /**
+     * Gets the Builder instance for the 'coordinates' field and creates one if it doesn't exist yet.
+     * @return This builder.
+     */
+    public velibstreaming.avro.record.source.AvroCoordinates.Builder getCoordinatesBuilder() {
+      if (coordinatesBuilder == null) {
+        if (hasCoordinates()) {
+          setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.newBuilder(coordinates));
+        } else {
+          setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.newBuilder());
+        }
+      }
+      return coordinatesBuilder;
+    }
 
     /**
-      * Clears the value of the 'latitude' field.
+     * Sets the Builder instance for the 'coordinates' field
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public velibstreaming.avro.record.source.AvroStationAvailability.Builder setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.Builder value) {
+      clearCoordinates();
+      coordinatesBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'coordinates' field has an active Builder instance
+     * @return True if the 'coordinates' field has an active Builder instance
+     */
+    public boolean hasCoordinatesBuilder() {
+      return coordinatesBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'coordinates' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroStationAvailability.Builder clearLatitude() {
+    public velibstreaming.avro.record.source.AvroStationAvailability.Builder clearCoordinates() {
+      coordinates = null;
+      coordinatesBuilder = null;
       fieldSetFlags()[10] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'longitude' field.
-      * @return The value.
-      */
-    public double getLongitude() {
-      return longitude;
-    }
-
-
-    /**
-      * Sets the value of the 'longitude' field.
-      * @param value The value of 'longitude'.
-      * @return This builder.
-      */
-    public velibstreaming.avro.record.source.AvroStationAvailability.Builder setLongitude(double value) {
-      validate(fields()[11], value);
-      this.longitude = value;
-      fieldSetFlags()[11] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'longitude' field has been set.
-      * @return True if the 'longitude' field has been set, false otherwise.
-      */
-    public boolean hasLongitude() {
-      return fieldSetFlags()[11];
-    }
-
-
-    /**
-      * Clears the value of the 'longitude' field.
-      * @return This builder.
-      */
-    public velibstreaming.avro.record.source.AvroStationAvailability.Builder clearLongitude() {
-      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -1022,8 +993,16 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
         record.isRenting = fieldSetFlags()[7] ? this.isRenting : (java.lang.Boolean) defaultValue(fields()[7]);
         record.isReturning = fieldSetFlags()[8] ? this.isReturning : (java.lang.Boolean) defaultValue(fields()[8]);
         record.isInstalled = fieldSetFlags()[9] ? this.isInstalled : (java.lang.Boolean) defaultValue(fields()[9]);
-        record.latitude = fieldSetFlags()[10] ? this.latitude : (java.lang.Double) defaultValue(fields()[10]);
-        record.longitude = fieldSetFlags()[11] ? this.longitude : (java.lang.Double) defaultValue(fields()[11]);
+        if (coordinatesBuilder != null) {
+          try {
+            record.coordinates = this.coordinatesBuilder.build();
+          } catch (org.apache.avro.AvroMissingFieldException e) {
+            e.addParentField(record.getSchema().getField("coordinates"));
+            throw e;
+          }
+        } else {
+          record.coordinates = fieldSetFlags()[10] ? this.coordinates : (velibstreaming.avro.record.source.AvroCoordinates) defaultValue(fields()[10]);
+        }
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -1076,9 +1055,7 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
 
     out.writeBoolean(this.isInstalled);
 
-    out.writeDouble(this.latitude);
-
-    out.writeDouble(this.longitude);
+    this.coordinates.customEncode(out);
 
   }
 
@@ -1107,12 +1084,13 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
 
       this.isInstalled = in.readBoolean();
 
-      this.latitude = in.readDouble();
-
-      this.longitude = in.readDouble();
+      if (this.coordinates == null) {
+        this.coordinates = new velibstreaming.avro.record.source.AvroCoordinates();
+      }
+      this.coordinates.customDecode(in);
 
     } else {
-      for (int i = 0; i < 12; i++) {
+      for (int i = 0; i < 11; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.stationCode = in.readString();
@@ -1155,11 +1133,10 @@ public class AvroStationAvailability extends org.apache.avro.specific.SpecificRe
           break;
 
         case 10:
-          this.latitude = in.readDouble();
-          break;
-
-        case 11:
-          this.longitude = in.readDouble();
+          if (this.coordinates == null) {
+            this.coordinates = new velibstreaming.avro.record.source.AvroCoordinates();
+          }
+          this.coordinates.customDecode(in);
           break;
 
         default:

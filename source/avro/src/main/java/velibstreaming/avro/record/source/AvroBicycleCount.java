@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 8949735397603442607L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}");
+  private static final long serialVersionUID = -9208930857661880400L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -74,8 +74,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
   @Deprecated public java.lang.String counterId;
   @Deprecated public int count;
   @Deprecated public long countTimestamp;
-  @Deprecated public double latitude;
-  @Deprecated public double longitude;
+  @Deprecated public velibstreaming.avro.record.source.AvroCoordinates coordinates;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -89,15 +88,13 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
    * @param counterId The new value for counterId
    * @param count The new value for count
    * @param countTimestamp The new value for countTimestamp
-   * @param latitude The new value for latitude
-   * @param longitude The new value for longitude
+   * @param coordinates The new value for coordinates
    */
-  public AvroBicycleCount(java.lang.String counterId, java.lang.Integer count, java.lang.Long countTimestamp, java.lang.Double latitude, java.lang.Double longitude) {
+  public AvroBicycleCount(java.lang.String counterId, java.lang.Integer count, java.lang.Long countTimestamp, velibstreaming.avro.record.source.AvroCoordinates coordinates) {
     this.counterId = counterId;
     this.count = count;
     this.countTimestamp = countTimestamp;
-    this.latitude = latitude;
-    this.longitude = longitude;
+    this.coordinates = coordinates;
   }
 
   public org.apache.avro.specific.SpecificData getSpecificData() { return MODEL$; }
@@ -108,8 +105,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     case 0: return counterId;
     case 1: return count;
     case 2: return countTimestamp;
-    case 3: return latitude;
-    case 4: return longitude;
+    case 3: return coordinates;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -121,8 +117,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     case 0: counterId = value$ != null ? value$.toString() : null; break;
     case 1: count = (java.lang.Integer)value$; break;
     case 2: countTimestamp = (java.lang.Long)value$; break;
-    case 3: latitude = (java.lang.Double)value$; break;
-    case 4: longitude = (java.lang.Double)value$; break;
+    case 3: coordinates = (velibstreaming.avro.record.source.AvroCoordinates)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -179,37 +174,20 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
   }
 
   /**
-   * Gets the value of the 'latitude' field.
-   * @return The value of the 'latitude' field.
+   * Gets the value of the 'coordinates' field.
+   * @return The value of the 'coordinates' field.
    */
-  public double getLatitude() {
-    return latitude;
+  public velibstreaming.avro.record.source.AvroCoordinates getCoordinates() {
+    return coordinates;
   }
 
 
   /**
-   * Sets the value of the 'latitude' field.
+   * Sets the value of the 'coordinates' field.
    * @param value the value to set.
    */
-  public void setLatitude(double value) {
-    this.latitude = value;
-  }
-
-  /**
-   * Gets the value of the 'longitude' field.
-   * @return The value of the 'longitude' field.
-   */
-  public double getLongitude() {
-    return longitude;
-  }
-
-
-  /**
-   * Sets the value of the 'longitude' field.
-   * @param value the value to set.
-   */
-  public void setLongitude(double value) {
-    this.longitude = value;
+  public void setCoordinates(velibstreaming.avro.record.source.AvroCoordinates value) {
+    this.coordinates = value;
   }
 
   /**
@@ -256,8 +234,8 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     private java.lang.String counterId;
     private int count;
     private long countTimestamp;
-    private double latitude;
-    private double longitude;
+    private velibstreaming.avro.record.source.AvroCoordinates coordinates;
+    private velibstreaming.avro.record.source.AvroCoordinates.Builder coordinatesBuilder;
 
     /** Creates a new Builder */
     private Builder() {
@@ -282,13 +260,12 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
         this.countTimestamp = data().deepCopy(fields()[2].schema(), other.countTimestamp);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.latitude)) {
-        this.latitude = data().deepCopy(fields()[3].schema(), other.latitude);
+      if (isValidValue(fields()[3], other.coordinates)) {
+        this.coordinates = data().deepCopy(fields()[3].schema(), other.coordinates);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.longitude)) {
-        this.longitude = data().deepCopy(fields()[4].schema(), other.longitude);
-        fieldSetFlags()[4] = other.fieldSetFlags()[4];
+      if (other.hasCoordinatesBuilder()) {
+        this.coordinatesBuilder = velibstreaming.avro.record.source.AvroCoordinates.newBuilder(other.getCoordinatesBuilder());
       }
     }
 
@@ -310,14 +287,11 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
         this.countTimestamp = data().deepCopy(fields()[2].schema(), other.countTimestamp);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.latitude)) {
-        this.latitude = data().deepCopy(fields()[3].schema(), other.latitude);
+      if (isValidValue(fields()[3], other.coordinates)) {
+        this.coordinates = data().deepCopy(fields()[3].schema(), other.coordinates);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.longitude)) {
-        this.longitude = data().deepCopy(fields()[4].schema(), other.longitude);
-        fieldSetFlags()[4] = true;
-      }
+      this.coordinatesBuilder = null;
     }
 
     /**
@@ -439,80 +413,77 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
     }
 
     /**
-      * Gets the value of the 'latitude' field.
+      * Gets the value of the 'coordinates' field.
       * @return The value.
       */
-    public double getLatitude() {
-      return latitude;
+    public velibstreaming.avro.record.source.AvroCoordinates getCoordinates() {
+      return coordinates;
     }
 
 
     /**
-      * Sets the value of the 'latitude' field.
-      * @param value The value of 'latitude'.
+      * Sets the value of the 'coordinates' field.
+      * @param value The value of 'coordinates'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setLatitude(double value) {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setCoordinates(velibstreaming.avro.record.source.AvroCoordinates value) {
       validate(fields()[3], value);
-      this.latitude = value;
+      this.coordinatesBuilder = null;
+      this.coordinates = value;
       fieldSetFlags()[3] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'latitude' field has been set.
-      * @return True if the 'latitude' field has been set, false otherwise.
+      * Checks whether the 'coordinates' field has been set.
+      * @return True if the 'coordinates' field has been set, false otherwise.
       */
-    public boolean hasLatitude() {
+    public boolean hasCoordinates() {
       return fieldSetFlags()[3];
     }
 
+    /**
+     * Gets the Builder instance for the 'coordinates' field and creates one if it doesn't exist yet.
+     * @return This builder.
+     */
+    public velibstreaming.avro.record.source.AvroCoordinates.Builder getCoordinatesBuilder() {
+      if (coordinatesBuilder == null) {
+        if (hasCoordinates()) {
+          setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.newBuilder(coordinates));
+        } else {
+          setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.newBuilder());
+        }
+      }
+      return coordinatesBuilder;
+    }
 
     /**
-      * Clears the value of the 'latitude' field.
+     * Sets the Builder instance for the 'coordinates' field
+     * @param value The builder instance that must be set.
+     * @return This builder.
+     */
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setCoordinatesBuilder(velibstreaming.avro.record.source.AvroCoordinates.Builder value) {
+      clearCoordinates();
+      coordinatesBuilder = value;
+      return this;
+    }
+
+    /**
+     * Checks whether the 'coordinates' field has an active Builder instance
+     * @return True if the 'coordinates' field has an active Builder instance
+     */
+    public boolean hasCoordinatesBuilder() {
+      return coordinatesBuilder != null;
+    }
+
+    /**
+      * Clears the value of the 'coordinates' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearLatitude() {
+    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearCoordinates() {
+      coordinates = null;
+      coordinatesBuilder = null;
       fieldSetFlags()[3] = false;
-      return this;
-    }
-
-    /**
-      * Gets the value of the 'longitude' field.
-      * @return The value.
-      */
-    public double getLongitude() {
-      return longitude;
-    }
-
-
-    /**
-      * Sets the value of the 'longitude' field.
-      * @param value The value of 'longitude'.
-      * @return This builder.
-      */
-    public velibstreaming.avro.record.source.AvroBicycleCount.Builder setLongitude(double value) {
-      validate(fields()[4], value);
-      this.longitude = value;
-      fieldSetFlags()[4] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'longitude' field has been set.
-      * @return True if the 'longitude' field has been set, false otherwise.
-      */
-    public boolean hasLongitude() {
-      return fieldSetFlags()[4];
-    }
-
-
-    /**
-      * Clears the value of the 'longitude' field.
-      * @return This builder.
-      */
-    public velibstreaming.avro.record.source.AvroBicycleCount.Builder clearLongitude() {
-      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -524,8 +495,16 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
         record.counterId = fieldSetFlags()[0] ? this.counterId : (java.lang.String) defaultValue(fields()[0]);
         record.count = fieldSetFlags()[1] ? this.count : (java.lang.Integer) defaultValue(fields()[1]);
         record.countTimestamp = fieldSetFlags()[2] ? this.countTimestamp : (java.lang.Long) defaultValue(fields()[2]);
-        record.latitude = fieldSetFlags()[3] ? this.latitude : (java.lang.Double) defaultValue(fields()[3]);
-        record.longitude = fieldSetFlags()[4] ? this.longitude : (java.lang.Double) defaultValue(fields()[4]);
+        if (coordinatesBuilder != null) {
+          try {
+            record.coordinates = this.coordinatesBuilder.build();
+          } catch (org.apache.avro.AvroMissingFieldException e) {
+            e.addParentField(record.getSchema().getField("coordinates"));
+            throw e;
+          }
+        } else {
+          record.coordinates = fieldSetFlags()[3] ? this.coordinates : (velibstreaming.avro.record.source.AvroCoordinates) defaultValue(fields()[3]);
+        }
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -564,9 +543,7 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
 
     out.writeLong(this.countTimestamp);
 
-    out.writeDouble(this.latitude);
-
-    out.writeDouble(this.longitude);
+    this.coordinates.customEncode(out);
 
   }
 
@@ -581,12 +558,13 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
 
       this.countTimestamp = in.readLong();
 
-      this.latitude = in.readDouble();
-
-      this.longitude = in.readDouble();
+      if (this.coordinates == null) {
+        this.coordinates = new velibstreaming.avro.record.source.AvroCoordinates();
+      }
+      this.coordinates.customDecode(in);
 
     } else {
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 4; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.counterId = in.readString();
@@ -601,11 +579,10 @@ public class AvroBicycleCount extends org.apache.avro.specific.SpecificRecordBas
           break;
 
         case 3:
-          this.latitude = in.readDouble();
-          break;
-
-        case 4:
-          this.longitude = in.readDouble();
+          if (this.coordinates == null) {
+            this.coordinates = new velibstreaming.avro.record.source.AvroCoordinates();
+          }
+          this.coordinates.customDecode(in);
           break;
 
         default:

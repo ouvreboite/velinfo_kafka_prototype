@@ -16,12 +16,8 @@
       "type": "int"
     },
     {
-      "name": "latitude",
-      "type" : "double"
-    },
-    {
-      "name": "longitude",
-      "type" : "double"
+      "name": "coordinates",
+      "type": "velibstreaming.avro.record.source.AvroCoordinates"
     },
     {
       "name": "mechanicalBikesAtStation",

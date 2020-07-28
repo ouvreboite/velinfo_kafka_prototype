@@ -46,12 +46,8 @@
       "type" : "boolean"
     },
     {
-      "name": "latitude",
-      "type" : "double"
-    },
-    {
-      "name": "longitude",
-      "type" : "double"
+      "name": "coordinates",
+      "type": "velibstreaming.avro.record.source.AvroCoordinates"
     }
   ]
 }
