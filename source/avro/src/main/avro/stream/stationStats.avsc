@@ -4,6 +4,10 @@
   "namespace": "velibstreaming.avro.record.stream",
   "fields": [
     {
+      "name" : "stationCode",
+      "type" : "string"
+    },
+    {
       "name": "numberOfMechanicalBikesReturned",
       "type": "int"
     },
@@ -18,6 +22,21 @@
     {
       "name": "numberOfElectricBikesRented",
       "type": "int"
+    },
+    {
+      "name": "minimumNumberOfMechanicalBikes",
+      "type" : ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "minimumNumberOfElectricBikes",
+      "type" : ["null", "int"],
+      "default": null
+    },
+    {
+      "name": "minimumNumberOfEmptySlots",
+      "type" : ["null", "int"],
+      "default": null
     },
     {
       "name": "lastNumberOfMechanicalBikes",

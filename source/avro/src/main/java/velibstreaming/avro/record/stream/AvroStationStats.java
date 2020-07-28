@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -3009984780859883083L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationStats\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"numberOfMechanicalBikesReturned\",\"type\":\"int\"},{\"name\":\"numberOfElectricBikesReturned\",\"type\":\"int\"},{\"name\":\"numberOfMechanicalBikesRented\",\"type\":\"int\"},{\"name\":\"numberOfElectricBikesRented\",\"type\":\"int\"},{\"name\":\"lastNumberOfMechanicalBikes\",\"type\":\"int\"},{\"name\":\"lastNumberOfElectricBikes\",\"type\":\"int\"},{\"name\":\"lastLoadTimestamp\",\"type\":\"long\",\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodStart\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodEnd\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"}]}");
+  private static final long serialVersionUID = 5486955367031424877L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationStats\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"numberOfMechanicalBikesReturned\",\"type\":\"int\"},{\"name\":\"numberOfElectricBikesReturned\",\"type\":\"int\"},{\"name\":\"numberOfMechanicalBikesRented\",\"type\":\"int\"},{\"name\":\"numberOfElectricBikesRented\",\"type\":\"int\"},{\"name\":\"minimumNumberOfMechanicalBikes\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"minimumNumberOfElectricBikes\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"minimumNumberOfEmptySlots\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"lastNumberOfMechanicalBikes\",\"type\":\"int\"},{\"name\":\"lastNumberOfElectricBikes\",\"type\":\"int\"},{\"name\":\"lastLoadTimestamp\",\"type\":\"long\",\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodStart\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodEnd\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,10 +71,14 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
     return DECODER.decode(b);
   }
 
+  @Deprecated public java.lang.String stationCode;
   @Deprecated public int numberOfMechanicalBikesReturned;
   @Deprecated public int numberOfElectricBikesReturned;
   @Deprecated public int numberOfMechanicalBikesRented;
   @Deprecated public int numberOfElectricBikesRented;
+  @Deprecated public java.lang.Integer minimumNumberOfMechanicalBikes;
+  @Deprecated public java.lang.Integer minimumNumberOfElectricBikes;
+  @Deprecated public java.lang.Integer minimumNumberOfEmptySlots;
   @Deprecated public int lastNumberOfMechanicalBikes;
   @Deprecated public int lastNumberOfElectricBikes;
   @Deprecated public long lastLoadTimestamp;
@@ -90,21 +94,29 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
 
   /**
    * All-args constructor.
+   * @param stationCode The new value for stationCode
    * @param numberOfMechanicalBikesReturned The new value for numberOfMechanicalBikesReturned
    * @param numberOfElectricBikesReturned The new value for numberOfElectricBikesReturned
    * @param numberOfMechanicalBikesRented The new value for numberOfMechanicalBikesRented
    * @param numberOfElectricBikesRented The new value for numberOfElectricBikesRented
+   * @param minimumNumberOfMechanicalBikes The new value for minimumNumberOfMechanicalBikes
+   * @param minimumNumberOfElectricBikes The new value for minimumNumberOfElectricBikes
+   * @param minimumNumberOfEmptySlots The new value for minimumNumberOfEmptySlots
    * @param lastNumberOfMechanicalBikes The new value for lastNumberOfMechanicalBikes
    * @param lastNumberOfElectricBikes The new value for lastNumberOfElectricBikes
    * @param lastLoadTimestamp The new value for lastLoadTimestamp
    * @param periodStart The new value for periodStart
    * @param periodEnd The new value for periodEnd
    */
-  public AvroStationStats(java.lang.Integer numberOfMechanicalBikesReturned, java.lang.Integer numberOfElectricBikesReturned, java.lang.Integer numberOfMechanicalBikesRented, java.lang.Integer numberOfElectricBikesRented, java.lang.Integer lastNumberOfMechanicalBikes, java.lang.Integer lastNumberOfElectricBikes, java.lang.Long lastLoadTimestamp, java.lang.Long periodStart, java.lang.Long periodEnd) {
+  public AvroStationStats(java.lang.String stationCode, java.lang.Integer numberOfMechanicalBikesReturned, java.lang.Integer numberOfElectricBikesReturned, java.lang.Integer numberOfMechanicalBikesRented, java.lang.Integer numberOfElectricBikesRented, java.lang.Integer minimumNumberOfMechanicalBikes, java.lang.Integer minimumNumberOfElectricBikes, java.lang.Integer minimumNumberOfEmptySlots, java.lang.Integer lastNumberOfMechanicalBikes, java.lang.Integer lastNumberOfElectricBikes, java.lang.Long lastLoadTimestamp, java.lang.Long periodStart, java.lang.Long periodEnd) {
+    this.stationCode = stationCode;
     this.numberOfMechanicalBikesReturned = numberOfMechanicalBikesReturned;
     this.numberOfElectricBikesReturned = numberOfElectricBikesReturned;
     this.numberOfMechanicalBikesRented = numberOfMechanicalBikesRented;
     this.numberOfElectricBikesRented = numberOfElectricBikesRented;
+    this.minimumNumberOfMechanicalBikes = minimumNumberOfMechanicalBikes;
+    this.minimumNumberOfElectricBikes = minimumNumberOfElectricBikes;
+    this.minimumNumberOfEmptySlots = minimumNumberOfEmptySlots;
     this.lastNumberOfMechanicalBikes = lastNumberOfMechanicalBikes;
     this.lastNumberOfElectricBikes = lastNumberOfElectricBikes;
     this.lastLoadTimestamp = lastLoadTimestamp;
@@ -117,15 +129,19 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return numberOfMechanicalBikesReturned;
-    case 1: return numberOfElectricBikesReturned;
-    case 2: return numberOfMechanicalBikesRented;
-    case 3: return numberOfElectricBikesRented;
-    case 4: return lastNumberOfMechanicalBikes;
-    case 5: return lastNumberOfElectricBikes;
-    case 6: return lastLoadTimestamp;
-    case 7: return periodStart;
-    case 8: return periodEnd;
+    case 0: return stationCode;
+    case 1: return numberOfMechanicalBikesReturned;
+    case 2: return numberOfElectricBikesReturned;
+    case 3: return numberOfMechanicalBikesRented;
+    case 4: return numberOfElectricBikesRented;
+    case 5: return minimumNumberOfMechanicalBikes;
+    case 6: return minimumNumberOfElectricBikes;
+    case 7: return minimumNumberOfEmptySlots;
+    case 8: return lastNumberOfMechanicalBikes;
+    case 9: return lastNumberOfElectricBikes;
+    case 10: return lastLoadTimestamp;
+    case 11: return periodStart;
+    case 12: return periodEnd;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -134,17 +150,38 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: numberOfMechanicalBikesReturned = (java.lang.Integer)value$; break;
-    case 1: numberOfElectricBikesReturned = (java.lang.Integer)value$; break;
-    case 2: numberOfMechanicalBikesRented = (java.lang.Integer)value$; break;
-    case 3: numberOfElectricBikesRented = (java.lang.Integer)value$; break;
-    case 4: lastNumberOfMechanicalBikes = (java.lang.Integer)value$; break;
-    case 5: lastNumberOfElectricBikes = (java.lang.Integer)value$; break;
-    case 6: lastLoadTimestamp = (java.lang.Long)value$; break;
-    case 7: periodStart = (java.lang.Long)value$; break;
-    case 8: periodEnd = (java.lang.Long)value$; break;
+    case 0: stationCode = value$ != null ? value$.toString() : null; break;
+    case 1: numberOfMechanicalBikesReturned = (java.lang.Integer)value$; break;
+    case 2: numberOfElectricBikesReturned = (java.lang.Integer)value$; break;
+    case 3: numberOfMechanicalBikesRented = (java.lang.Integer)value$; break;
+    case 4: numberOfElectricBikesRented = (java.lang.Integer)value$; break;
+    case 5: minimumNumberOfMechanicalBikes = (java.lang.Integer)value$; break;
+    case 6: minimumNumberOfElectricBikes = (java.lang.Integer)value$; break;
+    case 7: minimumNumberOfEmptySlots = (java.lang.Integer)value$; break;
+    case 8: lastNumberOfMechanicalBikes = (java.lang.Integer)value$; break;
+    case 9: lastNumberOfElectricBikes = (java.lang.Integer)value$; break;
+    case 10: lastLoadTimestamp = (java.lang.Long)value$; break;
+    case 11: periodStart = (java.lang.Long)value$; break;
+    case 12: periodEnd = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  /**
+   * Gets the value of the 'stationCode' field.
+   * @return The value of the 'stationCode' field.
+   */
+  public java.lang.String getStationCode() {
+    return stationCode;
+  }
+
+
+  /**
+   * Sets the value of the 'stationCode' field.
+   * @param value the value to set.
+   */
+  public void setStationCode(java.lang.String value) {
+    this.stationCode = value;
   }
 
   /**
@@ -213,6 +250,57 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
    */
   public void setNumberOfElectricBikesRented(int value) {
     this.numberOfElectricBikesRented = value;
+  }
+
+  /**
+   * Gets the value of the 'minimumNumberOfMechanicalBikes' field.
+   * @return The value of the 'minimumNumberOfMechanicalBikes' field.
+   */
+  public java.lang.Integer getMinimumNumberOfMechanicalBikes() {
+    return minimumNumberOfMechanicalBikes;
+  }
+
+
+  /**
+   * Sets the value of the 'minimumNumberOfMechanicalBikes' field.
+   * @param value the value to set.
+   */
+  public void setMinimumNumberOfMechanicalBikes(java.lang.Integer value) {
+    this.minimumNumberOfMechanicalBikes = value;
+  }
+
+  /**
+   * Gets the value of the 'minimumNumberOfElectricBikes' field.
+   * @return The value of the 'minimumNumberOfElectricBikes' field.
+   */
+  public java.lang.Integer getMinimumNumberOfElectricBikes() {
+    return minimumNumberOfElectricBikes;
+  }
+
+
+  /**
+   * Sets the value of the 'minimumNumberOfElectricBikes' field.
+   * @param value the value to set.
+   */
+  public void setMinimumNumberOfElectricBikes(java.lang.Integer value) {
+    this.minimumNumberOfElectricBikes = value;
+  }
+
+  /**
+   * Gets the value of the 'minimumNumberOfEmptySlots' field.
+   * @return The value of the 'minimumNumberOfEmptySlots' field.
+   */
+  public java.lang.Integer getMinimumNumberOfEmptySlots() {
+    return minimumNumberOfEmptySlots;
+  }
+
+
+  /**
+   * Sets the value of the 'minimumNumberOfEmptySlots' field.
+   * @param value the value to set.
+   */
+  public void setMinimumNumberOfEmptySlots(java.lang.Integer value) {
+    this.minimumNumberOfEmptySlots = value;
   }
 
   /**
@@ -341,10 +429,14 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroStationStats>
     implements org.apache.avro.data.RecordBuilder<AvroStationStats> {
 
+    private java.lang.String stationCode;
     private int numberOfMechanicalBikesReturned;
     private int numberOfElectricBikesReturned;
     private int numberOfMechanicalBikesRented;
     private int numberOfElectricBikesRented;
+    private java.lang.Integer minimumNumberOfMechanicalBikes;
+    private java.lang.Integer minimumNumberOfElectricBikes;
+    private java.lang.Integer minimumNumberOfEmptySlots;
     private int lastNumberOfMechanicalBikes;
     private int lastNumberOfElectricBikes;
     private long lastLoadTimestamp;
@@ -362,41 +454,57 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
      */
     private Builder(velibstreaming.avro.record.stream.AvroStationStats.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.numberOfMechanicalBikesReturned)) {
-        this.numberOfMechanicalBikesReturned = data().deepCopy(fields()[0].schema(), other.numberOfMechanicalBikesReturned);
+      if (isValidValue(fields()[0], other.stationCode)) {
+        this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.numberOfElectricBikesReturned)) {
-        this.numberOfElectricBikesReturned = data().deepCopy(fields()[1].schema(), other.numberOfElectricBikesReturned);
+      if (isValidValue(fields()[1], other.numberOfMechanicalBikesReturned)) {
+        this.numberOfMechanicalBikesReturned = data().deepCopy(fields()[1].schema(), other.numberOfMechanicalBikesReturned);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.numberOfMechanicalBikesRented)) {
-        this.numberOfMechanicalBikesRented = data().deepCopy(fields()[2].schema(), other.numberOfMechanicalBikesRented);
+      if (isValidValue(fields()[2], other.numberOfElectricBikesReturned)) {
+        this.numberOfElectricBikesReturned = data().deepCopy(fields()[2].schema(), other.numberOfElectricBikesReturned);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.numberOfElectricBikesRented)) {
-        this.numberOfElectricBikesRented = data().deepCopy(fields()[3].schema(), other.numberOfElectricBikesRented);
+      if (isValidValue(fields()[3], other.numberOfMechanicalBikesRented)) {
+        this.numberOfMechanicalBikesRented = data().deepCopy(fields()[3].schema(), other.numberOfMechanicalBikesRented);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
       }
-      if (isValidValue(fields()[4], other.lastNumberOfMechanicalBikes)) {
-        this.lastNumberOfMechanicalBikes = data().deepCopy(fields()[4].schema(), other.lastNumberOfMechanicalBikes);
+      if (isValidValue(fields()[4], other.numberOfElectricBikesRented)) {
+        this.numberOfElectricBikesRented = data().deepCopy(fields()[4].schema(), other.numberOfElectricBikesRented);
         fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
-      if (isValidValue(fields()[5], other.lastNumberOfElectricBikes)) {
-        this.lastNumberOfElectricBikes = data().deepCopy(fields()[5].schema(), other.lastNumberOfElectricBikes);
+      if (isValidValue(fields()[5], other.minimumNumberOfMechanicalBikes)) {
+        this.minimumNumberOfMechanicalBikes = data().deepCopy(fields()[5].schema(), other.minimumNumberOfMechanicalBikes);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.lastLoadTimestamp)) {
-        this.lastLoadTimestamp = data().deepCopy(fields()[6].schema(), other.lastLoadTimestamp);
+      if (isValidValue(fields()[6], other.minimumNumberOfElectricBikes)) {
+        this.minimumNumberOfElectricBikes = data().deepCopy(fields()[6].schema(), other.minimumNumberOfElectricBikes);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.periodStart)) {
-        this.periodStart = data().deepCopy(fields()[7].schema(), other.periodStart);
+      if (isValidValue(fields()[7], other.minimumNumberOfEmptySlots)) {
+        this.minimumNumberOfEmptySlots = data().deepCopy(fields()[7].schema(), other.minimumNumberOfEmptySlots);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.periodEnd)) {
-        this.periodEnd = data().deepCopy(fields()[8].schema(), other.periodEnd);
+      if (isValidValue(fields()[8], other.lastNumberOfMechanicalBikes)) {
+        this.lastNumberOfMechanicalBikes = data().deepCopy(fields()[8].schema(), other.lastNumberOfMechanicalBikes);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
+      }
+      if (isValidValue(fields()[9], other.lastNumberOfElectricBikes)) {
+        this.lastNumberOfElectricBikes = data().deepCopy(fields()[9].schema(), other.lastNumberOfElectricBikes);
+        fieldSetFlags()[9] = other.fieldSetFlags()[9];
+      }
+      if (isValidValue(fields()[10], other.lastLoadTimestamp)) {
+        this.lastLoadTimestamp = data().deepCopy(fields()[10].schema(), other.lastLoadTimestamp);
+        fieldSetFlags()[10] = other.fieldSetFlags()[10];
+      }
+      if (isValidValue(fields()[11], other.periodStart)) {
+        this.periodStart = data().deepCopy(fields()[11].schema(), other.periodStart);
+        fieldSetFlags()[11] = other.fieldSetFlags()[11];
+      }
+      if (isValidValue(fields()[12], other.periodEnd)) {
+        this.periodEnd = data().deepCopy(fields()[12].schema(), other.periodEnd);
+        fieldSetFlags()[12] = other.fieldSetFlags()[12];
       }
     }
 
@@ -406,42 +514,98 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
      */
     private Builder(velibstreaming.avro.record.stream.AvroStationStats other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.numberOfMechanicalBikesReturned)) {
-        this.numberOfMechanicalBikesReturned = data().deepCopy(fields()[0].schema(), other.numberOfMechanicalBikesReturned);
+      if (isValidValue(fields()[0], other.stationCode)) {
+        this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.numberOfElectricBikesReturned)) {
-        this.numberOfElectricBikesReturned = data().deepCopy(fields()[1].schema(), other.numberOfElectricBikesReturned);
+      if (isValidValue(fields()[1], other.numberOfMechanicalBikesReturned)) {
+        this.numberOfMechanicalBikesReturned = data().deepCopy(fields()[1].schema(), other.numberOfMechanicalBikesReturned);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.numberOfMechanicalBikesRented)) {
-        this.numberOfMechanicalBikesRented = data().deepCopy(fields()[2].schema(), other.numberOfMechanicalBikesRented);
+      if (isValidValue(fields()[2], other.numberOfElectricBikesReturned)) {
+        this.numberOfElectricBikesReturned = data().deepCopy(fields()[2].schema(), other.numberOfElectricBikesReturned);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.numberOfElectricBikesRented)) {
-        this.numberOfElectricBikesRented = data().deepCopy(fields()[3].schema(), other.numberOfElectricBikesRented);
+      if (isValidValue(fields()[3], other.numberOfMechanicalBikesRented)) {
+        this.numberOfMechanicalBikesRented = data().deepCopy(fields()[3].schema(), other.numberOfMechanicalBikesRented);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.lastNumberOfMechanicalBikes)) {
-        this.lastNumberOfMechanicalBikes = data().deepCopy(fields()[4].schema(), other.lastNumberOfMechanicalBikes);
+      if (isValidValue(fields()[4], other.numberOfElectricBikesRented)) {
+        this.numberOfElectricBikesRented = data().deepCopy(fields()[4].schema(), other.numberOfElectricBikesRented);
         fieldSetFlags()[4] = true;
       }
-      if (isValidValue(fields()[5], other.lastNumberOfElectricBikes)) {
-        this.lastNumberOfElectricBikes = data().deepCopy(fields()[5].schema(), other.lastNumberOfElectricBikes);
+      if (isValidValue(fields()[5], other.minimumNumberOfMechanicalBikes)) {
+        this.minimumNumberOfMechanicalBikes = data().deepCopy(fields()[5].schema(), other.minimumNumberOfMechanicalBikes);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.lastLoadTimestamp)) {
-        this.lastLoadTimestamp = data().deepCopy(fields()[6].schema(), other.lastLoadTimestamp);
+      if (isValidValue(fields()[6], other.minimumNumberOfElectricBikes)) {
+        this.minimumNumberOfElectricBikes = data().deepCopy(fields()[6].schema(), other.minimumNumberOfElectricBikes);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.periodStart)) {
-        this.periodStart = data().deepCopy(fields()[7].schema(), other.periodStart);
+      if (isValidValue(fields()[7], other.minimumNumberOfEmptySlots)) {
+        this.minimumNumberOfEmptySlots = data().deepCopy(fields()[7].schema(), other.minimumNumberOfEmptySlots);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.periodEnd)) {
-        this.periodEnd = data().deepCopy(fields()[8].schema(), other.periodEnd);
+      if (isValidValue(fields()[8], other.lastNumberOfMechanicalBikes)) {
+        this.lastNumberOfMechanicalBikes = data().deepCopy(fields()[8].schema(), other.lastNumberOfMechanicalBikes);
         fieldSetFlags()[8] = true;
       }
+      if (isValidValue(fields()[9], other.lastNumberOfElectricBikes)) {
+        this.lastNumberOfElectricBikes = data().deepCopy(fields()[9].schema(), other.lastNumberOfElectricBikes);
+        fieldSetFlags()[9] = true;
+      }
+      if (isValidValue(fields()[10], other.lastLoadTimestamp)) {
+        this.lastLoadTimestamp = data().deepCopy(fields()[10].schema(), other.lastLoadTimestamp);
+        fieldSetFlags()[10] = true;
+      }
+      if (isValidValue(fields()[11], other.periodStart)) {
+        this.periodStart = data().deepCopy(fields()[11].schema(), other.periodStart);
+        fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.periodEnd)) {
+        this.periodEnd = data().deepCopy(fields()[12].schema(), other.periodEnd);
+        fieldSetFlags()[12] = true;
+      }
+    }
+
+    /**
+      * Gets the value of the 'stationCode' field.
+      * @return The value.
+      */
+    public java.lang.String getStationCode() {
+      return stationCode;
+    }
+
+
+    /**
+      * Sets the value of the 'stationCode' field.
+      * @param value The value of 'stationCode'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder setStationCode(java.lang.String value) {
+      validate(fields()[0], value);
+      this.stationCode = value;
+      fieldSetFlags()[0] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'stationCode' field has been set.
+      * @return True if the 'stationCode' field has been set, false otherwise.
+      */
+    public boolean hasStationCode() {
+      return fieldSetFlags()[0];
+    }
+
+
+    /**
+      * Clears the value of the 'stationCode' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder clearStationCode() {
+      stationCode = null;
+      fieldSetFlags()[0] = false;
+      return this;
     }
 
     /**
@@ -459,9 +623,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setNumberOfMechanicalBikesReturned(int value) {
-      validate(fields()[0], value);
+      validate(fields()[1], value);
       this.numberOfMechanicalBikesReturned = value;
-      fieldSetFlags()[0] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -470,7 +634,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'numberOfMechanicalBikesReturned' field has been set, false otherwise.
       */
     public boolean hasNumberOfMechanicalBikesReturned() {
-      return fieldSetFlags()[0];
+      return fieldSetFlags()[1];
     }
 
 
@@ -479,7 +643,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearNumberOfMechanicalBikesReturned() {
-      fieldSetFlags()[0] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -498,9 +662,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setNumberOfElectricBikesReturned(int value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.numberOfElectricBikesReturned = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -509,7 +673,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'numberOfElectricBikesReturned' field has been set, false otherwise.
       */
     public boolean hasNumberOfElectricBikesReturned() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -518,7 +682,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearNumberOfElectricBikesReturned() {
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -537,9 +701,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setNumberOfMechanicalBikesRented(int value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.numberOfMechanicalBikesRented = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -548,7 +712,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'numberOfMechanicalBikesRented' field has been set, false otherwise.
       */
     public boolean hasNumberOfMechanicalBikesRented() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -557,7 +721,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearNumberOfMechanicalBikesRented() {
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -576,9 +740,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setNumberOfElectricBikesRented(int value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.numberOfElectricBikesRented = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -587,7 +751,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'numberOfElectricBikesRented' field has been set, false otherwise.
       */
     public boolean hasNumberOfElectricBikesRented() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -596,7 +760,127 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearNumberOfElectricBikesRented() {
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'minimumNumberOfMechanicalBikes' field.
+      * @return The value.
+      */
+    public java.lang.Integer getMinimumNumberOfMechanicalBikes() {
+      return minimumNumberOfMechanicalBikes;
+    }
+
+
+    /**
+      * Sets the value of the 'minimumNumberOfMechanicalBikes' field.
+      * @param value The value of 'minimumNumberOfMechanicalBikes'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder setMinimumNumberOfMechanicalBikes(java.lang.Integer value) {
+      validate(fields()[5], value);
+      this.minimumNumberOfMechanicalBikes = value;
+      fieldSetFlags()[5] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'minimumNumberOfMechanicalBikes' field has been set.
+      * @return True if the 'minimumNumberOfMechanicalBikes' field has been set, false otherwise.
+      */
+    public boolean hasMinimumNumberOfMechanicalBikes() {
+      return fieldSetFlags()[5];
+    }
+
+
+    /**
+      * Clears the value of the 'minimumNumberOfMechanicalBikes' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder clearMinimumNumberOfMechanicalBikes() {
+      minimumNumberOfMechanicalBikes = null;
+      fieldSetFlags()[5] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'minimumNumberOfElectricBikes' field.
+      * @return The value.
+      */
+    public java.lang.Integer getMinimumNumberOfElectricBikes() {
+      return minimumNumberOfElectricBikes;
+    }
+
+
+    /**
+      * Sets the value of the 'minimumNumberOfElectricBikes' field.
+      * @param value The value of 'minimumNumberOfElectricBikes'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder setMinimumNumberOfElectricBikes(java.lang.Integer value) {
+      validate(fields()[6], value);
+      this.minimumNumberOfElectricBikes = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'minimumNumberOfElectricBikes' field has been set.
+      * @return True if the 'minimumNumberOfElectricBikes' field has been set, false otherwise.
+      */
+    public boolean hasMinimumNumberOfElectricBikes() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'minimumNumberOfElectricBikes' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder clearMinimumNumberOfElectricBikes() {
+      minimumNumberOfElectricBikes = null;
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'minimumNumberOfEmptySlots' field.
+      * @return The value.
+      */
+    public java.lang.Integer getMinimumNumberOfEmptySlots() {
+      return minimumNumberOfEmptySlots;
+    }
+
+
+    /**
+      * Sets the value of the 'minimumNumberOfEmptySlots' field.
+      * @param value The value of 'minimumNumberOfEmptySlots'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder setMinimumNumberOfEmptySlots(java.lang.Integer value) {
+      validate(fields()[7], value);
+      this.minimumNumberOfEmptySlots = value;
+      fieldSetFlags()[7] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'minimumNumberOfEmptySlots' field has been set.
+      * @return True if the 'minimumNumberOfEmptySlots' field has been set, false otherwise.
+      */
+    public boolean hasMinimumNumberOfEmptySlots() {
+      return fieldSetFlags()[7];
+    }
+
+
+    /**
+      * Clears the value of the 'minimumNumberOfEmptySlots' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationStats.Builder clearMinimumNumberOfEmptySlots() {
+      minimumNumberOfEmptySlots = null;
+      fieldSetFlags()[7] = false;
       return this;
     }
 
@@ -615,9 +899,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setLastNumberOfMechanicalBikes(int value) {
-      validate(fields()[4], value);
+      validate(fields()[8], value);
       this.lastNumberOfMechanicalBikes = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[8] = true;
       return this;
     }
 
@@ -626,7 +910,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'lastNumberOfMechanicalBikes' field has been set, false otherwise.
       */
     public boolean hasLastNumberOfMechanicalBikes() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[8];
     }
 
 
@@ -635,7 +919,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearLastNumberOfMechanicalBikes() {
-      fieldSetFlags()[4] = false;
+      fieldSetFlags()[8] = false;
       return this;
     }
 
@@ -654,9 +938,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setLastNumberOfElectricBikes(int value) {
-      validate(fields()[5], value);
+      validate(fields()[9], value);
       this.lastNumberOfElectricBikes = value;
-      fieldSetFlags()[5] = true;
+      fieldSetFlags()[9] = true;
       return this;
     }
 
@@ -665,7 +949,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'lastNumberOfElectricBikes' field has been set, false otherwise.
       */
     public boolean hasLastNumberOfElectricBikes() {
-      return fieldSetFlags()[5];
+      return fieldSetFlags()[9];
     }
 
 
@@ -674,7 +958,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearLastNumberOfElectricBikes() {
-      fieldSetFlags()[5] = false;
+      fieldSetFlags()[9] = false;
       return this;
     }
 
@@ -693,9 +977,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setLastLoadTimestamp(long value) {
-      validate(fields()[6], value);
+      validate(fields()[10], value);
       this.lastLoadTimestamp = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -704,7 +988,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'lastLoadTimestamp' field has been set, false otherwise.
       */
     public boolean hasLastLoadTimestamp() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[10];
     }
 
 
@@ -713,7 +997,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearLastLoadTimestamp() {
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -732,9 +1016,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setPeriodStart(java.lang.Long value) {
-      validate(fields()[7], value);
+      validate(fields()[11], value);
       this.periodStart = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -743,7 +1027,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'periodStart' field has been set, false otherwise.
       */
     public boolean hasPeriodStart() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[11];
     }
 
 
@@ -753,7 +1037,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearPeriodStart() {
       periodStart = null;
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -772,9 +1056,9 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder setPeriodEnd(java.lang.Long value) {
-      validate(fields()[8], value);
+      validate(fields()[12], value);
       this.periodEnd = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[12] = true;
       return this;
     }
 
@@ -783,7 +1067,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       * @return True if the 'periodEnd' field has been set, false otherwise.
       */
     public boolean hasPeriodEnd() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[12];
     }
 
 
@@ -793,7 +1077,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       */
     public velibstreaming.avro.record.stream.AvroStationStats.Builder clearPeriodEnd() {
       periodEnd = null;
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[12] = false;
       return this;
     }
 
@@ -802,15 +1086,19 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
     public AvroStationStats build() {
       try {
         AvroStationStats record = new AvroStationStats();
-        record.numberOfMechanicalBikesReturned = fieldSetFlags()[0] ? this.numberOfMechanicalBikesReturned : (java.lang.Integer) defaultValue(fields()[0]);
-        record.numberOfElectricBikesReturned = fieldSetFlags()[1] ? this.numberOfElectricBikesReturned : (java.lang.Integer) defaultValue(fields()[1]);
-        record.numberOfMechanicalBikesRented = fieldSetFlags()[2] ? this.numberOfMechanicalBikesRented : (java.lang.Integer) defaultValue(fields()[2]);
-        record.numberOfElectricBikesRented = fieldSetFlags()[3] ? this.numberOfElectricBikesRented : (java.lang.Integer) defaultValue(fields()[3]);
-        record.lastNumberOfMechanicalBikes = fieldSetFlags()[4] ? this.lastNumberOfMechanicalBikes : (java.lang.Integer) defaultValue(fields()[4]);
-        record.lastNumberOfElectricBikes = fieldSetFlags()[5] ? this.lastNumberOfElectricBikes : (java.lang.Integer) defaultValue(fields()[5]);
-        record.lastLoadTimestamp = fieldSetFlags()[6] ? this.lastLoadTimestamp : (java.lang.Long) defaultValue(fields()[6]);
-        record.periodStart = fieldSetFlags()[7] ? this.periodStart : (java.lang.Long) defaultValue(fields()[7]);
-        record.periodEnd = fieldSetFlags()[8] ? this.periodEnd : (java.lang.Long) defaultValue(fields()[8]);
+        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.String) defaultValue(fields()[0]);
+        record.numberOfMechanicalBikesReturned = fieldSetFlags()[1] ? this.numberOfMechanicalBikesReturned : (java.lang.Integer) defaultValue(fields()[1]);
+        record.numberOfElectricBikesReturned = fieldSetFlags()[2] ? this.numberOfElectricBikesReturned : (java.lang.Integer) defaultValue(fields()[2]);
+        record.numberOfMechanicalBikesRented = fieldSetFlags()[3] ? this.numberOfMechanicalBikesRented : (java.lang.Integer) defaultValue(fields()[3]);
+        record.numberOfElectricBikesRented = fieldSetFlags()[4] ? this.numberOfElectricBikesRented : (java.lang.Integer) defaultValue(fields()[4]);
+        record.minimumNumberOfMechanicalBikes = fieldSetFlags()[5] ? this.minimumNumberOfMechanicalBikes : (java.lang.Integer) defaultValue(fields()[5]);
+        record.minimumNumberOfElectricBikes = fieldSetFlags()[6] ? this.minimumNumberOfElectricBikes : (java.lang.Integer) defaultValue(fields()[6]);
+        record.minimumNumberOfEmptySlots = fieldSetFlags()[7] ? this.minimumNumberOfEmptySlots : (java.lang.Integer) defaultValue(fields()[7]);
+        record.lastNumberOfMechanicalBikes = fieldSetFlags()[8] ? this.lastNumberOfMechanicalBikes : (java.lang.Integer) defaultValue(fields()[8]);
+        record.lastNumberOfElectricBikes = fieldSetFlags()[9] ? this.lastNumberOfElectricBikes : (java.lang.Integer) defaultValue(fields()[9]);
+        record.lastLoadTimestamp = fieldSetFlags()[10] ? this.lastLoadTimestamp : (java.lang.Long) defaultValue(fields()[10]);
+        record.periodStart = fieldSetFlags()[11] ? this.periodStart : (java.lang.Long) defaultValue(fields()[11]);
+        record.periodEnd = fieldSetFlags()[12] ? this.periodEnd : (java.lang.Long) defaultValue(fields()[12]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -843,6 +1131,8 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
+    out.writeString(this.stationCode);
+
     out.writeInt(this.numberOfMechanicalBikesReturned);
 
     out.writeInt(this.numberOfElectricBikesReturned);
@@ -850,6 +1140,30 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
     out.writeInt(this.numberOfMechanicalBikesRented);
 
     out.writeInt(this.numberOfElectricBikesRented);
+
+    if (this.minimumNumberOfMechanicalBikes == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeInt(this.minimumNumberOfMechanicalBikes);
+    }
+
+    if (this.minimumNumberOfElectricBikes == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeInt(this.minimumNumberOfElectricBikes);
+    }
+
+    if (this.minimumNumberOfEmptySlots == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeInt(this.minimumNumberOfEmptySlots);
+    }
 
     out.writeInt(this.lastNumberOfMechanicalBikes);
 
@@ -880,6 +1194,8 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
+      this.stationCode = in.readString();
+
       this.numberOfMechanicalBikesReturned = in.readInt();
 
       this.numberOfElectricBikesReturned = in.readInt();
@@ -887,6 +1203,27 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       this.numberOfMechanicalBikesRented = in.readInt();
 
       this.numberOfElectricBikesRented = in.readInt();
+
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.minimumNumberOfMechanicalBikes = null;
+      } else {
+        this.minimumNumberOfMechanicalBikes = in.readInt();
+      }
+
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.minimumNumberOfElectricBikes = null;
+      } else {
+        this.minimumNumberOfElectricBikes = in.readInt();
+      }
+
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.minimumNumberOfEmptySlots = null;
+      } else {
+        this.minimumNumberOfEmptySlots = in.readInt();
+      }
 
       this.lastNumberOfMechanicalBikes = in.readInt();
 
@@ -909,37 +1246,68 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
       }
 
     } else {
-      for (int i = 0; i < 9; i++) {
+      for (int i = 0; i < 13; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.numberOfMechanicalBikesReturned = in.readInt();
+          this.stationCode = in.readString();
           break;
 
         case 1:
-          this.numberOfElectricBikesReturned = in.readInt();
+          this.numberOfMechanicalBikesReturned = in.readInt();
           break;
 
         case 2:
-          this.numberOfMechanicalBikesRented = in.readInt();
+          this.numberOfElectricBikesReturned = in.readInt();
           break;
 
         case 3:
-          this.numberOfElectricBikesRented = in.readInt();
+          this.numberOfMechanicalBikesRented = in.readInt();
           break;
 
         case 4:
-          this.lastNumberOfMechanicalBikes = in.readInt();
+          this.numberOfElectricBikesRented = in.readInt();
           break;
 
         case 5:
-          this.lastNumberOfElectricBikes = in.readInt();
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.minimumNumberOfMechanicalBikes = null;
+          } else {
+            this.minimumNumberOfMechanicalBikes = in.readInt();
+          }
           break;
 
         case 6:
-          this.lastLoadTimestamp = in.readLong();
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.minimumNumberOfElectricBikes = null;
+          } else {
+            this.minimumNumberOfElectricBikes = in.readInt();
+          }
           break;
 
         case 7:
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.minimumNumberOfEmptySlots = null;
+          } else {
+            this.minimumNumberOfEmptySlots = in.readInt();
+          }
+          break;
+
+        case 8:
+          this.lastNumberOfMechanicalBikes = in.readInt();
+          break;
+
+        case 9:
+          this.lastNumberOfElectricBikes = in.readInt();
+          break;
+
+        case 10:
+          this.lastLoadTimestamp = in.readLong();
+          break;
+
+        case 11:
           if (in.readIndex() != 1) {
             in.readNull();
             this.periodStart = null;
@@ -948,7 +1316,7 @@ public class AvroStationStats extends org.apache.avro.specific.SpecificRecordBas
           }
           break;
 
-        case 8:
+        case 12:
           if (in.readIndex() != 1) {
             in.readNull();
             this.periodEnd = null;
