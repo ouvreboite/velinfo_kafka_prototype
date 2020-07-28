@@ -41,10 +41,8 @@ public class StreamApplication {
 
     public void start() {
         TopicCreator.createTopicIfNeeded(
-                props.getStationChangesTopic(),
-                props.getStationChangesWithStaleTimestampTopic(),
-                props.getStationChangesWithStaleStatusTopic(),
-                props.getDailyStationStatsTopic());
+                props.getStationUpdatesTopic(),
+                props.getHourlyStationStatsTopic());
 
         Topology topology = buildTopology();
 
@@ -55,17 +53,11 @@ public class StreamApplication {
     private Topology buildTopology() {
         final StreamsBuilder builder = new StreamsBuilder();
 
-        var stationChangesStream = new StationChangesStreamBuilder().build(builder);
-        stationChangesStream.to(props.getStationChangesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        var stationUpdatesStream = new StationUpdatesStreamBuilder().build(builder);
+        stationUpdatesStream.to(props.getStationUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
-        var dailyStationStats = new DailyStationStatsStreamBuilder().build(stationChangesStream);
-        dailyStationStats.to(props.getDailyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
-
-        var stationsWithStaleTimestampStream = new StationsWithStaleTimestampStreamBuilder().build(stationChangesStream);
-        stationsWithStaleTimestampStream.to(props.getStationChangesWithStaleTimestampTopic(), Produced.with(Serdes.String(),StreamUtils.AvroSerde()));
-
-        var stationWithStaleStatus = new StationsWithStaleStatusStreamBuilder().build(dailyStationStats, stationsWithStaleTimestampStream);
-        stationWithStaleStatus.to(props.getStationChangesWithStaleStatusTopic(), Produced.with(Serdes.String(),StreamUtils.AvroSerde()));
+        var hourlyStationStatsStream = new HourlyStationStatsStreamBuilder().build(stationUpdatesStream);
+        hourlyStationStatsStream.to(props.getHourlyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
         return builder.build();
     }

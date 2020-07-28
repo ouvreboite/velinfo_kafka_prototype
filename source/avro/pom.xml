@@ -18,9 +18,6 @@
                 <version>1.9.2</version>
                 <configuration>
                     <stringType>String</stringType>
-                    <imports>
-                        <import>${project.basedir}/src/main/avro/stream/stationStats.avsc</import>
-                    </imports>
                 </configuration>
                 <executions>
                     <execution>

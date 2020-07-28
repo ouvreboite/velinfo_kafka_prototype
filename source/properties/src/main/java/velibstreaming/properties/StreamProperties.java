@@ -28,10 +28,8 @@ public final class StreamProperties {
     private final String bicycleCountTopic;
     private final String counterCharacteristicsTopic;
 
-    private final String stationChangesTopic;
-    private final String stationChangesWithStaleTimestampTopic;
-    private final String stationChangesWithStaleStatusTopic;
-    private final String dailyStationStatsTopic;
+    private final String stationUpdatesTopic;
+    private final String hourlyStationStatsTopic;
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
@@ -48,10 +46,8 @@ public final class StreamProperties {
         this.bicycleCountTopic = props.getProperty("BicycleCounterCharacteristics.Topic");
         this.counterCharacteristicsTopic = props.getProperty("BicycleCount.Topic");
 
-        this.stationChangesTopic = props.getProperty("StationChanges.Topic");
-        this.stationChangesWithStaleTimestampTopic = props.getProperty("StationChangesWithStaleTimestamp.Topic");
-        this.stationChangesWithStaleStatusTopic = props.getProperty("StationChangesWithStaleStatus.Topic");
-        this.dailyStationStatsTopic = props.getProperty("DailyStationStats.Topic");
+        this.stationUpdatesTopic = props.getProperty("StationUpdates.Topic");
+        this.hourlyStationStatsTopic = props.getProperty("HourlyStationStats.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");

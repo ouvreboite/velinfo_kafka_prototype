@@ -5,38 +5,27 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.ValueMapper;
-import org.apache.kafka.streams.state.KeyValueStore;
-import org.apache.kafka.streams.state.StoreBuilder;
-import org.apache.kafka.streams.state.Stores;
 import velibstreaming.avro.record.source.AvroStationAvailability;
-import velibstreaming.avro.record.stream.AvroStationChange;
+import velibstreaming.avro.record.stream.AvroStationUpdate;
 import velibstreaming.kafka.stream.StreamUtils;
+import velibstreaming.kafka.stream.builder.deduplication.StationUpdateDeduplicater;
 import velibstreaming.properties.StreamProperties;
 
-public class StationChangesStreamBuilder {
+public class StationUpdatesStreamBuilder {
 
-    public KStream<String, AvroStationChange> build(final StreamsBuilder builder) {
+    public KStream<String, AvroStationUpdate> build(final StreamsBuilder builder) {
         StreamProperties topicProps = StreamProperties.getInstance();
-
-        final String deduplicationStore = "stationDeduplicationStore";
-        final StoreBuilder<KeyValueStore<String, String>> dedupStoreBuilder = Stores.keyValueStoreBuilder(
-                Stores.persistentKeyValueStore(deduplicationStore),
-                Serdes.String(),
-                Serdes.String()
-        );
-        builder.addStateStore(dedupStoreBuilder);
 
         var availabilityStream = builder.stream(topicProps.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>AvroSerde()));
 
         return availabilityStream
-                .mapValues(mapToStationChange())
-                .transformValues(() -> new StationDeduplicationTransformer(deduplicationStore), deduplicationStore)
+                .mapValues(mapToStationUpdate())
+                .transformValues(StationUpdateDeduplicater::new)
                 .filter((k, v) -> v != null);
-
     }
 
-    private ValueMapper<AvroStationAvailability, AvroStationChange> mapToStationChange() {
-        return (stationAvailability) -> AvroStationChange.newBuilder()
+    private ValueMapper<AvroStationAvailability, AvroStationUpdate> mapToStationUpdate() {
+        return (stationAvailability) -> AvroStationUpdate.newBuilder()
                 .setStationCode(stationAvailability.getStationCode())
                 .setStationName(stationAvailability.getStationName())
                 .setStationCapacity(stationAvailability.getStationCapacity())

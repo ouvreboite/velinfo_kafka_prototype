@@ -1,6 +1,6 @@
 {
   "type": "record",
-  "name": "AvroStationChange",
+  "name": "AvroStationUpdate",
   "namespace": "velibstreaming.avro.record.stream",
   "fields": [
     {
