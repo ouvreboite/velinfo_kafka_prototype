@@ -5,6 +5,9 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.ValueMapper;
+import org.apache.kafka.streams.state.KeyValueStore;
+import org.apache.kafka.streams.state.StoreBuilder;
+import org.apache.kafka.streams.state.Stores;
 import velibstreaming.avro.record.source.AvroStationAvailability;
 import velibstreaming.avro.record.stream.AvroStationUpdate;
 import velibstreaming.kafka.stream.StreamUtils;
@@ -16,11 +19,19 @@ public class StationUpdatesStreamBuilder {
     public KStream<String, AvroStationUpdate> build(final StreamsBuilder builder) {
         StreamProperties topicProps = StreamProperties.getInstance();
 
+        final String deduplicationStore = "stationDeduplicationStore";
+        final StoreBuilder<KeyValueStore<String, AvroStationUpdate>> deduplicationStoreBuilder = Stores.keyValueStoreBuilder(
+                Stores.persistentKeyValueStore(deduplicationStore),
+                Serdes.String(),
+                StreamUtils.AvroSerde()
+        );
+        builder.addStateStore(deduplicationStoreBuilder);
+
         var availabilityStream = builder.stream(topicProps.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>AvroSerde()));
 
         return availabilityStream
                 .mapValues(mapToStationUpdate())
-                .transformValues(StationUpdateDeduplicater::new)
+                .transformValues(() -> new StationUpdateDeduplicater(deduplicationStore), deduplicationStore)
                 .filter((k, v) -> v != null);
     }
 
