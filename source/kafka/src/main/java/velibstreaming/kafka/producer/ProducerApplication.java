@@ -1,5 +1,7 @@
 package velibstreaming.kafka.producer;
 
+import velibstreaming.avro.record.source.AvroBicycleCount;
+import velibstreaming.avro.record.source.AvroStationAvailability;
 import velibstreaming.kafka.producer.mapper.*;
 import velibstreaming.properties.StreamProperties;
 import velibstreaming.opendata.client.*;
@@ -23,7 +25,8 @@ public class ProducerApplication {
                 new RealTimeAvailabilityClient(),
                 new Producer<>(
                         props.getStationAvailabilityTopic(),
-                        record -> record.getStationCode().toString(),
+                        AvroStationAvailability::getStationCode,
+                        AvroStationAvailability::getLoadTimestamp,
                         new RealTimeAvailabilityMapper()))
                 .start();
 
@@ -31,7 +34,8 @@ public class ProducerApplication {
                 new BicycleCountClient(),
                 new Producer<>(
                         props.getBicycleCountTopic(),
-                        record -> record.getCounterId().toString(),
+                        AvroBicycleCount::getCounterId,
+                        AvroBicycleCount::getCountTimestamp,
                         new BicycleCountMapper()))
                 .withParameter(DATE_PARAMETER,() -> LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE))
                 .start();

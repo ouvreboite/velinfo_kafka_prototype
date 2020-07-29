@@ -12,14 +12,12 @@ import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
 import velibstreaming.kafka.TopicCreator;
 import velibstreaming.kafka.producer.mapper.AvroMapper;
+import velibstreaming.kafka.producer.mapper.TimestampMapper;
 import velibstreaming.opendata.dto.OpenDataDto;
 import velibstreaming.kafka.producer.mapper.KeyMapper;
 import velibstreaming.properties.StreamProperties;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -27,13 +25,15 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
 
     private final String topic;
     private final KeyMapper<A> keyExtractor;
+    private final TimestampMapper<A> timestampExtractor;
     private final KafkaProducer<String, A> kafkaProducer;
     private final AvroMapper<F, A> avroMapper;
 
 
-    public Producer(String topic, KeyMapper<A> keyExtractor, AvroMapper<F, A> avroMapper) {
+    public Producer(String topic, KeyMapper<A> keyExtractor, TimestampMapper<A> timestampExtractor, AvroMapper<F, A> avroMapper) {
         this.topic = topic;
         this.keyExtractor = keyExtractor;
+        this.timestampExtractor = timestampExtractor;
         this.avroMapper = avroMapper;
         this.kafkaProducer = initProducer();
         TopicCreator.createTopicIfNeeded(this.topic);
@@ -59,7 +59,7 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         try{
             List<ProducerRecord<String, A>> kafkaRecords = payload.getRecords().stream()
                     .map(record -> avroMapper.map(record.getFields()))
-                    .map(avroRecord -> new ProducerRecord<>(topic, keyExtractor.extractKey(avroRecord), avroRecord))
+                    .map(avroRecord -> new ProducerRecord<>(topic, null, timestampExtractor.extractTimestamp(avroRecord),keyExtractor.extractKey(avroRecord), avroRecord))
                     .collect(Collectors.toList());
 
             for(var kafkaRecord : kafkaRecords){
