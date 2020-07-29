@@ -7,9 +7,12 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.kstream.Produced;
 import velibstreaming.kafka.TopicCreator;
-import velibstreaming.kafka.stream.builder.*;
+import velibstreaming.kafka.stream.builder.BikesLockedStreamBuilder;
+import velibstreaming.kafka.stream.builder.HourlyStationStatsStreamBuilder;
+import velibstreaming.kafka.stream.builder.StationUpdatesStreamBuilder;
+import velibstreaming.kafka.stream.builder.StationsStatusStreamBuilder;
 import velibstreaming.properties.StreamProperties;
 
 import java.util.Properties;
@@ -43,7 +46,8 @@ public class StreamApplication {
         TopicCreator.createTopicIfNeeded(
                 props.getStationUpdatesTopic(),
                 props.getHourlyStationStatsTopic(),
-                props.getBikesLockedTopic());
+                props.getBikesLockedTopic(),
+                props.getStationStatusTopic());
 
         Topology topology = buildTopology();
 
@@ -62,6 +66,10 @@ public class StreamApplication {
 
         var bikesLockedStream = new BikesLockedStreamBuilder().build(hourlyStationStatsStream);
         bikesLockedStream.to(props.getBikesLockedTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
+        var stationsStatusStream = new StationsStatusStreamBuilder().build(stationUpdatesStream);
+        stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
         return builder.build();
     }
 

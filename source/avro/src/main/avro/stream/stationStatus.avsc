@@ -1,0 +1,27 @@
+{
+  "type": "record",
+  "name": "AvroStationStatus",
+  "namespace": "velibstreaming.avro.record.stream",
+  "fields": [
+    {
+      "name" : "stationCode",
+      "type" : "string"
+    },
+    {
+      "name": "status",
+      "type" :
+      {
+        "type": "enum",
+        "name": "StationStatus",
+        "symbols" : ["OK", "NOT_INSTALLED", "NOT_RENTING", "NOT_RETURNING", "NOT_RENTING_NOR_RETURNING", "STALE"]
+      },
+      "default": "OK"
+    },
+    {
+      "name": "staleSince",
+      "type" : ["null", "long"],
+      "default": null,
+      "logicalType" : "timestamp-millis"
+    }
+  ]
+}
