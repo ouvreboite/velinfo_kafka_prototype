@@ -7,12 +7,12 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
+import velibstreaming.avro.record.source.AvroBicycleCount;
+import velibstreaming.avro.record.source.AvroStationAvailability;
 import velibstreaming.kafka.TopicCreator;
-import velibstreaming.kafka.stream.builder.BikesLockedStreamBuilder;
-import velibstreaming.kafka.stream.builder.HourlyStationStatsStreamBuilder;
-import velibstreaming.kafka.stream.builder.StationUpdatesStreamBuilder;
-import velibstreaming.kafka.stream.builder.StationsStatusStreamBuilder;
+import velibstreaming.kafka.stream.builder.*;
 import velibstreaming.properties.StreamProperties;
 
 import java.util.Properties;
@@ -26,7 +26,6 @@ public class StreamApplication {
     private final StreamProperties props = StreamProperties.getInstance();
 
     public static void main(final String[] args) {
-
         var app = new StreamApplication();
 
         final CountDownLatch latch = new CountDownLatch(1);
@@ -57,8 +56,9 @@ public class StreamApplication {
 
     private Topology buildTopology() {
         final StreamsBuilder builder = new StreamsBuilder();
+        var availabilityStream = builder.stream(props.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>AvroSerde()));
 
-        var stationUpdatesStream = new StationUpdatesStreamBuilder().build(builder);
+        var stationUpdatesStream = new StationUpdatesStreamBuilder().build(builder, availabilityStream);
         stationUpdatesStream.to(props.getStationUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
         var hourlyStationStatsStream = new HourlyStationStatsStreamBuilder().build(stationUpdatesStream);
