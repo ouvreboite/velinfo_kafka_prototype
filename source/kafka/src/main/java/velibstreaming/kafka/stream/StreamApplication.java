@@ -46,7 +46,8 @@ public class StreamApplication {
                 props.getStationUpdatesTopic(),
                 props.getHourlyStationStatsTopic(),
                 props.getBikesLockedTopic(),
-                props.getStationStatusTopic());
+                props.getStationStatusTopic(),
+                props.getHourlyStationNearbyTrafficTopic());
 
         Topology topology = buildTopology();
 
@@ -70,6 +71,13 @@ public class StreamApplication {
         var stationsStatusStream = new StationsStatusStreamBuilder().build(stationUpdatesStream);
         stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
+        var bicycleCountStream = builder.stream(props.getBicycleCountTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroBicycleCount>AvroSerde()));
+
+        var countUpdatesStream = new CountUpdatesStreamBuilder().build(builder, bicycleCountStream);
+        countUpdatesStream.to(props.getBicycleCountUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
+        // KStream<String, AvroNearbyTraffic> hourlyStationNearbyTrafficStream = new HourlyStationNearbyTrafficStreamBuilder().build(builder, availabilityStream);
+        // hourlyStationNearbyTrafficStream.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
         return builder.build();
     }
 
