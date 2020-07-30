@@ -4,21 +4,22 @@ import org.apache.avro.specific.SpecificRecord;
 import velibstreaming.opendata.client.OpenDataClient;
 import velibstreaming.opendata.dto.OpenDataDto;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRecord> extends Thread{
-    private final long loopPeriodSeconds;
+    private final Duration loopPeriod;
     private final OpenDataClient<T> client;
     private final Producer<T, F, A> producer;
 
-    public ProductionThread(long loopPeriodSeconds, OpenDataClient<T> client, Producer<T,F, A> producer) {
+    public ProductionThread(Duration loopPeriod, OpenDataClient<T> client, Producer<T,F, A> producer) {
         super();
-        this.loopPeriodSeconds = loopPeriodSeconds;
+        this.loopPeriod = loopPeriod;
         this.client = client;
         this.producer = producer;
         this.setDaemon(true);
-        System.out.println("Fetching data from : "+client.getClass()+" every "+loopPeriodSeconds+" seconds");
+        System.out.println("Fetching data from : "+client.getClass()+" every "+loopPeriod);
     }
 
     @Override
@@ -34,7 +35,7 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
                     System.err.println(e);
                 }
 
-                TimeUnit.SECONDS.sleep(loopPeriodSeconds);
+                TimeUnit.SECONDS.sleep(loopPeriod.toSeconds());
             }
         } catch (InterruptedException e) {
             System.err.println(e);

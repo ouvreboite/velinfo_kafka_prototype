@@ -3,21 +3,17 @@ package velibstreaming.kafka.producer;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.avro.AvroRuntimeException;
 import org.apache.avro.specific.SpecificRecord;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.config.TopicConfig;
-import org.apache.kafka.common.errors.TopicExistsException;
-import velibstreaming.kafka.TopicCreator;
 import velibstreaming.kafka.producer.mapper.AvroMapper;
+import velibstreaming.kafka.producer.mapper.KeyMapper;
 import velibstreaming.kafka.producer.mapper.TimestampMapper;
 import velibstreaming.opendata.dto.OpenDataDto;
-import velibstreaming.kafka.producer.mapper.KeyMapper;
 import velibstreaming.properties.StreamProperties;
 
-import java.util.*;
+import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -36,7 +32,6 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
         this.timestampExtractor = timestampExtractor;
         this.avroMapper = avroMapper;
         this.kafkaProducer = initProducer();
-        TopicCreator.createTopicIfNeeded(this.topic);
     }
 
     private KafkaProducer<String, A> initProducer() {

@@ -2,10 +2,12 @@ package velibstreaming.kafka.producer;
 
 import velibstreaming.avro.record.source.AvroBicycleCount;
 import velibstreaming.avro.record.source.AvroStationAvailability;
+import velibstreaming.kafka.TopicCreator;
 import velibstreaming.kafka.producer.mapper.*;
 import velibstreaming.properties.StreamProperties;
 import velibstreaming.opendata.client.*;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.CountDownLatch;
@@ -21,7 +23,12 @@ public class ProducerApplication {
     public void startProduction() {
         StreamProperties props = StreamProperties.getInstance();
 
-        new ProductionThread<>(props.getAvailabilityPeriodSeconds(),
+        TopicCreator.createTopicIfNeeded(
+                props.getStationAvailabilityTopic(),
+                props.getBicycleCountTopic());
+
+        new ProductionThread<>(
+                Duration.ofMinutes(1),
                 new RealTimeAvailabilityClient(),
                 new Producer<>(
                         props.getStationAvailabilityTopic(),
@@ -30,7 +37,8 @@ public class ProducerApplication {
                         new RealTimeAvailabilityMapper()))
                 .start();
 
-        new ProductionThread<>(props.getBicycleCountPeriodSeconds(),
+        new ProductionThread<>(
+                Duration.ofHours(1),
                 new BicycleCountClient(),
                 new Producer<>(
                         props.getBicycleCountTopic(),

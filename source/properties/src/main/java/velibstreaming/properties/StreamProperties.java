@@ -20,8 +20,6 @@ public final class StreamProperties {
         return INSTANCE;
     }
 
-    private final long availabilityPeriodSeconds;
-    private final long bicycleCountPeriodSeconds;
     private final long bikeLockEstimationDurationHours;
 
     private final String stationAvailabilityTopic;
@@ -40,8 +38,6 @@ public final class StreamProperties {
         var props = new Properties();
         props.load(StreamProperties.class.getClassLoader().getResourceAsStream("stream.properties"));
 
-        this.availabilityPeriodSeconds = Long.parseLong(props.getProperty("StationAvailability.Loop.Seconds", "60"));
-        this.bicycleCountPeriodSeconds = Long.parseLong(props.getProperty("BicycleCounterCharacteristics.Loop.Seconds", "60"));
         this.bikeLockEstimationDurationHours = Long.parseLong(props.getProperty("BikeLockEstimation.Hours", "24"));
 
         this.stationAvailabilityTopic = props.getProperty("StationAvailability.Topic");
