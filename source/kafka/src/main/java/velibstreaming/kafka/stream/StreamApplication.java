@@ -47,7 +47,11 @@ public class StreamApplication {
                 props.getHourlyStationStatsTopic(),
                 props.getBikesLockedTopic(),
                 props.getStationStatusTopic(),
-                props.getHourlyStationNearbyTrafficTopic());
+                props.getBicycleCountUpdatesTopic(),
+                props.getBicycleCountUpdatesProjectedTopic(),
+                props.getStationNearbyCountsTopic(),
+                props.getHourlyStationNearbyTrafficTopic()
+        );
 
         Topology topology = buildTopology();
 
