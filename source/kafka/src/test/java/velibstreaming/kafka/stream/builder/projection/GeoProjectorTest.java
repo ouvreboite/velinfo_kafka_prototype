@@ -11,9 +11,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class GeoProjectorTest {
 
     @Test
-    void get100MeterZone_shouldRoundToThe3thDecimal() {
-        String zone = new GeoProjector().get100MeterZone(new AvroCoordinates(45.0022, -10.0039));
-        assertEquals("45,002_-10,004",zone);
+    void get100MeterZone_shouldRoundBy0_002() {
+        GeoProjector projector = new GeoProjector();
+        assertEquals("45,002_-10,004", projector.get100MeterZone(new AvroCoordinates(45.0022, -10.0039)));
+        assertEquals("45,002_-10,004", projector.get100MeterZone(new AvroCoordinates(45.0029, -10.0049)));
+        assertEquals("45,004_-10,006", projector.get100MeterZone(new AvroCoordinates(45.0037, -10.0059)));
     }
 
     @Test
@@ -21,22 +23,20 @@ class GeoProjectorTest {
         List<String> nearbyZones = new GeoProjector().get100MetersNearbyZones(new AvroCoordinates(45.0022, -10.0039));
 
         boolean allNearbyZonesPresent = nearbyZones.containsAll(Arrays.asList(
+                "45,000_-10,002",
+                "45,000_-10,004",
+                "45,000_-10,006",
+
+                "45,002_-10,002",
                 "45,002_-10,004",
+                "45,002_-10,006",
 
-                "45,001_-10,003",
-                "45,001_-10,004",
-                "45,001_-10,005",
-
-                "45,002_-10,003",
-                "45,002_-10,004",
-                "45,002_-10,005",
-
-                "45,003_-10,003",
-                "45,003_-10,004",
-                "45,003_-10,005"
+                "45,004_-10,002",
+                "45,004_-10,004",
+                "45,004_-10,006"
         ));
 
-        assertEquals(10, nearbyZones.size());
+        assertEquals(9, nearbyZones.size());
         assertTrue(allNearbyZonesPresent);
     }
 }

@@ -1,4 +1,4 @@
-package mapper;
+package velibstreaming.kafka.producer.mapper;
 
 import org.junit.jupiter.api.Test;
 import velibstreaming.kafka.producer.mapper.BicycleCountMapper;
