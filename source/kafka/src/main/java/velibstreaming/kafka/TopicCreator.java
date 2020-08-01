@@ -34,12 +34,15 @@ public class TopicCreator {
         }
     }
 
+    private static final int DAY_MS = 24*3600*1000;
+    private static final int MEGABYTES = 1_000_000;
     private static NewTopic configureNewTopic(String topic) {
         NewTopic newTopic = new NewTopic(topic, 5, (short) 1);
         newTopic.configs(Map.of(
-                TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_COMPACT,
-                TopicConfig.RETENTION_MS_CONFIG, "-1",
-                TopicConfig.RETENTION_BYTES_CONFIG, "1000000"
+                TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_DELETE+","+TopicConfig.CLEANUP_POLICY_COMPACT,
+                TopicConfig.RETENTION_MS_CONFIG, ""+(5*DAY_MS),
+                TopicConfig.RETENTION_BYTES_CONFIG, ""+(100*MEGABYTES),
+                TopicConfig.MAX_COMPACTION_LAG_MS_CONFIG, ""+(5*DAY_MS)
         ));
         return newTopic;
     }
