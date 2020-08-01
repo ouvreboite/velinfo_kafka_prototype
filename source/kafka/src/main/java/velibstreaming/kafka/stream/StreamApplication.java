@@ -88,6 +88,10 @@ public class StreamApplication {
 
         var stationNearbyCountsStream = new StationNearbyCountsStreamBuilder().build(countUpdatesProjectedStream, zoneToStationsTable);
         stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
+        var hourlyStationNearbyTraffic = new HourlyStationNearbyTrafficStreamBuilder().build(stationNearbyCountsStream);
+        hourlyStationNearbyTraffic.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
         return builder.build();
     }
 

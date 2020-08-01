@@ -1,0 +1,32 @@
+{
+  "type": "record",
+  "name": "AvroNearbyTraffic",
+  "namespace": "velibstreaming.avro.record.stream",
+  "fields": [
+    {
+      "name": "totalTraffic",
+      "type" : "int",
+      "default": 0
+    },
+    {
+      "name": "periodStart",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    },
+    {
+      "name": "periodEnd",
+      "type" : ["null", "long"],
+      "logicalType" : "local-timestamp-millis",
+      "default": null
+    },
+    {
+      "name": "counts",
+      "type": {
+        "type": "array",
+        "items": "velibstreaming.avro.record.source.AvroBicycleCount"
+      },
+      "default": []
+    }
+  ]
+}
