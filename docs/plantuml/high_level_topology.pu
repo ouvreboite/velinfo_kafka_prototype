@@ -12,36 +12,45 @@ frame "Station status topology"{
    rectangle hourlyStationStats<<topic>>
    rectangle stationStatus <<topic>>
    rectangle bikesLocked <<topic>>
-   database statisticsDb<<database>>
+   database statisticsDb <<database>>
 }
 
 stationAvailabilityClient --> stationAvailabilities 
-stationAvailabilities --> stationUpdates
-stationUpdates --> hourlyStationStats
-hourlyStationStats--> bikesLocked
-hourlyStationStats-> statisticsDb
+stationAvailabilities --> stationUpdates : deduplicated
+stationUpdates --> hourlyStationStats : windowed
+hourlyStationStats --> bikesLocked
+hourlyStationStats -> statisticsDb
 stationUpdates --> stationStatus
 statisticsDb ..> stationStatus
 
 frame "Nearby traffic topology"{
    rectangle bikeCountsClient <<producer>>
    rectangle bikeCounts <<topic>>
-   rectangle dailyNearbyTrafficPerStation <<topic>>
-   database nearbyTrafficDb<<database>>
+   rectangle bikeCountUpdates <<topic>>
+   rectangle countUpdatesProjected<<topic>>
+   rectangle zoneToStations<<table>>
+   rectangle stationNearbyCounts <<topic>>
+   rectangle hourlyStationNearbyTraffic <<topic>>
+   database trafficDb <<database>>
 }
 
+
 bikeCountsClient --> bikeCounts 
-bikeCounts --> dailyNearbyTrafficPerStation 
-stationUpdates --> dailyNearbyTrafficPerStation 
-dailyNearbyTrafficPerStation -> nearbyTrafficDb
+bikeCounts --> bikeCountUpdates : deduplicated
+stationUpdates --> zoneToStations
+bikeCountUpdates --> countUpdatesProjected: projected on nearby zones
+zoneToStations--> stationNearbyCounts 
+countUpdatesProjected --> stationNearbyCounts 
+stationNearbyCounts --> hourlyStationNearbyTraffic : windowed
+hourlyStationNearbyTraffic --> trafficDb
 
 skinparam rectangle{
     backgroundColor<<topic>> Gainsboro
-    backgroundColor<<stream>> Snow
+    backgroundColor<<table>> Gainsboro
     backgroundColor<<producer>> Coral
     backgroundColor<<consumer>> Coral
     borderColor<<topic>> transparent
-    borderColor<<stream>> transparent
+    borderColor<<table>> transparent
     borderColor<<producer>> transparent
     borderColor<<consumer>> transparent
 }
@@ -53,6 +62,7 @@ skinparam database{
 
 skinparam{
    ArrowColor DeepSkyBlue
+   ArrowFontColor Coral
    shadowing false
 }
 @enduml
