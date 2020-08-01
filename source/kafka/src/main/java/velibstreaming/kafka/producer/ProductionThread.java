@@ -19,7 +19,14 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
         this.client = client;
         this.producer = producer;
         this.setDaemon(true);
-        System.out.println("Fetching data from : "+client.getClass()+" every "+loopPeriod);
+        System.out.println("Fetching data from : "+client.getClass()+" every "+humanReadableFormat(loopPeriod));
+    }
+
+    private static String humanReadableFormat(Duration duration) {
+        return duration.toString()
+                .substring(2)
+                .replaceAll("(\\d[HMS])(?!$)", "$1 ")
+                .toLowerCase();
     }
 
     @Override
