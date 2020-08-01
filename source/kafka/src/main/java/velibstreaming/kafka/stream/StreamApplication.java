@@ -81,8 +81,7 @@ public class StreamApplication {
         var countUpdatesStream = new CountUpdatesStreamBuilder().build(builder, bicycleCountStream);
         countUpdatesStream.to(props.getBicycleCountUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
 
-        // KStream<String, AvroNearbyTraffic> hourlyStationNearbyTrafficStream = new HourlyStationNearbyTrafficStreamBuilder().build(builder, availabilityStream);
-        // hourlyStationNearbyTrafficStream.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        var zoneToStationsTable = new ZoneTableBuilder().build(stationUpdatesStream);
         return builder.build();
     }
 

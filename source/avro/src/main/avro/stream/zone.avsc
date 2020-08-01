@@ -1,0 +1,20 @@
+{
+  "type": "record",
+  "name": "AvroZone",
+  "namespace": "velibstreaming.avro.record.stream",
+  "fields": [
+    {
+      "name" : "zoneId",
+      "type" : ["null", "string"],
+      "default": null
+    },
+    {
+      "name": "stationsCoordinates",
+      "type": {
+        "type": "map",
+        "values": "velibstreaming.avro.record.source.AvroCoordinates"
+      },
+      "default": {}
+    }
+  ]
+}
