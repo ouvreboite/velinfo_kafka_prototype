@@ -85,6 +85,9 @@ public class StreamApplication {
 
         var countUpdatesProjectedStream = new CountUpdatesProjectedStreamBuilder().build(countUpdatesStream);
         countUpdatesProjectedStream.to(props.getBicycleCountUpdatesProjectedTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+
+        var stationNearbyCountsStream = new StationNearbyCountsStreamBuilder().build(countUpdatesProjectedStream, zoneToStationsTable);
+        stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
         return builder.build();
     }
 

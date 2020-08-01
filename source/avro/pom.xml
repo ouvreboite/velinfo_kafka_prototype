@@ -20,6 +20,8 @@
                     <stringType>String</stringType>
                     <imports>
                         <import>${project.basedir}/src/main/avro/source/coordinates.avsc</import>
+                        <import>${project.basedir}/src/main/avro/source/bicycleCount.avsc</import>
+                        <import>${project.basedir}/src/main/avro/stream/nearbyTraffic.avsc</import>
                     </imports>
                 </configuration>
                 <executions>
