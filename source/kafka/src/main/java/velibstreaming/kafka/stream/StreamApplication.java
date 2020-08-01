@@ -56,6 +56,7 @@ public class StreamApplication {
         Topology topology = buildTopology();
 
         this.streams = new KafkaStreams(topology, buildStreamsProperties());
+        this.streams.cleanUp();
         this.streams.start();
     }
 
