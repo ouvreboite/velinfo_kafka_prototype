@@ -9,17 +9,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRecord> extends Thread{
-    private final Duration loopPeriod;
+    private final Duration loopDuration;
     private final OpenDataClient<T> client;
     private final Producer<T, F, A> producer;
 
-    public ProductionThread(Duration loopPeriod, OpenDataClient<T> client, Producer<T,F, A> producer) {
+    public ProductionThread(Duration loopDuration, OpenDataClient<T> client, Producer<T,F, A> producer) {
         super();
-        this.loopPeriod = loopPeriod;
+        this.loopDuration = loopDuration;
         this.client = client;
         this.producer = producer;
         this.setDaemon(true);
-        System.out.println("Fetching data from : "+client.getClass()+" every "+humanReadableFormat(loopPeriod));
+        System.out.println("Producing "+client.getClass()+" every "+humanReadableFormat(loopDuration));
     }
 
     private static String humanReadableFormat(Duration duration) {
@@ -42,7 +42,7 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
                     System.err.println(e);
                 }
 
-                TimeUnit.SECONDS.sleep(loopPeriod.toSeconds());
+                TimeUnit.SECONDS.sleep(loopDuration.toSeconds());
             }
         } catch (InterruptedException e) {
             System.err.println(e);
