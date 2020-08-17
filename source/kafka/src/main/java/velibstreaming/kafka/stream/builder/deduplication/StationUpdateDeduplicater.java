@@ -38,11 +38,12 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
         if(lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
             return null;
 
-        deduplicationStore.put(stationCode, update);
         long staleSince = previous.getStaleSinceTimestamp() == null ?
                 previous.getLoadTimestamp() :
                 previous.getStaleSinceTimestamp();
         update.setStaleSinceTimestamp(staleSince);
+
+        deduplicationStore.put(stationCode, update);
         return update;
     }
 
