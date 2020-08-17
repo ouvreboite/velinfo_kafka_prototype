@@ -15,10 +15,10 @@ import java.util.Map;
 
 public class StreamUtils {
     public static <T extends SpecificRecord> SpecificAvroSerde<T> AvroSerde() {
-        var stationCharacteristicsSerde = new SpecificAvroSerde<T>();
+        var serde = new SpecificAvroSerde<T>();
         var serdeConfig = BuildSerdeConfig();
-        stationCharacteristicsSerde.configure(serdeConfig, false);
-        return stationCharacteristicsSerde;
+        serde.configure(serdeConfig, false);
+        return serde;
     }
 
     private static Map<String, String> BuildSerdeConfig() {
