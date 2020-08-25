@@ -43,7 +43,7 @@ public class HourlyStationStatsStreamBuilder {
             stats.setStationCode(stationChange.getStationCode());
 
             computeMinima(stationChange, stats);
-            computeDelta(stationChange, stats);
+            computeTotal(stationChange, stats);
 
             stats.setLastNumberOfElectricBikes(stationChange.getElectricBikesAtStation());
             stats.setLastNumberOfMechanicalBikes(stationChange.getMechanicalBikesAtStation());
@@ -52,18 +52,12 @@ public class HourlyStationStatsStreamBuilder {
         };
     }
 
-    private void computeDelta(AvroStationUpdate stationChange, AvroStationStats stats) {
-        int deltaElectric = stationChange.getElectricBikesAtStation() - stats.getLastNumberOfElectricBikes();
-        if(deltaElectric > 0)
-            stats.setNumberOfElectricBikesReturned(stats.getNumberOfElectricBikesReturned()+deltaElectric);
-        else
-            stats.setNumberOfElectricBikesRented(stats.getNumberOfElectricBikesRented()-deltaElectric);
+    private void computeTotal(AvroStationUpdate update, AvroStationStats stats) {
+        stats.setNumberOfMechanicalBikesRented(stats.getNumberOfMechanicalBikesRented()+update.getMechanicalBikesRented());
+        stats.setNumberOfMechanicalBikesReturned(stats.getNumberOfMechanicalBikesReturned()+update.getMechanicalBikesReturned());
 
-        int deltaMechanical = stationChange.getMechanicalBikesAtStation() - stats.getLastNumberOfMechanicalBikes();
-        if(deltaMechanical > 0)
-            stats.setNumberOfMechanicalBikesReturned(stats.getNumberOfMechanicalBikesReturned()+deltaMechanical);
-        else
-            stats.setNumberOfMechanicalBikesRented(stats.getNumberOfMechanicalBikesRented()-deltaMechanical);
+        stats.setNumberOfElectricBikesRented(stats.getNumberOfElectricBikesRented()+update.getElectricBikesRented());
+        stats.setNumberOfElectricBikesReturned(stats.getNumberOfElectricBikesReturned()+update.getElectricBikesReturned());
     }
 
     private void computeMinima(AvroStationUpdate stationChange, AvroStationStats stats) {

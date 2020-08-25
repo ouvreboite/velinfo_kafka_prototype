@@ -38,13 +38,25 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
         if(lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
             return null;
 
-        long lastMovement = previous.getLastMovementTimestamp() == null ?
-                previous.getLoadTimestamp() :
-                previous.getLastMovementTimestamp();
-        update.setLastMovementTimestamp(lastMovement);
+        mergeWithPreviousUpdate(update, previous);
 
         deduplicationStore.put(stationCode, update);
         return update;
+    }
+
+    private void mergeWithPreviousUpdate(AvroStationUpdate newUpdate, AvroStationUpdate previous) {
+        long lastMovement = previous.getLastMovementTimestamp() == null ?
+                previous.getLoadTimestamp() :
+                previous.getLastMovementTimestamp();
+        newUpdate.setLastMovementTimestamp(lastMovement);
+
+        int mechanicalDiff = newUpdate.getMechanicalBikesAtStation() - previous.getMechanicalBikesAtStation();
+        newUpdate.setMechanicalBikesRented(mechanicalDiff < 0 ? -mechanicalDiff : 0);
+        newUpdate.setMechanicalBikesReturned(mechanicalDiff > 0 ? mechanicalDiff : 0);
+
+        int electricDiff = newUpdate.getElectricBikesAtStation() - previous.getElectricBikesAtStation();
+        newUpdate.setElectricBikesRented(electricDiff < 0 ? -electricDiff : 0);
+        newUpdate.setElectricBikesReturned(electricDiff > 0 ? electricDiff : 0);
     }
 
     private boolean lessThan15MinutesDiff(long beforeTimestampmillis, long afterTimestampmillis) {

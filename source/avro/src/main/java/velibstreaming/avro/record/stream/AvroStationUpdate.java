@@ -5,15 +5,17 @@
  */
 package velibstreaming.avro.record.stream;
 
+import org.apache.avro.generic.GenericArray;
 import org.apache.avro.specific.SpecificData;
+import org.apache.avro.util.Utf8;
 import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -7281065407547643498L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationUpdate\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"stationName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"stationCapacity\",\"type\":\"int\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"isRenting\",\"type\":\"boolean\"},{\"name\":\"isReturning\",\"type\":\"boolean\"},{\"name\":\"isInstalled\",\"type\":\"boolean\"},{\"name\":\"staleSinceTimestamp\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"timestamp-millis\"}]}");
+  private static final long serialVersionUID = -6490627416184249835L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroStationUpdate\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"stationName\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"stationCapacity\",\"type\":\"int\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}},{\"name\":\"mechanicalBikesAtStation\",\"type\":\"int\"},{\"name\":\"electricBikesAtStation\",\"type\":\"int\"},{\"name\":\"mechanicalBikesReturned\",\"type\":\"int\"},{\"name\":\"electricBikesReturned\",\"type\":\"int\"},{\"name\":\"mechanicalBikesRented\",\"type\":\"int\"},{\"name\":\"electricBikesRented\",\"type\":\"int\"},{\"name\":\"availabilityTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"loadTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"isRenting\",\"type\":\"boolean\"},{\"name\":\"isReturning\",\"type\":\"boolean\"},{\"name\":\"isInstalled\",\"type\":\"boolean\"},{\"name\":\"lastMovementTimestamp\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"timestamp-millis\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -75,6 +77,10 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
   @Deprecated public velibstreaming.avro.record.source.AvroCoordinates coordinates;
   @Deprecated public int mechanicalBikesAtStation;
   @Deprecated public int electricBikesAtStation;
+  @Deprecated public int mechanicalBikesReturned;
+  @Deprecated public int electricBikesReturned;
+  @Deprecated public int mechanicalBikesRented;
+  @Deprecated public int electricBikesRented;
   @Deprecated public long availabilityTimestamp;
   @Deprecated public long loadTimestamp;
   @Deprecated public boolean isRenting;
@@ -97,20 +103,28 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
    * @param coordinates The new value for coordinates
    * @param mechanicalBikesAtStation The new value for mechanicalBikesAtStation
    * @param electricBikesAtStation The new value for electricBikesAtStation
+   * @param mechanicalBikesReturned The new value for mechanicalBikesReturned
+   * @param electricBikesReturned The new value for electricBikesReturned
+   * @param mechanicalBikesRented The new value for mechanicalBikesRented
+   * @param electricBikesRented The new value for electricBikesRented
    * @param availabilityTimestamp The new value for availabilityTimestamp
    * @param loadTimestamp The new value for loadTimestamp
    * @param isRenting The new value for isRenting
    * @param isReturning The new value for isReturning
    * @param isInstalled The new value for isInstalled
-   * @param lastMovementTimestamp The new value for staleSinceTimestamp
+   * @param lastMovementTimestamp The new value for lastMovementTimestamp
    */
-  public AvroStationUpdate(java.lang.String stationCode, java.lang.String stationName, java.lang.Integer stationCapacity, velibstreaming.avro.record.source.AvroCoordinates coordinates, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Boolean isRenting, java.lang.Boolean isReturning, java.lang.Boolean isInstalled, java.lang.Long lastMovementTimestamp) {
+  public AvroStationUpdate(java.lang.String stationCode, java.lang.String stationName, java.lang.Integer stationCapacity, velibstreaming.avro.record.source.AvroCoordinates coordinates, java.lang.Integer mechanicalBikesAtStation, java.lang.Integer electricBikesAtStation, java.lang.Integer mechanicalBikesReturned, java.lang.Integer electricBikesReturned, java.lang.Integer mechanicalBikesRented, java.lang.Integer electricBikesRented, java.lang.Long availabilityTimestamp, java.lang.Long loadTimestamp, java.lang.Boolean isRenting, java.lang.Boolean isReturning, java.lang.Boolean isInstalled, java.lang.Long lastMovementTimestamp) {
     this.stationCode = stationCode;
     this.stationName = stationName;
     this.stationCapacity = stationCapacity;
     this.coordinates = coordinates;
     this.mechanicalBikesAtStation = mechanicalBikesAtStation;
     this.electricBikesAtStation = electricBikesAtStation;
+    this.mechanicalBikesReturned = mechanicalBikesReturned;
+    this.electricBikesReturned = electricBikesReturned;
+    this.mechanicalBikesRented = mechanicalBikesRented;
+    this.electricBikesRented = electricBikesRented;
     this.availabilityTimestamp = availabilityTimestamp;
     this.loadTimestamp = loadTimestamp;
     this.isRenting = isRenting;
@@ -130,12 +144,16 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
     case 3: return coordinates;
     case 4: return mechanicalBikesAtStation;
     case 5: return electricBikesAtStation;
-    case 6: return availabilityTimestamp;
-    case 7: return loadTimestamp;
-    case 8: return isRenting;
-    case 9: return isReturning;
-    case 10: return isInstalled;
-    case 11: return lastMovementTimestamp;
+    case 6: return mechanicalBikesReturned;
+    case 7: return electricBikesReturned;
+    case 8: return mechanicalBikesRented;
+    case 9: return electricBikesRented;
+    case 10: return availabilityTimestamp;
+    case 11: return loadTimestamp;
+    case 12: return isRenting;
+    case 13: return isReturning;
+    case 14: return isInstalled;
+    case 15: return lastMovementTimestamp;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -150,12 +168,16 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
     case 3: coordinates = (velibstreaming.avro.record.source.AvroCoordinates)value$; break;
     case 4: mechanicalBikesAtStation = (java.lang.Integer)value$; break;
     case 5: electricBikesAtStation = (java.lang.Integer)value$; break;
-    case 6: availabilityTimestamp = (java.lang.Long)value$; break;
-    case 7: loadTimestamp = (java.lang.Long)value$; break;
-    case 8: isRenting = (java.lang.Boolean)value$; break;
-    case 9: isReturning = (java.lang.Boolean)value$; break;
-    case 10: isInstalled = (java.lang.Boolean)value$; break;
-    case 11: lastMovementTimestamp = (java.lang.Long)value$; break;
+    case 6: mechanicalBikesReturned = (java.lang.Integer)value$; break;
+    case 7: electricBikesReturned = (java.lang.Integer)value$; break;
+    case 8: mechanicalBikesRented = (java.lang.Integer)value$; break;
+    case 9: electricBikesRented = (java.lang.Integer)value$; break;
+    case 10: availabilityTimestamp = (java.lang.Long)value$; break;
+    case 11: loadTimestamp = (java.lang.Long)value$; break;
+    case 12: isRenting = (java.lang.Boolean)value$; break;
+    case 13: isReturning = (java.lang.Boolean)value$; break;
+    case 14: isInstalled = (java.lang.Boolean)value$; break;
+    case 15: lastMovementTimestamp = (java.lang.Long)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -263,6 +285,74 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
   }
 
   /**
+   * Gets the value of the 'mechanicalBikesReturned' field.
+   * @return The value of the 'mechanicalBikesReturned' field.
+   */
+  public int getMechanicalBikesReturned() {
+    return mechanicalBikesReturned;
+  }
+
+
+  /**
+   * Sets the value of the 'mechanicalBikesReturned' field.
+   * @param value the value to set.
+   */
+  public void setMechanicalBikesReturned(int value) {
+    this.mechanicalBikesReturned = value;
+  }
+
+  /**
+   * Gets the value of the 'electricBikesReturned' field.
+   * @return The value of the 'electricBikesReturned' field.
+   */
+  public int getElectricBikesReturned() {
+    return electricBikesReturned;
+  }
+
+
+  /**
+   * Sets the value of the 'electricBikesReturned' field.
+   * @param value the value to set.
+   */
+  public void setElectricBikesReturned(int value) {
+    this.electricBikesReturned = value;
+  }
+
+  /**
+   * Gets the value of the 'mechanicalBikesRented' field.
+   * @return The value of the 'mechanicalBikesRented' field.
+   */
+  public int getMechanicalBikesRented() {
+    return mechanicalBikesRented;
+  }
+
+
+  /**
+   * Sets the value of the 'mechanicalBikesRented' field.
+   * @param value the value to set.
+   */
+  public void setMechanicalBikesRented(int value) {
+    this.mechanicalBikesRented = value;
+  }
+
+  /**
+   * Gets the value of the 'electricBikesRented' field.
+   * @return The value of the 'electricBikesRented' field.
+   */
+  public int getElectricBikesRented() {
+    return electricBikesRented;
+  }
+
+
+  /**
+   * Sets the value of the 'electricBikesRented' field.
+   * @param value the value to set.
+   */
+  public void setElectricBikesRented(int value) {
+    this.electricBikesRented = value;
+  }
+
+  /**
    * Gets the value of the 'availabilityTimestamp' field.
    * @return The value of the 'availabilityTimestamp' field.
    */
@@ -348,8 +438,8 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
   }
 
   /**
-   * Gets the value of the 'staleSinceTimestamp' field.
-   * @return The value of the 'staleSinceTimestamp' field.
+   * Gets the value of the 'lastMovementTimestamp' field.
+   * @return The value of the 'lastMovementTimestamp' field.
    */
   public java.lang.Long getLastMovementTimestamp() {
     return lastMovementTimestamp;
@@ -357,7 +447,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
 
 
   /**
-   * Sets the value of the 'staleSinceTimestamp' field.
+   * Sets the value of the 'lastMovementTimestamp' field.
    * @param value the value to set.
    */
   public void setLastMovementTimestamp(java.lang.Long value) {
@@ -412,12 +502,16 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
     private velibstreaming.avro.record.source.AvroCoordinates.Builder coordinatesBuilder;
     private int mechanicalBikesAtStation;
     private int electricBikesAtStation;
+    private int mechanicalBikesReturned;
+    private int electricBikesReturned;
+    private int mechanicalBikesRented;
+    private int electricBikesRented;
     private long availabilityTimestamp;
     private long loadTimestamp;
     private boolean isRenting;
     private boolean isReturning;
     private boolean isInstalled;
-    private java.lang.Long staleSinceTimestamp;
+    private java.lang.Long lastMovementTimestamp;
 
     /** Creates a new Builder */
     private Builder() {
@@ -457,29 +551,45 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
         this.electricBikesAtStation = data().deepCopy(fields()[5].schema(), other.electricBikesAtStation);
         fieldSetFlags()[5] = other.fieldSetFlags()[5];
       }
-      if (isValidValue(fields()[6], other.availabilityTimestamp)) {
-        this.availabilityTimestamp = data().deepCopy(fields()[6].schema(), other.availabilityTimestamp);
+      if (isValidValue(fields()[6], other.mechanicalBikesReturned)) {
+        this.mechanicalBikesReturned = data().deepCopy(fields()[6].schema(), other.mechanicalBikesReturned);
         fieldSetFlags()[6] = other.fieldSetFlags()[6];
       }
-      if (isValidValue(fields()[7], other.loadTimestamp)) {
-        this.loadTimestamp = data().deepCopy(fields()[7].schema(), other.loadTimestamp);
+      if (isValidValue(fields()[7], other.electricBikesReturned)) {
+        this.electricBikesReturned = data().deepCopy(fields()[7].schema(), other.electricBikesReturned);
         fieldSetFlags()[7] = other.fieldSetFlags()[7];
       }
-      if (isValidValue(fields()[8], other.isRenting)) {
-        this.isRenting = data().deepCopy(fields()[8].schema(), other.isRenting);
+      if (isValidValue(fields()[8], other.mechanicalBikesRented)) {
+        this.mechanicalBikesRented = data().deepCopy(fields()[8].schema(), other.mechanicalBikesRented);
         fieldSetFlags()[8] = other.fieldSetFlags()[8];
       }
-      if (isValidValue(fields()[9], other.isReturning)) {
-        this.isReturning = data().deepCopy(fields()[9].schema(), other.isReturning);
+      if (isValidValue(fields()[9], other.electricBikesRented)) {
+        this.electricBikesRented = data().deepCopy(fields()[9].schema(), other.electricBikesRented);
         fieldSetFlags()[9] = other.fieldSetFlags()[9];
       }
-      if (isValidValue(fields()[10], other.isInstalled)) {
-        this.isInstalled = data().deepCopy(fields()[10].schema(), other.isInstalled);
+      if (isValidValue(fields()[10], other.availabilityTimestamp)) {
+        this.availabilityTimestamp = data().deepCopy(fields()[10].schema(), other.availabilityTimestamp);
         fieldSetFlags()[10] = other.fieldSetFlags()[10];
       }
-      if (isValidValue(fields()[11], other.staleSinceTimestamp)) {
-        this.staleSinceTimestamp = data().deepCopy(fields()[11].schema(), other.staleSinceTimestamp);
+      if (isValidValue(fields()[11], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[11].schema(), other.loadTimestamp);
         fieldSetFlags()[11] = other.fieldSetFlags()[11];
+      }
+      if (isValidValue(fields()[12], other.isRenting)) {
+        this.isRenting = data().deepCopy(fields()[12].schema(), other.isRenting);
+        fieldSetFlags()[12] = other.fieldSetFlags()[12];
+      }
+      if (isValidValue(fields()[13], other.isReturning)) {
+        this.isReturning = data().deepCopy(fields()[13].schema(), other.isReturning);
+        fieldSetFlags()[13] = other.fieldSetFlags()[13];
+      }
+      if (isValidValue(fields()[14], other.isInstalled)) {
+        this.isInstalled = data().deepCopy(fields()[14].schema(), other.isInstalled);
+        fieldSetFlags()[14] = other.fieldSetFlags()[14];
+      }
+      if (isValidValue(fields()[15], other.lastMovementTimestamp)) {
+        this.lastMovementTimestamp = data().deepCopy(fields()[15].schema(), other.lastMovementTimestamp);
+        fieldSetFlags()[15] = other.fieldSetFlags()[15];
       }
     }
 
@@ -514,29 +624,45 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
         this.electricBikesAtStation = data().deepCopy(fields()[5].schema(), other.electricBikesAtStation);
         fieldSetFlags()[5] = true;
       }
-      if (isValidValue(fields()[6], other.availabilityTimestamp)) {
-        this.availabilityTimestamp = data().deepCopy(fields()[6].schema(), other.availabilityTimestamp);
+      if (isValidValue(fields()[6], other.mechanicalBikesReturned)) {
+        this.mechanicalBikesReturned = data().deepCopy(fields()[6].schema(), other.mechanicalBikesReturned);
         fieldSetFlags()[6] = true;
       }
-      if (isValidValue(fields()[7], other.loadTimestamp)) {
-        this.loadTimestamp = data().deepCopy(fields()[7].schema(), other.loadTimestamp);
+      if (isValidValue(fields()[7], other.electricBikesReturned)) {
+        this.electricBikesReturned = data().deepCopy(fields()[7].schema(), other.electricBikesReturned);
         fieldSetFlags()[7] = true;
       }
-      if (isValidValue(fields()[8], other.isRenting)) {
-        this.isRenting = data().deepCopy(fields()[8].schema(), other.isRenting);
+      if (isValidValue(fields()[8], other.mechanicalBikesRented)) {
+        this.mechanicalBikesRented = data().deepCopy(fields()[8].schema(), other.mechanicalBikesRented);
         fieldSetFlags()[8] = true;
       }
-      if (isValidValue(fields()[9], other.isReturning)) {
-        this.isReturning = data().deepCopy(fields()[9].schema(), other.isReturning);
+      if (isValidValue(fields()[9], other.electricBikesRented)) {
+        this.electricBikesRented = data().deepCopy(fields()[9].schema(), other.electricBikesRented);
         fieldSetFlags()[9] = true;
       }
-      if (isValidValue(fields()[10], other.isInstalled)) {
-        this.isInstalled = data().deepCopy(fields()[10].schema(), other.isInstalled);
+      if (isValidValue(fields()[10], other.availabilityTimestamp)) {
+        this.availabilityTimestamp = data().deepCopy(fields()[10].schema(), other.availabilityTimestamp);
         fieldSetFlags()[10] = true;
       }
-      if (isValidValue(fields()[11], other.lastMovementTimestamp)) {
-        this.staleSinceTimestamp = data().deepCopy(fields()[11].schema(), other.lastMovementTimestamp);
+      if (isValidValue(fields()[11], other.loadTimestamp)) {
+        this.loadTimestamp = data().deepCopy(fields()[11].schema(), other.loadTimestamp);
         fieldSetFlags()[11] = true;
+      }
+      if (isValidValue(fields()[12], other.isRenting)) {
+        this.isRenting = data().deepCopy(fields()[12].schema(), other.isRenting);
+        fieldSetFlags()[12] = true;
+      }
+      if (isValidValue(fields()[13], other.isReturning)) {
+        this.isReturning = data().deepCopy(fields()[13].schema(), other.isReturning);
+        fieldSetFlags()[13] = true;
+      }
+      if (isValidValue(fields()[14], other.isInstalled)) {
+        this.isInstalled = data().deepCopy(fields()[14].schema(), other.isInstalled);
+        fieldSetFlags()[14] = true;
+      }
+      if (isValidValue(fields()[15], other.lastMovementTimestamp)) {
+        this.lastMovementTimestamp = data().deepCopy(fields()[15].schema(), other.lastMovementTimestamp);
+        fieldSetFlags()[15] = true;
       }
     }
 
@@ -813,6 +939,162 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
     }
 
     /**
+      * Gets the value of the 'mechanicalBikesReturned' field.
+      * @return The value.
+      */
+    public int getMechanicalBikesReturned() {
+      return mechanicalBikesReturned;
+    }
+
+
+    /**
+      * Sets the value of the 'mechanicalBikesReturned' field.
+      * @param value The value of 'mechanicalBikesReturned'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setMechanicalBikesReturned(int value) {
+      validate(fields()[6], value);
+      this.mechanicalBikesReturned = value;
+      fieldSetFlags()[6] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'mechanicalBikesReturned' field has been set.
+      * @return True if the 'mechanicalBikesReturned' field has been set, false otherwise.
+      */
+    public boolean hasMechanicalBikesReturned() {
+      return fieldSetFlags()[6];
+    }
+
+
+    /**
+      * Clears the value of the 'mechanicalBikesReturned' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearMechanicalBikesReturned() {
+      fieldSetFlags()[6] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'electricBikesReturned' field.
+      * @return The value.
+      */
+    public int getElectricBikesReturned() {
+      return electricBikesReturned;
+    }
+
+
+    /**
+      * Sets the value of the 'electricBikesReturned' field.
+      * @param value The value of 'electricBikesReturned'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setElectricBikesReturned(int value) {
+      validate(fields()[7], value);
+      this.electricBikesReturned = value;
+      fieldSetFlags()[7] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'electricBikesReturned' field has been set.
+      * @return True if the 'electricBikesReturned' field has been set, false otherwise.
+      */
+    public boolean hasElectricBikesReturned() {
+      return fieldSetFlags()[7];
+    }
+
+
+    /**
+      * Clears the value of the 'electricBikesReturned' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearElectricBikesReturned() {
+      fieldSetFlags()[7] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'mechanicalBikesRented' field.
+      * @return The value.
+      */
+    public int getMechanicalBikesRented() {
+      return mechanicalBikesRented;
+    }
+
+
+    /**
+      * Sets the value of the 'mechanicalBikesRented' field.
+      * @param value The value of 'mechanicalBikesRented'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setMechanicalBikesRented(int value) {
+      validate(fields()[8], value);
+      this.mechanicalBikesRented = value;
+      fieldSetFlags()[8] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'mechanicalBikesRented' field has been set.
+      * @return True if the 'mechanicalBikesRented' field has been set, false otherwise.
+      */
+    public boolean hasMechanicalBikesRented() {
+      return fieldSetFlags()[8];
+    }
+
+
+    /**
+      * Clears the value of the 'mechanicalBikesRented' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearMechanicalBikesRented() {
+      fieldSetFlags()[8] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'electricBikesRented' field.
+      * @return The value.
+      */
+    public int getElectricBikesRented() {
+      return electricBikesRented;
+    }
+
+
+    /**
+      * Sets the value of the 'electricBikesRented' field.
+      * @param value The value of 'electricBikesRented'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setElectricBikesRented(int value) {
+      validate(fields()[9], value);
+      this.electricBikesRented = value;
+      fieldSetFlags()[9] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'electricBikesRented' field has been set.
+      * @return True if the 'electricBikesRented' field has been set, false otherwise.
+      */
+    public boolean hasElectricBikesRented() {
+      return fieldSetFlags()[9];
+    }
+
+
+    /**
+      * Clears the value of the 'electricBikesRented' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearElectricBikesRented() {
+      fieldSetFlags()[9] = false;
+      return this;
+    }
+
+    /**
       * Gets the value of the 'availabilityTimestamp' field.
       * @return The value.
       */
@@ -827,9 +1109,9 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setAvailabilityTimestamp(long value) {
-      validate(fields()[6], value);
+      validate(fields()[10], value);
       this.availabilityTimestamp = value;
-      fieldSetFlags()[6] = true;
+      fieldSetFlags()[10] = true;
       return this;
     }
 
@@ -838,7 +1120,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'availabilityTimestamp' field has been set, false otherwise.
       */
     public boolean hasAvailabilityTimestamp() {
-      return fieldSetFlags()[6];
+      return fieldSetFlags()[10];
     }
 
 
@@ -847,7 +1129,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearAvailabilityTimestamp() {
-      fieldSetFlags()[6] = false;
+      fieldSetFlags()[10] = false;
       return this;
     }
 
@@ -866,9 +1148,9 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setLoadTimestamp(long value) {
-      validate(fields()[7], value);
+      validate(fields()[11], value);
       this.loadTimestamp = value;
-      fieldSetFlags()[7] = true;
+      fieldSetFlags()[11] = true;
       return this;
     }
 
@@ -877,7 +1159,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'loadTimestamp' field has been set, false otherwise.
       */
     public boolean hasLoadTimestamp() {
-      return fieldSetFlags()[7];
+      return fieldSetFlags()[11];
     }
 
 
@@ -886,7 +1168,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearLoadTimestamp() {
-      fieldSetFlags()[7] = false;
+      fieldSetFlags()[11] = false;
       return this;
     }
 
@@ -905,9 +1187,9 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setIsRenting(boolean value) {
-      validate(fields()[8], value);
+      validate(fields()[12], value);
       this.isRenting = value;
-      fieldSetFlags()[8] = true;
+      fieldSetFlags()[12] = true;
       return this;
     }
 
@@ -916,7 +1198,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'isRenting' field has been set, false otherwise.
       */
     public boolean hasIsRenting() {
-      return fieldSetFlags()[8];
+      return fieldSetFlags()[12];
     }
 
 
@@ -925,7 +1207,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearIsRenting() {
-      fieldSetFlags()[8] = false;
+      fieldSetFlags()[12] = false;
       return this;
     }
 
@@ -944,9 +1226,9 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setIsReturning(boolean value) {
-      validate(fields()[9], value);
+      validate(fields()[13], value);
       this.isReturning = value;
-      fieldSetFlags()[9] = true;
+      fieldSetFlags()[13] = true;
       return this;
     }
 
@@ -955,7 +1237,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'isReturning' field has been set, false otherwise.
       */
     public boolean hasIsReturning() {
-      return fieldSetFlags()[9];
+      return fieldSetFlags()[13];
     }
 
 
@@ -964,7 +1246,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearIsReturning() {
-      fieldSetFlags()[9] = false;
+      fieldSetFlags()[13] = false;
       return this;
     }
 
@@ -983,9 +1265,9 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setIsInstalled(boolean value) {
-      validate(fields()[10], value);
+      validate(fields()[14], value);
       this.isInstalled = value;
-      fieldSetFlags()[10] = true;
+      fieldSetFlags()[14] = true;
       return this;
     }
 
@@ -994,7 +1276,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'isInstalled' field has been set, false otherwise.
       */
     public boolean hasIsInstalled() {
-      return fieldSetFlags()[10];
+      return fieldSetFlags()[14];
     }
 
 
@@ -1003,47 +1285,47 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearIsInstalled() {
-      fieldSetFlags()[10] = false;
+      fieldSetFlags()[14] = false;
       return this;
     }
 
     /**
-      * Gets the value of the 'staleSinceTimestamp' field.
+      * Gets the value of the 'lastMovementTimestamp' field.
       * @return The value.
       */
-    public java.lang.Long getStaleSinceTimestamp() {
-      return staleSinceTimestamp;
+    public java.lang.Long getLastMovementTimestamp() {
+      return lastMovementTimestamp;
     }
 
 
     /**
-      * Sets the value of the 'staleSinceTimestamp' field.
-      * @param value The value of 'staleSinceTimestamp'.
+      * Sets the value of the 'lastMovementTimestamp' field.
+      * @param value The value of 'lastMovementTimestamp'.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setStaleSinceTimestamp(java.lang.Long value) {
-      validate(fields()[11], value);
-      this.staleSinceTimestamp = value;
-      fieldSetFlags()[11] = true;
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder setLastMovementTimestamp(java.lang.Long value) {
+      validate(fields()[15], value);
+      this.lastMovementTimestamp = value;
+      fieldSetFlags()[15] = true;
       return this;
     }
 
     /**
-      * Checks whether the 'staleSinceTimestamp' field has been set.
-      * @return True if the 'staleSinceTimestamp' field has been set, false otherwise.
+      * Checks whether the 'lastMovementTimestamp' field has been set.
+      * @return True if the 'lastMovementTimestamp' field has been set, false otherwise.
       */
-    public boolean hasStaleSinceTimestamp() {
-      return fieldSetFlags()[11];
+    public boolean hasLastMovementTimestamp() {
+      return fieldSetFlags()[15];
     }
 
 
     /**
-      * Clears the value of the 'staleSinceTimestamp' field.
+      * Clears the value of the 'lastMovementTimestamp' field.
       * @return This builder.
       */
-    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearStaleSinceTimestamp() {
-      staleSinceTimestamp = null;
-      fieldSetFlags()[11] = false;
+    public velibstreaming.avro.record.stream.AvroStationUpdate.Builder clearLastMovementTimestamp() {
+      lastMovementTimestamp = null;
+      fieldSetFlags()[15] = false;
       return this;
     }
 
@@ -1067,12 +1349,16 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
         }
         record.mechanicalBikesAtStation = fieldSetFlags()[4] ? this.mechanicalBikesAtStation : (java.lang.Integer) defaultValue(fields()[4]);
         record.electricBikesAtStation = fieldSetFlags()[5] ? this.electricBikesAtStation : (java.lang.Integer) defaultValue(fields()[5]);
-        record.availabilityTimestamp = fieldSetFlags()[6] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[6]);
-        record.loadTimestamp = fieldSetFlags()[7] ? this.loadTimestamp : (java.lang.Long) defaultValue(fields()[7]);
-        record.isRenting = fieldSetFlags()[8] ? this.isRenting : (java.lang.Boolean) defaultValue(fields()[8]);
-        record.isReturning = fieldSetFlags()[9] ? this.isReturning : (java.lang.Boolean) defaultValue(fields()[9]);
-        record.isInstalled = fieldSetFlags()[10] ? this.isInstalled : (java.lang.Boolean) defaultValue(fields()[10]);
-        record.lastMovementTimestamp = fieldSetFlags()[11] ? this.staleSinceTimestamp : (java.lang.Long) defaultValue(fields()[11]);
+        record.mechanicalBikesReturned = fieldSetFlags()[6] ? this.mechanicalBikesReturned : (java.lang.Integer) defaultValue(fields()[6]);
+        record.electricBikesReturned = fieldSetFlags()[7] ? this.electricBikesReturned : (java.lang.Integer) defaultValue(fields()[7]);
+        record.mechanicalBikesRented = fieldSetFlags()[8] ? this.mechanicalBikesRented : (java.lang.Integer) defaultValue(fields()[8]);
+        record.electricBikesRented = fieldSetFlags()[9] ? this.electricBikesRented : (java.lang.Integer) defaultValue(fields()[9]);
+        record.availabilityTimestamp = fieldSetFlags()[10] ? this.availabilityTimestamp : (java.lang.Long) defaultValue(fields()[10]);
+        record.loadTimestamp = fieldSetFlags()[11] ? this.loadTimestamp : (java.lang.Long) defaultValue(fields()[11]);
+        record.isRenting = fieldSetFlags()[12] ? this.isRenting : (java.lang.Boolean) defaultValue(fields()[12]);
+        record.isReturning = fieldSetFlags()[13] ? this.isReturning : (java.lang.Boolean) defaultValue(fields()[13]);
+        record.isInstalled = fieldSetFlags()[14] ? this.isInstalled : (java.lang.Boolean) defaultValue(fields()[14]);
+        record.lastMovementTimestamp = fieldSetFlags()[15] ? this.lastMovementTimestamp : (java.lang.Long) defaultValue(fields()[15]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -1117,6 +1403,14 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
 
     out.writeInt(this.electricBikesAtStation);
 
+    out.writeInt(this.mechanicalBikesReturned);
+
+    out.writeInt(this.electricBikesReturned);
+
+    out.writeInt(this.mechanicalBikesRented);
+
+    out.writeInt(this.electricBikesRented);
+
     out.writeLong(this.availabilityTimestamp);
 
     out.writeLong(this.loadTimestamp);
@@ -1157,6 +1451,14 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
 
       this.electricBikesAtStation = in.readInt();
 
+      this.mechanicalBikesReturned = in.readInt();
+
+      this.electricBikesReturned = in.readInt();
+
+      this.mechanicalBikesRented = in.readInt();
+
+      this.electricBikesRented = in.readInt();
+
       this.availabilityTimestamp = in.readLong();
 
       this.loadTimestamp = in.readLong();
@@ -1175,7 +1477,7 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
       }
 
     } else {
-      for (int i = 0; i < 12; i++) {
+      for (int i = 0; i < 16; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
           this.stationCode = in.readString();
@@ -1205,26 +1507,42 @@ public class AvroStationUpdate extends org.apache.avro.specific.SpecificRecordBa
           break;
 
         case 6:
-          this.availabilityTimestamp = in.readLong();
+          this.mechanicalBikesReturned = in.readInt();
           break;
 
         case 7:
-          this.loadTimestamp = in.readLong();
+          this.electricBikesReturned = in.readInt();
           break;
 
         case 8:
-          this.isRenting = in.readBoolean();
+          this.mechanicalBikesRented = in.readInt();
           break;
 
         case 9:
-          this.isReturning = in.readBoolean();
+          this.electricBikesRented = in.readInt();
           break;
 
         case 10:
-          this.isInstalled = in.readBoolean();
+          this.availabilityTimestamp = in.readLong();
           break;
 
         case 11:
+          this.loadTimestamp = in.readLong();
+          break;
+
+        case 12:
+          this.isRenting = in.readBoolean();
+          break;
+
+        case 13:
+          this.isReturning = in.readBoolean();
+          break;
+
+        case 14:
+          this.isInstalled = in.readBoolean();
+          break;
+
+        case 15:
           if (in.readIndex() != 1) {
             in.readNull();
             this.lastMovementTimestamp = null;

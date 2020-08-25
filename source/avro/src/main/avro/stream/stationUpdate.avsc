@@ -28,6 +28,22 @@
       "type": "int"
     },
     {
+      "name": "mechanicalBikesReturned",
+      "type": "int"
+    },
+    {
+      "name": "electricBikesReturned",
+      "type": "int"
+    },
+    {
+      "name": "mechanicalBikesRented",
+      "type": "int"
+    },
+    {
+      "name": "electricBikesRented",
+      "type": "int"
+    },
+    {
       "name": "availabilityTimestamp",
       "type" : "long",
       "logicalType" : "timestamp-millis"
