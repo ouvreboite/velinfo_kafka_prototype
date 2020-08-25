@@ -50,7 +50,7 @@
       "type" : "boolean"
     },
     {
-      "name": "staleSinceTimestamp",
+      "name": "lastMovementTimestamp",
       "type": [
         "null",
         "long"

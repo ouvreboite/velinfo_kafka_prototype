@@ -39,7 +39,7 @@ public class StationUpdatesStreamBuilder {
                 .setMechanicalBikesAtStation(stationAvailability.getMechanicalBikesAtStation())
                 .setAvailabilityTimestamp(stationAvailability.getAvailabilityTimestamp())
                 .setLoadTimestamp(stationAvailability.getLoadTimestamp())
-                .setStaleSinceTimestamp(null)
+                .setLastMovementTimestamp(null)
                 .setIsInstalled(stationAvailability.getIsInstalled())
                 .setIsRenting(stationAvailability.getIsRenting())
                 .setIsReturning(stationAvailability.getIsReturning())
