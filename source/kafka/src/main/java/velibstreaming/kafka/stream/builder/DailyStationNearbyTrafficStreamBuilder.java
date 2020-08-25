@@ -13,19 +13,19 @@ import java.time.Duration;
 
 import static org.apache.kafka.streams.kstream.Suppressed.BufferConfig.unbounded;
 
-public class HourlyStationNearbyTrafficStreamBuilder {
+public class DailyStationNearbyTrafficStreamBuilder {
 
     public KStream<String, AvroNearbyTraffic> build(KStream<String, AvroBicycleCount> stationNearbyCountsStream){
-        TimeWindows hourWindow = TimeWindows
-                .of(Duration.ofHours(1))
-                .grace(Duration.ofHours(36));
+        TimeWindows dayWindow = TimeWindows
+                .of(Duration.ofDays(1))
+                .grace(Duration.ofHours(12));
 
         var materializedHour = Materialized.<String, AvroNearbyTraffic, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.AvroSerde())
-                .withRetention(Duration.ofDays(2));
+                .withRetention(Duration.ofDays(3));
 
         return stationNearbyCountsStream
                 .groupByKey(Grouped.with(Serdes.String(), StreamUtils.AvroSerde()))
-                .windowedBy(hourWindow)
+                .windowedBy(dayWindow)
                 .aggregate(() -> AvroNearbyTraffic.newBuilder().build(),
                         ComputeTraffic(),
                         materializedHour)
