@@ -20,7 +20,6 @@ Two dataset are used :
 
 ## Kafka topology
 
-
 One of the goal of this project is to have fun with Kafka (and Kafka Streams). But the two datasets used are not a stream of events. So the first step is to extract a stream of business events from them.
 * The station availability  endpoint return a snapshot of the current number of bikes and characteristics of each station. A stream of the changes for each station is recreated by polling every minutes and dropping duplicates.
 * The bicycles counts endpoint return all the hourly counts for a given day (using the "refine.date" parameter). Data seems to be processed by a daily batch, with all "yesterday's" hourly count available around 9AM. This means the first count of a day (midnight) is fetched at least 32 hours later. Polling once a day could be dangerous without knowing the exact batch time, so a stream of unique count is recreated by polling every hour for "yesterday's" count and dropping duplicates.
@@ -29,7 +28,9 @@ To estimate each station status (i.e. if it's locked), station statistics are co
 The statistics are also used to estimate the number of locked bikes and slots per station (by computing a rolling minimum)
 
 To join the bicycle counters data to its nearby (~400m meters) stations, each stations geocoordinates is projected on a grid of ~200mx200m zones by rounding to the 0.002 [decimal degree](https://en.wikipedia.org/wiki/Decimal_degrees) and aggregated in a zone->stations lookup table. 
-Each bicycle count is allocated to its 9 nearby zones and then joined to the stations present in each zones. Each count joined to a station is aggregated using a one hour window (with a 36 hours grace period to accomodate for the late arrival of counts data).
+Each bicycle count is allocated to its 9 nearby zones and then joined to the stations present in each zones. Each count joined to a station is aggregated using a one day window (with a 12 hours grace period to accomodate for the late arrival of counts data).
+
+Hourly station statistics (number of bikes rented/returned, ...) and daily station nearby traffic are sunk into SQL tables. Kafka Connect could be used for that, but 1) it is not available as a service on AWS/Google Cloud 2) the whole project is already a java application 3) the jdbc infrastructure will still be needed to query the data anyway. So Connect is not used, prefering simple java consumers, with manual commits, and jdbc repositories. 
 
 ![High level topology](docs/plantuml/high_level_topology.svg)
 

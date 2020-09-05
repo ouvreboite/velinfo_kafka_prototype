@@ -33,7 +33,7 @@ public final class StreamProperties {
     private final String bicycleCountUpdatesTopic;
     private final String bicycleCountUpdatesProjectedTopic;
     private final String stationNearbyCountsTopic;
-    private final String hourlyStationNearbyTrafficTopic;
+    private final String dailyStationNearbyTrafficTopic;
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
@@ -55,7 +55,7 @@ public final class StreamProperties {
         this.bicycleCountUpdatesTopic = props.getProperty("BicycleCountUpdates.Topic");
         this.bicycleCountUpdatesProjectedTopic = props.getProperty("BicycleCountUpdatesProjected.Topic");
         this.stationNearbyCountsTopic = props.getProperty("StationNearbyCounts.Topic");
-        this.hourlyStationNearbyTrafficTopic = props.getProperty("HourlyStationNearbyTraffic.Topic");
+        this.dailyStationNearbyTrafficTopic = props.getProperty("DailyStationNearbyTraffic.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");

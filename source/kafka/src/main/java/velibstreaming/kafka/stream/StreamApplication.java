@@ -50,7 +50,7 @@ public class StreamApplication {
                 props.getBicycleCountUpdatesTopic(),
                 props.getBicycleCountUpdatesProjectedTopic(),
                 props.getStationNearbyCountsTopic(),
-                props.getHourlyStationNearbyTrafficTopic()
+                props.getDailyStationNearbyTrafficTopic()
         );
 
         Topology topology = buildTopology();
@@ -90,7 +90,7 @@ public class StreamApplication {
         stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var hourlyStationNearbyTraffic = new DailyStationNearbyTrafficStreamBuilder().build(stationNearbyCountsStream);
-        hourlyStationNearbyTraffic.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
+        hourlyStationNearbyTraffic.to(props.getDailyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         return builder.build();
     }
