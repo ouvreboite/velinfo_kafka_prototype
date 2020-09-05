@@ -12,16 +12,16 @@ frame "Station status topology"{
    rectangle hourlyStationStats<<topic>>
    rectangle stationStatus <<topic>>
    rectangle bikesLocked <<topic>>
-   database statisticsDb <<database>>
+   database station_hourly_statistics <<database>>
 }
 
 stationAvailabilityClient --> stationAvailabilities 
 stationAvailabilities --> stationUpdates : deduplicated
 stationUpdates --> hourlyStationStats : windowed
 hourlyStationStats --> bikesLocked
-hourlyStationStats -> statisticsDb
+hourlyStationStats -> station_hourly_statistics
 stationUpdates --> stationStatus
-statisticsDb ..> stationStatus
+station_hourly_statistics ..> stationStatus
 
 frame "Nearby traffic topology"{
    rectangle bikeCountsClient <<producer>>
@@ -31,7 +31,7 @@ frame "Nearby traffic topology"{
    rectangle zoneToStations<<table>>
    rectangle stationNearbyCounts <<topic>>
    rectangle hourlyStationNearbyTraffic <<topic>>
-   database trafficDb <<database>>
+   database station_daily_nearby_traffic <<database>>
 }
 
 
@@ -42,7 +42,7 @@ bikeCountUpdates --> countUpdatesProjected: projected on nearby zones
 zoneToStations--> stationNearbyCounts 
 countUpdatesProjected --> stationNearbyCounts 
 stationNearbyCounts --> hourlyStationNearbyTraffic : windowed
-hourlyStationNearbyTraffic --> trafficDb
+hourlyStationNearbyTraffic --> station_daily_nearby_traffic
 
 skinparam rectangle{
     backgroundColor<<topic>> Gainsboro
