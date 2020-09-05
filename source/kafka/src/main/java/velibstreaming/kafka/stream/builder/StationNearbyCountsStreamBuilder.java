@@ -20,7 +20,7 @@ public class StationNearbyCountsStreamBuilder {
                 .join(
                         zoneTable,
                         (count, zone) -> new AvroStationsAffectedByCount(new ArrayList<>(zone.getStationsCoordinates().keySet()), count),
-                        Joined.with(Serdes.String(), StreamUtils.AvroSerde(), StreamUtils.AvroSerde())
+                        Joined.with(Serdes.String(), StreamUtils.avroSerde(), StreamUtils.avroSerde())
                 )
                 .flatMap(
                         (zoneId, stationsAffected) -> stationsAffected.getStationCodes().stream()

@@ -62,35 +62,35 @@ public class StreamApplication {
 
     private Topology buildTopology() {
         final StreamsBuilder builder = new StreamsBuilder();
-        var availabilityStream = builder.stream(props.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>AvroSerde()));
+        var availabilityStream = builder.stream(props.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>avroSerde()));
 
         var stationUpdatesStream = new StationUpdatesStreamBuilder().build(builder, availabilityStream);
-        stationUpdatesStream.to(props.getStationUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        stationUpdatesStream.to(props.getStationUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var hourlyStationStatsStream = new HourlyStationStatsStreamBuilder().build(stationUpdatesStream);
-        hourlyStationStatsStream.to(props.getHourlyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        hourlyStationStatsStream.to(props.getHourlyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var bikesLockedStream = new BikesLockedStreamBuilder().build(hourlyStationStatsStream);
-        bikesLockedStream.to(props.getBikesLockedTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        bikesLockedStream.to(props.getBikesLockedTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var stationsStatusStream = new StationsStatusStreamBuilder().build(stationUpdatesStream);
-        stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
-        var bicycleCountStream = builder.stream(props.getBicycleCountTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroBicycleCount>AvroSerde()));
+        var bicycleCountStream = builder.stream(props.getBicycleCountTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroBicycleCount>avroSerde()));
 
         var countUpdatesStream = new CountUpdatesStreamBuilder().build(builder, bicycleCountStream);
-        countUpdatesStream.to(props.getBicycleCountUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        countUpdatesStream.to(props.getBicycleCountUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var zoneToStationsTable = new ZoneTableBuilder().build(stationUpdatesStream);
 
         var countUpdatesProjectedStream = new CountUpdatesProjectedStreamBuilder().build(countUpdatesStream);
-        countUpdatesProjectedStream.to(props.getBicycleCountUpdatesProjectedTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        countUpdatesProjectedStream.to(props.getBicycleCountUpdatesProjectedTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var stationNearbyCountsStream = new StationNearbyCountsStreamBuilder().build(countUpdatesProjectedStream, zoneToStationsTable);
-        stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var hourlyStationNearbyTraffic = new DailyStationNearbyTrafficStreamBuilder().build(stationNearbyCountsStream);
-        hourlyStationNearbyTraffic.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.AvroSerde()));
+        hourlyStationNearbyTraffic.to(props.getHourlyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         return builder.build();
     }

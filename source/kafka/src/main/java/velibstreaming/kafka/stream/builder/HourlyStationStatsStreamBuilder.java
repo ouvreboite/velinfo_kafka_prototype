@@ -20,11 +20,11 @@ public class HourlyStationStatsStreamBuilder {
                 .of(Duration.ofHours(1))
                 .grace(Duration.ofMinutes(1));
 
-        var materializedHour = Materialized.<String, AvroStationStats, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.AvroSerde())
+        var materializedHour = Materialized.<String, AvroStationStats, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.avroSerde())
                 .withRetention(Duration.ofHours(6));
 
         return stationChangesStream
-                .groupByKey(Grouped.with(Serdes.String(), StreamUtils.AvroSerde()))
+                .groupByKey(Grouped.with(Serdes.String(), StreamUtils.avroSerde()))
                 .windowedBy(hourWindow)
                 .aggregate(AvroStationStats::new,
                         ComputeHourlyStats(),

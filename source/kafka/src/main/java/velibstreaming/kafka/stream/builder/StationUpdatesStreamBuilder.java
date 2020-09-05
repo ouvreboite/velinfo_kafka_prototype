@@ -19,7 +19,7 @@ public class StationUpdatesStreamBuilder {
         final StoreBuilder<KeyValueStore<String, AvroStationUpdate>> deduplicationStoreBuilder = Stores.keyValueStoreBuilder(
                 Stores.persistentKeyValueStore(deduplicationStore),
                 Serdes.String(),
-                StreamUtils.AvroSerde()
+                StreamUtils.avroSerde()
         );
         builder.addStateStore(deduplicationStoreBuilder);
 

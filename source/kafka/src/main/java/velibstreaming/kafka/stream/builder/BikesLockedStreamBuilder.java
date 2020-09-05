@@ -22,11 +22,11 @@ public class BikesLockedStreamBuilder {
                 .advanceBy(Duration.ofHours(1))
                 .grace(Duration.ofMinutes(2));
 
-        var materialized = Materialized.<String, AvroBikesLocked, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.AvroSerde())
+        var materialized = Materialized.<String, AvroBikesLocked, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.avroSerde())
                 .withRetention(Duration.ofDays(3));
 
         return hourlyStatsStream
-                .groupByKey(Grouped.with(Serdes.String(), StreamUtils.AvroSerde()))
+                .groupByKey(Grouped.with(Serdes.String(), StreamUtils.avroSerde()))
                 .windowedBy(twoDaysWindow)
                 .aggregate(AvroBikesLocked::new,
                         ComputeBikesLockedEstimation(),

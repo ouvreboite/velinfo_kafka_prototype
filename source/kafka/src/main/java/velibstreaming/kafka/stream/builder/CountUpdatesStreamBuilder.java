@@ -17,7 +17,7 @@ public class CountUpdatesStreamBuilder {
         final StoreBuilder<KeyValueStore<String, AvroBicycleCount>> deduplicationStoreBuilder = Stores.keyValueStoreBuilder(
                 Stores.persistentKeyValueStore(deduplicationStore),
                 Serdes.String(),
-                StreamUtils.AvroSerde()
+                StreamUtils.avroSerde()
         );
         builder.addStateStore(deduplicationStoreBuilder);
 
