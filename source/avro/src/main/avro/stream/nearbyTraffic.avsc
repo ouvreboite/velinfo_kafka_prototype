@@ -4,6 +4,11 @@
   "namespace": "velibstreaming.avro.record.stream",
   "fields": [
     {
+      "name" : "stationCode",
+      "type" : ["null", "string"],
+      "default": null
+    },
+    {
       "name": "totalTraffic",
       "type" : "int",
       "default": 0

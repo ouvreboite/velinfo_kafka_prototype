@@ -40,6 +40,7 @@ public class DailyStationNearbyTrafficStreamBuilder {
 
     private Aggregator<String, AvroBicycleCount, AvroNearbyTraffic> ComputeTraffic() {
         return (stationCode, count, traffic) -> {
+            traffic.setStationCode(stationCode);
             traffic.getCounts().add(count);
             traffic.setTotalTraffic(traffic.getTotalTraffic()+count.getCount());
             return traffic;

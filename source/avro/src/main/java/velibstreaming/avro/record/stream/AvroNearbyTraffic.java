@@ -14,8 +14,8 @@ import org.apache.avro.message.SchemaStore;
 
 @org.apache.avro.specific.AvroGenerated
 public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = 5975983724061383416L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroNearbyTraffic\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"totalTraffic\",\"type\":\"int\",\"default\":0},{\"name\":\"periodStart\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodEnd\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"counts\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}}]}},\"default\":[]}]}");
+  private static final long serialVersionUID = -8023782286365696253L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"AvroNearbyTraffic\",\"namespace\":\"velibstreaming.avro.record.stream\",\"fields\":[{\"name\":\"stationCode\",\"type\":[\"null\",{\"type\":\"string\",\"avro.java.string\":\"String\"}],\"default\":null},{\"name\":\"totalTraffic\",\"type\":\"int\",\"default\":0},{\"name\":\"periodStart\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"periodEnd\",\"type\":[\"null\",\"long\"],\"default\":null,\"logicalType\":\"local-timestamp-millis\"},{\"name\":\"counts\",\"type\":{\"type\":\"array\",\"items\":{\"type\":\"record\",\"name\":\"AvroBicycleCount\",\"namespace\":\"velibstreaming.avro.record.source\",\"fields\":[{\"name\":\"counterId\",\"type\":{\"type\":\"string\",\"avro.java.string\":\"String\"}},{\"name\":\"count\",\"type\":\"int\"},{\"name\":\"countTimestamp\",\"type\":\"long\",\"logicalType\":\"timestamp-millis\"},{\"name\":\"coordinates\",\"type\":{\"type\":\"record\",\"name\":\"AvroCoordinates\",\"fields\":[{\"name\":\"latitude\",\"type\":\"double\"},{\"name\":\"longitude\",\"type\":\"double\"}]}}]}},\"default\":[]}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -71,6 +71,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
     return DECODER.decode(b);
   }
 
+  @Deprecated public java.lang.String stationCode;
   @Deprecated public int totalTraffic;
   @Deprecated public java.lang.Long periodStart;
   @Deprecated public java.lang.Long periodEnd;
@@ -85,12 +86,14 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
 
   /**
    * All-args constructor.
+   * @param stationCode The new value for stationCode
    * @param totalTraffic The new value for totalTraffic
    * @param periodStart The new value for periodStart
    * @param periodEnd The new value for periodEnd
    * @param counts The new value for counts
    */
-  public AvroNearbyTraffic(java.lang.Integer totalTraffic, java.lang.Long periodStart, java.lang.Long periodEnd, java.util.List<velibstreaming.avro.record.source.AvroBicycleCount> counts) {
+  public AvroNearbyTraffic(java.lang.String stationCode, java.lang.Integer totalTraffic, java.lang.Long periodStart, java.lang.Long periodEnd, java.util.List<velibstreaming.avro.record.source.AvroBicycleCount> counts) {
+    this.stationCode = stationCode;
     this.totalTraffic = totalTraffic;
     this.periodStart = periodStart;
     this.periodEnd = periodEnd;
@@ -102,10 +105,11 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return totalTraffic;
-    case 1: return periodStart;
-    case 2: return periodEnd;
-    case 3: return counts;
+    case 0: return stationCode;
+    case 1: return totalTraffic;
+    case 2: return periodStart;
+    case 3: return periodEnd;
+    case 4: return counts;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -114,12 +118,30 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: totalTraffic = (java.lang.Integer)value$; break;
-    case 1: periodStart = (java.lang.Long)value$; break;
-    case 2: periodEnd = (java.lang.Long)value$; break;
-    case 3: counts = (java.util.List<velibstreaming.avro.record.source.AvroBicycleCount>)value$; break;
+    case 0: stationCode = value$ != null ? value$.toString() : null; break;
+    case 1: totalTraffic = (java.lang.Integer)value$; break;
+    case 2: periodStart = (java.lang.Long)value$; break;
+    case 3: periodEnd = (java.lang.Long)value$; break;
+    case 4: counts = (java.util.List<velibstreaming.avro.record.source.AvroBicycleCount>)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
+  }
+
+  /**
+   * Gets the value of the 'stationCode' field.
+   * @return The value of the 'stationCode' field.
+   */
+  public java.lang.String getStationCode() {
+    return stationCode;
+  }
+
+
+  /**
+   * Sets the value of the 'stationCode' field.
+   * @param value the value to set.
+   */
+  public void setStationCode(java.lang.String value) {
+    this.stationCode = value;
   }
 
   /**
@@ -231,6 +253,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<AvroNearbyTraffic>
     implements org.apache.avro.data.RecordBuilder<AvroNearbyTraffic> {
 
+    private java.lang.String stationCode;
     private int totalTraffic;
     private java.lang.Long periodStart;
     private java.lang.Long periodEnd;
@@ -247,21 +270,25 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
      */
     private Builder(velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.totalTraffic)) {
-        this.totalTraffic = data().deepCopy(fields()[0].schema(), other.totalTraffic);
+      if (isValidValue(fields()[0], other.stationCode)) {
+        this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
         fieldSetFlags()[0] = other.fieldSetFlags()[0];
       }
-      if (isValidValue(fields()[1], other.periodStart)) {
-        this.periodStart = data().deepCopy(fields()[1].schema(), other.periodStart);
+      if (isValidValue(fields()[1], other.totalTraffic)) {
+        this.totalTraffic = data().deepCopy(fields()[1].schema(), other.totalTraffic);
         fieldSetFlags()[1] = other.fieldSetFlags()[1];
       }
-      if (isValidValue(fields()[2], other.periodEnd)) {
-        this.periodEnd = data().deepCopy(fields()[2].schema(), other.periodEnd);
+      if (isValidValue(fields()[2], other.periodStart)) {
+        this.periodStart = data().deepCopy(fields()[2].schema(), other.periodStart);
         fieldSetFlags()[2] = other.fieldSetFlags()[2];
       }
-      if (isValidValue(fields()[3], other.counts)) {
-        this.counts = data().deepCopy(fields()[3].schema(), other.counts);
+      if (isValidValue(fields()[3], other.periodEnd)) {
+        this.periodEnd = data().deepCopy(fields()[3].schema(), other.periodEnd);
         fieldSetFlags()[3] = other.fieldSetFlags()[3];
+      }
+      if (isValidValue(fields()[4], other.counts)) {
+        this.counts = data().deepCopy(fields()[4].schema(), other.counts);
+        fieldSetFlags()[4] = other.fieldSetFlags()[4];
       }
     }
 
@@ -271,22 +298,66 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
      */
     private Builder(velibstreaming.avro.record.stream.AvroNearbyTraffic other) {
       super(SCHEMA$);
-      if (isValidValue(fields()[0], other.totalTraffic)) {
-        this.totalTraffic = data().deepCopy(fields()[0].schema(), other.totalTraffic);
+      if (isValidValue(fields()[0], other.stationCode)) {
+        this.stationCode = data().deepCopy(fields()[0].schema(), other.stationCode);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.periodStart)) {
-        this.periodStart = data().deepCopy(fields()[1].schema(), other.periodStart);
+      if (isValidValue(fields()[1], other.totalTraffic)) {
+        this.totalTraffic = data().deepCopy(fields()[1].schema(), other.totalTraffic);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.periodEnd)) {
-        this.periodEnd = data().deepCopy(fields()[2].schema(), other.periodEnd);
+      if (isValidValue(fields()[2], other.periodStart)) {
+        this.periodStart = data().deepCopy(fields()[2].schema(), other.periodStart);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.counts)) {
-        this.counts = data().deepCopy(fields()[3].schema(), other.counts);
+      if (isValidValue(fields()[3], other.periodEnd)) {
+        this.periodEnd = data().deepCopy(fields()[3].schema(), other.periodEnd);
         fieldSetFlags()[3] = true;
       }
+      if (isValidValue(fields()[4], other.counts)) {
+        this.counts = data().deepCopy(fields()[4].schema(), other.counts);
+        fieldSetFlags()[4] = true;
+      }
+    }
+
+    /**
+      * Gets the value of the 'stationCode' field.
+      * @return The value.
+      */
+    public java.lang.String getStationCode() {
+      return stationCode;
+    }
+
+
+    /**
+      * Sets the value of the 'stationCode' field.
+      * @param value The value of 'stationCode'.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder setStationCode(java.lang.String value) {
+      validate(fields()[0], value);
+      this.stationCode = value;
+      fieldSetFlags()[0] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'stationCode' field has been set.
+      * @return True if the 'stationCode' field has been set, false otherwise.
+      */
+    public boolean hasStationCode() {
+      return fieldSetFlags()[0];
+    }
+
+
+    /**
+      * Clears the value of the 'stationCode' field.
+      * @return This builder.
+      */
+    public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder clearStationCode() {
+      stationCode = null;
+      fieldSetFlags()[0] = false;
+      return this;
     }
 
     /**
@@ -304,9 +375,9 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder setTotalTraffic(int value) {
-      validate(fields()[0], value);
+      validate(fields()[1], value);
       this.totalTraffic = value;
-      fieldSetFlags()[0] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -315,7 +386,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'totalTraffic' field has been set, false otherwise.
       */
     public boolean hasTotalTraffic() {
-      return fieldSetFlags()[0];
+      return fieldSetFlags()[1];
     }
 
 
@@ -324,7 +395,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder clearTotalTraffic() {
-      fieldSetFlags()[0] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -343,9 +414,9 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder setPeriodStart(java.lang.Long value) {
-      validate(fields()[1], value);
+      validate(fields()[2], value);
       this.periodStart = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -354,7 +425,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'periodStart' field has been set, false otherwise.
       */
     public boolean hasPeriodStart() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[2];
     }
 
 
@@ -364,7 +435,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder clearPeriodStart() {
       periodStart = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -383,9 +454,9 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder setPeriodEnd(java.lang.Long value) {
-      validate(fields()[2], value);
+      validate(fields()[3], value);
       this.periodEnd = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -394,7 +465,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'periodEnd' field has been set, false otherwise.
       */
     public boolean hasPeriodEnd() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[3];
     }
 
 
@@ -404,7 +475,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder clearPeriodEnd() {
       periodEnd = null;
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[3] = false;
       return this;
     }
 
@@ -423,9 +494,9 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return This builder.
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder setCounts(java.util.List<velibstreaming.avro.record.source.AvroBicycleCount> value) {
-      validate(fields()[3], value);
+      validate(fields()[4], value);
       this.counts = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[4] = true;
       return this;
     }
 
@@ -434,7 +505,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       * @return True if the 'counts' field has been set, false otherwise.
       */
     public boolean hasCounts() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[4];
     }
 
 
@@ -444,7 +515,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       */
     public velibstreaming.avro.record.stream.AvroNearbyTraffic.Builder clearCounts() {
       counts = null;
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[4] = false;
       return this;
     }
 
@@ -453,10 +524,11 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
     public AvroNearbyTraffic build() {
       try {
         AvroNearbyTraffic record = new AvroNearbyTraffic();
-        record.totalTraffic = fieldSetFlags()[0] ? this.totalTraffic : (java.lang.Integer) defaultValue(fields()[0]);
-        record.periodStart = fieldSetFlags()[1] ? this.periodStart : (java.lang.Long) defaultValue(fields()[1]);
-        record.periodEnd = fieldSetFlags()[2] ? this.periodEnd : (java.lang.Long) defaultValue(fields()[2]);
-        record.counts = fieldSetFlags()[3] ? this.counts : (java.util.List<velibstreaming.avro.record.source.AvroBicycleCount>) defaultValue(fields()[3]);
+        record.stationCode = fieldSetFlags()[0] ? this.stationCode : (java.lang.String) defaultValue(fields()[0]);
+        record.totalTraffic = fieldSetFlags()[1] ? this.totalTraffic : (java.lang.Integer) defaultValue(fields()[1]);
+        record.periodStart = fieldSetFlags()[2] ? this.periodStart : (java.lang.Long) defaultValue(fields()[2]);
+        record.periodEnd = fieldSetFlags()[3] ? this.periodEnd : (java.lang.Long) defaultValue(fields()[3]);
+        record.counts = fieldSetFlags()[4] ? this.counts : (java.util.List<velibstreaming.avro.record.source.AvroBicycleCount>) defaultValue(fields()[4]);
         return record;
       } catch (org.apache.avro.AvroMissingFieldException e) {
         throw e;
@@ -489,6 +561,14 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
   @Override public void customEncode(org.apache.avro.io.Encoder out)
     throws java.io.IOException
   {
+    if (this.stationCode == null) {
+      out.writeIndex(0);
+      out.writeNull();
+    } else {
+      out.writeIndex(1);
+      out.writeString(this.stationCode);
+    }
+
     out.writeInt(this.totalTraffic);
 
     if (this.periodStart == null) {
@@ -527,6 +607,13 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
   {
     org.apache.avro.Schema.Field[] fieldOrder = in.readFieldOrderIfDiff();
     if (fieldOrder == null) {
+      if (in.readIndex() != 1) {
+        in.readNull();
+        this.stationCode = null;
+      } else {
+        this.stationCode = in.readString();
+      }
+
       this.totalTraffic = in.readInt();
 
       if (in.readIndex() != 1) {
@@ -562,13 +649,22 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
       }
 
     } else {
-      for (int i = 0; i < 4; i++) {
+      for (int i = 0; i < 5; i++) {
         switch (fieldOrder[i].pos()) {
         case 0:
-          this.totalTraffic = in.readInt();
+          if (in.readIndex() != 1) {
+            in.readNull();
+            this.stationCode = null;
+          } else {
+            this.stationCode = in.readString();
+          }
           break;
 
         case 1:
+          this.totalTraffic = in.readInt();
+          break;
+
+        case 2:
           if (in.readIndex() != 1) {
             in.readNull();
             this.periodStart = null;
@@ -577,7 +673,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
           }
           break;
 
-        case 2:
+        case 3:
           if (in.readIndex() != 1) {
             in.readNull();
             this.periodEnd = null;
@@ -586,7 +682,7 @@ public class AvroNearbyTraffic extends org.apache.avro.specific.SpecificRecordBa
           }
           break;
 
-        case 3:
+        case 4:
           long size0 = in.readArrayStart();
           java.util.List<velibstreaming.avro.record.source.AvroBicycleCount> a0 = this.counts;
           if (a0 == null) {
