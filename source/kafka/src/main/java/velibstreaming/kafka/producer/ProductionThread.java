@@ -50,7 +50,7 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
     }
 
     public ProductionThread<T,F,A> withParameter(String parameter, Supplier<String> valueSupplier){
-        this.client.withParameter(parameter, valueSupplier.get());
+        this.client.withParameter(parameter, valueSupplier);
         return this;
     }
 }

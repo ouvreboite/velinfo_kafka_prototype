@@ -9,6 +9,7 @@ import velibstreaming.opendata.dto.OpenDataDto;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 public abstract class OpenDataClient<Data extends OpenDataDto> {
     public static final String ROW_COUNT_PARAMETER = "rows";
@@ -17,7 +18,7 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
 
     private final Class<Data> dataClass;
     private final String urlPath;
-    private final Map<String, String> parameters;
+    private final Map<String, Supplier<String>> parameters;
     private final Retry retry;
 
     public OpenDataClient(Class<Data> dataClass, String datasetName){
@@ -31,8 +32,13 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
         this.withParameter(ROW_COUNT_PARAMETER, ROW_COUNT_PARAMETER_MAX_VALUE);
     }
 
+    public OpenDataClient<Data> withParameter(String parameter, Supplier<String> valueSupplier){
+        this.parameters.put(parameter, valueSupplier);
+        return this;
+    }
+
     public OpenDataClient<Data> withParameter(String parameter, Object value){
-        this.parameters.put(parameter, value.toString());
+        this.parameters.put(parameter, value::toString);
         return this;
     }
 
@@ -55,7 +61,7 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
 
     private String getCompletePath() {
         String parametersString = parameters.entrySet().stream()
-                .map(e -> "&"+e.getKey() + "=" + e.getValue())
+                .map(e -> "&"+e.getKey() + "=" + e.getValue().get())
                 .reduce((p1, p2) -> p1 + p2)
                 .orElse("");
         return urlPath + parametersString;
