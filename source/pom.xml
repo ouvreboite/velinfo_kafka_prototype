@@ -14,6 +14,7 @@
         <module>webapp</module>
         <module>properties</module>
         <module>kafka</module>
+        <module>repository</module>
     </modules>
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
