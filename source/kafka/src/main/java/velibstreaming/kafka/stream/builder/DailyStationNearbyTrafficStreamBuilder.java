@@ -20,7 +20,7 @@ public class DailyStationNearbyTrafficStreamBuilder {
                 .of(Duration.ofDays(1))
                 .grace(Duration.ofHours(12));
 
-        var materializedHour = Materialized.<String, AvroNearbyTraffic, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.avroSerde())
+        var materialized = Materialized.<String, AvroNearbyTraffic, WindowStore<Bytes, byte[]>>with(Serdes.String(), StreamUtils.avroSerde())
                 .withRetention(Duration.ofDays(3));
 
         return stationNearbyCountsStream
@@ -28,7 +28,7 @@ public class DailyStationNearbyTrafficStreamBuilder {
                 .windowedBy(dayWindow)
                 .aggregate(() -> AvroNearbyTraffic.newBuilder().build(),
                         ComputeTraffic(),
-                        materializedHour)
+                        materialized)
                 .suppress(Suppressed.untilWindowCloses(unbounded()))
                 .toStream()
                 .map((windowKey, stationStats) -> {
