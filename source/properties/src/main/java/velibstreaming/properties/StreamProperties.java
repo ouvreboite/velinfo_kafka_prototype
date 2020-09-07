@@ -37,6 +37,9 @@ public final class StreamProperties {
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
+    private final String databaseUrl;
+    private final String databaseUser;
+    private final String databasePassword;
 
     private StreamProperties() throws IOException, IllegalAccessException {
         var props = new Properties();
@@ -59,6 +62,9 @@ public final class StreamProperties {
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");
+        this.databaseUrl = props.getProperty("database.url");
+        this.databaseUser = props.getProperty("database.user");
+        this.databasePassword = props.getProperty("database.password");
 
         checkNotEmpty();
     }
@@ -69,6 +75,5 @@ public final class StreamProperties {
             if(field.get(this) == null)
                 throw new IllegalArgumentException("No value for property "+field.getName());
         }
-
     }
 }
