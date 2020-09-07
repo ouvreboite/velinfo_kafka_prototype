@@ -28,18 +28,11 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
 
     @Override
     public AvroStationUpdate transform(final String stationCode, final AvroStationUpdate update) {
-
         var previous = deduplicationStore.get(stationCode);
-        if(previous == null || !same(previous, update)){
-            deduplicationStore.put(stationCode, update);
-            return update;
-        }
-
-        if(lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
+        if(same(previous, update) && lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
             return null;
 
         mergeWithPreviousUpdate(update, previous);
-
         deduplicationStore.put(stationCode, update);
         return update;
     }
@@ -66,6 +59,8 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
     }
 
     private boolean same(AvroStationUpdate update1, AvroStationUpdate update2) {
+        if(update1 == null || update2 == null)
+            return false;
         return update1.getElectricBikesAtStation() == update2.getElectricBikesAtStation()
                 && update1.getMechanicalBikesAtStation() == update2.getMechanicalBikesAtStation()
                 && update1.getIsRenting() == update2.getIsRenting()
