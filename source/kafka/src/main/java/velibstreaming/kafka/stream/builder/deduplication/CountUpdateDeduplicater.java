@@ -4,10 +4,9 @@ import org.apache.kafka.streams.kstream.ValueTransformerWithKey;
 import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
 import velibstreaming.avro.record.source.AvroBicycleCount;
+import velibstreaming.properties.DateTimeUtils;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class CountUpdateDeduplicater implements ValueTransformerWithKey<String, AvroBicycleCount, AvroBicycleCount> {
 
@@ -27,7 +26,7 @@ public class CountUpdateDeduplicater implements ValueTransformerWithKey<String, 
 
     @Override
     public AvroBicycleCount transform(final String counterId, final AvroBicycleCount count) {
-        LocalDateTime countDateTime = LocalDateTime.ofInstant(Instant.ofEpochMilli(count.getCountTimestamp()), ZoneId.of("Europe/Paris"));
+        LocalDateTime countDateTime = DateTimeUtils.localDateTime(count.getCountTimestamp());
         String key = counterId+"_"+countDateTime.getHour();
 
         AvroBicycleCount previousCountForSameHour = deduplicationStore.get(key);

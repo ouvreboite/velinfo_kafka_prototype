@@ -4,10 +4,9 @@ import org.apache.kafka.streams.kstream.ValueTransformerWithKey;
 import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
 import velibstreaming.avro.record.stream.AvroStationUpdate;
+import velibstreaming.properties.DateTimeUtils;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 
 public class StationUpdateDeduplicater implements ValueTransformerWithKey<String, AvroStationUpdate, AvroStationUpdate> {
@@ -53,8 +52,8 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
     }
 
     private boolean lessThan15MinutesDiff(long beforeTimestampmillis, long afterTimestampmillis) {
-        LocalDateTime before = LocalDateTime.ofInstant(Instant.ofEpochMilli(beforeTimestampmillis), ZoneId.systemDefault());
-        LocalDateTime after = LocalDateTime.ofInstant(Instant.ofEpochMilli(afterTimestampmillis), ZoneId.systemDefault());
+        LocalDateTime before = DateTimeUtils.localDateTime(beforeTimestampmillis);
+        LocalDateTime after = DateTimeUtils.localDateTime(afterTimestampmillis);
         return before.until(after, ChronoUnit.MINUTES) < 15;
     }
 
