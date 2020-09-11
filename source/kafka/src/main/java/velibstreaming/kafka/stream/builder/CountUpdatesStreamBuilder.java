@@ -8,7 +8,7 @@ import org.apache.kafka.streams.state.StoreBuilder;
 import org.apache.kafka.streams.state.Stores;
 import velibstreaming.avro.record.source.AvroBicycleCount;
 import velibstreaming.kafka.stream.StreamUtils;
-import velibstreaming.kafka.stream.builder.deduplication.CountUpdateDeduplicater;
+import velibstreaming.kafka.stream.builder.deduplication.CountUpdateDeduplicator;
 
 public class CountUpdatesStreamBuilder {
 
@@ -22,7 +22,7 @@ public class CountUpdatesStreamBuilder {
         builder.addStateStore(deduplicationStoreBuilder);
 
         return countsStream
-                .transformValues(() -> new CountUpdateDeduplicater(deduplicationStore), deduplicationStore)
+                .transformValues(() -> new CountUpdateDeduplicator(deduplicationStore), deduplicationStore)
                 .filter((k, v) -> v != null);
     }
 }

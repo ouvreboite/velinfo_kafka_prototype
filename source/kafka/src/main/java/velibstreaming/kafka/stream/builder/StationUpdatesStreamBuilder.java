@@ -10,7 +10,7 @@ import org.apache.kafka.streams.state.Stores;
 import velibstreaming.avro.record.source.AvroStationAvailability;
 import velibstreaming.avro.record.stream.AvroStationUpdate;
 import velibstreaming.kafka.stream.StreamUtils;
-import velibstreaming.kafka.stream.builder.deduplication.StationUpdateDeduplicater;
+import velibstreaming.kafka.stream.builder.deduplication.StationUpdateDeduplicator;
 
 public class StationUpdatesStreamBuilder {
 
@@ -25,7 +25,7 @@ public class StationUpdatesStreamBuilder {
 
         return availabilityStream
                 .mapValues(mapToStationUpdate())
-                .transformValues(() -> new StationUpdateDeduplicater(deduplicationStore), deduplicationStore)
+                .transformValues(() -> new StationUpdateDeduplicator(deduplicationStore), deduplicationStore)
                 .filter((k, v) -> v != null);
     }
 

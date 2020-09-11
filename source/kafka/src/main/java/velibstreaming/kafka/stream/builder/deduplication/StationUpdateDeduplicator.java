@@ -9,12 +9,12 @@ import velibstreaming.properties.DateTimeUtils;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-public class StationUpdateDeduplicater implements ValueTransformerWithKey<String, AvroStationUpdate, AvroStationUpdate> {
+public class StationUpdateDeduplicator implements ValueTransformerWithKey<String, AvroStationUpdate, AvroStationUpdate> {
 
     private KeyValueStore<String, AvroStationUpdate> deduplicationStore;
     private final String storeName;
 
-    public StationUpdateDeduplicater(final String storeName) {
+    public StationUpdateDeduplicator(final String storeName) {
         this.storeName = storeName;
     }
 
@@ -28,20 +28,23 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
     @Override
     public AvroStationUpdate transform(final String stationCode, final AvroStationUpdate update) {
         var previous = deduplicationStore.get(stationCode);
-        if(same(previous, update) && lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
-            return null;
+        if(previous == null){
+            deduplicationStore.put(stationCode, update);
+            return update;
+        }
 
-        mergeWithPreviousUpdate(update, previous);
+        if(same(previous, update)){
+            if(lessThan15MinutesDiff(previous.getLoadTimestamp(), update.getLoadTimestamp()))
+                return null;
+            else
+                computeLastMovement(update, previous);
+        }
+        computeDiffs(update, previous);
         deduplicationStore.put(stationCode, update);
         return update;
     }
 
-    private void mergeWithPreviousUpdate(AvroStationUpdate newUpdate, AvroStationUpdate previous) {
-        long lastMovement = previous.getLastMovementTimestamp() == null ?
-                previous.getLoadTimestamp() :
-                previous.getLastMovementTimestamp();
-        newUpdate.setLastMovementTimestamp(lastMovement);
-
+    private void computeDiffs(AvroStationUpdate newUpdate, AvroStationUpdate previous) {
         int mechanicalDiff = newUpdate.getMechanicalBikesAtStation() - previous.getMechanicalBikesAtStation();
         newUpdate.setMechanicalBikesRented(mechanicalDiff < 0 ? -mechanicalDiff : 0);
         newUpdate.setMechanicalBikesReturned(mechanicalDiff > 0 ? mechanicalDiff : 0);
@@ -49,6 +52,13 @@ public class StationUpdateDeduplicater implements ValueTransformerWithKey<String
         int electricDiff = newUpdate.getElectricBikesAtStation() - previous.getElectricBikesAtStation();
         newUpdate.setElectricBikesRented(electricDiff < 0 ? -electricDiff : 0);
         newUpdate.setElectricBikesReturned(electricDiff > 0 ? electricDiff : 0);
+    }
+
+    private void computeLastMovement(AvroStationUpdate newUpdate, AvroStationUpdate previous) {
+        long lastMovement = previous.getLastMovementTimestamp() == null ?
+                previous.getLoadTimestamp() :
+                previous.getLastMovementTimestamp();
+        newUpdate.setLastMovementTimestamp(lastMovement);
     }
 
     private boolean lessThan15MinutesDiff(long beforeTimestampmillis, long afterTimestampmillis) {

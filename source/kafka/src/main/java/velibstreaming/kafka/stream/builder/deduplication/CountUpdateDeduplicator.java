@@ -8,12 +8,12 @@ import velibstreaming.properties.DateTimeUtils;
 
 import java.time.LocalDateTime;
 
-public class CountUpdateDeduplicater implements ValueTransformerWithKey<String, AvroBicycleCount, AvroBicycleCount> {
+public class CountUpdateDeduplicator implements ValueTransformerWithKey<String, AvroBicycleCount, AvroBicycleCount> {
 
     private KeyValueStore<String, AvroBicycleCount> deduplicationStore;
     private final String storeName;
 
-    public CountUpdateDeduplicater(final String storeName) {
+    public CountUpdateDeduplicator(final String storeName) {
         this.storeName = storeName;
     }
 
