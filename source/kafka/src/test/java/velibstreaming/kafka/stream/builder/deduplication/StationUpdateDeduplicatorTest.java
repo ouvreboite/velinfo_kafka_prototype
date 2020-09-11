@@ -41,7 +41,7 @@ class StationUpdateDeduplicatorTest {
         var output = deduplicator.transform("a", newStation);
 
         assertEquals(newStation, output, "First occurence of a station should go through");
-        assertNull(output.getLastMovementTimestamp());
+        assertNull(output.getLastChangeTimestamp());
     }
 
     @Test
@@ -82,7 +82,7 @@ class StationUpdateDeduplicatorTest {
         var output = deduplicator.transform("a", sameWithDifferentBikes);
 
         assertEquals(sameWithDifferentBikes, output, "If a station has not the same number of bikes, it should be propagated");
-        assertNull(output.getLastMovementTimestamp());
+        assertNull(output.getLastChangeTimestamp());
     }
 
     @Test
@@ -98,7 +98,7 @@ class StationUpdateDeduplicatorTest {
         var output = deduplicator.transform("a", sameWithDifferentStatus);
 
         assertEquals(sameWithDifferentStatus, output, "If a station has not the same status, it should be propagated");
-        assertNull(output.getLastMovementTimestamp());
+        assertNull(output.getLastChangeTimestamp());
     }
 
     @Test
@@ -129,17 +129,17 @@ class StationUpdateDeduplicatorTest {
         deduplicator.transform("a", newStation);
         var firstStaleOutput = deduplicator.transform("a", same);
 
-        assertEquals(newStation.getLoadTimestamp(), firstStaleOutput.getLastMovementTimestamp(), "When it's the first stale occurrence, the last movement should represent the loadtimestamp of the previous one");
+        assertEquals(newStation.getLoadTimestamp(), firstStaleOutput.getLastChangeTimestamp(), "When it's the first stale occurrence, the last movement should represent the loadtimestamp of the previous one");
 
         var sameLater = AvroStationUpdate.newBuilder(newStation).setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(40))).build();
         var secondStaleOutput = deduplicator.transform("a", sameLater);
 
-        assertEquals(newStation.getLoadTimestamp(), secondStaleOutput.getLastMovementTimestamp(), "Subsequent occurrences should still have the first occurrence loadTimestamp as their lastMovementTimestamp");
+        assertEquals(newStation.getLoadTimestamp(), secondStaleOutput.getLastChangeTimestamp(), "Subsequent occurrences should still have the first occurrence loadTimestamp as their lastChangeTimestamp");
 
         var sameWithDifferentBikes = AvroStationUpdate.newBuilder(newStation).setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(45))).setMechanicalBikesAtStation(5).build();
         var differentOutput = deduplicator.transform("a", sameWithDifferentBikes);
 
-        assertNull(differentOutput.getLastMovementTimestamp(), "When a 'changed' station comes, lastMovementTimestamp should be reset to null");
+        assertNull(differentOutput.getLastChangeTimestamp(), "When a 'changed' station comes, lastChangeTimestamp should be reset to null");
     }
 
     private AvroStationUpdate station(String stationCode, int electric, int mechanical, boolean isWorking, long loadTimestamp){

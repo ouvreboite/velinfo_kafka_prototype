@@ -22,18 +22,18 @@ import static org.mockito.Mockito.when;
 public class LockedStationDetectorTest {
 
     @Test
-    public void isStationLocked_shouldReturnFalse_whenNoLastMovementTimestamp(@Mock HourlyStationStatsRepository repository, @Mock ExpectedActivityCalculator activityCalculator){
+    public void isStationLocked_shouldReturnFalse_whenNolastChangeTimestamp(@Mock HourlyStationStatsRepository repository, @Mock ExpectedActivityCalculator activityCalculator){
         var detector = new LockedStationDetector(repository, activityCalculator);
 
         Instant now = Instant.now();
 
         AvroStationUpdate station = new AvroStationUpdate();
         station.setLoadTimestamp(now.toEpochMilli());
-        station.setLastMovementTimestamp(null);
-        assertFalse(detector.isStationLocked(station), "When no lastMovementTimestamp is provided, station is not locked");
+        station.setLastChangeTimestamp(null);
+        assertFalse(detector.isStationLocked(station), "When no lastChangeTimestamp is provided, station is not locked");
 
-        station.setLastMovementTimestamp(now.toEpochMilli());
-        assertFalse(detector.isStationLocked(station), "When lastMovementTimestamp is same as loadTimestamp, station is not locked");
+        station.setLastChangeTimestamp(now.toEpochMilli());
+        assertFalse(detector.isStationLocked(station), "When lastChangeTimestamp is same as loadTimestamp, station is not locked");
     }
 
     @Test
@@ -44,8 +44,8 @@ public class LockedStationDetectorTest {
 
         AvroStationUpdate station = new AvroStationUpdate();
         station.setLoadTimestamp(DateTimeUtils.timestamp(now));
-        station.setLastMovementTimestamp(DateTimeUtils.timestamp(now.minusHours(12)));
-        assertTrue(detector.isStationLocked(station), "When lastMovementTimestamp is 12 hours old, station is locked");
+        station.setLastChangeTimestamp(DateTimeUtils.timestamp(now.minusHours(12)));
+        assertTrue(detector.isStationLocked(station), "When lastChangeTimestamp is 12 hours old, station is locked");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class LockedStationDetectorTest {
         AvroStationUpdate station = new AvroStationUpdate();
         station.setStationCode("ABC");
         station.setLoadTimestamp(DateTimeUtils.timestamp(now));
-        station.setLastMovementTimestamp(DateTimeUtils.timestamp(nowMinus10h));
+        station.setLastChangeTimestamp(DateTimeUtils.timestamp(nowMinus10h));
 
         var stats = new ArrayList<AvroStationStats>();
         when(repository.getStatsForPast30Days("ABC")).thenReturn(stats);

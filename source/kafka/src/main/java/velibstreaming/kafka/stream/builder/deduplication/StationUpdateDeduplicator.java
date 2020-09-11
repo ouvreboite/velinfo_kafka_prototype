@@ -55,10 +55,10 @@ public class StationUpdateDeduplicator implements ValueTransformerWithKey<String
     }
 
     private void computeLastMovement(AvroStationUpdate newUpdate, AvroStationUpdate previous) {
-        long lastMovement = previous.getLastMovementTimestamp() == null ?
+        long lastMovement = previous.getLastChangeTimestamp() == null ?
                 previous.getLoadTimestamp() :
-                previous.getLastMovementTimestamp();
-        newUpdate.setLastMovementTimestamp(lastMovement);
+                previous.getLastChangeTimestamp();
+        newUpdate.setLastChangeTimestamp(lastMovement);
     }
 
     private boolean lessThan15MinutesDiff(long beforeTimestampmillis, long afterTimestampmillis) {

@@ -21,10 +21,10 @@ public class LockedStationDetector {
     }
 
     public boolean isStationLocked(AvroStationUpdate station){
-        if(station.getLastMovementTimestamp() == null || station.getLastMovementTimestamp() == station.getLoadTimestamp())
+        if(station.getLastChangeTimestamp() == null || station.getLastChangeTimestamp() == station.getLoadTimestamp())
             return false;
 
-        LocalDateTime lastChange = DateTimeUtils.localDateTime(station.getLastMovementTimestamp());
+        LocalDateTime lastChange = DateTimeUtils.localDateTime(station.getLastChangeTimestamp());
         LocalDateTime load = DateTimeUtils.localDateTime(station.getLoadTimestamp());
         if(lastChange.until(load, ChronoUnit.HOURS) >= 12)
             return true;

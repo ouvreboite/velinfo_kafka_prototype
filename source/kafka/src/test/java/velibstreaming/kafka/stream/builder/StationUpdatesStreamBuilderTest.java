@@ -79,7 +79,7 @@ class StationUpdatesStreamBuilderTest {
 
         List<TestRecord<String, AvroStationUpdate>> records = outputTopic.readRecordsToList();
         assertEquals(1, records.size(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted");
-        assertEquals(firstEmitted.getLoadTimestamp(),records.get(0).getValue().getLastMovementTimestamp(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted and its staleSinceTimestamp should use the loadTimestamp of the first occurrence");
+        assertEquals(firstEmitted.getLoadTimestamp(),records.get(0).getValue().getLastChangeTimestamp(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted and its staleSinceTimestamp should use the loadTimestamp of the first occurrence");
 
         inputTopic.pipeInput("a", newerAvailability);
         assertEquals(0, outputTopic.readRecordsToList().size(), "When the same availability is re-emitted, no new update should be emitted");
@@ -88,7 +88,7 @@ class StationUpdatesStreamBuilderTest {
         inputTopic.pipeInput("a", newerAvailability);
         records = outputTopic.readRecordsToList();
         assertEquals(1, records.size(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted");
-        assertEquals(firstEmitted.getLoadTimestamp(),records.get(0).getValue().getLastMovementTimestamp(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted and its staleSinceTimestamp should use the loadTimestamp of the first occurrence");
+        assertEquals(firstEmitted.getLoadTimestamp(),records.get(0).getValue().getLastChangeTimestamp(), "When the same availability is re-emitted more than 15 minutes later, a new update should be emitted and its staleSinceTimestamp should use the loadTimestamp of the first occurrence");
 
     }
 

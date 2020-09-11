@@ -15,14 +15,14 @@ public class StationsStatusStreamBuilder {
         return stationUpdatesStream.mapValues((s, update) -> {
             StationStatus officialStatus = GetOfficialStatus(update);
             if(officialStatus != StationStatus.OK){
-                return new AvroStationStatus(update.getStationCode(), officialStatus, update.getLastMovementTimestamp());
+                return new AvroStationStatus(update.getStationCode(), officialStatus, update.getLastChangeTimestamp());
             }
 
             if(lockedStationDetector.isStationLocked(update)){
-                return new AvroStationStatus(update.getStationCode(), StationStatus.LOCKED, update.getLastMovementTimestamp());
+                return new AvroStationStatus(update.getStationCode(), StationStatus.LOCKED, update.getLastChangeTimestamp());
             }
 
-            return new AvroStationStatus(update.getStationCode(), StationStatus.OK, update.getLastMovementTimestamp());
+            return new AvroStationStatus(update.getStationCode(), StationStatus.OK, update.getLastChangeTimestamp());
         });
     }
 
