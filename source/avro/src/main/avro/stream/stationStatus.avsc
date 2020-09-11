@@ -13,7 +13,7 @@
       {
         "type": "enum",
         "name": "StationStatus",
-        "symbols" : ["OK", "NOT_INSTALLED", "NOT_RENTING", "NOT_RETURNING", "NOT_RENTING_NOR_RETURNING", "STALE"]
+        "symbols" : ["OK", "NOT_INSTALLED", "NOT_RENTING", "NOT_RETURNING", "NOT_RENTING_NOR_RETURNING", "LOCKED"]
       },
       "default": "OK"
     },
