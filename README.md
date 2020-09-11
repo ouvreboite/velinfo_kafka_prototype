@@ -16,7 +16,8 @@ Two dataset are used :
 * [velib-disponibilite-en-temps-reel](https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel) : the current (near real time) status of each station (available bicycles of each type, status of the station, geo-coordinates)
 * [comptage-velo-donnees-compteurs](https://opendata.paris.fr/explore/dataset/comptage-velo-donnees-compteurs) : the hourly number of bicycle counted by each existing monitoring site for the past 13 months and the geo-coordinates of the sites
 
-![Container diagram](docs/plantuml/container_diagram.svg)
+![Web Application container diagram](docs/plantuml/web_application_c4_container.svg)
+![Station Data Processing container diagram](docs/plantuml/station_data_processing_c4_container.svg)
 
 ## Kafka topology
 

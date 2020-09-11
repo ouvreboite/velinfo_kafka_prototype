@@ -1,0 +1,37 @@
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/tomcat.puml
+!includeurl SPRITESURL/kafka.puml
+!includeurl SPRITESURL/desktop.puml
+!includeurl SPRITESURL/postgresql.puml
+
+skinparam TitleFontSize 30
+LAYOUT_WITH_LEGEND()
+
+title
+<b>Web Application</b>
+(C4 Container diagram)
+end title
+
+Person(user, User, "Someone wanting to get the updated Velib's stations status")
+
+ContainerDb(statisticsDb, "Statistics Database", "PostgreSQL", "<$postgresql>\n Store the hourly usage statistics and daily traffic statistics of each station")
+ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>\n Store the incoming station and traffic data, and the processed station status and statistics")
+    
+System_Boundary(c2, "Web application") {
+    Container(htmlApplication, "HTML Application", "Javascript, HTML, OpenLayers", "<$desktop>\n Display a map with each station status and the user's location")
+    Container(webApplication, "Web Application", "SpringBoot, Thymeleaf, embedded Tomcat", "<$tomcat>\n Generate and deliver the main page with the current stations status")
+}
+
+System_Ext(openLayers, "OpenLayers", "Provide OpenStreetMap data")
+
+Rel_R(user, webApplication, "1.Connect to web address", "HTTP")
+Rel_R(user, htmlApplication, "2.View stations status", "HTTP")
+
+Rel(webApplication, htmlApplication, "Delivers generated page", "HTTP")
+Rel(htmlApplication, openLayers, "Get the map backgrounds", "HTTP")
+
+Rel(webApplication, kafkaCluster, "Consume the processed stations data")
+Rel(webApplication, statisticsDb, "Fetch statistics data")
+@enduml
