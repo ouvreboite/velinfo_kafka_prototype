@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="928px" preserveAspectRatio="none" style="width:1098px;height:928px;" version="1.1" viewBox="0 0 1098 928" width="1098px" zoomAndPan="magnify"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="30" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="280" x="400" y="27.8467">Web Application</text><text fill="#000000" font-family="sans-serif" font-size="30" lengthAdjust="spacingAndGlyphs" textLength="362" x="359" y="62.7686">(C4 Container diagram)</text><!--MD5=[a79645e74fdddf168a098e501fbfe8e0]
+cluster c2--><rect fill="#FFFFFF" height="528.5" style="stroke: #444444; stroke-width: 1.0; stroke-dasharray: 7.0,7.0;" width="252" x="359" y="76.8438"/><text fill="#444444" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="147" x="411.5" y="93.6953">Web application</text><text fill="#444444" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="64" x="453" y="108.6074">[System]</text><!--MD5=[ff3eef49b9d9c410aa00500b6a6853a9]
+entity htmlApplication--><rect fill="#438DD5" height="165.7813" style="stroke: #3C7FC0; stroke-width: 1.5;" width="216" x="375" y="423.3438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="158" x="404" y="448.1953">HTML Application</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="189" x="388.5" y="463.1074">[Javascript, HTML, OpenLayers]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="485" y="478.9326"/><image height="48" width="48" x="459" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAABJklEQVR4Xu2YMQrCQBBFc7ccwAt4AC/gATyAVlbBzsLCMp2VpBNsLEQiCAEJBATFCIog6OBC1JnIrAvZNTCfV4Tshn0MySRZz+8u/wqPnnKLCHF8CDUH6yDKwsXeGr1J+lWoE27vLpIerlCIEqH8csNzbWUaH7EQOKqxeXKCYzu0hhu1KNQCC7XHiRobzXbFmAVEiEOEOESIQ4Q4RIhDhDhEiEOEOGooBJ+wcGwNXshJRIhLHYSKXyQnKRFq9Fd4lsXE2RkLAfDA44m2EkRZiRAUCf778dzqg1rxS0gBNxNtX5Sc25mAZehVFKgCEsBCmuD1SYxfQSZCmjtJ9EIdTIQ0bzWzIv0spN+x3ruLPj8L+c8GAYux0P1DHUyEKkWEOESIQ4Q4HtznNYLAerwUAAAAAElFTkSuQmCC" y="482.2344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="173" x="394.5" y="543.2295">Display a map with each</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="196" x="385" y="559.5264">station status and the user'</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="448.5" y="575.8232">s location</text><!--MD5=[898148df37845fdf682dee619cdbf4ac]
+entity webApplication--><rect fill="#438DD5" height="179.75" style="stroke: #3C7FC0; stroke-width: 1.5;" width="220" x="375" y="127.8438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="148" x="411" y="152.6953">Web Application</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="146" x="410" y="167.6074">[SpringBoot, Thymeleaf,</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="119" x="425.5" y="181.5762">embedded Tomcat]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="487" y="197.4014"/><image height="48" width="48" x="461" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACsElEQVR4Xu2YQWpUQRCG525zgFzAA3iBHMADxJUrcefChcvsspLsBDdZiCQgBEIgEIioYAgEnl+mkrLyd73unvElEXnFv5jp16/r76q/qntmsdz5/E9hUQ49LWZCLcyEWvivCW2/Py4H63j25khGJiO09erLMAyHZ7+ev/1aPk2xe3DBK7KNyQi92D0Z7uzl3mk5IQL2p9+u0smTEXr38dwJYZU4RTYYL8ankxGy+Lt9Ov5JzF7vnzHuwDfgUZzJeFznoQj1G7KL60xG6MPhd3XVZ+sRIt+ogUKgPlEfucdxWt6SiH7rJYQC8MFsS78EgK9wjfM3Thle2oSMhLiMpYHxNU5Av/Fpv7VFTWqkFA24j1XDtEiIzKqrPmPN6CUhJEnth7rqs0anRjppeMZgYbNuu1mhiTCUEKunRVSCaV5ZPy6vl6uT8r6vtrEHWVYJEZ4mISaQVlnapCAHSNNKX0qIdcmaDDqIQUnFzYIvxVixVKxKiGIZ01Bz99ZR2LQ+GLH0UqCEllmVEZjOfZuPnp5UejEkhETX+NDFqmaXwGbFlXdFQ0LIlrMPPXsVo+JMTJUUV2SaEzJsfDyRXwtAuh9pzYJRQhuzMSNOxkkKsxIbQ06oEu21zOsIUSKDyr3WkRBaV8V1oxeM6TeFEiq7CILw6zAfcMAIGZFpdSNrdolYL2VyGJVXIgEpMDeV9l1aeVxE3CPk67okHX6OEp50l1BnnD30BK8ipj+EopDTF7zuxpqswyTsq6U2FqdbQvG+V+kTrnc4gfJmHWFXpcqZk4r9llAUQcXHckU9+kgPSEG8OUXznh5xQyj2U5yVK04CdpI2W2hB1zO42Fr9a+HW1MdfgjSltIa7H/kLmxFRrjI5iEJ6GBAnbYyPCWKBWqzlGhh5SkIpZkItzIRamAm18BsVDjl5CwZjBgAAAABJRU5ErkJggg==" y="200.7031"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="180" x="393" y="261.6982">Generate and deliver the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="196" x="385" y="277.9951">main page with the current</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="432" y="294.292">stations status</text><!--MD5=[8fc3522a43f8c7199df5e09e5bb0188e]
+entity user--><rect fill="#08427B" height="151.8125" style="stroke: #073B6F; stroke-width: 1.5;" width="202" x="7" y="141.8438"/><image height="48" width="48" x="84" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAACD0lEQVR4Xu2YoU4EMRCGT+4j8Ai8AhaH4QHgAUjQuFMECUgMIUgwJAgMhgQsAYUiJCiQIBBY+EITsjfTdme6V24v4c8vyGbb+ZjOtN0bNcvjQXmkH83WvYBWto6PLm6v7p7uH1/w2fXD+PBycX1Pv2l3IdDm/vn7x+dXQiAubRzoURa7gRZWd0iGRIiJbOnhnfYBQZNJjNbuyY2eJG8fkDE3bbG4ep6MHUAsgYxmE3nVs6VsBWJSGccsOlFPmLIViMzLOB7pCVO2AtHJMohH7Fh6zqitQK7m0rJvAVYgGcEpe//PLdDz65sM4pF9N7ICcXDKIB5Nv6j7tD0NoSdM2QrU9Gg0ewE1LqBhHR3BBdvj2vapnidjHxD/q6vd7Pvhr31AwcY8eXMTXAKECZZJFXuEq27aLgQK5uLMohCenGGuGewOxSjBvYBqeG6B+Nqiblggdjnc+ZXDy+FNFpFzw76O3UBAROuXh6FoiAcf5g9eTvUgzy0nWg6I8cXHRUpg5bOVBCo+KDpFajOf23GgPme7RSQ+lacIENUgJ6gg1k6HjgOlqnLqip4tEuhv0hNEMXUD0clyXE3p6pZA0S2nnvTlXwLJEZWlb7cTQH1+USgTN4VhAenm/wea1OCAOmqo6fE1WCb9WSKBah+rbUWPWAmE2Rvk0ApiB45eOyNAzU8xcTvj8KvkKEoOaIYeHNA3ZuygAvFMUO0AAAAASUVORK5CYII=" y="151.8438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="41" x="87.5" y="214.6953">User</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="110" y="231.4639"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="178" x="17" y="247.7607">Someone wanting to get</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="141" x="35.5" y="264.0576">the updated Velib's</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="106" x="55" y="280.3545">stations status</text><!--MD5=[0b77ce7009a41ff29b6146aac87f819c]
+entity statisticsDb--><path d="M627,428.8438 C627,418.8438 730,418.8438 730,418.8438 C730,418.8438 833,418.8438 833,428.8438 L833,583.625 C833,593.625 730,593.625 730,593.625 C730,593.625 627,593.625 627,583.625 L627,428.8438 " fill="#438DD5" style="stroke: #3C7FC0; stroke-width: 1.5;"/><path d="M627,428.8438 C627,438.8438 730,438.8438 730,438.8438 C730,438.8438 833,438.8438 833,428.8438 " fill="none" style="stroke: #3C7FC0; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="182" x="639" y="457.6953">Statistics Database</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="79" x="690.5" y="472.6074">[PostgreSQL]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="732" y="488.4326"/><image height="48" width="48" x="706" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAADA0lEQVR4Xu2XT2oVQRDGc7c+QC7gAbyAB/AAunIl7ly4cJmdK3EnuHEhEkEISCAgKEZQBGH88T7SVOpP9zwdnoIpPob3eqqrvq6qru45avfe/FM4ikN/FzeEZvifCB0/eHv78fu7Jx/uPzu/8/Ts1qN3USdiQghzJ68/nV58E16dfX3y8iODOJMCnlA4//xj2cnl95/owAAFXvVxCX+Z3uemKAlhDuvWnBW8ogMV/8IIvtF5+OLCjWMW49GjkBMi1M6KFSyyyuenX/yLIAQVTQLmXywLg9FvSQhD3oARbKU+UoE91ZPqs+zoOiE0Dg/CogfZjMLyMBsjqpzOCcWsW8EKFeBHZ6JadoOUYPSeEGKym2lF28qPrhAC7yyvjdDYX5tVWCWYdUEiFdH7foQoHRR4oqN2x3PMD01iQ12r/djiW1vUgxpSeWIaB6iJVqtjhg7KqNG3NNcSiq5zQjRiY/OapPtFh4Md6QIbqOi3ottf0bWj65wQq+/TnKjRuUElxQ1Kmgmem5tusZxQM+twomWtGZSwth4h4mp5V6dHTqhbceLC3qVdL44uNpuWkOykyAlVdV0FoxWEdAbrlU1Z2oGEnFBVEzhIK6x7jYK++qFdTLrhhZxQKxyk9ZtWepfeD3u6FbYKJaF4Fi4FIQIQB60oSJ1QVc5CSShtLbG5LSYplRASNSQ9oy+LklCVBYJhS15uzPtcdHSwyOnNuiTUiqwpSD0kKy9rmjVOljAiVN17dH5pxTyrHuGEnhRdRIwIAffZsGQtX+mImlZEfZqvNiXkgkQSU4Vp4trV2sgdRvQ5dZx9D00INXOMqA4sKHDtOF2MLAMr2vC6rgCoDEI1J9R2Jcyy+oK0z3WMX159ZA0IxZUMsIpQBJzgQYQ6ywGhae+x+E1CEQNCcR8McAhC6WW+wiEIrexAwiEIDS4bEZsRGnwaROUBNiNU3UAGt9UUmxFq2dV22XPPt20JpbeDvQqobUvIHbH8XnPfcNiSUNtxorrB4LQaY2NCf44bQjPcEJrhF3jtvoec/65YAAAAAElFTkSuQmCC" y="491.7344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="162" x="647" y="552.7295">Store the hourly usage</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="182" x="637" y="569.0264">statistics and daily traffic</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="178" x="641" y="585.3232">statistics of each station</text><!--MD5=[a8d0812f293a6a5b0e62bae90d7913fb]
+entity kafkaCluster--><path d="M868,420.8438 C868,410.8438 977,410.8438 977,410.8438 C977,410.8438 1086,410.8438 1086,420.8438 L1086,591.9219 C1086,601.9219 977,601.9219 977,601.9219 C977,601.9219 868,601.9219 868,591.9219 L868,420.8438 " fill="#438DD5" style="stroke: #3C7FC0; stroke-width: 1.5;"/><path d="M868,420.8438 C868,430.8438 977,430.8438 977,430.8438 C977,430.8438 1086,430.8438 1086,420.8438 " fill="none" style="stroke: #3C7FC0; stroke-width: 1.5;"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="124" x="915" y="449.6953">Kafka Cluster</text><text fill="#FFFFFF" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="153" x="900.5" y="464.6074">[Kafka, Schema Registry]</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="979" y="480.4326"/><image height="48" width="48" x="953" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAIAAADYYG7QAAAC0ElEQVR4Xu2YQYrVQBCG5259AC/gAbyAB/AAunIl7ly4cDk7V+JOcONCZARhQAYGBEUFRRDiRwp+yurKS3XmvZknWPyE9zqd1Jfq6upOTtr9t0elk77pZvWPA907/Xh2+WOa7eLLr6evPvV9rqgBoNM3nw3FG3y3Hr7rO29WFejRy0tBEBvFCXt9/r3vv1lVILl/8PzCWu48+fDt529rvPvsvL9km0pA+EuDAZy17zGZSkBLjgVKevVXbVMJ6OgihJQu9Ryikc4ch6ZhFYgKZL4xOISCvTj7Gjr7KWlWD2EVCHHT4Gaa61DolparqZxnA0BtHibiYQ6oRkQidPCBJOF4Bo5q4Wx/z6AxIHT78Xu7e5o3KpieVbnfh7PXnoHsFBbalXP9JUEHAcJ9aD8IEChKIDOGIKRFWgjIPGsk7frbBlWBlAe9WbUE16+401yxrBSJsjL5S0B+7qQWUFKrZHSrAFFn/X2JBw8NYlqWmFz091PdjJZivV4H8mVX64aJYdJw8IO/OkXeQEwx5Jim/5LWgfS4acx9bhVjsFvrQEwN85fWfs2gaaEQjGqfQPzuO4xqHcgvXv1Zn2HXNGQ+S0IhCeXAR4hTPAlpxzFMhd1aB2qu/k5zahMVFKq2GcRgaZRltPg5uEMlIG1hlyyFC8ZTVca0BNRmJh8nb7bTwJnHojOjRlQ4KmB7WzpMuOSOWiVwyd8wEIL2+aQNQjotggaATLp7mqpiDe0H2X6YdgPJcUgXa7wBIK0zPl20DFe+AowB+U0+weiZ/Hwk2yjufmdSWVsGgPq3rSn7HJN2m2pTrNWBQlH2JaB/UaSz75DGcklVIDnQ+40fnXRZJdvoUyzQUglIvsOWSKNTHI6KSkAar+BYoOnOZJtKQHJ8LJ9j/D5fL2J+Q115aS+qBNT+/vRBJvnqku61N6sK1Ba+s/R16IoaAGrH9uH8evQfaE1/AEAlGEQzMetqAAAAAElFTkSuQmCC" y="483.7344"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="194" x="878" y="544.7295">Store the incoming station</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="174" x="888" y="561.0264">and traffic data, and the</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="177" x="886.5" y="577.3232">processed station status</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="96" x="929" y="593.6201">and statistics</text><!--MD5=[a70bea36bce5a8ae57acf2595addf1ec]
+entity openLayers--><rect fill="#999999" height="87.5156" style="stroke: #8A8A8A; stroke-width: 1.5;" width="198" x="384" y="704.8438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="16" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="107" x="429.5" y="729.6953">OpenLayers</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="485" y="746.4639"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="174" x="394" y="762.7607">Provide OpenStreetMap</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="467" y="779.0576">data</text><!--MD5=[5fd4610e0cb4b2c69d18798c14e4ec84]
+link user to webApplication--><path d="M209.029,217.8438 C257.578,217.8438 316.075,217.8438 366.693,217.8438 " fill="none" id="user-to-webApplication" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="374.746,217.8438,366.746,214.8438,366.746,220.8438,374.746,217.8438" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="125" x="227.5" y="183.9824">1.Connect to web</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="59" x="262.5" y="197.9512">address</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="40" x="272" y="211.9199">[HTTP]</text><!--MD5=[86127d1be7a3ed1dd562c40a736f9109]
+link user to htmlApplication--><path d="M206.527,294.1188 C256.368,332.1968 317.127,378.6168 368.98,418.2328 " fill="none" id="user-to-htmlApplication" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="375.583,423.2778,371.0475,416.037,367.4048,420.8046,375.583,423.2778" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="110" x="319" y="349.9824">2.View stations</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="48" x="352" y="363.9512">status</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="40" x="356" y="377.9199">[HTTP]</text><!--MD5=[961580127f5ee6eead62d50a05dd91b4]
+link webApplication to htmlApplication--><path d="M484.378,307.9238 C484.14,341.9878 483.869,380.8448 483.631,415.0238 " fill="none" id="webApplication-to-htmlApplication" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="483.574,423.1488,486.6296,415.1698,480.6298,415.1281,483.574,423.1488" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="140" x="486" y="349.9824">Delivers generated</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="36" x="540" y="363.9512">page</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="40" x="538" y="377.9199">[HTTP]</text><!--MD5=[f85ebf61c77ca7ee4365d73ff476d0ab]
+link htmlApplication to openLayers--><path d="M483,589.4378 C483,624.9128 483,665.3318 483,696.4611 " fill="none" id="htmlApplication-to-openLayers" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="483,704.5738,486,696.5738,480,696.5738,483,704.5738" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="89" x="484.5" y="643.9824">Get the map</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="484" y="657.9512">backgrounds</text><text fill="#666666" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="40" x="511" y="671.9199">[HTTP]</text><!--MD5=[310111efa78a4865b7f8d67257a85765]
+link webApplication to kafkaCluster--><path d="M595.249,249.1548 C657.532,269.0567 735.235,298.6878 798,337.8438 C828.046,356.5878 857.47,380.8428 883.503,405.0448 " fill="none" id="webApplication-to-kafkaCluster" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="889.351,410.5328,885.5717,402.8701,881.4651,407.2445,889.351,410.5328" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="94" x="876.5" y="349.9824">Consume the</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="141" x="853" y="363.9512">processed stations</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="34" x="908.5" y="377.9199">data</text><!--MD5=[e8c715c276da95fd3bccf5d5cf341c49]
+link webApplication to statisticsDb--><path d="M595.273,294.8288 C610.931,308.1618 626.077,322.6648 639,337.8438 C657.727,359.8408 674.264,386.3118 687.926,411.6488 " fill="none" id="webApplication-to-statisticsDb" style="stroke: #666666; stroke-width: 1.0;"/><polygon fill="#666666" points="691.703,418.7598,690.5999,410.2873,685.3009,413.1017,691.703,418.7598" style="stroke: #666666; stroke-width: 1.0;"/><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="115" x="670" y="356.9824">Fetch statistics</text><text fill="#666666" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="34" x="712.5" y="370.9512">data</text><rect fill="#FFFFFF" height="111.7813" rx="5" ry="5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="136" x="935" y="805.3594"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="57" x="941" y="825.3545">Legend</text><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="0" x="1002" y="825.3545"/><rect fill="#08427B" height="16.2969" style="stroke: none; stroke-width: 1.0;" width="124" x="941" y="828.6563"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="945" y="841.6514">person</text><rect fill="#1168BD" height="16.2969" style="stroke: none; stroke-width: 1.0;" width="124" x="941" y="844.9531"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="52" x="945" y="857.9482">system</text><rect fill="#438DD5" height="16.2969" style="stroke: none; stroke-width: 1.0;" width="124" x="941" y="861.25"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="69" x="945" y="874.2451">container</text><rect fill="#686868" height="16.2969" style="stroke: none; stroke-width: 1.0;" width="124" x="941" y="877.5469"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="114" x="945" y="890.542">external person</text><rect fill="#999999" height="16.2969" style="stroke: none; stroke-width: 1.0;" width="124" x="941" y="893.8438"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="116" x="945" y="906.8389">external system</text><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="812.3594" y2="812.3594"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="828.6563" y2="828.6563"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="844.9531" y2="844.9531"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="861.25" y2="861.25"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="877.5469" y2="877.5469"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="893.8438" y2="893.8438"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="1065" y1="910.1406" y2="910.1406"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="941" x2="941" y1="812.3594" y2="910.1406"/><line style="stroke: #FFFFFF; stroke-width: 1.0;" x1="1065" x2="1065" y1="812.3594" y2="910.1406"/><!--MD5=[66e171b3010c609bb9a6f9c86b68ca4c]
+@startuml
+!include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!includeurl SPRITESURL/tomcat.puml
+!includeurl SPRITESURL/kafka.puml
+!includeurl SPRITESURL/desktop.puml
+!includeurl SPRITESURL/postgresql.puml
+
+skinparam TitleFontSize 30
+LAYOUT_WITH_LEGEND()
+
+title
+<b>Web Application</b>
+(C4 Container diagram)
+end title
+
+Person(user, User, "Someone wanting to get the updated Velib's stations status")
+
+ContainerDb(statisticsDb, "Statistics Database", "PostgreSQL", "<$postgresql>\n Store the hourly usage statistics and daily traffic statistics of each station")
+ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>\n Store the incoming station and traffic data, and the processed station status and statistics")
+    
+System_Boundary(c2, "Web application") {
+    Container(htmlApplication, "HTML Application", "Javascript, HTML, OpenLayers", "<$desktop>\n Display a map with each station status and the user's location")
+    Container(webApplication, "Web Application", "SpringBoot, Thymeleaf, embedded Tomcat", "<$tomcat>\n Generate and deliver the main page with the current stations status")
+}
+
+System_Ext(openLayers, "OpenLayers", "Provide OpenStreetMap data")
+
+Rel_R(user, webApplication, "1.Connect to web address", "HTTP")
+Rel_R(user, htmlApplication, "2.View stations status", "HTTP")
+
+Rel(webApplication, htmlApplication, "Delivers generated page", "HTTP")
+Rel(htmlApplication, openLayers, "Get the map backgrounds", "HTTP")
+
+Rel(webApplication, kafkaCluster, "Consume the processed stations data")
+Rel(webApplication, statisticsDb, "Fetch statistics data")
+@enduml
+
+@startuml
+
+
+
+
+
+skinparam defaultTextAlignment center
+
+skinparam wrapWidth 200
+skinparam maxMessageSize 150
+
+skinparam LegendBorderColor transparent
+skinparam LegendBackgroundColor transparent
+skinparam LegendFontColor #FFFFFF
+
+skinparam rectangle {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam database {
+    StereotypeFontSize 12
+    shadowing false
+}
+
+skinparam Arrow {
+    Color #666666
+    FontColor #666666
+    FontSize 12
+}
+
+skinparam rectangle<<boundary>> {
+    Shadowing false
+    StereotypeFontSize 0
+    FontColor #444444
+    BorderColor #444444
+    BorderStyle dashed
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #08427B
+    BorderColor #073B6F
+}
+
+skinparam rectangle<<external_person>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #686868
+    BorderColor #8A8A8A
+}
+
+skinparam rectangle<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+skinparam database<<system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #1168BD
+    BorderColor #3C7FC0
+}
+
+skinparam database<<external_system>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #999999
+    BorderColor #8A8A8A
+}
+
+sprite $person [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000000000049BCCA7200000000000000000000
+0000000000000000006EFFFFFFFFB3000000000000000000
+00000000000000001CFFFFFFFFFFFF700000000000000000
+0000000000000001EFFFFFFFFFFFFFF80000000000000000
+000000000000000CFFFFFFFFFFFFFFFF6000000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+00000000000001FFFFFFFFFFFFFFFFFFF900000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFF00000000000000
+0000000000000BFFFFFFFFFFFFFFFFFFFF40000000000000
+0000000000000EFFFFFFFFFFFFFFFFFFFF70000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000FFFFFFFFFFFFFFFFFFFFF80000000000000
+0000000000000DFFFFFFFFFFFFFFFFFFFF60000000000000
+0000000000000AFFFFFFFFFFFFFFFFFFFF40000000000000
+00000000000006FFFFFFFFFFFFFFFFFFFE00000000000000
+00000000000000EFFFFFFFFFFFFFFFFFF800000000000000
+000000000000007FFFFFFFFFFFFFFFFFF100000000000000
+000000000000000BFFFFFFFFFFFFFFFF5000000000000000
+0000000000000001DFFFFFFFFFFFFFF70000000000000000
+00000000000000000BFFFFFFFFFFFF500000000000000000
+0000000000000000005DFFFFFFFFA1000000000000000000
+0000000000000000000037ABB96100000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000025788300000000005886410000000000000
+000000000007DFFFFFFD9643347BFFFFFFFB400000000000
+0000000004EFFFFFFFFFFFFFFFFFFFFFFFFFFB1000000000
+000000007FFFFFFFFFFFFFFFFFFFFFFFFFFFFFD200000000
+00000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE10000000
+0000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB0000000
+000000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5000000
+000003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD000000
+000009FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF200000
+00000DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF600000
+00000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF800000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB00000
+00001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA00000
+00000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF700000
+000006FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE100000
+0000008FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD3000000
+000000014555555555555555555555555555555300000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skinparam rectangle<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+skinparam database<<container>> {
+    StereotypeFontColor #FFFFFF
+    FontColor #FFFFFF
+    BackgroundColor #438DD5
+    BorderColor #3C7FC0
+}
+
+
+
+
+
+
+
+
+sprite $tomcat [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000040000000000000000200000
+0000000000000000000000001FC300000000000009F40000
+0000000000000000000000005FFF600000000001DFF60000
+0000000000000000000000008FFFF3000000001DFFF80000
+0000000000000000000000009FFFFB57999988BFFFF90000
+0000000000000000000000009FFFFFFFFFFFFFFFFFFC0000
+000000000000000000000000AFFFFFFFFFFFFFFFFFFC0000
+000000000013426DA4000000BFFFFFFFFFFFFFFFFFFC0000
+000000005BC99AFFFFA100009FFFFFFFFFFFFFFFFFFB0000
+00000009910000DFFFFD10007FFFFFFFFFFFFFFFFFF90000
+0000006800000017999610003FFFFFFFFFFFFFFFFFF70000
+000000C000000000000000000FFFFFFFFFFFFFFFFFF40000
+0000058000000000000001760AFFFFFFFFFFFFFFFFF10000
+00000740000000000004BFFE02FFFFFFFFFFFFFFFFA00000
+000008400000000004CFFFFF708FFFFFFFFFFFFFFF400000
+0000075000000002CFFFFFFFF10DFFFFFFFFFFFFFC000000
+000003800000008FFFFFFFFFFB04FFFFFFFFFFFFF6000000
+000000C000002DFFFFFFFFFFFF607FFFFFFFFFFFC0000000
+000000740006FFFFFFFFFFFFFFF20AFFFFFFFFFF20000000
+0000000A007FFFFFFFFFFFFFFFFE108FFFFFFFF500000000
+0000000009FFFFFFFFFFFFFFFFFFD207FFFFFF7000000000
+000000009FFFFFFFFFFFFFFFFFFFFE202CFFF50000000000
+00000008FFFFFFFFFFFFFFFFFFFFFFF6004A300000000000
+0000006FFFFFFFFFFFFFFFFFFFFFFFFFB200000000000000
+000004FFFFFD9889BDEFFFFFFFFFFFFFFFC6850000000000
+00002FFFF91000000000368CFFFFFFFFFFFFFF4000000000
+0000CFFE20000BFFD5000000159EFFFFFFFFFFF300000000
+0008FFF30000009FFC00000000004AFFFFFFFFFF40000000
+003FFF7000000006FFCCA10000000017DFFFFFFFF2000000
+00CFFF10000000003DFFF6000000000004BFFFFFFE100000
+07FFFD0000000000000000000000000000039FFFFFFEB400
+1FFFFC000000000000000000000000000000029FFFFFFF80
+29999900000000000000000000000000000000018FFFFFF4
+000000000000000000000000000000000000000002788882
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+sprite $kafka [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+0000000000000005CFFD8000000000000000000000000000
+000000000000009FFFFFFC10000000000000000000000000
+00000000000007FFFDCFFFB0000000000000000000000000
+0000000000000FFF6003EFF4000000000000000000000000
+0000000000004FFB00006FF8000000000000000000000000
+0000000000006FF800004FF9000000000000000000000000
+0000000000004FFB00006FF8000000000000000000000000
+0000000000000EFF6003EFF4000000464100000000000000
+00000000000005FFFEEFFFA000007FFFFF80000000000000
+000000000000008FFFFFFC000009FFFFFFF9000000000000
+0000000000000003AFFD7000005FFFB8BFFF500000000000
+00000000000000002FF4000000CFF70006FFC00000000000
+00000000000000002FF4000000FFF00000EFF00000000000
+00000000000000002FF4000000FFE00000EFF00000000000
+000000000000002AFFFFC50000EFF40003FFD00000000000
+00000000000006FFFFFFFFB02CFFFF646EFF800000000000
+0000000000005FFFFFFFFFFCFFFFFFFFFFFC000000000000
+000000000001FFFFB658FFFFFF71BFFFFFB1000000000000
+000000000007FFF600002EFFE20003898400000000000000
+00000000000BFFC0000006FFF10000000000000000000000
+00000000000DFF90000003FFF40000000000000000000000
+00000000000DFF90000003FFF30000000000000000000000
+00000000000AFFD0000007FFF10000000000000000000000
+000000000006FFF800005FFFF30005ACA600000000000000
+000000000000EFFFC77AFFFFFF83DFFFFFD2000000000000
+0000000000004FFFFFFFFFFAFFFFFFFFFFFE100000000000
+00000000000004EFFFFFFF701AFFFE525DFF800000000000
+0000000000000018CFFE820000EFF30002FFD00000000000
+00000000000000002FF6000000FFE00000EFF00000000000
+00000000000000002FF6000000EFF10000FFF00000000000
+00000000000000002FF6000000BFF80008FFB00000000000
+0000000000000003AFFE6000004FFFC9CFFF400000000000
+000000000000007FFFFFFC100007FFFFFFF8000000000000
+00000000000005FFFFEFFFA000005EFFFE60000000000000
+0000000000000EFF7004FFF3000000242000000000000000
+0000000000004FFC00007FF8000000000000000000000000
+0000000000005FF800004FF9000000000000000000000000
+0000000000004FFB00006FF8000000000000000000000000
+0000000000001FFF5002EFF5000000000000000000000000
+00000000000008FFFCCFFFC0000000000000000000000000
+000000000000009FFFFFFC10000000000000000000000000
+0000000000000005CFFD8000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+sprite $desktop [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000027999999999999999999999999999999999999600000
+0005FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD2000
+000EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA000
+002FFB222222222222222222222222222222222223FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FF8000000000000000000000000000000000000FFE000
+004FFB444444444444444444444444444444444444FFE000
+004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000
+004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000
+004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000
+004FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000
+003FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE000
+001FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC000
+000BFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7000
+0001DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF80000
+000003444444444444EFFFFFFFFFF8444444444444100000
+000000000000000000FFFFFFFFFFF8000000000000000000
+000000000000000005FFFFFFFFFFFF000000000000000000
+00000000000000000DFFFFFFFFFFFF800000000000000000
+00000000000000003FFFFFFFFFFFFFE00000000000000000
+00000000000000000BEEEEEEEEEEEE600000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+sprite $postgresql [48x48/16] {
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000135642000000000000
+000000000059CCCB8510049DFFEB614DFFFFD81000000000
+000000004EFFFFFFFFB09FFFFFFFFF807FFFFFE400000000
+00000003FFFFFFFFFE1AFFFFFFFFFFFC16FFFFFF60000000
+0000000CFFFFFFFFF66FFFFFFFFFFFFFE26FFFFFF3000000
+0000003FFFFFFFFFF1EFFFFFFFFFFFFFFC0AFFFFF8000000
+0000007FFFFFFFFF84FFFFFFFFFFFFFFFF81FFFFF9000000
+0000008FFFFFFFFF49FFFFFFFFFFFFFFFFF38FFFF8000000
+0000009FFFFFFFFF0CFFFFFFFFFFFFFFFFF91FFFF7000000
+0000009FFFFFFFFE0E9646CFFFFFFFFF93210EFFF3000000
+0000007FFFFFFFFC0127960CFFFFFFF719BC0EFFF0000000
+0000005FFFFFFFFC0AFFFF56FFFFFFF1BFFE0FFFD0000000
+0000002FFFFFFFFC1FFFFF93FFFFFFF0CFFC1FFF90000000
+0000000FFFFFFFFD0FFFFFD0FFFFFFF2BFFA3FFF40000000
+0000000BFFFFFFFE0FFFFFF0EFFFFFF56FFA3FFE00000000
+00000007FFFFFFFD0FFFFFF0EFFFFFFB0EFC1FF800000000
+00000003FFFFFFFB2FFFFFF0EFFFFFFF28FD0FF300000000
+00000000EFFFFFF93FFFFFC1FFFFFFFF91FE0FB000000000
+00000000AFFFFFF93FFFFF83FFFFFFFFF28E0F4000000000
+000000006FFFFFFC0EFFFF28FFFFFFFFFB1B1B0000000000
+000000001FFFFFFF37FFFB1FFFFFFFFFFF21620000000000
+000000000AFFFFFFC08FF66FFFFFFFFFFFC0400000000000
+0000000004FFFFFFF601617FFFFFFFFFFFF5000000000000
+0000000000DFFFFF90000021DFFFFFFFFF61200000000000
+00000000004FFFFA000004F66FFFFFFFFF0DFCAB81000000
+00000000000BFFC000003EF46FFFFFFFFE07998200000000
+0000000000008A10028CFE406FFFFFFFFC00000000000000
+0000000000000000002431006FFFFFFFFB00000000000000
+0000000000000000000000006FFFFFFFF900000000000000
+0000000000000000000000006FFFFFFFF700000000000000
+0000000000000000000000006FFFFFFFF500000000000000
+0000000000000000000000006FFFFFFFF300000000000000
+0000000000000000000000005FFFFFFFF000000000000000
+0000000000000000000000003FFFFFFFE000000000000000
+0000000000000000000000000FFFFFFFB000000000000000
+0000000000000000000000000AFFFFFF3000000000000000
+00000000000000000000000001DFFFD40000000000000000
+000000000000000000000000001552000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+000000000000000000000000000000000000000000000000
+}
+
+skinparam TitleFontSize 30
+hide stereotype
+legend right
+|<color:#000000>**Legend**</color> |
+|<#08427B> person |
+|<#1168BD> system |
+|<#438DD5> container |
+|<#686868> external person |
+|<#999999> external system |
+endlegend
+
+title
+<b>Web Application</b>
+(C4 Container diagram)
+end title
+
+rectangle "<$person>\n==User\n\n Someone wanting to get the updated Velib's stations status" <<person>> as user
+
+database "==Statistics Database\n//<size:12>[PostgreSQL]</size>//\n\n <$postgresql>\n Store the hourly usage statistics and daily traffic statistics of each station" <<container>> as statisticsDb
+database "==Kafka Cluster\n//<size:12>[Kafka, Schema Registry]</size>//\n\n <$kafka>\n Store the incoming station and traffic data, and the processed station status and statistics" <<container>> as kafkaCluster
+    
+rectangle "==Web application\n<size:12>[System]</size>" <<boundary>> as c2 {
+    rectangle "==HTML Application\n//<size:12>[Javascript, HTML, OpenLayers]</size>//\n\n <$desktop>\n Display a map with each station status and the user's location" <<container>> as htmlApplication
+    rectangle "==Web Application\n//<size:12>[SpringBoot, Thymeleaf, embedded Tomcat]</size>//\n\n <$tomcat>\n Generate and deliver the main page with the current stations status" <<container>> as webApplication
+}
+
+rectangle "==OpenLayers\n\n Provide OpenStreetMap data" <<external_system>> as openLayers
+
+user -RIGHT->> webApplication : **1.Connect to web address**\n//<size:12>[HTTP]</size>//
+user -RIGHT->> htmlApplication : **2.View stations status**\n//<size:12>[HTTP]</size>//
+
+webApplication - ->> htmlApplication : **Delivers generated page**\n//<size:12>[HTTP]</size>//
+htmlApplication - ->> openLayers : **Get the map backgrounds**\n//<size:12>[HTTP]</size>//
+
+webApplication - ->> kafkaCluster : **Consume the processed stations data**
+webApplication - ->> statisticsDb : **Fetch statistics data**
+@enduml
+
+PlantUML version 1.2020.17beta5(Unknown compile time)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>
