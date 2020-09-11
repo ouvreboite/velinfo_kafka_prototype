@@ -1,36 +1,29 @@
 package velibstreaming.kafka.stream.builder;
 
-import org.apache.kafka.streams.kstream.*;
-import velibstreaming.avro.record.stream.*;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
+import org.apache.kafka.streams.kstream.KStream;
+import velibstreaming.avro.record.stream.AvroStationStatus;
+import velibstreaming.avro.record.stream.AvroStationUpdate;
+import velibstreaming.avro.record.stream.StationStatus;
+import velibstreaming.kafka.stream.builder.lock.ExpectedActivityCalculator;
+import velibstreaming.kafka.stream.builder.lock.LockedStationDetector;
+import velibstreaming.repository.HourlyStationStatsRepository;
 
 public class StationsStatusStreamBuilder {
+    private final LockedStationDetector lockedStationDetector = new LockedStationDetector(new HourlyStationStatsRepository(), new ExpectedActivityCalculator());
 
     public KStream<String, AvroStationStatus> build(KStream<String, AvroStationUpdate> stationUpdatesStream){
-        return stationUpdatesStream.mapValues((s, station) -> {
-            StationStatus officialStatus = GetOfficialStatus(station);
+        return stationUpdatesStream.mapValues((s, update) -> {
+            StationStatus officialStatus = GetOfficialStatus(update);
             if(officialStatus != StationStatus.OK){
-                return new AvroStationStatus(station.getStationCode(), officialStatus, station.getLastMovementTimestamp());
+                return new AvroStationStatus(update.getStationCode(), officialStatus, update.getLastMovementTimestamp());
             }
 
-            if(staleForTooLong(station.getLastMovementTimestamp(), station.getStationCode())){
-                return new AvroStationStatus(station.getStationCode(), StationStatus.STALE, station.getLastMovementTimestamp());
+            if(lockedStationDetector.isStationLocked(update)){
+                return new AvroStationStatus(update.getStationCode(), StationStatus.LOCKED, update.getLastMovementTimestamp());
             }
 
-            return new AvroStationStatus(station.getStationCode(), StationStatus.OK, station.getLastMovementTimestamp());
+            return new AvroStationStatus(update.getStationCode(), StationStatus.OK, update.getLastMovementTimestamp());
         });
-    }
-
-    private boolean staleForTooLong(Long staleSinceTimestamp, String stationCode) {
-        if(staleSinceTimestamp == null)
-            return false;
-
-        LocalDateTime staleSince = LocalDateTime.ofInstant(Instant.ofEpochMilli(staleSinceTimestamp), ZoneId.systemDefault());
-        return staleSince.until(LocalDateTime.now(), ChronoUnit.HOURS) > 6;
     }
 
     private StationStatus GetOfficialStatus(AvroStationUpdate station) {
