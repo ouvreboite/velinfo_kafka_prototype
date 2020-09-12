@@ -35,14 +35,14 @@ public class ExpectedActivityCalculatorTest {
 
     private static Stream<Arguments> expectedActivityProvider() {
         return Stream.of(
-                Arguments.of("2020-07-01 01:00", "2020-07-01 01:00", 0, "start and end are equals, no activity is expected"),
-                Arguments.of("2020-07-01 03:00", "2020-07-01 04:00", 28, "start and end represent the 3AM-4AM period, the result should be the median value"),
-                Arguments.of("2020-07-01 03:00", "2020-07-01 03:45", 21, "end is not an exact hour, period should be partially accounted"),
-                Arguments.of("2020-07-01 03:15", "2020-07-01 04:00", 21, "start is not an exact hour, period should be partially accounted"),
-                Arguments.of("2020-07-01 03:15", "2020-07-01 03:45", 14, "start and end are not an exact hour, period should be partially accounted"),
-                Arguments.of("2020-07-01 03:00", "2020-07-01 06:00", 87, "start and end represent the 3AM-6AM period, the result should be the median value"),
-                Arguments.of("2020-07-01 04:00", "2020-07-01 02:00", 821, "start and end represent the 4AM-3AM (across midnight) period, the result should be the median value"),
-                Arguments.of("2020-07-01 04:15", "2020-07-01 01:45", 806, "start and end represent inexact hour (across midnight) period, the result should be the median value")
+                Arguments.of("2020-07-28 01:00", "2020-07-28 01:00", 0, "start and end are equals, no activity is expected"),
+                Arguments.of("2020-07-28 03:00", "2020-07-28 04:00", 14, "start and end represent the 3AM-4AM period for the day 07, 14 and 21, the result should be the median value"),
+                Arguments.of("2020-07-28 03:00", "2020-07-28 03:45", 10, "end is not an exact hour, period should be partially accounted"),
+                Arguments.of("2020-07-28 03:15", "2020-07-28 04:00", 10, "start is not an exact hour, period should be partially accounted"),
+                Arguments.of("2020-07-28 03:15", "2020-07-28 03:45", 7, "start and end are not an exact hour, period should be partially accounted"),
+                Arguments.of("2020-07-28 03:00", "2020-07-28 06:00", 3*14, "start and end represent the 3AM-6AM period, the result should be the median value"),
+                Arguments.of("2020-07-27 04:00", "2020-07-28 02:00", 20*13+2*14, "start and end represent the 4AM-2AM (20 hours before midnight and 2 hours after) period, the result should be the median value"),
+                Arguments.of("2020-07-27 04:15", "2020-07-28 01:45", 280, "start and end represent inexact hour (across midnight) period, the result should be the median value")
         );
     }
 

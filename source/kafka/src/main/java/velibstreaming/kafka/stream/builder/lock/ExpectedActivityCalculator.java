@@ -6,7 +6,6 @@ import velibstreaming.properties.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -15,20 +14,17 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.summingInt;
 import static java.util.stream.Collectors.toList;
 
 public class ExpectedActivityCalculator {
 
-    public int computeExpectedActivityOnSamePeriod(Collection<AvroStationStats> stats, LocalDateTime lastChange, LocalDateTime currentTime){
+    public int computeExpectedActivityOnSamePeriod(Collection<AvroStationStats> stats, LocalDateTime periodStart, LocalDateTime periodEnd){
         //filter stats on same hour
-        var periodStart = lastChange.toLocalTime();
-        var periodEnd = currentTime.toLocalTime();
-
         Map<LocalDate, List<Activity>> activitiesByDay = stats.stream()
-                .map(ToActivity(periodStart, periodEnd))
+                .filter(filterCurrentStats(periodStart))
                 .filter(keepOnlyStatsOnSamePeriod(periodStart, periodEnd))
-                .collect(Collectors.groupingBy(stat -> stat.getStart().toLocalDate(), toList()));
+                .map(ToActivity(periodStart, periodEnd))
+                .collect(Collectors.groupingBy(Activity::getDay, toList()));
 
         int[] totalActivityPerDayOnPeriod = activitiesByDay.values()
                 .stream()
@@ -36,46 +32,65 @@ public class ExpectedActivityCalculator {
                 .toArray();
 
         //compute median activity
-        if(totalActivityPerDayOnPeriod.length == 0)
+        return median(totalActivityPerDayOnPeriod);
+    }
+
+    private Predicate<AvroStationStats> filterCurrentStats(LocalDateTime periodStart) {
+        return stat -> DateTimeUtils.localDateTime(stat.getPeriodEnd()).isBefore(periodStart);
+    }
+
+    private int median(int[] array) {
+        if(array.length == 0)
             return 0;
-        Arrays.sort(totalActivityPerDayOnPeriod);
-        return totalActivityPerDayOnPeriod[totalActivityPerDayOnPeriod.length/2];
+        Arrays.sort(array);
+        return array[array.length/2];
+    }
+
+    private Predicate<AvroStationStats> keepOnlyStatsOnSamePeriod(LocalDateTime periodStart, LocalDateTime periodEnd) {
+        return stat -> {
+            LocalDateTime statStart = DateTimeUtils.localDateTime(stat.getPeriodStart());
+            if(sameDay(periodStart, periodEnd)){
+                return sameDay(periodStart, statStart) && periodStart.getHour() <= statStart.getHour() && statStart.getHour() <= periodEnd.getHour();
+            }else{
+                return (statStart.getHour() >= periodStart.getHour() && sameDay(statStart, periodStart))
+                        || (statStart.getHour() <= periodEnd.getHour() && sameDay(statStart, periodEnd));
+            }
+        };
+    }
+
+    private boolean sameDay(LocalDateTime periodStart, LocalDateTime statStart) {
+        return periodStart.getDayOfWeek() == statStart.getDayOfWeek();
     }
 
     @Data
-    private class Activity {
+    private static class Activity {
         int total;
         LocalDateTime start;
         LocalDateTime end;
+        LocalDate day;
     }
 
-    private Function<AvroStationStats, Activity> ToActivity(LocalTime periodStart, LocalTime periodEnd) {
+    private Function<AvroStationStats, Activity> ToActivity(LocalDateTime periodStart, LocalDateTime periodEnd) {
         return stat -> {
             var activity = new Activity();
             activity.start = DateTimeUtils.localDateTime(stat.getPeriodStart());
             activity.end = DateTimeUtils.localDateTime(stat.getPeriodEnd());
 
+            if(sameDay(periodStart, activity.getStart()))
+                activity.day = activity.getStart().toLocalDate();
+            if(sameDay(periodEnd, activity.getStart()))
+                activity.day = activity.getStart().toLocalDate().minusDays(1);
+
             int missingMinutes = 0;
-            if(activity.start.getHour() == periodStart.getHour())
+            if(sameDay(activity.getStart(), periodStart) && activity.start.getHour() == periodStart.getHour())
                 missingMinutes += periodStart.getMinute();
-            if(activity.start.getHour() == periodEnd.getHour())
+            if(sameDay(activity.getStart(), periodEnd) && activity.start.getHour() == periodEnd.getHour())
                 missingMinutes += (60-periodEnd.getMinute());
 
             var total = stat.getNumberOfElectricBikesRented() + stat.getNumberOfElectricBikesReturned() + stat.getNumberOfMechanicalBikesRented() + stat.getNumberOfElectricBikesReturned();
             activity.total = total * (60-missingMinutes) / 60;
 
             return activity;
-        };
-    }
-
-    private Predicate<Activity> keepOnlyStatsOnSamePeriod(LocalTime periodStart, LocalTime periodEnd) {
-        return activity -> {
-            if(periodStart.equals(periodEnd) || periodStart.isBefore(periodEnd)){
-                //standard case
-                return activity.start.getHour() >= periodStart.getHour() && activity.start.getHour() <= periodEnd.getHour();
-            }else{
-                return activity.start.getHour() <= periodEnd.getHour() || activity.start.getHour() >= periodStart.getHour();
-            }
         };
     }
 }
