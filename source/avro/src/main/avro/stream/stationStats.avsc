@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroStationStats",
-  "namespace": "velibstreaming.avro.record.stream",
+  "namespace": "fr.velinfo.avro.record.stream",
   "fields": [
     {
       "name" : "stationCode",

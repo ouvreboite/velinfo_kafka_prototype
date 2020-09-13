@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroCoordinates",
-  "namespace": "velibstreaming.avro.record.source",
+  "namespace": "fr.velinfo.avro.record.source",
   "fields": [
     {
       "name": "latitude",

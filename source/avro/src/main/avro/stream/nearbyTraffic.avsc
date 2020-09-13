@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroNearbyTraffic",
-  "namespace": "velibstreaming.avro.record.stream",
+  "namespace": "fr.velinfo.avro.record.stream",
   "fields": [
     {
       "name" : "stationCode",
@@ -29,7 +29,7 @@
       "name": "counts",
       "type": {
         "type": "array",
-        "items": "velibstreaming.avro.record.source.AvroBicycleCount"
+        "items": "fr.velinfo.avro.record.source.AvroBicycleCount"
       },
       "default": []
     }

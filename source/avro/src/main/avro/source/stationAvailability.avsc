@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroStationAvailability",
-  "namespace": "velibstreaming.avro.record.source",
+  "namespace": "fr.velinfo.avro.record.source",
   "fields": [
     {
       "name" : "stationCode",
@@ -47,7 +47,7 @@
     },
     {
       "name": "coordinates",
-      "type": "velibstreaming.avro.record.source.AvroCoordinates"
+      "type": "fr.velinfo.avro.record.source.AvroCoordinates"
     }
   ]
 }

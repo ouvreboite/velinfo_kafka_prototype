@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroStationsAffectedByCount",
-  "namespace": "velibstreaming.avro.record.stream",
+  "namespace": "fr.velinfo.avro.record.stream",
   "fields": [
     {
       "name": "stationCodes",
@@ -13,7 +13,7 @@
     },
     {
       "name" : "count",
-      "type" : ["null", "velibstreaming.avro.record.source.AvroBicycleCount"],
+      "type" : ["null", "fr.velinfo.avro.record.source.AvroBicycleCount"],
       "default": null
     }
   ]

@@ -1,6 +1,6 @@
-![Java Build](https://github.com/ouvreboite/velib_streaming/workflows/Java%20Build/badge.svg)
-![Generate plantUML](https://github.com/ouvreboite/velib_streaming/workflows/Generate%20plantUML/badge.svg)
-# Velib streaming
+![Java Build](https://github.com/ouvreboite/velinfo/workflows/Java%20Build/badge.svg)
+![Generate plantUML](https://github.com/ouvreboite/velinfo/workflows/Generate%20plantUML/badge.svg)
+# Velinfo
 
 A java project using Kafka to process the Paris' Velib (bicycles) stations and diplay them using OpenLayers. 
 

@@ -1,7 +1,7 @@
 {
   "type": "record",
   "name": "AvroBicycleCount",
-  "namespace": "velibstreaming.avro.record.source",
+  "namespace": "fr.velinfo.avro.record.source",
   "fields": [
     {
       "name" : "counterId",
@@ -18,7 +18,7 @@
     },
     {
       "name": "coordinates",
-      "type": "velibstreaming.avro.record.source.AvroCoordinates"
+      "type": "fr.velinfo.avro.record.source.AvroCoordinates"
     }
   ]
 }

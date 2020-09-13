@@ -57,8 +57,8 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: velib
+      POSTGRES_USER: velinfo
       POSTGRES_PASSWORD: dev_password
-      POSTGRES_DB: velib_stats
+      POSTGRES_DB: velinfo_stats
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
