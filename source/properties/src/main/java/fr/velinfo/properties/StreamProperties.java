@@ -25,17 +25,11 @@ public final class StreamProperties {
     private final long bikeLockEstimationDurationHours;
 
     private final String stationAvailabilityTopic;
-    private final String bicycleCountTopic;
 
     private final String stationUpdatesTopic;
     private final String hourlyStationStatsTopic;
     private final String bikesLockedTopic;
     private final String stationStatusTopic;
-
-    private final String bicycleCountUpdatesTopic;
-    private final String bicycleCountUpdatesProjectedTopic;
-    private final String stationNearbyCountsTopic;
-    private final String dailyStationNearbyTrafficTopic;
 
     private final String bootstrapServers;
     private final String schemaRegistryUrl;
@@ -53,17 +47,11 @@ public final class StreamProperties {
         this.bikeLockEstimationDurationHours = Long.parseLong(props.getProperty("BikeLockEstimation.Hours", "24"));
 
         this.stationAvailabilityTopic = props.getProperty("StationAvailability.Topic");
-        this.bicycleCountTopic = props.getProperty("BicycleCounts.Topic");
 
         this.stationUpdatesTopic = props.getProperty("StationUpdates.Topic");
         this.hourlyStationStatsTopic = props.getProperty("HourlyStationStats.Topic");
         this.bikesLockedTopic = props.getProperty("BikesLocked.Topic");
         this.stationStatusTopic = props.getProperty("StationStatus.Topic");
-
-        this.bicycleCountUpdatesTopic = props.getProperty("BicycleCountUpdates.Topic");
-        this.bicycleCountUpdatesProjectedTopic = props.getProperty("BicycleCountUpdatesProjected.Topic");
-        this.stationNearbyCountsTopic = props.getProperty("StationNearbyCounts.Topic");
-        this.dailyStationNearbyTrafficTopic = props.getProperty("DailyStationNearbyTraffic.Topic");
 
         this.bootstrapServers = props.getProperty("bootstrap.servers");
         this.schemaRegistryUrl = props.getProperty("schema.registry.url");

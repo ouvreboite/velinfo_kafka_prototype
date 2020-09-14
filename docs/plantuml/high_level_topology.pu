@@ -4,45 +4,23 @@ title
 (Kafka Stream)
 end title
 
+rectangle stationAvailabilityClient <<producer>>
+rectangle stationAvailabilities <<topic>>
+rectangle stationUpdates <<topic>>
+rectangle hourlyStationStats<<topic>>
+rectangle stationStatus <<topic>>
+rectangle bikesLocked <<topic>>
+database station_hourly_statistics <<database>>
 
-frame "Station status topology"{
-   rectangle stationAvailabilityClient <<producer>>
-   rectangle stationAvailabilities <<topic>>
-   rectangle stationUpdates <<topic>>
-   rectangle hourlyStationStats<<topic>>
-   rectangle stationStatus <<topic>>
-   rectangle bikesLocked <<topic>>
-   database station_hourly_statistics <<database>>
-}
 
 stationAvailabilityClient --> stationAvailabilities 
-stationAvailabilities --> stationUpdates : deduplicated
-stationUpdates --> hourlyStationStats : windowed
+stationAvailabilities --> stationUpdates : drop duplicates and compute diff
+stationUpdates --> hourlyStationStats : aggregate on a 1-hour window
 hourlyStationStats --> bikesLocked
 hourlyStationStats -> station_hourly_statistics
 stationUpdates --> stationStatus
 station_hourly_statistics ..> stationStatus
-
-frame "Nearby traffic topology"{
-   rectangle bikeCountsClient <<producer>>
-   rectangle bikeCounts <<topic>>
-   rectangle bikeCountUpdates <<topic>>
-   rectangle countUpdatesProjected<<topic>>
-   rectangle zoneToStations<<table>>
-   rectangle stationNearbyCounts <<topic>>
-   rectangle hourlyStationNearbyTraffic <<topic>>
-   database station_daily_nearby_traffic <<database>>
-}
-
-
-bikeCountsClient --> bikeCounts 
-bikeCounts --> bikeCountUpdates : deduplicated
-stationUpdates --> zoneToStations
-bikeCountUpdates --> countUpdatesProjected: projected on nearby zones
-zoneToStations--> stationNearbyCounts 
-countUpdatesProjected --> stationNearbyCounts 
-stationNearbyCounts --> hourlyStationNearbyTraffic : windowed
-hourlyStationNearbyTraffic --> station_daily_nearby_traffic
+station_hourly_statistics ..> bikesLocked
 
 skinparam rectangle{
     backgroundColor<<topic>> Gainsboro
@@ -62,7 +40,6 @@ skinparam database{
 
 skinparam{
    ArrowColor DeepSkyBlue
-   ArrowFontColor Coral
    shadowing false
 }
 @enduml

@@ -18,8 +18,8 @@ end title
 System_Boundary(c1, "Station data processing") {
     Container(producerApplication, "Producer Application", "Java, Unirest, Kafka", "<$java>\n Fetch stations data from Paris' API and push them to Kafka")
     Container(streamingApplication, "Streaming Application", "Java, Kafka Streaming", "<$java>\n Combine and process Paris' data. Detect locked stations using their expected activity based on past statistics") 
-    ContainerDb(statisticsDb, "Statistics Database", "PostgreSQL", "<$postgresql>\n Store the hourly usage statistics and daily traffic statistics of each station")
-    ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>\n Store the incoming station and traffic data, and the processed station status and statistics")
+    ContainerDb(statisticsDb, "Statistics Database", "PostgreSQL", "<$postgresql>\n Store the hourly usage statistics of each station")
+    ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>\n Store the incoming station data, and the processed station status and statistics")
     Container(sinkApplication, "SinkApplication", "Java, Kafka", "<$java>\n Consume statistics topic and store data in the statistics database") 
 }
 
@@ -29,7 +29,7 @@ System_Boundary(c2, "Web application") {
 }
 
 Person(user, User, "Someone wanting to get the updated Velib's stations status")
-System_Ext(parisAPI, "Paris OpenData API", "Expose stations and counters data")
+System_Ext(parisAPI, "Paris OpenData API", "Expose stations data")
 System_Ext(openLayers, "OpenLayers", "Provide OpenStreetMap data")
 
 Rel_R(user, webApplication, "1.Connect to web address", "HTTP")
@@ -41,10 +41,10 @@ Rel(htmlApplication, openLayers, "Get the map backgrounds", "HTTP")
 Rel(webApplication, kafkaCluster, "Consume the processed stations data")
 Rel(webApplication, statisticsDb, "Fetch statistics data")
 
-Rel(producerApplication, kafkaCluster, "Push the stations and traffic data")
-Rel(streamingApplication, kafkaCluster, "Process the stations data to detect anomalies and the traffic data to compute each station nearby traffic")
+Rel(producerApplication, kafkaCluster, "Publish the stations current availability to Kafka")
+Rel(streamingApplication, kafkaCluster, "Process the stations data to detect locked stations")
 Rel_Up(sinkApplication, kafkaCluster, "Consume statistics topics")
 Rel_Up(sinkApplication, statisticsDb, "Write statistics data")
 Rel(streamingApplication, statisticsDb, "Fetch the usage statistics to compute station's expected activity")
-Rel_R(producerApplication, parisAPI, "Get the stations and traffic data", "REST")
+Rel_R(producerApplication, parisAPI, "Get the stations current availability", "REST")
 @enduml

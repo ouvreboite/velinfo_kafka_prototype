@@ -1,5 +1,12 @@
 package fr.velinfo.kafka.stream;
 
+import fr.velinfo.avro.record.source.AvroStationAvailability;
+import fr.velinfo.kafka.TopicCreator;
+import fr.velinfo.kafka.stream.builder.BikesLockedStreamBuilder;
+import fr.velinfo.kafka.stream.builder.HourlyStationStatsStreamBuilder;
+import fr.velinfo.kafka.stream.builder.StationUpdatesStreamBuilder;
+import fr.velinfo.kafka.stream.builder.StationsStatusStreamBuilder;
+import fr.velinfo.properties.StreamProperties;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
@@ -9,11 +16,6 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
-import fr.velinfo.avro.record.source.AvroBicycleCount;
-import fr.velinfo.avro.record.source.AvroStationAvailability;
-import fr.velinfo.kafka.TopicCreator;
-import fr.velinfo.kafka.stream.builder.*;
-import fr.velinfo.properties.StreamProperties;
 
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
@@ -46,11 +48,7 @@ public class StreamApplication {
                 props.getStationUpdatesTopic(),
                 props.getHourlyStationStatsTopic(),
                 props.getBikesLockedTopic(),
-                props.getStationStatusTopic(),
-                props.getBicycleCountUpdatesTopic(),
-                props.getBicycleCountUpdatesProjectedTopic(),
-                props.getStationNearbyCountsTopic(),
-                props.getDailyStationNearbyTrafficTopic()
+                props.getStationStatusTopic()
         );
 
         Topology topology = buildTopology();
@@ -75,22 +73,6 @@ public class StreamApplication {
 
         var stationsStatusStream = new StationsStatusStreamBuilder().build(stationUpdatesStream);
         stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
-
-        var bicycleCountStream = builder.stream(props.getBicycleCountTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroBicycleCount>avroSerde()));
-
-        var countUpdatesStream = new CountUpdatesStreamBuilder().build(builder, bicycleCountStream);
-        countUpdatesStream.to(props.getBicycleCountUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
-
-        var zoneToStationsTable = new ZoneTableBuilder().build(stationUpdatesStream);
-
-        var countUpdatesProjectedStream = new CountUpdatesProjectedStreamBuilder().build(countUpdatesStream);
-        countUpdatesProjectedStream.to(props.getBicycleCountUpdatesProjectedTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
-
-        var stationNearbyCountsStream = new StationNearbyCountsStreamBuilder().build(countUpdatesProjectedStream, zoneToStationsTable);
-        stationNearbyCountsStream.to(props.getStationNearbyCountsTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
-
-        var hourlyStationNearbyTraffic = new DailyStationNearbyTrafficStreamBuilder().build(stationNearbyCountsStream);
-        hourlyStationNearbyTraffic.to(props.getDailyStationNearbyTrafficTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         return builder.build();
     }
