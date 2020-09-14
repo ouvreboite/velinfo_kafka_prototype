@@ -49,7 +49,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldLetThrough_whenFirstOccurrenceOfStation(){
-        var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(LocalDateTime.now()));
+        var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(DateTimeUtils.now()));
         var output = deduplicator.transform("a", newStation);
 
         assertEquals(newStation, output, "First occurence of a station should go through");
@@ -58,7 +58,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldNotLetThrough_whenStationUnchangedInLessThan15Minutes(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var same = AvroStationUpdate.newBuilder(newStation).setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(10))).build();
 
@@ -70,7 +70,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldLetThrough_whenStationUnchangedInMoreThan15Minutes(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var same = AvroStationUpdate.newBuilder(newStation).setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(20))).build();
 
@@ -82,7 +82,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldLetThrough_whenStationHasNotTheSameNumberOfBikes(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var sameWithDifferentBikes = AvroStationUpdate.newBuilder(newStation)
                 .setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(10)))
@@ -99,7 +99,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldLetThrough_whenStationHasNotTheSameStatus(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var sameWithDifferentStatus = AvroStationUpdate.newBuilder(newStation)
                 .setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(10)))
@@ -115,7 +115,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldUpdateDiffs_whenLettingThrough(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var sameWithDifferentBikes = AvroStationUpdate.newBuilder(newStation)
                 .setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(10)))
@@ -134,7 +134,7 @@ class StationUpdateDeduplicatorTest {
 
     @Test
     public void deduplicator_shouldUpdateLastMovement_whenStationUnchangedForMoreThan15Minutes(){
-        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime now = DateTimeUtils.now();
         var newStation = station("a", 1, 2, true, DateTimeUtils.timestamp(now));
         var same = AvroStationUpdate.newBuilder(newStation).setLoadTimestamp(DateTimeUtils.timestamp(now.plusMinutes(20))).build();
 

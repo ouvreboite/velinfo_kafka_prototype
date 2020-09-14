@@ -1,6 +1,7 @@
 package fr.velinfo.kafka.stream.builder;
 
 import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.properties.DateTimeUtils;
 import fr.velinfo.properties.StreamProperties;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -113,8 +114,8 @@ class StationUpdatesStreamBuilderTest {
                 .setIsReturning(true)
                 .setIsInstalled(true)
                 .setCoordinates(AvroCoordinates.newBuilder().setLatitude(1.0).setLongitude(1.0).build())
-                .setLoadTimestamp(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
-                .setAvailabilityTimestamp(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
+                .setLoadTimestamp(DateTimeUtils.now().toEpochSecond(ZoneOffset.UTC))
+                .setAvailabilityTimestamp(DateTimeUtils.now().toEpochSecond(ZoneOffset.UTC))
                 .build();
     }
 }

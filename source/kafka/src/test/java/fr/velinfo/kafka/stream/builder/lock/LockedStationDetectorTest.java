@@ -10,8 +10,6 @@ import fr.velinfo.properties.DateTimeUtils;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -25,14 +23,14 @@ public class LockedStationDetectorTest {
     public void isStationLocked_shouldReturnFalse_whenNolastChangeTimestamp(@Mock HourlyStationStatsRepository repository, @Mock ExpectedActivityCalculator activityCalculator){
         var detector = new LockedStationDetector(repository, activityCalculator);
 
-        Instant now = Instant.now();
+        var now = DateTimeUtils.now();
 
         AvroStationUpdate station = new AvroStationUpdate();
-        station.setLoadTimestamp(now.toEpochMilli());
+        station.setLoadTimestamp(DateTimeUtils.timestamp(now));
         station.setLastChangeTimestamp(null);
         assertFalse(detector.isStationLocked(station), "When no lastChangeTimestamp is provided, station is not locked");
 
-        station.setLastChangeTimestamp(now.toEpochMilli());
+        station.setLastChangeTimestamp(DateTimeUtils.timestamp(now));
         assertFalse(detector.isStationLocked(station), "When lastChangeTimestamp is same as loadTimestamp, station is not locked");
     }
 
@@ -40,7 +38,7 @@ public class LockedStationDetectorTest {
     public void isStationLocked_shouldReturnTrue_whenLastMovementIsMoreThan12HoursOld(@Mock HourlyStationStatsRepository repository, @Mock ExpectedActivityCalculator activityCalculator){
         var detector = new LockedStationDetector(repository, activityCalculator);
 
-        var now = LocalDateTime.now();
+        var now = DateTimeUtils.now();
 
         AvroStationUpdate station = new AvroStationUpdate();
         station.setLoadTimestamp(DateTimeUtils.timestamp(now));
@@ -52,7 +50,7 @@ public class LockedStationDetectorTest {
     public void isStationLocked_dependsOnExpectedActivity_whenLastMovementIsLessThan12HoursOld_(@Mock HourlyStationStatsRepository repository, @Mock ExpectedActivityCalculator activityCalculator) throws Repository.RepositoryException {
         var detector = new LockedStationDetector(repository, activityCalculator);
 
-        var now = DateTimeUtils.localDateTime(DateTimeUtils.timestamp(LocalDateTime.now()));
+        var now = DateTimeUtils.localDateTime(DateTimeUtils.timestamp(DateTimeUtils.now()));
         // back and force between timestamp and LocalDateTime in the tested method strip the microsecond,
         // so we need to do it beforehand if we want to be able to match arguments in the mock
         var nowMinus10h = now.minusHours(10);

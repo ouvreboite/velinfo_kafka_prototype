@@ -1,5 +1,6 @@
 package fr.velinfo.opendata.client;
 
+import fr.velinfo.properties.DateTimeUtils;
 import org.junit.jupiter.api.Test;
 import fr.velinfo.opendata.dto.BicycleCount;
 
@@ -33,7 +34,7 @@ class BicycleCountClientTest {
 
     @Test
     void get_shouldNotReachMaxSize() throws OpenDataClient.OpenDataException {
-        String aWeekAgo = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.ISO_DATE);
+        String aWeekAgo = DateTimeUtils.now().minusWeeks(1).format(DateTimeFormatter.ISO_DATE);
         BicycleCount bicycleCount = client
                 .withParameter(OpenDataClient.ROW_COUNT_PARAMETER, OpenDataClient.ROW_COUNT_PARAMETER_MAX_VALUE)
                 .withParameter(BicycleCountClient.DATE_PARAMETER, aWeekAgo)
@@ -44,7 +45,7 @@ class BicycleCountClientTest {
 
     @Test
     void get_shouldUseDateParameter() throws OpenDataClient.OpenDataException {
-        String aWeekAgo = LocalDate.now().minusWeeks(1).format(DateTimeFormatter.ISO_DATE);
+        String aWeekAgo = DateTimeUtils.now().minusWeeks(1).format(DateTimeFormatter.ISO_DATE);
         BicycleCount bicycleCount = client
                 .withParameter(OpenDataClient.ROW_COUNT_PARAMETER, OpenDataClient.ROW_COUNT_PARAMETER_MAX_VALUE)
                 .withParameter(BicycleCountClient.DATE_PARAMETER, aWeekAgo)

@@ -4,6 +4,7 @@ import fr.velinfo.avro.record.source.AvroBicycleCount;
 import fr.velinfo.avro.record.source.AvroStationAvailability;
 import fr.velinfo.kafka.TopicCreator;
 import fr.velinfo.kafka.producer.mapper.*;
+import fr.velinfo.properties.DateTimeUtils;
 import fr.velinfo.properties.StreamProperties;
 import fr.velinfo.opendata.client.*;
 
@@ -45,7 +46,7 @@ public class ProducerApplication {
                         AvroBicycleCount::getCounterId,
                         AvroBicycleCount::getCountTimestamp,
                         new BicycleCountMapper()))
-                .withParameter(DATE_PARAMETER,() -> LocalDate.now().minusDays(1).format(DateTimeFormatter.ISO_DATE))
+                .withParameter(DATE_PARAMETER,() -> DateTimeUtils.now().minusDays(1).format(DateTimeFormatter.ISO_DATE))
                 .start();
 
         CountDownLatch doneSignal = new CountDownLatch(1);

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExpectedActivityCalculatorTest {
     private final ExpectedActivityCalculator calculator = new ExpectedActivityCalculator();
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").withZone(DateTimeUtils.ZONE_ID);
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
 
     @ParameterizedTest
