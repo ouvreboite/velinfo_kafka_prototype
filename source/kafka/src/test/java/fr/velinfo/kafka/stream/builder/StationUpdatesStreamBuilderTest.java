@@ -1,5 +1,7 @@
 package fr.velinfo.kafka.stream.builder;
 
+import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.properties.StreamProperties;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -30,6 +32,7 @@ class StationUpdatesStreamBuilderTest {
 
     @BeforeEach
     public void setup() {
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
         StreamsBuilder builder = new StreamsBuilder();
 
         var inputStream = builder.<String, AvroStationAvailability>stream("input-topic");
@@ -41,12 +44,19 @@ class StationUpdatesStreamBuilderTest {
         this.inputTopic = testDriver.createInputTopic(
                 "input-topic",
                 new StringSerializer(),
-                StreamTestUtils.<AvroStationAvailability>avroSerde().serializer());
+                StreamUtils.<AvroStationAvailability>avroSerde().serializer());
 
         this.outputTopic = testDriver.createOutputTopic(
                 "result-topic",
                 new StringDeserializer(),
-                StreamTestUtils.<AvroStationUpdate>avroSerde().deserializer());
+                StreamUtils.<AvroStationUpdate>avroSerde().deserializer());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        testDriver.close();
+        MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test
@@ -107,11 +117,4 @@ class StationUpdatesStreamBuilderTest {
                 .setAvailabilityTimestamp(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))
                 .build();
     }
-
-    @AfterEach
-    public void tearDown() {
-        testDriver.close();
-        MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
-    }
-
 }

@@ -6,6 +6,7 @@ import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Properties;
 
@@ -18,18 +19,10 @@ public class StreamTestUtils {
         config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "dummy:1234");
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.StringSerde.class);
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        config.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, getSchemaRegistryUrl());
+        config.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG,  getSchemaRegistryUrl());
         return config;
     }
-
-    public static <T extends SpecificRecord> SpecificAvroSerde<T> avroSerde() {
-        var serde = new SpecificAvroSerde<T>();
-        Map<String, String> serdeConfig = Map.of(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, getSchemaRegistryUrl());
-        serde.configure(serdeConfig, false);
-        return serde;
-    }
-
     public static String getSchemaRegistryUrl() {
-        return "mock://" + StreamTestUtils.class.getName();
+        return "mock://schema-registry";
     }
 }

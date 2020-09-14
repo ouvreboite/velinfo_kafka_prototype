@@ -1,6 +1,8 @@
 package fr.velinfo.properties;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -41,6 +43,9 @@ public final class StreamProperties {
     private final String databaseUser;
     private final String databasePassword;
 
+    @Getter(AccessLevel.NONE)
+    private String mockSchemaRegistryUrl;
+
     private StreamProperties() throws IOException, IllegalAccessException {
         var props = new Properties();
         props.load(StreamProperties.class.getClassLoader().getResourceAsStream("stream.properties"));
@@ -75,5 +80,13 @@ public final class StreamProperties {
             if(field.get(this) == null)
                 throw new IllegalArgumentException("No value for property "+field.getName());
         }
+    }
+
+    public void setMockSchemaRegistryUrl(String mockSchemaRegistryUrl){
+        this.mockSchemaRegistryUrl = mockSchemaRegistryUrl;
+    }
+
+    public String getSchemaRegistryUrl(){
+        return mockSchemaRegistryUrl == null ? schemaRegistryUrl : mockSchemaRegistryUrl;
     }
 }

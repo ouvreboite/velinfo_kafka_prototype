@@ -1,5 +1,7 @@
 package fr.velinfo.kafka.stream.builder;
 
+import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.properties.StreamProperties;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -25,6 +27,7 @@ class CountUpdatesStreamBuilderTest {
 
     @BeforeEach
     public void setup() {
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
         StreamsBuilder builder = new StreamsBuilder();
 
         var inputStream = builder.<String, AvroBicycleCount>stream("input-topic");
@@ -36,12 +39,19 @@ class CountUpdatesStreamBuilderTest {
         this.inputTopic = testDriver.createInputTopic(
                 "input-topic",
                 new StringSerializer(),
-                StreamTestUtils.<AvroBicycleCount>avroSerde().serializer());
+                StreamUtils.<AvroBicycleCount>avroSerde().serializer());
 
         this.outputTopic = testDriver.createOutputTopic(
                 "result-topic",
                 new StringDeserializer(),
-                StreamTestUtils.<AvroBicycleCount>avroSerde().deserializer());
+                StreamUtils.<AvroBicycleCount>avroSerde().deserializer());
+    }
+
+    @AfterEach
+    public void tearDown() {
+        testDriver.close();
+        MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test
@@ -69,11 +79,5 @@ class CountUpdatesStreamBuilderTest {
                 .setCoordinates(AvroCoordinates.newBuilder().setLatitude(1.0).setLongitude(1.0).build())
                 .setCountTimestamp(new Date().getTime())
                 .build();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        testDriver.close();
-        MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
     }
 }

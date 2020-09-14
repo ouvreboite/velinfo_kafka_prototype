@@ -21,7 +21,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    @KafkaListener(topics = "#{streamProperties.getStationChangesWithStaleStatusTopic()}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{streamProperties.getStationUpdatesTopic()}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
     public void consume(ConsumerRecord<String, AvroStationUpdate> record) {
         this.availabilities.put(record.key(), record.value());
     }

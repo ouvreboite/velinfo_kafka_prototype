@@ -1,9 +1,13 @@
 package fr.velinfo.kafka.stream.builder.deduplication;
 
+import fr.velinfo.kafka.stream.builder.StreamTestUtils;
+import fr.velinfo.properties.StreamProperties;
+import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.processor.MockProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.Stores;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import fr.velinfo.avro.record.source.AvroCoordinates;
@@ -20,6 +24,8 @@ class StationUpdateDeduplicatorTest {
 
     @BeforeEach
     public void initStore(){
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
+
         var context = new MockProcessorContext();
         final KeyValueStore<String, AvroStationUpdate> store =
                 Stores.keyValueStoreBuilder(
@@ -33,6 +39,12 @@ class StationUpdateDeduplicatorTest {
         store.init(context, store);
         context.register(store, /*parameter unused in mock*/ null);
         deduplicator.init(context);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
+        StreamProperties.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test
@@ -159,6 +171,4 @@ class StationUpdateDeduplicatorTest {
                 .setAvailabilityTimestamp(loadTimestamp-60*1000)
                 .build();
     }
-
-
 }
