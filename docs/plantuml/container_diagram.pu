@@ -1,40 +1,50 @@
-@startuml container diagram
+@startuml
 !include https://raw.githubusercontent.com/adrianvlupu/C4-PlantUML/latest/C4_Container.puml
 !define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
-!includeurl SPRITESURL/tomcat.puml
 !includeurl SPRITESURL/kafka.puml
 !includeurl SPRITESURL/java.puml
+!includeurl SPRITESURL/postgresql.puml
+!includeurl SPRITESURL/tomcat.puml
 !includeurl SPRITESURL/desktop.puml
 
 skinparam TitleFontSize 30
 LAYOUT_WITH_LEGEND()
 
 title
-<b>Container diagram</b>
-(based on C4 model)
+<b>Architecture</b>
+(C4 Container diagram)
 end title
-
-Person(user, User, "Someone wanting to get the updated Velib's stations status")
-
   
-System_Boundary(c1, "Velib Station Status") {
+System_Boundary(c1, "Station data processing") {
+    Container(producerApplication, "Producer Application", "Java, Unirest, Kafka", "<$java>\n Fetch stations data from Paris' API and push them to Kafka")
+    Container(streamingApplication, "Streaming Application", "Java, Kafka Streaming", "<$java>\n Combine and process Paris' data. Detect locked stations using their expected activity based on past statistics") 
+    ContainerDb(statisticsDb, "Statistics Database", "PostgreSQL", "<$postgresql>\n Store the hourly usage statistics and daily traffic statistics of each station")
+    ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>\n Store the incoming station and traffic data, and the processed station status and statistics")
+    Container(sinkApplication, "SinkApplication", "Java, Kafka", "<$java>\n Consume statistics topic and store data in the statistics database") 
+}
+
+System_Boundary(c2, "Web application") {
     Container(htmlApplication, "HTML Application", "Javascript, HTML, OpenLayers", "<$desktop>\n Display a map with each station status and the user's location")
     Container(webApplication, "Web Application", "SpringBoot, Thymeleaf, embedded Tomcat", "<$tomcat>\n Generate and deliver the main page with the current stations status")
-    Container(producerApplication, "Producer Application", "Java, Unirest, Kafka", "<$java>\n Fetch stations data from Paris' API and push them to Kafka")
-    Container(streamingApplication, "Streaming Application", "Java, Kafka Streaming", "<$java>\n Combine and process Paris's data to detect unavailable/anomalous stations") 
-    ContainerDb(kafkaCluster, "Kafka Cluster", "Kafka, Schema Registry", "<$kafka>")
 }
+
+Person(user, User, "Someone wanting to get the updated Velib's stations status")
 System_Ext(parisAPI, "Paris OpenData API", "Expose stations and counters data")
 System_Ext(openLayers, "OpenLayers", "Provide OpenStreetMap data")
 
-Rel(user, webApplication, "1.Connect to web address", "HTTP")
-Rel(user, htmlApplication, "2.View stations status", "HTTP")
+Rel_R(user, webApplication, "1.Connect to web address", "HTTP")
+Rel_R(user, htmlApplication, "2.View stations status", "HTTP")
 
 Rel(webApplication, htmlApplication, "Delivers generated page", "HTTP")
 Rel(htmlApplication, openLayers, "Get the map backgrounds", "HTTP")
 
-Rel_Neighbor(webApplication, kafkaCluster, "Consume the processed stations status")
+Rel(webApplication, kafkaCluster, "Consume the processed stations data")
+Rel(webApplication, statisticsDb, "Fetch statistics data")
+
 Rel(producerApplication, kafkaCluster, "Push the stations and traffic data")
 Rel(streamingApplication, kafkaCluster, "Process the stations data to detect anomalies and the traffic data to compute each station nearby traffic")
-Rel(producerApplication, parisAPI, "Get the stations and traffic data", "REST")
+Rel_Up(sinkApplication, kafkaCluster, "Consume statistics topics")
+Rel_Up(sinkApplication, statisticsDb, "Write statistics data")
+Rel(streamingApplication, statisticsDb, "Fetch the usage statistics to compute station's expected activity")
+Rel_R(producerApplication, parisAPI, "Get the stations and traffic data", "REST")
 @enduml
