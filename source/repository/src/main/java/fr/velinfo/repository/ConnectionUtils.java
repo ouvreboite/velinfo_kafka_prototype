@@ -1,6 +1,6 @@
 package fr.velinfo.repository;
 
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,11 +8,11 @@ import java.sql.SQLException;
 
 public class ConnectionUtils {
     public static Connection getConnection() throws SQLException {
-        StreamProperties props = StreamProperties.getInstance();
+        ConnectionConfiguration config = ConnectionConfiguration.getInstance();
         return DriverManager.getConnection(
-                props.getDatabaseUrl(),
-                props.getDatabaseUser(),
-                props.getDatabasePassword()
+                config.getDatabaseUrl(),
+                config.getDatabaseUser(),
+                config.getDatabasePassword()
         );
     }
 }

@@ -1,7 +1,7 @@
 package fr.velinfo.kafka.stream.builder.deduplication;
 
 import fr.velinfo.kafka.stream.builder.StreamTestUtils;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.processor.MockProcessorContext;
@@ -24,7 +24,7 @@ class StationUpdateDeduplicatorTest {
 
     @BeforeEach
     public void initStore(){
-        StreamProperties.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
+        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
 
         var context = new MockProcessorContext();
         final KeyValueStore<String, AvroStationUpdate> store =
@@ -44,7 +44,7 @@ class StationUpdateDeduplicatorTest {
     @AfterEach
     public void tearDown() {
         MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
-        StreamProperties.getInstance().setMockSchemaRegistryUrl(null);
+        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test

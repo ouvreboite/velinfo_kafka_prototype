@@ -12,7 +12,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ import java.util.Map;
 public class KafkaConsumerConfig {
 
     @Autowired
-    private StreamProperties streamProperties;
+    private ConnectionConfiguration streamProperties;
 
     @Bean
     public Map<String, Object> consumerConfigs() {

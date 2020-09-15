@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 @SpringBootApplication
 public class WebApplication {
@@ -21,8 +21,8 @@ public class WebApplication {
 
 	@Bean
 	@Scope("singleton")
-	public StreamProperties streamProperties(){
-		return StreamProperties.getInstance();
+	public ConnectionConfiguration streamProperties(){
+		return ConnectionConfiguration.getInstance();
 	}
 
 	@Bean

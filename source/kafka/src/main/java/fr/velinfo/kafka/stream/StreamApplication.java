@@ -6,7 +6,8 @@ import fr.velinfo.kafka.stream.builder.BikesLockedStreamBuilder;
 import fr.velinfo.kafka.stream.builder.HourlyStationStatsStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationUpdatesStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationsStatusStreamBuilder;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.properties.Topics;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
@@ -25,7 +26,6 @@ import static org.apache.kafka.streams.KafkaStreams.State.RUNNING;
 public class StreamApplication {
 
     private KafkaStreams streams;
-    private final StreamProperties props = StreamProperties.getInstance();
 
     public static void main(final String[] args) {
         var app = new StreamApplication();
@@ -45,10 +45,10 @@ public class StreamApplication {
 
     public void start() {
         TopicCreator.createTopicIfNeeded(
-                props.getStationUpdatesTopic(),
-                props.getHourlyStationStatsTopic(),
-                props.getBikesLockedTopic(),
-                props.getStationStatusTopic()
+                Topics.STATION_UPDATES,
+                Topics.HOURLY_STATION_STATS,
+                Topics.BIKES_LOCKED,
+                Topics.STATION_STATUS
         );
 
         Topology topology = buildTopology();
@@ -60,19 +60,19 @@ public class StreamApplication {
 
     private Topology buildTopology() {
         final StreamsBuilder builder = new StreamsBuilder();
-        var availabilityStream = builder.stream(props.getStationAvailabilityTopic(), Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>avroSerde()));
+        var availabilityStream = builder.stream(Topics.STATION_AVAILABILITIES, Consumed.with(Serdes.String(), StreamUtils.<AvroStationAvailability>avroSerde()));
 
         var stationUpdatesStream = new StationUpdatesStreamBuilder().build(builder, availabilityStream);
-        stationUpdatesStream.to(props.getStationUpdatesTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
+        stationUpdatesStream.to(Topics.STATION_UPDATES, Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var hourlyStationStatsStream = new HourlyStationStatsStreamBuilder().build(stationUpdatesStream);
-        hourlyStationStatsStream.to(props.getHourlyStationStatsTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
+        hourlyStationStatsStream.to(Topics.HOURLY_STATION_STATS, Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var bikesLockedStream = new BikesLockedStreamBuilder().build(hourlyStationStatsStream);
-        bikesLockedStream.to(props.getBikesLockedTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
+        bikesLockedStream.to(Topics.BIKES_LOCKED, Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         var stationsStatusStream = new StationsStatusStreamBuilder().build(stationUpdatesStream);
-        stationsStatusStream.to(props.getStationStatusTopic(), Produced.with(Serdes.String(), StreamUtils.avroSerde()));
+        stationsStatusStream.to(Topics.STATION_STATUS, Produced.with(Serdes.String(), StreamUtils.avroSerde()));
 
         return builder.build();
     }
@@ -84,9 +84,8 @@ public class StreamApplication {
     }
 
     private Properties buildStreamsProperties() {
-        StreamProperties streamProps = StreamProperties.getInstance();
         final Properties props = new Properties();
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, streamProps.getBootstrapServers());
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "velinfo.app");
         props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
         props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, "true");

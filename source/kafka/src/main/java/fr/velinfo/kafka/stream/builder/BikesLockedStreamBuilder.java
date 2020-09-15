@@ -8,7 +8,6 @@ import org.apache.kafka.streams.state.WindowStore;
 import fr.velinfo.avro.record.stream.AvroBikesLocked;
 import fr.velinfo.avro.record.stream.AvroStationStats;
 import fr.velinfo.kafka.stream.StreamUtils;
-import fr.velinfo.properties.StreamProperties;
 
 import java.time.Duration;
 
@@ -18,7 +17,7 @@ public class BikesLockedStreamBuilder {
 
     public KStream<String, AvroBikesLocked> build(KStream<String, AvroStationStats> hourlyStatsStream){
         TimeWindows twoDaysWindow = TimeWindows
-                .of(Duration.ofHours(StreamProperties.getInstance().getBikeLockEstimationDurationHours()))
+                .of(Duration.ofHours(24))
                 .advanceBy(Duration.ofHours(1))
                 .grace(Duration.ofMinutes(2));
 

@@ -9,7 +9,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.Serdes;
 import fr.velinfo.repository.Repository;
 import fr.velinfo.kafka.stream.StreamUtils;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -48,9 +48,9 @@ public class DbSink<V extends SpecificRecord> {
 
     private KafkaConsumer<String, V> initConsumer() {
         var props = new Properties();
-        props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
+        props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
         props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        props.setProperty(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, StreamProperties.getInstance().getSchemaRegistryUrl());
+        props.setProperty(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, ConnectionConfiguration.getInstance().getSchemaRegistryUrl());
         props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, "db_sinkss");
         props.setProperty(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "false");
         props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");

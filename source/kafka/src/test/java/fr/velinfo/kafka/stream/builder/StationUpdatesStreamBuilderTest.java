@@ -2,7 +2,7 @@ package fr.velinfo.kafka.stream.builder;
 
 import fr.velinfo.kafka.stream.StreamUtils;
 import fr.velinfo.properties.DateTimeUtils;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -19,7 +19,6 @@ import fr.velinfo.avro.record.source.AvroStationAvailability;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
@@ -33,7 +32,7 @@ class StationUpdatesStreamBuilderTest {
 
     @BeforeEach
     public void setup() {
-        StreamProperties.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
+        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
         StreamsBuilder builder = new StreamsBuilder();
 
         var inputStream = builder.<String, AvroStationAvailability>stream("input-topic");
@@ -57,7 +56,7 @@ class StationUpdatesStreamBuilderTest {
     public void tearDown() {
         testDriver.close();
         MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
-        StreamProperties.getInstance().setMockSchemaRegistryUrl(null);
+        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test

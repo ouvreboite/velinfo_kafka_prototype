@@ -5,7 +5,7 @@ import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class TopicCreator {
                 .collect(Collectors.toList());
 
         var props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
 
         try (final AdminClient adminClient = AdminClient.create(props)) {
             adminClient.createTopics(topicsToCreate).all().get();

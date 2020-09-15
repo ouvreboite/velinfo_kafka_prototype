@@ -10,7 +10,7 @@ import fr.velinfo.kafka.producer.mapper.AvroMapper;
 import fr.velinfo.kafka.producer.mapper.KeyMapper;
 import fr.velinfo.kafka.producer.mapper.TimestampMapper;
 import fr.velinfo.opendata.dto.OpenDataDto;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.util.List;
 import java.util.Properties;
@@ -37,8 +37,8 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
     private KafkaProducer<String, A> initProducer() {
         var props = new Properties();
 
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, StreamProperties.getInstance().getBootstrapServers());
-        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, StreamProperties.getInstance().getSchemaRegistryUrl());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
+        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, ConnectionConfiguration.getInstance().getSchemaRegistryUrl());
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroSerializer");

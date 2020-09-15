@@ -4,7 +4,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class StationService {
     @Autowired
-    private StreamProperties streamProperties;
+    private ConnectionConfiguration streamProperties;
     private final Map<String, AvroStationUpdate> availabilities = new ConcurrentHashMap<>();
 
     public List<AvroStationUpdate> getStations(){

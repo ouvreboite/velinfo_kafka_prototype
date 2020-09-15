@@ -3,7 +3,7 @@ package fr.velinfo.kafka.stream;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
-import fr.velinfo.properties.StreamProperties;
+import fr.velinfo.properties.ConnectionConfiguration;
 
 import java.util.Collections;
 import java.util.Map;
@@ -18,6 +18,6 @@ public class StreamUtils {
 
     private static Map<String, String> buildSerdeConfig() {
         return Collections.singletonMap(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                StreamProperties.getInstance().getSchemaRegistryUrl());
+                ConnectionConfiguration.getInstance().getSchemaRegistryUrl());
     }
 }
