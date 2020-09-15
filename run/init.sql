@@ -15,12 +15,3 @@ CREATE TABLE station_hourly_statistics
 	lastLoadTimestamp TIMESTAMP NOT NULL,
 	PRIMARY KEY (stationCode, periodStart, periodEnd)
 );
-
-CREATE TABLE station_daily_nearby_traffic
-(
-	stationCode varchar(256) NOT NULL,
-	periodStart TIMESTAMP NOT NULL,
-	periodEnd TIMESTAMP NOT NULL,
-	totalTraffic INT NOT NULL,
-	PRIMARY KEY (stationCode, periodStart, periodEnd)
-);
