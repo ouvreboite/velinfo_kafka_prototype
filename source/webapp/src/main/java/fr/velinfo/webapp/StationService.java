@@ -1,18 +1,15 @@
 package fr.velinfo.webapp;
 
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.properties.ConnectionConfiguration;
-
-import java.util.*;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class StationService {
-    @Autowired
-    private ConnectionConfiguration streamProperties;
     private final Map<String, AvroStationUpdate> availabilities = new ConcurrentHashMap<>();
 
     public List<AvroStationUpdate> getStations(){
@@ -21,7 +18,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    @KafkaListener(topics = "#{streamProperties.getStationUpdatesTopic()}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{T(fr.velinfo.properties.Topics).STATION_UPDATES}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
     public void consume(ConsumerRecord<String, AvroStationUpdate> record) {
         this.availabilities.put(record.key(), record.value());
     }
