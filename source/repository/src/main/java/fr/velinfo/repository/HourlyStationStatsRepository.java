@@ -2,55 +2,66 @@ package fr.velinfo.repository;
 
 import fr.velinfo.avro.record.stream.AvroStationStats;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class HourlyStationStatsRepository implements Repository<AvroStationStats> {
+    private static final String INSERT_SQL = "INSERT INTO station_hourly_statistics \n" +
+            "(stationCode, periodStart, periodEnd, \n" +
+            "numberOfMechanicalBikesReturned, numberOfElectricBikesReturned, numberOfMechanicalBikesRented, numberOfElectricBikesRented, \n" +
+            "minimumNumberOfMechanicalBikes, minimumNumberOfElectricBikes, minimumNumberOfEmptySlots, \n" +
+            "lastNumberOfMechanicalBikes, lastNumberOfElectricBikes, lastLoadTimestamp)\n" +
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-    public synchronized void persist(AvroStationStats stats) throws RepositoryException {
-        String insertSql = "INSERT INTO station_hourly_statistics \n" +
-                "(stationCode, periodStart, periodEnd, \n" +
-                "numberOfMechanicalBikesReturned, numberOfElectricBikesReturned, numberOfMechanicalBikesRented, numberOfElectricBikesRented, \n" +
-                "minimumNumberOfMechanicalBikes, minimumNumberOfElectricBikes, minimumNumberOfEmptySlots, \n" +
-                "lastNumberOfMechanicalBikes, lastNumberOfElectricBikes, lastLoadTimestamp)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String QUERY_PAST_DAYS_SQL = "SELECT  \n" +
+            "stationCode, periodStart, periodEnd, \n" +
+            "numberOfMechanicalBikesReturned, numberOfElectricBikesReturned, numberOfMechanicalBikesRented, numberOfElectricBikesRented, \n" +
+            "minimumNumberOfMechanicalBikes, minimumNumberOfElectricBikes, minimumNumberOfEmptySlots, \n" +
+            "lastNumberOfMechanicalBikes, lastNumberOfElectricBikes, lastLoadTimestamp \n" +
+            "FROM station_hourly_statistics \n" +
+            "WHERE stationCode = ? and periodStart > current_date - interval '%days%' day;";
+
+    @Override
+    public void persist(Collection<AvroStationStats> stats) throws RepositoryException {
 
         try (
                 Connection connection = ConnectionUtils.getConnection();
-                PreparedStatement insertStats = connection.prepareStatement(insertSql)
+                PreparedStatement insertStats = connection.prepareStatement(INSERT_SQL)
         ) {
-            insertStats.setString(1, stats.getStationCode());
-            insertStats.setTimestamp(2, new Timestamp(stats.getPeriodStart()));
-            insertStats.setTimestamp(3, new Timestamp(stats.getPeriodEnd()));
-            insertStats.setInt(4, stats.getNumberOfMechanicalBikesReturned());
-            insertStats.setInt(5, stats.getNumberOfElectricBikesReturned());
-            insertStats.setInt(6, stats.getNumberOfMechanicalBikesRented());
-            insertStats.setInt(7, stats.getNumberOfElectricBikesRented());
-            insertStats.setInt(8, stats.getMinimumNumberOfMechanicalBikes());
-            insertStats.setInt(9, stats.getMinimumNumberOfElectricBikes());
-            insertStats.setInt(10, stats.getMinimumNumberOfEmptySlots());
-            insertStats.setInt(11, stats.getLastNumberOfMechanicalBikes());
-            insertStats.setInt(12, stats.getLastNumberOfElectricBikes());
-            insertStats.setTimestamp(13, new Timestamp(stats.getLastLoadTimestamp()));
-
-            insertStats.execute();
+            connection.setAutoCommit(false);
+            for (AvroStationStats stat : stats) {
+                insertStats.setString(1, stat.getStationCode());
+                insertStats.setTimestamp(2, new Timestamp(stat.getPeriodStart()));
+                insertStats.setTimestamp(3, new Timestamp(stat.getPeriodEnd()));
+                insertStats.setInt(4, stat.getNumberOfMechanicalBikesReturned());
+                insertStats.setInt(5, stat.getNumberOfElectricBikesReturned());
+                insertStats.setInt(6, stat.getNumberOfMechanicalBikesRented());
+                insertStats.setInt(7, stat.getNumberOfElectricBikesRented());
+                insertStats.setInt(8, stat.getMinimumNumberOfMechanicalBikes());
+                insertStats.setInt(9, stat.getMinimumNumberOfElectricBikes());
+                insertStats.setInt(10, stat.getMinimumNumberOfEmptySlots());
+                insertStats.setInt(11, stat.getLastNumberOfMechanicalBikes());
+                insertStats.setInt(12, stat.getLastNumberOfElectricBikes());
+                insertStats.setTimestamp(13, new Timestamp(stat.getLastLoadTimestamp()));
+                insertStats.addBatch();
+            }
+            insertStats.executeBatch();
+            connection.commit();
         } catch (SQLException exception ) {
             throw new RepositoryException("Exception when persisting "+stats, exception);
         }
     }
 
-    public Collection<AvroStationStats> getStatsForPast30Days(String stationCode) throws RepositoryException {
-        String querySql = "SELECT  \n" +
-                "stationCode, periodStart, periodEnd, \n" +
-                "numberOfMechanicalBikesReturned, numberOfElectricBikesReturned, numberOfMechanicalBikesRented, numberOfElectricBikesRented, \n" +
-                "minimumNumberOfMechanicalBikes, minimumNumberOfElectricBikes, minimumNumberOfEmptySlots, \n" +
-                "lastNumberOfMechanicalBikes, lastNumberOfElectricBikes, lastLoadTimestamp \n" +
-                "FROM station_hourly_statistics \n" +
-                "WHERE stationCode = ? and periodStart > current_date - interval '30' day;";
+    public Collection<AvroStationStats> getStatsForPastDays(String stationCode, int days) throws RepositoryException {
+        String query = QUERY_PAST_DAYS_SQL.replace("%days%", days+"");
         try (
                 Connection connection = ConnectionUtils.getConnection();
-                PreparedStatement insertStats = connection.prepareStatement(querySql)
+                PreparedStatement insertStats = connection.prepareStatement(query)
         ) {
             insertStats.setString(1, stationCode);
             var resultSet = insertStats.executeQuery();
