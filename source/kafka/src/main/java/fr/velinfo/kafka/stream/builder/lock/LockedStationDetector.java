@@ -33,7 +33,7 @@ public class LockedStationDetector {
         try{
 
             System.out.println("Loading stats for station "+station.getStationCode()+" stale for "+lastChange.until(load, ChronoUnit.MINUTES)+" minutes");
-            Collection<AvroStationStats> stats = hourlyStationStatsRepository.getStatsForPast30Days(station.getStationCode());
+            Collection<AvroStationStats> stats = hourlyStationStatsRepository.getStatsForPastDays(station.getStationCode(), 30);
             System.out.println(stats.size()+" stats loaded for station "+station.getStationCode());
             int expectedActivityOnSamePeriod = activityCalculator.computeExpectedActivityOnSamePeriod(stats, lastChange, load);
             System.out.println("Expected activity for station "+station.getStationCode()+" : "+expectedActivityOnSamePeriod);

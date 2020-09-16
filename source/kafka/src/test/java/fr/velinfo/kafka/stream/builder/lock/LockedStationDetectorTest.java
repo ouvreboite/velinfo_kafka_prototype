@@ -61,7 +61,7 @@ public class LockedStationDetectorTest {
         station.setLastChangeTimestamp(DateTimeUtils.timestamp(nowMinus10h));
 
         var stats = new ArrayList<AvroStationStats>();
-        when(repository.getStatsForPast30Days("ABC")).thenReturn(stats);
+        when(repository.getStatsForPastDays("ABC", 30)).thenReturn(stats);
         when(activityCalculator.computeExpectedActivityOnSamePeriod(stats, nowMinus10h, now)).thenReturn(95);
         assertFalse(detector.isStationLocked(station), "When expected activity on same period is less than 100, station is not locked");
 
