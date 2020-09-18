@@ -2,7 +2,7 @@ package fr.velinfo.kafka.stream.builder.lock;
 
 import lombok.Data;
 import fr.velinfo.avro.record.stream.AvroStationStats;
-import fr.velinfo.properties.DateTimeUtils;
+import fr.velinfo.kafka.utils.DateTimeUtils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

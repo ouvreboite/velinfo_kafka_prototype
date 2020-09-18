@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.kafka.stream.StreamUtils;
-import fr.velinfo.properties.DateTimeUtils;
+import fr.velinfo.kafka.utils.DateTimeUtils;
 
 import java.time.LocalDateTime;
 

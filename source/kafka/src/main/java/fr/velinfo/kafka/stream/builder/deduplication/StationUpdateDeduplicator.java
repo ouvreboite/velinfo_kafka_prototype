@@ -4,7 +4,7 @@ import org.apache.kafka.streams.kstream.ValueTransformerWithKey;
 import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.properties.DateTimeUtils;
+import fr.velinfo.kafka.utils.DateTimeUtils;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

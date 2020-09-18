@@ -1,7 +1,7 @@
 package fr.velinfo.kafka.stream.builder;
 
 import fr.velinfo.kafka.stream.StreamUtils;
-import fr.velinfo.properties.DateTimeUtils;
+import fr.velinfo.kafka.utils.DateTimeUtils;
 import fr.velinfo.properties.ConnectionConfiguration;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.StringDeserializer;

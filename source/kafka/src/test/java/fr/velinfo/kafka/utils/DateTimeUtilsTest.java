@@ -1,4 +1,4 @@
-package fr.velinfo.properties;
+package fr.velinfo.kafka.utils;
 
 import org.junit.jupiter.api.Test;
 
