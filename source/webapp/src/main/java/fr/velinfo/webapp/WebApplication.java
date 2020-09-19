@@ -21,11 +21,5 @@ public class WebApplication {
 
 	@Bean
 	@Scope("singleton")
-	public ConnectionConfiguration streamProperties(){
-		return ConnectionConfiguration.getInstance();
-	}
-
-	@Bean
-	@Scope("singleton")
 	public AvroJsonMapper avroJsonMapper(){ return new AvroJsonMapper(); }
 }

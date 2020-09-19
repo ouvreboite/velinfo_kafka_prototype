@@ -28,6 +28,8 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
 
     @Override
     public void persist(Collection<AvroStationStats> stats) throws RepositoryException {
+        if(stats.isEmpty())
+            return;
 
         try (
                 Connection connection = ConnectionUtils.getConnection();
