@@ -5,7 +5,7 @@
     <parent>
         <artifactId>velinfo</artifactId>
         <groupId>fr.velinfo</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -51,13 +51,13 @@
         <dependency>
             <groupId>fr.velinfo</groupId>
             <artifactId>avro</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>fr.velinfo</groupId>
             <artifactId>properties</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
