@@ -26,19 +26,19 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
     private final AvroMapper<F, A> avroMapper;
 
 
-    public Producer(String topic, KeyMapper<A> keyExtractor, TimestampMapper<A> timestampExtractor, AvroMapper<F, A> avroMapper) {
+    public Producer(String topic, KeyMapper<A> keyExtractor, TimestampMapper<A> timestampExtractor, AvroMapper<F, A> avroMapper, ConnectionConfiguration config) {
         this.topic = topic;
         this.keyExtractor = keyExtractor;
         this.timestampExtractor = timestampExtractor;
         this.avroMapper = avroMapper;
-        this.kafkaProducer = initProducer();
+        this.kafkaProducer = initProducer(config);
     }
 
-    private KafkaProducer<String, A> initProducer() {
+    private KafkaProducer<String, A> initProducer(ConnectionConfiguration config) {
         var props = new Properties();
 
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
-        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, ConnectionConfiguration.getInstance().getSchemaRegistryUrl());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getBootstrapServers());
+        props.put(KafkaAvroDeserializerConfig.SCHEMA_REGISTRY_URL_CONFIG, config.getSchemaRegistryUrl());
         props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaAvroSerializer");

@@ -3,6 +3,7 @@ package fr.velinfo.kafka.stream.builder.lock;
 import lombok.Data;
 import fr.velinfo.avro.record.stream.AvroStationStats;
 import fr.velinfo.kafka.utils.DateTimeUtils;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
+@Component
 public class ExpectedActivityCalculator {
 
     public int computeExpectedActivityOnSamePeriod(Collection<AvroStationStats> stats, LocalDateTime periodStart, LocalDateTime periodEnd){

@@ -1,6 +1,6 @@
 package fr.velinfo.kafka.stream.builder;
 
-import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.kafka.stream.AvroSerdeBuilder;
 import fr.velinfo.kafka.utils.DateTimeUtils;
 import fr.velinfo.properties.ConnectionConfiguration;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
@@ -21,6 +21,7 @@ import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import java.time.Duration;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,12 +32,15 @@ class StationUpdatesStreamBuilderTest {
     private TestOutputTopic<String, AvroStationUpdate> outputTopic;
 
     @BeforeEach
-    public void setup() {
-        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
+    public void setup() throws IllegalAccessException {
+        Properties properties = new Properties();
+        properties.setProperty("schema.registry.url", StreamTestUtils.getSchemaRegistryUrl());
+        ConnectionConfiguration connectionConfiguration = new ConnectionConfiguration(properties);
+        AvroSerdeBuilder avroSerdeBuilder = new AvroSerdeBuilder(connectionConfiguration);
         StreamsBuilder builder = new StreamsBuilder();
 
         var inputStream = builder.<String, AvroStationAvailability>stream("input-topic");
-        var resultStream = new StationUpdatesStreamBuilder().build(builder, inputStream);
+        var resultStream = new StationUpdatesStreamBuilder(avroSerdeBuilder).build(builder, inputStream);
         resultStream.to("result-topic");
 
         this.testDriver = new TopologyTestDriver(builder.build(), StreamTestUtils.getStreamConfig());
@@ -44,19 +48,18 @@ class StationUpdatesStreamBuilderTest {
         this.inputTopic = testDriver.createInputTopic(
                 "input-topic",
                 new StringSerializer(),
-                StreamUtils.<AvroStationAvailability>avroSerde().serializer());
+                avroSerdeBuilder.<AvroStationAvailability>avroSerde().serializer());
 
         this.outputTopic = testDriver.createOutputTopic(
                 "result-topic",
                 new StringDeserializer(),
-                StreamUtils.<AvroStationUpdate>avroSerde().deserializer());
+                avroSerdeBuilder.<AvroStationUpdate>avroSerde().deserializer());
     }
 
     @AfterEach
     public void tearDown() {
         testDriver.close();
         MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
-        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test

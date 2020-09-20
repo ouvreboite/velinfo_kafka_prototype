@@ -2,16 +2,22 @@ package fr.velinfo.kafka.stream.builder;
 
 import fr.velinfo.avro.record.stream.AvroBikesLocked;
 import fr.velinfo.avro.record.stream.AvroStationStats;
+import fr.velinfo.properties.ConnectionConfiguration;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.KStream;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.function.ToLongFunction;
-
+@Component
 public class BikesLockedStreamBuilder {
-    private final HourlyStationStatsRepository hourlyStationStatsRepository = new HourlyStationStatsRepository();
+    private final HourlyStationStatsRepository hourlyStationStatsRepository;
+
+    public BikesLockedStreamBuilder(ConnectionConfiguration config) {
+        this.hourlyStationStatsRepository = new HourlyStationStatsRepository(config);
+    }
 
     public KStream<String, AvroBikesLocked> build(KStream<String, AvroStationStats> hourlyStatsStream){
 

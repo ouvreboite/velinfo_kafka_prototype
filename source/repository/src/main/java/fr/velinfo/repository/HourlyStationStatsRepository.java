@@ -1,16 +1,20 @@
 package fr.velinfo.repository;
 
 import fr.velinfo.avro.record.stream.AvroStationStats;
+import fr.velinfo.properties.ConnectionConfiguration;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 public class HourlyStationStatsRepository implements Repository<AvroStationStats> {
+
+    private ConnectionConfiguration config;
+
+    public HourlyStationStatsRepository(ConnectionConfiguration config) {
+        this.config = config;
+    }
+
     private static final String INSERT_SQL = "INSERT INTO station_hourly_statistics \n" +
             "(stationCode, periodStart, periodEnd, \n" +
             "numberOfMechanicalBikesReturned, numberOfElectricBikesReturned, numberOfMechanicalBikesRented, numberOfElectricBikesRented, \n" +
@@ -32,7 +36,7 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
             return;
 
         try (
-                Connection connection = ConnectionUtils.getConnection();
+                Connection connection = getConnection();
                 PreparedStatement insertStats = connection.prepareStatement(INSERT_SQL)
         ) {
             connection.setAutoCommit(false);
@@ -62,7 +66,7 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
     public Collection<AvroStationStats> getStatsForPastDays(String stationCode, int days) throws RepositoryException {
         String query = QUERY_PAST_DAYS_SQL.replace("%days%", days+"");
         try (
-                Connection connection = ConnectionUtils.getConnection();
+                Connection connection = getConnection();
                 PreparedStatement insertStats = connection.prepareStatement(query)
         ) {
             insertStats.setString(1, stationCode);
@@ -90,5 +94,13 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
         } catch (SQLException exception ) {
             throw new RepositoryException("Exception when loading 30 days stats for "+stationCode, exception);
         }
+    }
+
+    private Connection getConnection() throws SQLException {
+        return DriverManager.getConnection(
+                config.getDatabaseUrl(),
+                config.getDatabaseUser(),
+                config.getDatabasePassword()
+        );
     }
 }

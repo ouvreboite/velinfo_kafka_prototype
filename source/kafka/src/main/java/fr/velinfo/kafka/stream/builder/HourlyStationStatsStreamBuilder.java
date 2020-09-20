@@ -7,13 +7,20 @@ import org.apache.kafka.streams.kstream.*;
 import org.apache.kafka.streams.state.WindowStore;
 import fr.velinfo.avro.record.stream.AvroStationStats;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.kafka.stream.AvroSerdeBuilder;
+import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 
 import static org.apache.kafka.streams.kstream.Suppressed.BufferConfig.unbounded;
-
+@Component
 public class HourlyStationStatsStreamBuilder {
+
+    private final AvroSerdeBuilder avroSerdeBuilder;
+
+    public HourlyStationStatsStreamBuilder(AvroSerdeBuilder avroSerdeBuilder) {
+        this.avroSerdeBuilder = avroSerdeBuilder;
+    }
 
     public KStream<String, AvroStationStats> build(KStream<String, AvroStationUpdate> stationChangesStream){
         TimeWindows hourWindow = TimeWindows
@@ -23,11 +30,11 @@ public class HourlyStationStatsStreamBuilder {
         var hourlyStationStatsAggregationStore = Materialized.<String, AvroStationStats, WindowStore<Bytes, byte[]>>
                 as("hourlyStationStatsAggregationStore")
                 .withKeySerde(Serdes.String())
-                .withValueSerde(StreamUtils.avroSerde())
+                .withValueSerde(avroSerdeBuilder.avroSerde())
                 .withRetention(Duration.ofHours(6));
 
         return stationChangesStream
-                .groupByKey(Grouped.with(Serdes.String(), StreamUtils.avroSerde()))
+                .groupByKey(Grouped.with(Serdes.String(), avroSerdeBuilder.avroSerde()))
                 .windowedBy(hourWindow)
                 .aggregate(AvroStationStats::new,
                         ComputeHourlyStats(),

@@ -12,10 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.kafka.stream.AvroSerdeBuilder;
 import fr.velinfo.kafka.utils.DateTimeUtils;
 
 import java.time.LocalDateTime;
+import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,15 +24,18 @@ class StationUpdateDeduplicatorTest {
     private final StationUpdateDeduplicator deduplicator = new StationUpdateDeduplicator("store");
 
     @BeforeEach
-    public void initStore(){
-        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(StreamTestUtils.getSchemaRegistryUrl());
+    public void initStore() {
+        Properties properties = new Properties();
+        properties.setProperty("schema.registry.url", StreamTestUtils.getSchemaRegistryUrl());
+        ConnectionConfiguration connectionConfiguration = new ConnectionConfiguration(properties);
+        AvroSerdeBuilder avroSerdeBuilder = new AvroSerdeBuilder(connectionConfiguration);
 
         var context = new MockProcessorContext();
         final KeyValueStore<String, AvroStationUpdate> store =
                 Stores.keyValueStoreBuilder(
                         Stores.inMemoryKeyValueStore("store"),
                         Serdes.String(),
-                        StreamUtils.<AvroStationUpdate>avroSerde()
+                        avroSerdeBuilder.<AvroStationUpdate>avroSerde()
                 )
                 .withLoggingDisabled() // Changelog is not supported by MockProcessorContext
                 .build();
@@ -44,7 +48,6 @@ class StationUpdateDeduplicatorTest {
     @AfterEach
     public void tearDown() {
         MockSchemaRegistry.dropScope(StreamTestUtils.getSchemaRegistryUrl());
-        ConnectionConfiguration.getInstance().setMockSchemaRegistryUrl(null);
     }
 
     @Test

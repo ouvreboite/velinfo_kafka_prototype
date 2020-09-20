@@ -3,12 +3,14 @@ package fr.velinfo.kafka.producer.mapper;
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.source.AvroStationAvailability;
 import fr.velinfo.opendata.dto.RealTimeAvailability;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Component
 public class RealTimeAvailabilityMapper implements AvroMapper<RealTimeAvailability.Fields, AvroStationAvailability> {
     @Override
-    public AvroStationAvailability map(RealTimeAvailability.Fields record) {
+    public synchronized AvroStationAvailability map(RealTimeAvailability.Fields record) {
         AvroCoordinates coordinates = AvroCoordinates.newBuilder()
                 .setLatitude(record.getCoordonnees_geo() != null ? record.getCoordonnees_geo()[0] : 0.0)
                 .setLongitude(record.getCoordonnees_geo() != null ? record.getCoordonnees_geo()[1] : 0.0)

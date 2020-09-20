@@ -5,6 +5,7 @@ import org.apache.kafka.streams.processor.ProcessorContext;
 import org.apache.kafka.streams.state.KeyValueStore;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.kafka.utils.DateTimeUtils;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

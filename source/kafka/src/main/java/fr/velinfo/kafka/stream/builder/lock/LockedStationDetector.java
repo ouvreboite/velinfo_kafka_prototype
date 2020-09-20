@@ -5,11 +5,12 @@ import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.kafka.utils.DateTimeUtils;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
-
+@Component
 public class LockedStationDetector {
 
     private final HourlyStationStatsRepository hourlyStationStatsRepository;

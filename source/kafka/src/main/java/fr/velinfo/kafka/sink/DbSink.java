@@ -1,6 +1,6 @@
 package fr.velinfo.kafka.sink;
 
-import fr.velinfo.kafka.stream.StreamUtils;
+import fr.velinfo.kafka.stream.AvroSerdeBuilder;
 import fr.velinfo.repository.Repository;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,8 +19,8 @@ public class DbSink<V extends SpecificRecord> {
     private final Repository<V> repository;
     private final String topic;
 
-    public DbSink(String topic, Repository<V> repository, Properties props) {
-        this.consumer = initConsumer(props);
+    public DbSink(String topic, Repository<V> repository, Properties props, AvroSerdeBuilder avroSerdeBuilder) {
+        this.consumer = initConsumer(props, avroSerdeBuilder);
         this.topic = topic;
         this.repository = repository;
     }
@@ -52,8 +52,8 @@ public class DbSink<V extends SpecificRecord> {
         return objects;
     }
 
-    private KafkaConsumer<String, V> initConsumer(Properties props) {
-        var kafkaConsumer = new KafkaConsumer<>(props, Serdes.String().deserializer(), StreamUtils.<V>avroSerde().deserializer());
+    private KafkaConsumer<String, V> initConsumer(Properties props, AvroSerdeBuilder avroSerdeBuilder) {
+        var kafkaConsumer = new KafkaConsumer<>(props, Serdes.String().deserializer(), avroSerdeBuilder.<V>avroSerde().deserializer());
         Runtime.getRuntime().addShutdownHook(new Thread(kafkaConsumer::close, "Shutdown-thread"));
         return kafkaConsumer;
     }

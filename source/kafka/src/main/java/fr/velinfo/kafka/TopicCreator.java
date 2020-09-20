@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
 import fr.velinfo.properties.ConnectionConfiguration;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,16 +14,22 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
-
+@Component
 public class TopicCreator {
 
-    public static void createTopicIfNeeded(String... topics) {
+    private final ConnectionConfiguration config;
+
+    public TopicCreator(ConnectionConfiguration config) {
+        this.config = config;
+    }
+
+    public void createTopicIfNeeded(String... topics) {
         List<NewTopic> topicsToCreate = Arrays.stream(topics)
                 .map(topic -> configureNewTopic(topic))
                 .collect(Collectors.toList());
 
         var props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, ConnectionConfiguration.getInstance().getBootstrapServers());
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, config.getBootstrapServers());
 
         try (final AdminClient adminClient = AdminClient.create(props)) {
             adminClient.createTopics(topicsToCreate).all().get();
