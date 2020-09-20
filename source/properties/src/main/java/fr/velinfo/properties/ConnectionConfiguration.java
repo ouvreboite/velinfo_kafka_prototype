@@ -27,9 +27,10 @@ public final class ConnectionConfiguration {
     }
 
     private static Properties propsFromFile(String path) throws IOException {
-        var fis = new FileInputStream(path);
         var props = new Properties();
-        props.load(fis);
+        try(var fis = new FileInputStream(path)){
+            props.load(fis);
+        }
         return props;
     }
 }
