@@ -65,6 +65,8 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
             System.err.println("Error mapping to Avro : "+e);
         }catch (InterruptedException | ExecutionException e) {
             System.err.println("Error pushing to Kafka : "+e);
+        }catch (org.apache.kafka.common.errors.SerializationException e) {
+            System.err.println("Error during serialization : "+e);
         }
 
         kafkaProducer.flush();

@@ -31,7 +31,6 @@ public class ProducerApplication {
     public void start() {
         topicCreator.createTopicIfNeeded(Topics.STATION_AVAILABILITIES);
 
-
         var availabilityProducer = new Producer<RealTimeAvailability, RealTimeAvailability.Fields, AvroStationAvailability>(
                 Topics.STATION_AVAILABILITIES,
                 AvroStationAvailability::getStationCode,
