@@ -1,5 +1,6 @@
 ![Java Build](https://github.com/ouvreboite/velinfo/workflows/Java%20Build/badge.svg)
 ![Generate plantUML](https://github.com/ouvreboite/velinfo/workflows/Generate%20plantUML/badge.svg)
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=fr.velinfo:velinfo&metric=alert_status)](https://sonarcloud.io/dashboard?id=fr.velinfo:velinfo)
 # Velinfo
 
 A java project using Kafka to process the Paris' Velib (bicycles) stations, detect if they are locked, and diplay them using OpenLayers. 

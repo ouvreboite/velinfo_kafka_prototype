@@ -2,3 +2,4 @@ source/.idea/*
 .idea/*
 source/*/target/*
 *.iml
+source/target/sonar/.sonar_lock

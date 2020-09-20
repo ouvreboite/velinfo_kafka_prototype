@@ -1,13 +1,11 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java Build & Test
+name: Java Build, Test and Publish
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  release:
+    types: [published]
 
 jobs:
   build:
@@ -19,6 +17,8 @@ jobs:
     - name: Set up JDK 11
       uses: actions/setup-java@v1
       with:
-        java-version: 11
-    - name: Build with Maven
-      run: mvn -B package test --file source/pom.xml
+        java-version: 11      
+    - name: Publish to GitHub Packages
+      run: mvn -B clean deploy -DskipTests --file source/pom.xml
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
