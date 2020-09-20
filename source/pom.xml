@@ -21,6 +21,13 @@
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Github repository</name>
+            <url>https://maven.pkg.github.com/ouvreboite/velinfo</url>
+        </repository>
+    </distributionManagement>
     <repositories>
         <repository>
             <id>central</id>
