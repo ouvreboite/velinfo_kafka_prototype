@@ -22,10 +22,7 @@
     <div id="map" class="map"><div id="popup"></div></div>
     <script type="text/javascript" src="map.js"></script>
     <script th:inline="javascript">
-        // due to a serialization problem with Thymeleaf's jackson mapper and AVRO beans, with serialize manually before Thymeleaf
-        // So we JSON.parse the already serialized object
-        var stationsJs= JSON.parse(/*[[${stationsJs}]]*/);
-        setupMap(stationsJs);
+        setupMap([[${stations}]]);
     </script>
     <table class="table">
         <thead>
@@ -34,24 +31,22 @@
             <th scope="col">Station Name</th>
             <th scope="col">Total Capacity</th>
             <th scope="col">Empty slots</th>
-            <th scope="col">Mechnical bikes available</th>
-            <th scope="col">Elecric bikes available</th>
-            <th scope="col">Last update</th>
-            <th scope="col">Stale since</th>
-            <th scope="col">Stale status</th>
+            <th scope="col">Mechanical bikes available</th>
+            <th scope="col">Electric bikes available</th>
+            <th scope="col">Last change</th>
+            <th scope="col">Status</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="station : ${stations}">
             <td scope="row" th:text="${station.stationCode}"></td>
             <td th:text="${station.stationName}"></td>
-            <td th:text="${station.stationCapacity}"></td>
-            <td th:text="${station.stationCapacity-(station.mechanicalBikesAtStation+station.electricBikesAtStation)}"></td>
-            <td th:text="${station.mechanicalBikesAtStation}"></td>
-            <td th:text="${station.electricBikesAtStation}"></td>
-            <td th:text="${#dates.format(station.loadTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${#dates.format(station.staleSinceTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
-            <td th:text="${station.staleStatus}"></td>
+            <td th:text="${station.totalCapacity}"></td>
+            <td th:text="${station.emptySlots}"></td>
+            <td th:text="${station.mechanicalBikes}"></td>
+            <td th:text="${station.electricBikes}"></td>
+            <td th:text="${#dates.format(station.lastChangeTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${station.status}"></td>
         </tr>
         </tbody>
     </table>

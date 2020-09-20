@@ -12,7 +12,7 @@ import java.io.IOException;
 @SpringBootApplication
 public class WebApplication {
 
-	public static void main(String[] args) throws IOException, IllegalAccessException {
+	public static void main(String[] args) {
 		SpringApplication.run(WebApplication.class, args);
 	}
 
@@ -21,17 +21,7 @@ public class WebApplication {
 
 	@Bean
 	@Scope("singleton")
-	public StationService stationServiceSingleton(){
-		return new StationService();
-	}
-
-	@Bean
-	@Scope("singleton")
 	public ConnectionConfiguration connectionConfiguration() throws IOException {
 		return new ConnectionConfiguration(this.connectionFile);
 	}
-
-	@Bean
-	@Scope("singleton")
-	public AvroJsonMapper avroJsonMapper(){ return new AvroJsonMapper(); }
 }

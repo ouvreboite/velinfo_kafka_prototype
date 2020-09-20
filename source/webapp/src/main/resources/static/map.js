@@ -72,6 +72,13 @@ function addStationsOnMap(map, stations){
       })
     });
 
+    var koStationStyle = new ol.style.Style({
+          image: new ol.style.Icon({
+            color: '#ff0000',
+            src: 'station_marker.png'
+          })
+        });
+
     var stationsMarkers = stations.map(station => {
         var stationLonLat = ol.proj.fromLonLat([station.longitude, station.latitude])
         var stationMarker = new ol.Feature({
@@ -79,10 +86,13 @@ function addStationsOnMap(map, stations){
             station: station,
 
         });
-        if(station.staleStatus)
+        if(station.status == "OK")
+            stationMarker.setStyle(okStationStyle);
+        else if (station.status == "LOCKED")
             stationMarker.setStyle(warningStationStyle);
         else
-            stationMarker.setStyle(okStationStyle);
+            stationMarker.setStyle(koStationStyle);
+
         return stationMarker;
     });
 
@@ -143,34 +153,24 @@ function addPopupForStations(map){
 }
 
 function popupTemplate(station){
-    var bikes = station.mechanicalBikesAtStation+station.electricBikesAtStation;
-    var emptySlots = station.stationCapacity-(bikes);
-
-    var electricShare = station.electricBikesAtStation/station.stationCapacity*100;
-    var mechanicalShare = station.mechanicalBikesAtStation/station.stationCapacity*100;
-
-    var tfnOfficial = timeFromNow(new Date(station.availabilityTimestamp));
-    var tfnLoad = timeFromNow(new Date(station.loadTimestamp));
+    var electricShare = station.electricBikes/station.totalCapacity*100;
+    var mechanicalShare = station.mechanicalBikes/station.totalCapacity*100;
+    var tfnLastChange = timeFromNow(new Date(station.lastChangeTimestamp));
 
     var htmlContent =
 `<div class="progress">
-    <div class="progress-bar bg-success" role="progressbar" style="width: ${mechanicalShare}%" aria-valuenow=${station.mechanicalBikesAtStation}  aria-valuemin="0" aria-valuemax=${station.stationCapacity}></div>
-    <div class="progress-bar" role="progressbar" style="width: ${electricShare}%" aria-valuenow=${station.electricBikesAtStation} aria-valuemin="0" aria-valuemax=${station.stationCapacity}></div>
+    <div class="progress-bar bg-success" role="progressbar" style="width: ${mechanicalShare}%" aria-valuenow=${station.mechanicalBikes}  aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
+    <div class="progress-bar" role="progressbar" style="width: ${electricShare}%" aria-valuenow=${station.electricBikes} aria-valuemin="0" aria-valuemax=${station.totalCapacity}></div>
     </div>
 <p>
-    ${station.mechanicalBikesAtStation} mechanical bike(s)<br/>
-    ${station.electricBikesAtStation} electric bike(s)<br/>
-    ${emptySlots} empty slot(s)<br/>
-    <em>Last updated : ${tfnLoad.time} ${tfnLoad.unitOfTime} ago</em>
+    ${station.mechanicalBikes} mechanical bike(s)<br/>
+    ${station.electricBikes} electric bike(s)<br/>
+    ${station.emptySlots} empty slot(s)<br/>
+    Status : ${station.status} <br/>
+    <em>Last change : ${tfnLastChange.time} ${tfnLastChange.unitOfTime} ago</em>
     <hr/>
-    Is renting ? ${station.isRenting}<br/>
-    Is returning ? ${station.isReturning}<br/>
-    Is installed ? ${station.isInstalled}<br/>
-    <em>Last updated : ${tfnOfficial.time} ${tfnOfficial.unitOfTime} ago</em>
-
 </p>`;
 
-    console.log(htmlContent);
     return htmlContent;
 }
 
