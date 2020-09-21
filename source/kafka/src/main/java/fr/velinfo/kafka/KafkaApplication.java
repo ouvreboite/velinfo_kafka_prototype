@@ -29,12 +29,12 @@ public class KafkaApplication {
 
     public static void main(String[] args) throws IOException {
         if(args.length != 2)
-            throw new IllegalArgumentException("First argument should be the type of sub application to run (PRODUCER,STREAM,SINK ,or comma separated mix). The second one should be the path to the connection.conf file");
+            throw new IllegalArgumentException("First argument should be the type of sub application to run (PRODUCER, STREAM or SINK). The second one should be the path to the connection.conf file");
 
         System.out.println("Applications to run: "+args[0]);
         System.out.println("Connection configuration path: "+args[1]);
 
-        String[] applicationsToRun = args[0].split(",");
+        String applicationToRun = args[0];
         ConnectionConfiguration config = new ConnectionConfiguration(args[1]);
 
         var context = new AnnotationConfigApplicationContext();
@@ -45,10 +45,10 @@ public class KafkaApplication {
         context.refresh();
         KafkaApplication app = context.getBean(KafkaApplication.class);
 
-        app.run(applicationsToRun);
+        app.run(applicationToRun);
     }
 
-    public void run(String[] applicationsToRun){
+    public void run(String applicationToRun){
 
         topicCreator.createTopicIfNeeded(
                 Topics.STATION_AVAILABILITIES,
@@ -58,13 +58,11 @@ public class KafkaApplication {
                 Topics.STATION_STATUS
         );
 
-        for(String app : applicationsToRun){
-            switch (app){
-                case "PRODUCER": producerApplication.start(); break;
-                case "STREAM": streamApplication.start(); break;
-                case "SINK": sinkApplication.start(); break;
-                default: throw new IllegalArgumentException("Unknown application : "+app);
-            }
+        switch (applicationToRun){
+            case "PRODUCER": producerApplication.start(); break;
+            case "STREAM": streamApplication.start(); break;
+            case "SINK": sinkApplication.start(); break;
+            default: throw new IllegalArgumentException("Unknown application : "+applicationToRun);
         }
     }
 }
