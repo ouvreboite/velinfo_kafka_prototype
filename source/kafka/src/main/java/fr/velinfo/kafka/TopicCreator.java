@@ -41,16 +41,19 @@ public class TopicCreator {
         }
     }
 
-    private static final int DAY_MS = 24*3600*1000;
+    private static final int HOUR_MS = 3600*1000;
+    private static final int DAY_MS = 24*HOUR_MS;
     private static final int MEGABYTES = 1_000_000;
     private static NewTopic configureNewTopic(String topic) {
         NewTopic newTopic = new NewTopic(topic, 5, (short) 1);
         newTopic.configs(Map.of(
                 TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_DELETE+","+TopicConfig.CLEANUP_POLICY_COMPACT,
                 TopicConfig.RETENTION_MS_CONFIG, ""+DAY_MS,
-                TopicConfig.RETENTION_BYTES_CONFIG, ""+(50*MEGABYTES),
+                TopicConfig.RETENTION_BYTES_CONFIG, ""+(200*MEGABYTES),
                 TopicConfig.MAX_COMPACTION_LAG_MS_CONFIG, ""+DAY_MS,
-                TopicConfig.MIN_CLEANABLE_DIRTY_RATIO_CONFIG, ""+0.1
+                TopicConfig.MIN_CLEANABLE_DIRTY_RATIO_CONFIG, ""+0.1,
+                TopicConfig.SEGMENT_BYTES_CONFIG, ""+(50*MEGABYTES),
+                TopicConfig.SEGMENT_MS_CONFIG, ""+HOUR_MS
         ));
         return newTopic;
     }
