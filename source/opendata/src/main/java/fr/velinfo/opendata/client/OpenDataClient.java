@@ -5,6 +5,8 @@ import io.github.resilience4j.retry.RetryConfig;
 import io.vavr.control.Try;
 import kong.unirest.Unirest;
 import fr.velinfo.opendata.dto.OpenDataDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 public abstract class OpenDataClient<Data extends OpenDataDto> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(OpenDataClient.class);
     public static final String ROW_COUNT_PARAMETER = "rows";
     public static final int ROW_COUNT_PARAMETER_MAX_VALUE = 10_000;
     public static final String BASE_PATH = "https://opendata.paris.fr/api/records/1.0/search/?dataset=";
@@ -44,14 +47,13 @@ public abstract class OpenDataClient<Data extends OpenDataDto> {
 
     public Data get() throws OpenDataException{
         String completePath = getCompletePath();
-
+        LOGGER.info("Calling {}", completePath);
         var retriableGet = Retry.decorateCheckedSupplier(this.retry, () -> get(completePath));
 
         return Try.of(retriableGet).getOrElseThrow(e -> new OpenDataException("Error when calling "+completePath, e));
     }
 
     private Data get(String completePath) {
-        System.out.println(completePath);
         return Unirest.get(completePath)
                 .header("accept", "application/json")
                 .asObject(dataClass)

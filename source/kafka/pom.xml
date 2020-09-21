@@ -71,6 +71,16 @@
             <version>5.2.7.RELEASE</version>
         </dependency>
         <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+        <dependency>
             <groupId>fr.velinfo</groupId>
             <artifactId>avro</artifactId>
             <version>1.1-SNAPSHOT</version>
@@ -89,16 +99,16 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-streams-test-utils</artifactId>
-            <version>2.5.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>fr.velinfo</groupId>
             <artifactId>repository</artifactId>
             <version>1.1-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams-test-utils</artifactId>
+            <version>2.5.0</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

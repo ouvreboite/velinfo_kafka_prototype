@@ -49,7 +49,6 @@ public class ExpectedActivityCalculatorTest {
     private List<AvroStationStats> stats() throws IOException {
         ArrayList<AvroStationStats> stats = new ArrayList<>();
         File file = new File("src/test/resources/stats.csv");
-        System.out.println(file.getAbsolutePath()+" "+file.exists());
         try (BufferedReader br = new BufferedReader(new FileReader("src/test/resources/stats.csv"))) {
             String line;
             while ((line = br.readLine()) != null) {

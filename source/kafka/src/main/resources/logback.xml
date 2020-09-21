@@ -1,0 +1,26 @@
+<configuration>
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="roll-by-time" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>log.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>log.%d.zip
+            </fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>1MB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %p %class{0}.%M %L - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="stdout" />
+    </root>
+    <root level="debug">
+        <appender-ref ref="roll-by-time" />
+    </root>
+</configuration>

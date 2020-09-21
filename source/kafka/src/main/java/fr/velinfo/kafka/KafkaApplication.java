@@ -7,6 +7,8 @@ import fr.velinfo.opendata.client.RealTimeAvailabilityClient;
 import fr.velinfo.properties.ConnectionConfiguration;
 import fr.velinfo.properties.Topics;
 import fr.velinfo.repository.HourlyStationStatsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import java.io.IOException;
 
 @Component
 public class KafkaApplication {
+    private static final Logger LOGGER = LoggerFactory.getLogger(KafkaApplication.class);
 
     private final ProducerApplication producerApplication;
     private final StreamApplication streamApplication;
@@ -31,25 +34,30 @@ public class KafkaApplication {
         if(args.length != 2)
             throw new IllegalArgumentException("First argument should be the type of sub application to run (PRODUCER, STREAM or SINK). The second one should be the path to the connection.conf file");
 
-        System.out.println("Applications to run: "+args[0]);
-        System.out.println("Connection configuration path: "+args[1]);
+        LOGGER.info("Applications to run: {}", args[0]);
+        LOGGER.info("Connection configuration path: {}", args[1]);
 
         String applicationToRun = args[0];
         ConnectionConfiguration config = new ConnectionConfiguration(args[1]);
 
-        var context = new AnnotationConfigApplicationContext();
-        context.registerBean(ConnectionConfiguration.class, () -> config);
-        context.registerBean(RealTimeAvailabilityClient.class, RealTimeAvailabilityClient::new);
-        context.registerBean(HourlyStationStatsRepository.class, ()  -> new HourlyStationStatsRepository(config));
-        context.scan("fr.velinfo.kafka");
-        context.refresh();
+        AnnotationConfigApplicationContext context = setupSpringContext(config);
         KafkaApplication app = context.getBean(KafkaApplication.class);
 
         app.run(applicationToRun);
     }
 
-    public void run(String applicationToRun){
+    private static AnnotationConfigApplicationContext setupSpringContext(ConnectionConfiguration config) {
+        var context = new AnnotationConfigApplicationContext();
+        context.registerBean(ConnectionConfiguration.class, () -> config);
+        context.registerBean(RealTimeAvailabilityClient.class, RealTimeAvailabilityClient::new);
+        context.registerBean(HourlyStationStatsRepository.class, ()  -> new HourlyStationStatsRepository(config));
+        context.scan(KafkaApplication.class.getPackageName());
+        context.refresh();
+        return context;
+    }
 
+    public void run(String applicationToRun){
+        LOGGER.info("Creating topics if needed");
         topicCreator.createTopicIfNeeded(
                 Topics.STATION_AVAILABILITIES,
                 Topics.STATION_UPDATES,
@@ -58,6 +66,8 @@ public class KafkaApplication {
                 Topics.STATION_STATUS
         );
 
+
+        LOGGER.info("Launch application {}", applicationToRun);
         switch (applicationToRun){
             case "PRODUCER": producerApplication.start(); break;
             case "STREAM": streamApplication.start(); break;

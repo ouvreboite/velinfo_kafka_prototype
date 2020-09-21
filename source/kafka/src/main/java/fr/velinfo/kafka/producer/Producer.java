@@ -1,16 +1,19 @@
 package fr.velinfo.kafka.producer;
 
+import fr.velinfo.kafka.producer.mapper.AvroMapper;
+import fr.velinfo.kafka.producer.mapper.KeyMapper;
+import fr.velinfo.kafka.producer.mapper.TimestampMapper;
+import fr.velinfo.opendata.dto.OpenDataDto;
+import fr.velinfo.properties.ConnectionConfiguration;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.avro.AvroRuntimeException;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import fr.velinfo.kafka.producer.mapper.AvroMapper;
-import fr.velinfo.kafka.producer.mapper.KeyMapper;
-import fr.velinfo.kafka.producer.mapper.TimestampMapper;
-import fr.velinfo.opendata.dto.OpenDataDto;
-import fr.velinfo.properties.ConnectionConfiguration;
+import org.apache.kafka.common.errors.SerializationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.Properties;
@@ -18,7 +21,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(Producer.class);
     private final String topic;
     private final KeyMapper<A> keyExtractor;
     private final TimestampMapper<A> timestampExtractor;
@@ -62,11 +65,11 @@ public class Producer<P extends OpenDataDto<F>,F,A extends SpecificRecord> {
             }
 
         }catch(AvroRuntimeException e){
-            System.err.println("Error mapping to Avro : "+e);
+            LOGGER.error("Avro error",e);
         }catch (InterruptedException | ExecutionException e) {
-            System.err.println("Error pushing to Kafka : "+e);
-        }catch (org.apache.kafka.common.errors.SerializationException e) {
-            System.err.println("Error during serialization : "+e);
+            LOGGER.error("Error pushing to Kafka",e);
+        }catch (SerializationException e) {
+            LOGGER.error("Error during deserialization",e);
         }
 
         kafkaProducer.flush();

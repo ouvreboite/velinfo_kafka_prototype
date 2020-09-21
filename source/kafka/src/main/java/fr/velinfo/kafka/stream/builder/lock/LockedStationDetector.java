@@ -5,6 +5,8 @@ import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.kafka.utils.DateTimeUtils;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,7 +14,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 @Component
 public class LockedStationDetector {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(LockedStationDetector.class);
     private final HourlyStationStatsRepository hourlyStationStatsRepository;
     private final ExpectedActivityCalculator activityCalculator;
 
@@ -32,16 +34,18 @@ public class LockedStationDetector {
 
         //get the past stats for station
         try{
-
-            System.out.println("Loading stats for station "+station.getStationCode()+" stale for "+lastChange.until(load, ChronoUnit.MINUTES)+" minutes");
             Collection<AvroStationStats> stats = hourlyStationStatsRepository.getStatsForPastDays(station.getStationCode(), 30);
-            System.out.println(stats.size()+" stats loaded for station "+station.getStationCode());
+            LOGGER.debug("{} stats loaded for station {}",stats.size(), station.getStationCode());
             int expectedActivityOnSamePeriod = activityCalculator.computeExpectedActivityOnSamePeriod(stats, lastChange, load);
-            System.out.println("Expected activity for station "+station.getStationCode()+" : "+expectedActivityOnSamePeriod);
-            return expectedActivityOnSamePeriod > 100;
+            LOGGER.debug("Expected activity for station {} : {}",station.getStationCode(),expectedActivityOnSamePeriod);
+
+            boolean isLocked = expectedActivityOnSamePeriod > 100;
+            if(isLocked){
+                LOGGER.info("Station {} is locked. Stale since {} minutes. Expected activity : {}",station.getStationCode(),lastChange.until(load, ChronoUnit.MINUTES), expectedActivityOnSamePeriod);
+            }
+            return isLocked;
         }catch(Repository.RepositoryException e){
-            System.out.println(e);
-            e.printStackTrace();
+            LOGGER.error("Error loading past stats for station :"+station.getStationCode(),e);
             return false;
         }
     }

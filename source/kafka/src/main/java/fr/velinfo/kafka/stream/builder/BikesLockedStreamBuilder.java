@@ -7,12 +7,15 @@ import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.kstream.KStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.function.ToLongFunction;
 @Component
 public class BikesLockedStreamBuilder {
+    private static final Logger LOGGER = LoggerFactory.getLogger(BikesLockedStreamBuilder.class);
     private final HourlyStationStatsRepository hourlyStationStatsRepository;
 
     public BikesLockedStreamBuilder(ConnectionConfiguration config) {
@@ -45,7 +48,7 @@ public class BikesLockedStreamBuilder {
                     .setPeriodEnd(stat.getPeriodEnd())
                     .build();
         } catch (Repository.RepositoryException e) {
-            e.printStackTrace();
+            LOGGER.error("Error getting stats for station {}", stat.getStationCode());
             return null;
         }
     }

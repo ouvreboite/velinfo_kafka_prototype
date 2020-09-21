@@ -47,9 +47,10 @@ public class TopicCreator {
         NewTopic newTopic = new NewTopic(topic, 5, (short) 1);
         newTopic.configs(Map.of(
                 TopicConfig.CLEANUP_POLICY_CONFIG, TopicConfig.CLEANUP_POLICY_DELETE+","+TopicConfig.CLEANUP_POLICY_COMPACT,
-                TopicConfig.RETENTION_MS_CONFIG, ""+(3*DAY_MS),
-                TopicConfig.RETENTION_BYTES_CONFIG, ""+(100*MEGABYTES),
-                TopicConfig.MAX_COMPACTION_LAG_MS_CONFIG, ""+(1*DAY_MS)
+                TopicConfig.RETENTION_MS_CONFIG, ""+DAY_MS,
+                TopicConfig.RETENTION_BYTES_CONFIG, ""+(50*MEGABYTES),
+                TopicConfig.MAX_COMPACTION_LAG_MS_CONFIG, ""+DAY_MS,
+                TopicConfig.MIN_CLEANABLE_DIRTY_RATIO_CONFIG, ""+0.1
         ));
         return newTopic;
     }

@@ -6,6 +6,8 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
@@ -14,7 +16,7 @@ import java.util.concurrent.CountDownLatch;
 import static org.apache.kafka.streams.KafkaStreams.State.RUNNING;
 @Component
 public class StreamApplication {
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(StreamApplication.class);
     private final TopologyBuilder topologyBuilder;
     private final ConnectionConfiguration config;
     private KafkaStreams streams;
@@ -40,10 +42,11 @@ public class StreamApplication {
 
     private void startStream(ConnectionConfiguration config) {
         Topology topology = topologyBuilder.buildTopology();
-
+        LOGGER.info("Topology built");
         this.streams = new KafkaStreams(topology, buildStreamsProperties(config));
         this.streams.cleanUp();
         this.streams.start();
+        LOGGER.info("Stream started");
     }
 
     public void stop() {

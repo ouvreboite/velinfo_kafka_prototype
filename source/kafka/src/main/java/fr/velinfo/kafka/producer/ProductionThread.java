@@ -1,14 +1,17 @@
 package fr.velinfo.kafka.producer;
 
-import org.apache.avro.specific.SpecificRecord;
 import fr.velinfo.opendata.client.OpenDataClient;
 import fr.velinfo.opendata.dto.OpenDataDto;
+import org.apache.avro.specific.SpecificRecord;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRecord> extends Thread{
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductionThread.class);
     private final Duration loopDuration;
     private final OpenDataClient<T> client;
     private final Producer<T, F, A> producer;
@@ -19,7 +22,7 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
         this.client = client;
         this.producer = producer;
         this.setDaemon(true);
-        System.out.println("Producing "+client.getClass()+" every "+humanReadableFormat(loopDuration));
+        LOGGER.info("Producing {} every {}", client.getClass(),humanReadableFormat(loopDuration));
     }
 
     private static String humanReadableFormat(Duration duration) {
@@ -35,17 +38,20 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
             while(true){
                 try{
                     T result = client.get();
-                    System.out.println("Fetched "+result.getRecords().size()+" "+result.getClass());
-                    if(!result.getRecords().isEmpty())
+                    LOGGER.info("{} {} loaded from API", result.getRecords().size(), result.getClass());
+                    if(!result.getRecords().isEmpty()){
                         producer.send(result);
+                        LOGGER.info("{} {} pushed to Kafka", result.getRecords().size(), result.getClass());
+                    }
+
                 }catch(OpenDataClient.OpenDataException e){
-                    System.err.println(e);
+                    LOGGER.error("Error while polling Paris API",e);
                 }
 
                 TimeUnit.SECONDS.sleep(loopDuration.toSeconds());
             }
         } catch (InterruptedException e) {
-            System.err.println(e);
+            LOGGER.error("Error during production",e);
         }
     }
 

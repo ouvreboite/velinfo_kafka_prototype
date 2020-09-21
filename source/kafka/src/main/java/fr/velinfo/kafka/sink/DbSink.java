@@ -7,6 +7,8 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.Serdes;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class DbSink<V extends SpecificRecord> {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbSink.class);
     private final KafkaConsumer<String, V> consumer;
     private final Repository<V> repository;
     private final String topic;
@@ -32,11 +35,12 @@ public class DbSink<V extends SpecificRecord> {
             while(true){
                 ConsumerRecords<String, V> records = consumer.poll(Duration.ofSeconds(5));
                 List<V> objects = extractValues(records);
+                LOGGER.info("Sinking {} records into {}", objects.size(),repository.getClass());
                 try{
                     repository.persist(objects);
                     consumer.commitSync();
                 }catch(Repository.RepositoryException e){
-                    System.out.println(e);
+                    LOGGER.error("Error sinking "+repository.getClass(), e);
                 }
             }
         } finally {
