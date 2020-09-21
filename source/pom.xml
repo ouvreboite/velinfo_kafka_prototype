@@ -7,7 +7,7 @@
     <groupId>fr.velinfo</groupId>
     <artifactId>velinfo</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <version>1.1-SNAPSHOT</version>
     <modules>
         <module>avro</module>
         <module>opendata</module>
