@@ -1,11 +1,9 @@
 package fr.velinfo.kafka.producer;
 
 import fr.velinfo.avro.record.source.AvroStationAvailability;
-import fr.velinfo.kafka.TopicCreator;
 import fr.velinfo.kafka.producer.mapper.RealTimeAvailabilityMapper;
 import fr.velinfo.opendata.client.OpenDataClient;
 import fr.velinfo.opendata.client.RealTimeAvailabilityClient;
-import fr.velinfo.opendata.dto.OpenDataDto;
 import fr.velinfo.opendata.dto.RealTimeAvailability;
 import fr.velinfo.properties.ConnectionConfiguration;
 import fr.velinfo.properties.Topics;
@@ -18,18 +16,15 @@ import java.util.concurrent.CountDownLatch;
 public class ProducerApplication {
     private final ConnectionConfiguration config;
     private final RealTimeAvailabilityMapper mapper;
-    private final TopicCreator topicCreator;
     private final OpenDataClient<RealTimeAvailability> realTimeAvailabilityClient;
 
-    public ProducerApplication(ConnectionConfiguration config, RealTimeAvailabilityMapper mapper, TopicCreator topicCreator, RealTimeAvailabilityClient realTimeAvailabilityClient) {
+    public ProducerApplication(ConnectionConfiguration config, RealTimeAvailabilityMapper mapper, RealTimeAvailabilityClient realTimeAvailabilityClient) {
         this.config = config;
         this.mapper = mapper;
-        this.topicCreator = topicCreator;
         this.realTimeAvailabilityClient = realTimeAvailabilityClient;
     }
 
     public void start() {
-        topicCreator.createTopicIfNeeded(Topics.STATION_AVAILABILITIES);
 
         var availabilityProducer = new Producer<RealTimeAvailability, RealTimeAvailability.Fields, AvroStationAvailability>(
                 Topics.STATION_AVAILABILITIES,

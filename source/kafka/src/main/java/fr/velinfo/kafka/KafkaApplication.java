@@ -5,6 +5,7 @@ import fr.velinfo.kafka.sink.SinkApplication;
 import fr.velinfo.kafka.stream.StreamApplication;
 import fr.velinfo.opendata.client.RealTimeAvailabilityClient;
 import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.properties.Topics;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
@@ -17,11 +18,13 @@ public class KafkaApplication {
     private final ProducerApplication producerApplication;
     private final StreamApplication streamApplication;
     private final SinkApplication sinkApplication;
+    private final TopicCreator topicCreator;
 
-    public KafkaApplication(ProducerApplication producerApplication, StreamApplication streamApplication, SinkApplication sinkApplication) {
+    public KafkaApplication(ProducerApplication producerApplication, StreamApplication streamApplication, SinkApplication sinkApplication, TopicCreator topicCreator) {
         this.producerApplication = producerApplication;
         this.streamApplication = streamApplication;
         this.sinkApplication = sinkApplication;
+        this.topicCreator = topicCreator;
     }
 
     public static void main(String[] args) throws IOException {
@@ -46,6 +49,15 @@ public class KafkaApplication {
     }
 
     public void run(String[] applicationsToRun){
+
+        topicCreator.createTopicIfNeeded(
+                Topics.STATION_AVAILABILITIES,
+                Topics.STATION_UPDATES,
+                Topics.HOURLY_STATION_STATS,
+                Topics.BIKES_LOCKED,
+                Topics.STATION_STATUS
+        );
+
         for(String app : applicationsToRun){
             switch (app){
                 case "PRODUCER": producerApplication.start(); break;

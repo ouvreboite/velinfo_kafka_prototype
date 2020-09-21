@@ -1,8 +1,6 @@
 package fr.velinfo.kafka.stream;
 
-import fr.velinfo.kafka.TopicCreator;
 import fr.velinfo.properties.ConnectionConfiguration;
-import fr.velinfo.properties.Topics;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.streams.KafkaStreams;
@@ -19,13 +17,11 @@ public class StreamApplication {
 
     private final TopologyBuilder topologyBuilder;
     private final ConnectionConfiguration config;
-    private final TopicCreator topicCreator;
     private KafkaStreams streams;
 
-    public StreamApplication(TopologyBuilder topologyBuilder, ConnectionConfiguration config, TopicCreator topicCreator) {
+    public StreamApplication(TopologyBuilder topologyBuilder, ConnectionConfiguration config) {
         this.topologyBuilder = topologyBuilder;
         this.config = config;
-        this.topicCreator = topicCreator;
     }
 
     public void start(){
@@ -43,13 +39,6 @@ public class StreamApplication {
     }
 
     private void startStream(ConnectionConfiguration config) {
-        topicCreator.createTopicIfNeeded(
-                Topics.STATION_UPDATES,
-                Topics.HOURLY_STATION_STATS,
-                Topics.BIKES_LOCKED,
-                Topics.STATION_STATUS
-        );
-
         Topology topology = topologyBuilder.buildTopology();
 
         this.streams = new KafkaStreams(topology, buildStreamsProperties(config));

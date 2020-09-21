@@ -1,28 +1,17 @@
 package fr.velinfo.kafka.stream;
 
 import fr.velinfo.avro.record.source.AvroStationAvailability;
-import fr.velinfo.kafka.TopicCreator;
 import fr.velinfo.kafka.stream.builder.BikesLockedStreamBuilder;
 import fr.velinfo.kafka.stream.builder.HourlyStationStatsStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationUpdatesStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationsStatusStreamBuilder;
-import fr.velinfo.properties.ConnectionConfiguration;
 import fr.velinfo.properties.Topics;
-import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
 import org.springframework.stereotype.Component;
-
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
-
-import static org.apache.kafka.streams.KafkaStreams.State.RUNNING;
 @Component
 public class TopologyBuilder {
 
