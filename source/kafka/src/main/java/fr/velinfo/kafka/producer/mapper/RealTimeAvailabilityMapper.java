@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class RealTimeAvailabilityMapper implements AvroMapper<RealTimeAvailability.Fields, AvroStationAvailability> {
-    @Override
+public class RealTimeAvailabilityMapper{
+
     public synchronized AvroStationAvailability map(RealTimeAvailability.Fields record) {
         AvroCoordinates coordinates = AvroCoordinates.newBuilder()
                 .setLatitude(record.getCoordonnees_geo() != null ? record.getCoordonnees_geo()[0] : 0.0)

@@ -1,22 +1,21 @@
 package fr.velinfo.kafka.producer;
 
 import fr.velinfo.opendata.client.OpenDataClient;
-import fr.velinfo.opendata.dto.OpenDataDto;
-import org.apache.avro.specific.SpecificRecord;
+import fr.velinfo.opendata.client.RealTimeAvailabilityClient;
+import fr.velinfo.opendata.dto.RealTimeAvailability;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
 
-public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRecord> extends Thread{
+public class ProductionThread extends Thread{
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductionThread.class);
     private final Duration loopDuration;
-    private final OpenDataClient<T> client;
-    private final Producer<T, F, A> producer;
+    private final RealTimeAvailabilityClient client;
+    private final StationAvailabilityProducer producer;
 
-    public ProductionThread(Duration loopDuration, OpenDataClient<T> client, Producer<T,F, A> producer) {
+    public ProductionThread(Duration loopDuration, RealTimeAvailabilityClient client, StationAvailabilityProducer producer) {
         super();
         this.loopDuration = loopDuration;
         this.client = client;
@@ -37,7 +36,7 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
         try {
             while(true){
                 try{
-                    T result = client.get();
+                    RealTimeAvailability result = client.get();
                     LOGGER.info("{} {} loaded from API", result.getRecords().size(), result.getClass());
                     if(!result.getRecords().isEmpty()){
                         producer.send(result);
@@ -53,10 +52,5 @@ public class ProductionThread<T extends OpenDataDto<F>, F, A extends SpecificRec
         } catch (InterruptedException e) {
             LOGGER.error("Error during production",e);
         }
-    }
-
-    public ProductionThread<T,F,A> withParameter(String parameter, Supplier<String> valueSupplier){
-        this.client.withParameter(parameter, valueSupplier);
-        return this;
     }
 }
