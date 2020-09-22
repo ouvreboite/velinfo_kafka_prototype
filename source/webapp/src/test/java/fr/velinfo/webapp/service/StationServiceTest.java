@@ -1,4 +1,4 @@
-package fr.velinfo.webapp;
+package fr.velinfo.webapp.service;
 
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.stream.AvroStationStatus;
@@ -6,25 +6,26 @@ import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.avro.record.stream.StationStatus;
 import fr.velinfo.webapp.dto.Station;
 import fr.velinfo.webapp.dto.mapper.StationMapper;
+import fr.velinfo.webapp.service.StationService;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StationServiceTest {
-    private  StationService service = new StationService(new StationMapper());
+    private StationService service = new StationService(new StationMapper());
     @Test
     void getStations_shouldReturnEmpty_whenNoStationOrStatusConsumed() {
-       assertTrue(service.getStations().isEmpty());
+       assertTrue(service.getCurrentStationStates().isEmpty());
     }
 
     @Test
     void getStations_shouldReturnStationWithoutStatus_whenOnlyStationUpdateTopicPush() {
         service.consumeStationUpdate(new ConsumerRecord<>("topic", 0, 0, "a", update("StationA")));
 
-        assertEquals(1,service.getStations().size());
+        assertEquals(1,service.getCurrentStationStates().size());
 
-        Station station = service.getStations().get(0);
+        Station station = service.getCurrentStationStates().get(0);
         assertEquals("StationA", station.getStationName());
         assertNull(station.getStatus());
     }
@@ -33,9 +34,9 @@ class StationServiceTest {
     void getStations_shouldReturnStationWithoutName_whenOnlyStationStatusTopicPush() {
         service.consumeStationStatus(new ConsumerRecord<>("topic", 0, 0, "a", status(StationStatus.LOCKED)));
 
-        assertEquals(1,service.getStations().size());
+        assertEquals(1,service.getCurrentStationStates().size());
 
-        Station station = service.getStations().get(0);
+        Station station = service.getCurrentStationStates().get(0);
         assertEquals("LOCKED", station.getStatus());
         assertNull(station.getStationName());
     }
@@ -45,9 +46,9 @@ class StationServiceTest {
         service.consumeStationUpdate(new ConsumerRecord<>("topic", 0, 0, "a", update("StationA")));
         service.consumeStationStatus(new ConsumerRecord<>("topic", 0, 0, "a", status(StationStatus.LOCKED)));
 
-        assertEquals(1,service.getStations().size());
+        assertEquals(1,service.getCurrentStationStates().size());
 
-        Station station = service.getStations().get(0);
+        Station station = service.getCurrentStationStates().get(0);
         assertEquals("StationA", station.getStationName());
         assertEquals("LOCKED", station.getStatus());
     }
@@ -57,9 +58,9 @@ class StationServiceTest {
         service.consumeStationStatus(new ConsumerRecord<>("topic", 0, 0, "a", status(StationStatus.LOCKED)));
         service.consumeStationUpdate(new ConsumerRecord<>("topic", 0, 0, "a", update("StationA")));
 
-        assertEquals(1,service.getStations().size());
+        assertEquals(1,service.getCurrentStationStates().size());
 
-        Station station = service.getStations().get(0);
+        Station station = service.getCurrentStationStates().get(0);
         assertEquals("StationA", station.getStationName());
         assertEquals("LOCKED", station.getStatus());
     }

@@ -1,38 +1,37 @@
-package fr.velinfo.webapp;
+package fr.velinfo.webapp.controller;
 
+import fr.velinfo.webapp.controller.HomePageController;
 import fr.velinfo.webapp.dto.Station;
+import fr.velinfo.webapp.service.StationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class StationListControllerTest {
+class HomePageControllerTest {
 
-    private StationListController controller;
+    private HomePageController controller;
     @Mock
     private StationService service;
 
     @BeforeEach
     void setup(){
-        controller = new StationListController(service);
+        controller = new HomePageController(service);
     }
 
     @Test
     void getStationList_shouldAddStationsToModel() {
         var stations = Arrays.asList(new Station());
-        when(service.getStations()).thenReturn(stations);
+        when(service.getCurrentStationStates()).thenReturn(stations);
 
         var extendedModelMap = new ExtendedModelMap();
         controller.getStationList(extendedModelMap);
@@ -43,10 +42,10 @@ class StationListControllerTest {
 
     @Test
     void getStationList_shouldReturnTemplateName() {
-        when(service.getStations()).thenReturn(null);
+        when(service.getCurrentStationStates()).thenReturn(null);
 
         String templateName = controller.getStationList(new ExtendedModelMap());
 
-        assertEquals("station-list", templateName);
+        assertEquals("home-page", templateName);
     }
 }
