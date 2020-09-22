@@ -1,4 +1,4 @@
-package fr.velinfo.webapp;
+package fr.velinfo.webapp.service;
 
 import fr.velinfo.avro.record.stream.AvroStationStatus;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
@@ -24,7 +24,7 @@ public class StationService {
 
     private final Map<String, Station> stations = new ConcurrentHashMap<>();
 
-    public List<Station> getStations(){
+    public List<Station> getCurrentStationStates(){
         return stations.values().stream()
                 .sorted(Comparator.comparing(station -> station.getStationName()))
                 .collect(Collectors.toList());

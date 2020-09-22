@@ -1,5 +1,6 @@
 package fr.velinfo.webapp;
 
+import fr.velinfo.repository.HourlyStationStatsRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,5 +24,11 @@ public class WebApplication {
 	@Scope("singleton")
 	public ConnectionConfiguration connectionConfiguration() throws IOException {
 		return new ConnectionConfiguration(this.connectionFile);
+	}
+
+	@Bean
+	@Scope("singleton")
+	public HourlyStationStatsRepository hourlyStationStatsRepository(ConnectionConfiguration configuration) {
+		return new HourlyStationStatsRepository(configuration);
 	}
 }

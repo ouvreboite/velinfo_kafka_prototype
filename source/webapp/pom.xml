@@ -65,5 +65,11 @@
             <artifactId>kafka-avro-serializer</artifactId>
             <version>5.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>fr.velinfo</groupId>
+            <artifactId>repository</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>
