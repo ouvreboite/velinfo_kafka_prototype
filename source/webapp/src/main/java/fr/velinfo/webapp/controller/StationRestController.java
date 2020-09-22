@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static fr.velinfo.webapp.PatternBreakingCharacterRemover.strip;
+
 @RestController()
 @RequestMapping("/api/stations")
 public class StationRestController {
@@ -34,6 +36,7 @@ public class StationRestController {
     @GetMapping("/{id}/hourly-stats")
     @Operation(summary = "Get hourly statistics of a station for the past 30 days", tags = "statistics")
     public List<StationStat> getHourlyStatistics(@PathVariable("id") String stationCode) throws Repository.RepositoryException {
+        stationCode = strip(stationCode);
         return stationStatsService.getHourlyStatistics(stationCode, 30);
     }
 }
