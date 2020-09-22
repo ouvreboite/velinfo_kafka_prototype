@@ -155,7 +155,7 @@ function addPopupForStations(map){
 function popupTemplate(station){
     var electricShare = station.electricBikes/station.totalCapacity*100;
     var mechanicalShare = station.mechanicalBikes/station.totalCapacity*100;
-    var tfnLastChange = timeFromNow(new Date(station.lastChangeTimestamp));
+    var tfnLastChange = timeFromNow(station.lastChange);
 
     var htmlContent =
 `<div class="progress">

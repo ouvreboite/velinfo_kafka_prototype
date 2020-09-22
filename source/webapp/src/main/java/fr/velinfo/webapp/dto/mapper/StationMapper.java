@@ -1,6 +1,7 @@
 package fr.velinfo.webapp.dto.mapper;
 
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
+import fr.velinfo.common.DateTimeUtils;
 import fr.velinfo.webapp.dto.Station;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,8 @@ public class StationMapper {
         station.setEmptySlots(stationUpdate.getStationCapacity()-(stationUpdate.getElectricBikesAtStation()+stationUpdate.getMechanicalBikesAtStation()));
         station.setElectricBikes(stationUpdate.getElectricBikesAtStation());
         station.setMechanicalBikes(stationUpdate.getMechanicalBikesAtStation());
-        station.setLastChangeTimestamp(stationUpdate.getLastChangeTimestamp() == null ? stationUpdate.getLoadTimestamp() : stationUpdate.getLastChangeTimestamp());
+        var lastChangeTimestamp = stationUpdate.getLastChangeTimestamp() == null ? stationUpdate.getLoadTimestamp() : stationUpdate.getLastChangeTimestamp();
+        station.setLastChange(DateTimeUtils.localDateTime(lastChangeTimestamp));
         return station;
     }
 }

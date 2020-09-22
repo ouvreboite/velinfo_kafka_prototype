@@ -2,13 +2,17 @@ package fr.velinfo.webapp.dto.mapper;
 
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
+import fr.velinfo.common.DateTimeUtils;
 import fr.velinfo.webapp.dto.Station;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class StationMapperTest {
     private StationMapper mapper = new StationMapper();
+    private LocalDateTime now = LocalDateTime.now().withNano(0);
     @Test
     void map() {
         AvroStationUpdate avro = buildAvro();
@@ -23,7 +27,7 @@ class StationMapperTest {
         assertEquals(7, station.getEmptySlots());
         assertEquals(11.1, station.getLatitude());
         assertEquals(22.2, station.getLongitude());
-        assertEquals(456, station.getLastChangeTimestamp());
+        assertEquals(now, station.getLastChange());
         assertNull(station.getStatus());
     }
 
@@ -31,12 +35,12 @@ class StationMapperTest {
     void map_shouldUseLoadTimestamp_whenLastChangeTimestampIsNull() {
         AvroStationUpdate avro = buildAvro();
         avro.setLastChangeTimestamp(null);
-        avro.setLoadTimestamp(789);
+        avro.setLoadTimestamp(DateTimeUtils.timestamp(now.plusHours(1)));
 
         Station station = mapper.map(avro);
 
 
-        assertEquals(789, station.getLastChangeTimestamp());
+        assertEquals(now.plusHours(1), station.getLastChange());
     }
 
 
@@ -52,7 +56,7 @@ class StationMapperTest {
                         .setLongitude(22.2)
                         .build())
                 .setLoadTimestamp(123L)
-                .setLastChangeTimestamp(456L)
+                .setLastChangeTimestamp(DateTimeUtils.timestamp(now))
                 .setMechanicalBikesRented(0)
                 .setMechanicalBikesReturned(0)
                 .setElectricBikesRented(0)

@@ -2,6 +2,8 @@ package fr.velinfo.webapp.dto;
 
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 @Data
 public class Station {
     private String stationCode;
@@ -12,6 +14,6 @@ public class Station {
     private int emptySlots;
     private int electricBikes;
     private int mechanicalBikes;
-    private Long lastChangeTimestamp;
+    private LocalDateTime lastChange;
     private String status;
 }

@@ -45,7 +45,7 @@
             <td th:text="${station.emptySlots}"></td>
             <td th:text="${station.mechanicalBikes}"></td>
             <td th:text="${station.electricBikes}"></td>
-            <td th:text="${#dates.format(station.lastChangeTimestamp, 'dd-MMM-yyyy HH:mm')}"></td>
+            <td th:text="${#temporals.format(station.lastChange, 'dd-MMM-yyyy HH:mm')}"></td>
             <td th:text="${station.status}"></td>
         </tr>
         </tbody>
