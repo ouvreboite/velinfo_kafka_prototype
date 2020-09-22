@@ -12,7 +12,7 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 
 import java.util.HashMap;
 import java.util.Map;

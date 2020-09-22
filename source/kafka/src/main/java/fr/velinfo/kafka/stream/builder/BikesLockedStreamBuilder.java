@@ -2,7 +2,7 @@ package fr.velinfo.kafka.stream.builder;
 
 import fr.velinfo.avro.record.stream.AvroBikesLocked;
 import fr.velinfo.avro.record.stream.AvroStationStats;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 import org.apache.kafka.streams.KeyValue;

@@ -1,4 +1,4 @@
-package fr.velinfo.properties;
+package fr.velinfo.common;
 
 public class Topics {
     public static final String STATION_AVAILABILITIES = "velinfo.source.realTimeAvailability";

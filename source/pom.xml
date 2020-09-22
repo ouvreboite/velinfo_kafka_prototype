@@ -12,7 +12,7 @@
         <module>avro</module>
         <module>opendata</module>
         <module>webapp</module>
-        <module>properties</module>
+        <module>common</module>
         <module>kafka</module>
         <module>repository</module>
     </modules>

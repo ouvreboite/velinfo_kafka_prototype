@@ -5,7 +5,7 @@ import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.config.TopicConfig;
 import org.apache.kafka.common.errors.TopicExistsException;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

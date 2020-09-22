@@ -1,7 +1,7 @@
 package fr.velinfo.kafka.stream.builder.deduplication;
 
 import fr.velinfo.kafka.stream.builder.StreamTestUtils;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.processor.MockProcessorContext;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import fr.velinfo.avro.record.source.AvroCoordinates;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
 import fr.velinfo.kafka.stream.AvroSerdeBuilder;
-import fr.velinfo.kafka.utils.DateTimeUtils;
+import fr.velinfo.common.DateTimeUtils;
 
 import java.time.LocalDateTime;
 import java.util.Properties;

@@ -1,4 +1,4 @@
-package fr.velinfo.properties;
+package fr.velinfo.common;
 
 import lombok.Getter;
 

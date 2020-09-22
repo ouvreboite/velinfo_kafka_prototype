@@ -3,7 +3,7 @@ package fr.velinfo.kafka.producer;
 import fr.velinfo.avro.record.source.AvroStationAvailability;
 import fr.velinfo.kafka.producer.mapper.RealTimeAvailabilityMapper;
 import fr.velinfo.opendata.dto.RealTimeAvailability;
-import fr.velinfo.properties.Topics;
+import fr.velinfo.common.Topics;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package fr.velinfo.kafka.stream;
 
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.streams.KafkaStreams;

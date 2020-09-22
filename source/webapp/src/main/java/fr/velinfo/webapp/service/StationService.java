@@ -30,7 +30,7 @@ public class StationService {
                 .collect(Collectors.toList());
     }
 
-    @KafkaListener(topics = "#{T(fr.velinfo.properties.Topics).STATION_UPDATES}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{T(fr.velinfo.common.Topics).STATION_UPDATES}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
     public void consumeStationUpdate(ConsumerRecord<String, AvroStationUpdate> record) {
         var station = this.stations.get(record.key());
         var prevStatus = station == null ?  null : station.getStatus();
@@ -41,7 +41,7 @@ public class StationService {
         this.stations.put(record.key(), station);
     }
 
-    @KafkaListener(topics = "#{T(fr.velinfo.properties.Topics).STATION_STATUS}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
+    @KafkaListener(topics = "#{T(fr.velinfo.common.Topics).STATION_STATUS}", groupId = "webapp.${random.uuid}", properties = {"auto.offset.reset = earliest"})
     public void consumeStationStatus(ConsumerRecord<String, AvroStationStatus> record) {
         var station = this.stations.get(record.key());
         if(station == null) {

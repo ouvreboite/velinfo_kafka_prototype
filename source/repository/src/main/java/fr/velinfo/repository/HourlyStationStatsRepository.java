@@ -1,7 +1,7 @@
 package fr.velinfo.repository;
 
 import fr.velinfo.avro.record.stream.AvroStationStats;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 
 import java.sql.*;
 import java.util.ArrayList;

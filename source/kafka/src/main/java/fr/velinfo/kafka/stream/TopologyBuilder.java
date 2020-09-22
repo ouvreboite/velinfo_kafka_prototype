@@ -5,7 +5,7 @@ import fr.velinfo.kafka.stream.builder.BikesLockedStreamBuilder;
 import fr.velinfo.kafka.stream.builder.HourlyStationStatsStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationUpdatesStreamBuilder;
 import fr.velinfo.kafka.stream.builder.StationsStatusStreamBuilder;
-import fr.velinfo.properties.Topics;
+import fr.velinfo.common.Topics;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;

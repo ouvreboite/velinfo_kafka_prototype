@@ -1,4 +1,4 @@
-package fr.velinfo.kafka.utils;
+package fr.velinfo.common;
 
 import java.time.Instant;
 import java.time.LocalDateTime;

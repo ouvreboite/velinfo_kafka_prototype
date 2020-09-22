@@ -1,8 +1,8 @@
 package fr.velinfo.kafka.sink;
 
 import fr.velinfo.kafka.stream.AvroSerdeBuilder;
-import fr.velinfo.properties.ConnectionConfiguration;
-import fr.velinfo.properties.Topics;
+import fr.velinfo.common.ConnectionConfiguration;
+import fr.velinfo.common.Topics;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

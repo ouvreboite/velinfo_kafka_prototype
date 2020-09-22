@@ -2,7 +2,7 @@ package fr.velinfo.kafka.stream.builder.lock;
 
 import fr.velinfo.avro.record.stream.AvroStationStats;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.kafka.utils.DateTimeUtils;
+import fr.velinfo.common.DateTimeUtils;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 import org.slf4j.Logger;

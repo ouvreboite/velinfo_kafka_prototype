@@ -6,7 +6,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import fr.velinfo.avro.record.stream.AvroStationStats;
 import fr.velinfo.avro.record.stream.AvroStationUpdate;
-import fr.velinfo.kafka.utils.DateTimeUtils;
+import fr.velinfo.common.DateTimeUtils;
 import fr.velinfo.repository.HourlyStationStatsRepository;
 import fr.velinfo.repository.Repository;
 

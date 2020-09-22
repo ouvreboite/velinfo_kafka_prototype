@@ -24,7 +24,7 @@
         </dependency>
         <dependency>
             <groupId>fr.velinfo</groupId>
-            <artifactId>properties</artifactId>
+            <artifactId>common</artifactId>
             <version>1.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

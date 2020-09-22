@@ -1,11 +1,11 @@
-package fr.velinfo.kafka.utils;
+package fr.velinfo.common;
 
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DateTimeUtilsTest {
 

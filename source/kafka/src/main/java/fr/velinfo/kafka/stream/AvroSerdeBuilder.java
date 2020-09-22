@@ -3,11 +3,11 @@ package fr.velinfo.kafka.stream;
 import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
-import fr.velinfo.properties.ConnectionConfiguration;
+import fr.velinfo.common.ConnectionConfiguration;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
-import java.util.Map;
+
 @Component
 public class AvroSerdeBuilder {
 
