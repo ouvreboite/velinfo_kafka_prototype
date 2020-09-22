@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StationServiceTest {
-    private StationService service = new StationService(new StationMapper());
+    private final StationService service = new StationService(new StationMapper());
     @Test
     void getStations_shouldReturnEmpty_whenNoStationOrStatusConsumed() {
        assertTrue(service.getCurrentStationStates().isEmpty());

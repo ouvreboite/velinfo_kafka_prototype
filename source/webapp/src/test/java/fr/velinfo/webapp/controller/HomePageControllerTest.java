@@ -1,6 +1,5 @@
 package fr.velinfo.webapp.controller;
 
-import fr.velinfo.webapp.controller.HomePageController;
 import fr.velinfo.webapp.dto.Station;
 import fr.velinfo.webapp.service.StationService;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +12,8 @@ import org.springframework.ui.ExtendedModelMap;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
