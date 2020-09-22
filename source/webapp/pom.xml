@@ -49,6 +49,11 @@
             <artifactId>spring-kafka</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.2.32</version>
+        </dependency>
+        <dependency>
             <groupId>fr.velinfo</groupId>
             <artifactId>avro</artifactId>
             <version>1.1-SNAPSHOT</version>
