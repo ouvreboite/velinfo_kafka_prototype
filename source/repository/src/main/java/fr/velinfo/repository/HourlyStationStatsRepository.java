@@ -6,6 +6,7 @@ import fr.velinfo.common.ConnectionConfiguration;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class HourlyStationStatsRepository implements Repository<AvroStationStats> {
 
@@ -28,7 +29,8 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
             "minimumNumberOfMechanicalBikes, minimumNumberOfElectricBikes, minimumNumberOfEmptySlots, \n" +
             "lastNumberOfMechanicalBikes, lastNumberOfElectricBikes, lastLoadTimestamp \n" +
             "FROM station_hourly_statistics \n" +
-            "WHERE stationCode = ? and periodStart > current_date - interval '%days%' day;";
+            "WHERE stationCode = ? and periodStart > current_date - interval '%days%' day \n" +
+            "order by periodstart;";
 
     @Override
     public void persist(Collection<AvroStationStats> stats) throws RepositoryException {
@@ -63,7 +65,7 @@ public class HourlyStationStatsRepository implements Repository<AvroStationStats
         }
     }
 
-    public Collection<AvroStationStats> getStatsForPastDays(String stationCode, int days) throws RepositoryException {
+    public List<AvroStationStats> getStatsForPastDays(String stationCode, int days) throws RepositoryException {
         String query = QUERY_PAST_DAYS_SQL.replace("%days%", days+"");
         try (
                 Connection connection = getConnection();
