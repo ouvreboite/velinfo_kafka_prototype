@@ -18,6 +18,8 @@ import java.io.IOException;
 public class KafkaApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(KafkaApplication.class);
 
+    enum Application{PRODUCER,STREAM,SINK}
+
     private final ProducerApplication producerApplication;
     private final StreamApplication streamApplication;
     private final SinkApplication sinkApplication;
@@ -43,7 +45,7 @@ public class KafkaApplication {
         AnnotationConfigApplicationContext context = setupSpringContext(config);
         KafkaApplication app = context.getBean(KafkaApplication.class);
 
-        app.run(applicationToRun);
+        app.run(Application.valueOf(applicationToRun));
     }
 
     private static AnnotationConfigApplicationContext setupSpringContext(ConnectionConfiguration config) {
@@ -56,7 +58,8 @@ public class KafkaApplication {
         return context;
     }
 
-    public void run(String applicationToRun){
+
+    public void run(Application applicationToRun){
         LOGGER.info("Creating topics if needed");
         topicCreator.createTopicIfNeeded(
                 Topics.STATION_AVAILABILITIES,
@@ -66,13 +69,12 @@ public class KafkaApplication {
                 Topics.STATION_STATUS
         );
 
-
         LOGGER.info("Launch application {}", applicationToRun);
         switch (applicationToRun){
-            case "PRODUCER": producerApplication.start(); break;
-            case "STREAM": streamApplication.start(); break;
-            case "SINK": sinkApplication.start(); break;
-            default: throw new IllegalArgumentException("Unknown application : "+applicationToRun);
+            case PRODUCER: producerApplication.start(); break;
+            case STREAM: streamApplication.start(); break;
+            case SINK: sinkApplication.start(); break;
+            default: throw new IllegalArgumentException("Unmanaged application : "+applicationToRun);
         }
     }
 }

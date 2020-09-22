@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import static fr.velinfo.kafka.KafkaApplication.Application.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -34,25 +35,28 @@ class KafkaApplicationTest {
     }
 
     @Test
-    void run_shouldThrow_whenApplicationUnknown() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> kafkaApplication.run("something"));
+    void main_shouldThrowWhenApplicationUnknown() {
+        Assertions.assertThrows(
+                IllegalArgumentException.class,
+                () -> KafkaApplication.main(new String[]{"unknown","src/test/resources/connection.properties"})
+        );
     }
 
     @Test
     void run_shouldStartProducer() {
-        kafkaApplication.run("PRODUCER");
+        kafkaApplication.run(PRODUCER);
         verify(producerApplication, times(1)).start();
     }
 
     @Test
     void run_shouldStartStream() {
-        kafkaApplication.run("STREAM");
+        kafkaApplication.run(STREAM);
         verify(streamApplication, times(1)).start();
     }
 
     @Test
     void run_shouldStartSink() {
-        kafkaApplication.run("SINK");
+        kafkaApplication.run(SINK);
         verify(sinkApplication, times(1)).start();
     }
 
